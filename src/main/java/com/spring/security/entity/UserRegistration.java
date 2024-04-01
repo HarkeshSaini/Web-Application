@@ -18,7 +18,7 @@ public class UserRegistration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String userName;
-    private String userPass;
+    private String userPassword;
     private String userEmail;
     private String siteId;
     private String roleId;
