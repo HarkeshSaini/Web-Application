@@ -20,18 +20,14 @@ public class AuthenticationUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        var byUserName = userRegistrationRepositorie.findByUserName(username);
-//        if (byUserName == null) {
-//            throw new ArrayIndexOutOfBoundsException("invalid login credentials...");
-//        } else {
-//            var passwordEncoder = new BCryptPasswordEncoder();
-//            var hashedPassword = passwordEncoder.encode(byUserName.getUserPassword());
-//            var user = new User(byUserName.getUserName(),hashedPassword, AuthorityUtils.createAuthorityList(byUserName.getRoleId().toUpperCase()));
-//            return new UserDetailConfig(user);
-//        }
-        var passwordEncoder = new BCryptPasswordEncoder();
-        var hashedPassword = passwordEncoder.encode("harkesh");
-        var user = new User("harkesh",hashedPassword, AuthorityUtils.createAuthorityList("user".toUpperCase()));
-        return new UserDetailConfig(user);
+        var byUserName = userRegistrationRepositorie.findByUserName(username);
+        if (byUserName == null) {
+            throw new ArrayIndexOutOfBoundsException("invalid login credentials...");
+        } else {
+            var passwordEncoder = new BCryptPasswordEncoder();
+            var hashedPassword = passwordEncoder.encode(byUserName.getUserPassword());
+            var user = new User(byUserName.getUserName(),hashedPassword, AuthorityUtils.createAuthorityList(byUserName.getRoleId().toUpperCase()));
+            return new UserDetailConfig(user);
+        }
      }
 }
