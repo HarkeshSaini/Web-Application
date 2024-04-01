@@ -15,7 +15,7 @@ public class AdminController {
     @Autowired
     private UserRegistrationServices userRegistrationServices;
 
-    @GetMapping("/dashboard")
+    @GetMapping("/")
     private String dashboardAdmin(Model model){
         var userDetail = userRegistrationServices.getAllserRegistration();
         model.addAttribute("registrationsDetail",userDetail);
@@ -57,14 +57,14 @@ public class AdminController {
     private String deleteUserInfo(@NotNull @PathVariable Integer id,Model model){
         final var stringResponseEntity = userRegistrationServices.deleteUserRegistrationInfo(id);
         System.out.println(stringResponseEntity);
-        return "redirect:/dashboard";
+        return "redirect:/";
     }
 
     @GetMapping("/deleteUserInfoUndo")
     private String deleteUndoUserInfo(@NotNull @PathVariable Integer id,Model model){
         final var stringResponseEntity = userRegistrationServices.undoUserRegistrationInfoByUserId(id);
         System.out.println(stringResponseEntity);
-        return "redirect:/dashboard";
+        return "redirect:/";
     }
 
 }
