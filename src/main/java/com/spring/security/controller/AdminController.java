@@ -1,70 +1,80 @@
 package com.spring.security.controller;
 
-import com.spring.security.object.UserRegistrationObject;
-import com.spring.security.service.UserRegistrationServices;
+import java.util.List;
+
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.security.interfaces.UserRegisterService;
+import com.spring.security.object.UserInfoRequest;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private UserRegistrationServices userRegistrationServices;
 
-    @GetMapping("/")
-    private String dashboardAdmin(Model model){
-        var userDetail = userRegistrationServices.getAllserRegistration();
-        model.addAttribute("registrationsDetail",userDetail);
-        return "dashboard";
+	private final UserRegisterService registerService;
+	
+    public AdminController(UserRegisterService registerService) {
+		this.registerService = registerService;
+	}
+
+	@GetMapping("/dashboard")
+    private String dashboard(Model model){
+        List<UserInfoRequest> allserRegistration = this.registerService.getAllUser();
+        model.addAttribute("registrationsDetail",allserRegistration);
+        return "admin/dashboard";
+    }
+	
+	@GetMapping("/getAllUser")
+    private String getAllUser(Model model){
+        List<UserInfoRequest> allserRegistration = this.registerService.getAllUser();
+        model.addAttribute("registrationsDetail",allserRegistration);
+        return "admin/showUser";
     }
 
     @GetMapping("/addUser")
-    private String registrationUserDetailAdd(Model model){
+    private String addUser(Model model){
         model.addAttribute("success","Add new user for admin!...");
-        return "addUser";
+        return "admin/addUser";
     }
 
     @PostMapping("/addUser")
-    private String registrationUserDetailSubmit(@NotNull UserRegistrationObject userRegistrationObject,Model model){
-        final var userRegistration = userRegistrationServices.submitNewUserRegistration(userRegistrationObject);
-        model.addAttribute("success","User info successfully submit!..");
-        return "addUser";
+    private String addUser(@NotNull UserInfoRequest userRequest,Model model){
+        UserInfoRequest addUser = this.registerService.addUser(userRequest);
+        if(ObjectUtils.isEmpty(addUser)) {
+        	model.addAttribute("success","User not update");
+        }
+        model.addAttribute("success","User info successfully submit");
+        return "admin/addUser";
     }
     
     @GetMapping("/editUserInfo/{id}")
     private String eitUserRegistrationInfoGet(@NotNull @PathVariable Integer id,Model model){
-        final var byIdRegistrationUser = userRegistrationServices.findByIdRegistrationUser(id);
+    	UserInfoRequest userById = this.registerService.getUserById(id);
         model.addAttribute("id" ,id);
-        model.addAttribute("command" ,byIdRegistrationUser);
+        model.addAttribute("command" ,userById);
         model.addAttribute("success","Edit user Info..");
-        return "editUser";
+        return "admin/editUser";
     }
 
     @PostMapping("/editUserInfo/{id}")
-    private String eitUserRegistrationInfoPost(@NotNull @PathVariable Integer id,@NotNull UserRegistrationObject userRegistrationObject,Model model){
-        final var byIdRegistrationUser = userRegistrationServices.findByIdRegistrationUser(id);
+    private String eitUserRegistrationInfoPost(@NotNull @PathVariable int id,@NotNull UserInfoRequest infoRequest,Model model){
+        UserInfoRequest userById = this.registerService.getUserById(id);
         model.addAttribute("id" ,id);
-        model.addAttribute("command" ,byIdRegistrationUser);
+        model.addAttribute("command" ,userById);
         model.addAttribute("success","Successfully updated user Info...");
-        return "addUser";
+        return "admin/addUser";
     }
 
     @GetMapping("/deleteUserInfo")
     private String deleteUserInfo(@NotNull @PathVariable Integer id,Model model){
-        final var stringResponseEntity = userRegistrationServices.deleteUserRegistrationInfo(id);
-        System.out.println(stringResponseEntity);
-        return "redirect:/";
+        this.registerService.deleteUserById(id);
+        return "redirect:/admin/getAllUser";
     }
-
-    @GetMapping("/deleteUserInfoUndo")
-    private String deleteUndoUserInfo(@NotNull @PathVariable Integer id,Model model){
-        final var stringResponseEntity = userRegistrationServices.undoUserRegistrationInfoByUserId(id);
-        System.out.println(stringResponseEntity);
-        return "redirect:/";
-    }
-
 }
