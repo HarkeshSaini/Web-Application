@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.spring.security.object.UserInfoRequest;
 
-public interface UserRegisterService {
+public interface UserInfoService {
 	
 	public List<UserInfoRequest> getAllUser();
 
@@ -15,4 +15,6 @@ public interface UserRegisterService {
 	public ResponseEntity<String> deleteUserById(Integer id);
 
 	public UserInfoRequest addUser(UserInfoRequest userRegistrationObject);
+
+	public String[] getAllRole();
 }

@@ -9,18 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import com.spring.security.entity.UserInfoDetail;
-import com.spring.security.interfaces.UserRegisterService;
+import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.object.UserInfoRequest;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
 
 @Service
-public class UserRegistrationServices implements UserRegisterService {
+public class UserInfoServicesImpl implements UserInfoService {
 
 	private final ModelMapper modelMapper;
 
 	private final UserInfoDetailRepositorie detailRepositorie;
 
-	public UserRegistrationServices(ModelMapper modelMapper, UserInfoDetailRepositorie detailRepositorie) {
+	public UserInfoServicesImpl(ModelMapper modelMapper, UserInfoDetailRepositorie detailRepositorie) {
 		this.modelMapper = modelMapper;
 		this.detailRepositorie = detailRepositorie;
 	}
@@ -39,6 +39,14 @@ public class UserRegistrationServices implements UserRegisterService {
 			throw new RuntimeException("User not found By provide Id:- " + id);
 		}
 		return modelMapper.map(orElse, UserInfoRequest.class);
+	}
+
+	public String[] getAllRole() {
+		List<UserInfoDetail> findAll = detailRepositorie.findAll();
+		if (ObjectUtils.isEmpty(findAll)) {
+			return new String[] { "NOT_RULE" };
+		}
+		return findAll.stream().map(x -> x.getRole()).toArray(String[]::new);
 	}
 
 	@Override
@@ -67,7 +75,5 @@ public class UserRegistrationServices implements UserRegisterService {
 		userInfo = detailRepositorie.save(userInfo);
 		return modelMapper.map(userInfo, UserInfoRequest.class);
 	}
-	
-	
-	
+
 }
