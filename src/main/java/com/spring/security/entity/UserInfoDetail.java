@@ -4,19 +4,16 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import lombok.Data;
 
 @Data
-@Entity
+@Document(value = "UserInfoDetail")
 public class UserInfoDetail implements UserDetails {
 
 	/**
@@ -24,9 +21,7 @@ public class UserInfoDetail implements UserDetails {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 	private String name;
 	private String email;
 	private String password;
@@ -36,19 +31,10 @@ public class UserInfoDetail implements UserDetails {
 	private long updateDate;
 	private String role;
 	private int age;
-	private int totalUser;
-	private String address;
-	private int numOfRoom;
 	private String comment;
 	private String status;
 	private boolean emailVerified;
-	private String another_phone;
 	private String imgUrl;
-	private long aadhar_number;
-	private String gender;
-	private String country;
-	private String state;
-	private String zipCode;
 
 	public UserInfoDetail(User user) {
 		this.email = user.getUsername();

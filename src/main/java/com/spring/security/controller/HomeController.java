@@ -11,13 +11,13 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String index(HttpServletRequest request, Model model) {
-		model.addAttribute("status", "success");
+		model.addAttribute("message", "success");
 		return "index";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/admin")
 	public String dashBoardLogin(HttpServletRequest request, Model model) {
-		model.addAttribute("status", "success");
+		model.addAttribute("message", "success");
 		return "admin/login";
 	}
 

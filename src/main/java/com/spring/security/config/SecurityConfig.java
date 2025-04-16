@@ -51,7 +51,7 @@ public class SecurityConfig {
 	protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(AbstractHttpConfigurer::disable);
 		httpSecurity.authorizeHttpRequests(x -> x.requestMatchers("/admin/**").hasAnyRole(infoService.getAllRole()).anyRequest().permitAll());
-		httpSecurity.formLogin(x -> x.loginPage("/login").permitAll().defaultSuccessUrl("/admin/dashboard", true));
+		httpSecurity.formLogin(x -> x.loginPage("/admin").permitAll().defaultSuccessUrl("/admin/dashboard", true));
 		httpSecurity.logout(LogoutConfigurer::permitAll);
 		return httpSecurity.build();
 	}

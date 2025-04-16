@@ -2,6 +2,7 @@ package com.spring.security.interfaces;
 
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 
 import com.spring.security.object.UserInfoRequest;
@@ -10,11 +11,13 @@ public interface UserInfoService {
 	
 	public List<UserInfoRequest> getAllUser();
 
-	public UserInfoRequest getUserById(Integer id);
+	public UserInfoRequest getUserById(String id);
 
-	public ResponseEntity<String> deleteUserById(Integer id);
+	public ResponseEntity<String> deleteUserById(String id);
 
 	public UserInfoRequest addUser(UserInfoRequest userRegistrationObject);
 
 	public String[] getAllRole();
+
+	public UserInfoRequest updateUser(@NotNull String id, @NotNull UserInfoRequest infoRequest);
 }

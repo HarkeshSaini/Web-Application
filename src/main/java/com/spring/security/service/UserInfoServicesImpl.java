@@ -3,6 +3,7 @@ package com.spring.security.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserInfoRequest getUserById(Integer id) {
+	public UserInfoRequest getUserById(@NotNull String id) {
 		Optional<UserInfoDetail> findById = detailRepositorie.findById(id);
 		UserInfoDetail orElse = findById.orElse(null);
 		if (ObjectUtils.isEmpty(orElse)) {
@@ -50,7 +51,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 	}
 
 	@Override
-	public ResponseEntity<String> deleteUserById(Integer id) {
+	public ResponseEntity<String> deleteUserById(@NotNull String id) {
 		Optional<UserInfoDetail> findById = detailRepositorie.findById(id);
 		UserInfoDetail orElse = findById.orElse(null);
 		if (ObjectUtils.isEmpty(orElse)) {
@@ -61,7 +62,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserInfoRequest addUser(UserInfoRequest infoRequest) {
+	public UserInfoRequest addUser(@NotNull UserInfoRequest infoRequest) {
 		UserInfoDetail userInfo = modelMapper.map(infoRequest, UserInfoDetail.class);
 		try {
 			Optional<UserInfoDetail> findById = detailRepositorie.findByEmail(userInfo.getEmail());
@@ -72,6 +73,21 @@ public class UserInfoServicesImpl implements UserInfoService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		userInfo.setCreateDate(System.currentTimeMillis());
+		userInfo = detailRepositorie.save(userInfo);
+		return modelMapper.map(userInfo, UserInfoRequest.class);
+	}
+
+	@Override
+	public UserInfoRequest updateUser(@NotNull String id, @NotNull UserInfoRequest infoRequest) {
+		Optional<UserInfoDetail> findById = detailRepositorie.findById(id);
+		UserInfoDetail orElse = findById.orElse(null);
+		if (ObjectUtils.isEmpty(orElse)) {
+			return null;
+		}
+		infoRequest.setId(id);
+		UserInfoDetail userInfo = modelMapper.map(infoRequest, UserInfoDetail.class);
+		userInfo.setCreateDate(System.currentTimeMillis());
 		userInfo = detailRepositorie.save(userInfo);
 		return modelMapper.map(userInfo, UserInfoRequest.class);
 	}
