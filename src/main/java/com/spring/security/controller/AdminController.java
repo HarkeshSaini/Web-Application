@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.security.interfaces.UserInfoService;
-import com.spring.security.object.UserInfoRequest;
+import com.spring.security.request.UserInfoRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 

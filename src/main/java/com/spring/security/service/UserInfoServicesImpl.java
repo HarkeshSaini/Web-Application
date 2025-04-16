@@ -11,8 +11,8 @@ import org.springframework.util.ObjectUtils;
 
 import com.spring.security.entity.UserInfoDetail;
 import com.spring.security.interfaces.UserInfoService;
-import com.spring.security.object.UserInfoRequest;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
+import com.spring.security.request.UserInfoRequest;
 
 @Service
 public class UserInfoServicesImpl implements UserInfoService {

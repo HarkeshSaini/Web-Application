@@ -1,4 +1,6 @@
-package com.spring.security.object;
+package com.spring.security.request;
+
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -10,9 +12,9 @@ public class UserInfoRequest {
 	private String email;
 	private String password;
 	private String phone;
-	private long dateOfBirth;
-	private long createDate;
-	private long updateDate;
+	private Timestamp dateOfBirth;
+	private Timestamp createDate;
+	private Timestamp updateDate;
 	private String role;
 	private int age;
 	private String comment;

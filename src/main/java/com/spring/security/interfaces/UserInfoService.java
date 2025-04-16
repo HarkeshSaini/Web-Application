@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 
-import com.spring.security.object.UserInfoRequest;
+import com.spring.security.request.UserInfoRequest;
 
 public interface UserInfoService {
 	
