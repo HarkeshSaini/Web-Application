@@ -7,9 +7,9 @@
   <meta id="viewport" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
   <title>Admin Login</title>
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/admin/css/styles.css"/>
 </head>
 <body>
-<!-- Login 13 - Bootstrap Brain Component -->
 <section class="bg-light py-3 py-md-5">
   <div class="container">
     <div class="row justify-content-center">
@@ -21,12 +21,8 @@
                 <img src="./assets/img/bsb-logo.svg" alt="BootstrapBrain Logo" width="175" height="57">
               </a>
             </div> -->
-           <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
-			  <div class="error">
-			    <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-			  </div>
-			</c:if>
-            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Sign in to your account</h2>
+           
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading">Sign in to your account</h2>
            <form th:action="@{/login}" method="post">
               <div class="row gy-2 overflow-hidden">
                 <div class="col-12">
@@ -60,6 +56,11 @@
                 <div class="col-12">
                   <p class="m-0 text-secondary text-center">Don't have an account? <a href="#!" class="link-primary text-decoration-none">Sign up</a></p>
                 </div>
+                <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+			   <div class="error message">
+			    <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+			  </div>
+			</c:if>
               </div>
             </form>
           </div>

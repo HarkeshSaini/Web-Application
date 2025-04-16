@@ -1,0 +1,21 @@
+.error.message {
+    font-size: 15px;
+    height: 28px;
+    background-color: #5f9ea0;
+    color: red;
+    /*border: 1px solid black;
+    border-radius: 50px;*/
+    text-align: center;
+}.bg-light {
+    background-color: cadetblue!important;
+}section.bg-light.py-3.py-md-5 {
+    height: 300px;
+}.border-light-subtle {
+    border-color: #8c99a5 !important;
+}.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem 8px rgb(51 20 20 / 19%) !important;
+}.text-secondary {
+    color: rgb(0 0 0) !important;
+}button.btn.btn-primary.btn-lg {
+    background-color: #5f9ea0;
+}
