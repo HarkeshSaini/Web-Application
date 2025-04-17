@@ -9,15 +9,20 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import com.spring.security.config.SecurityConfig;
 import com.spring.security.entity.UserInfoDetail;
+import com.spring.security.exception.NotFoundException;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
 
 @Service
 public class CustomUserService implements UserDetailsService {
 
+	
     @Autowired
     private UserInfoDetailRepositorie detailRepositorie;
 
@@ -26,10 +31,11 @@ public class CustomUserService implements UserDetailsService {
 		Optional<UserInfoDetail> costumUser = detailRepositorie.findByEmail(emailId);
 		UserInfoDetail orElse = costumUser.orElse(null);
 		if (ObjectUtils.isEmpty(orElse)) {
-			throw new RuntimeException("User not found:- " + emailId);
+			throw new NotFoundException("User not found:- " + emailId);
 		}
 		Collection<? extends GrantedAuthority> authorities = orElse.getAuthorities();
 		String password = orElse.getPassword();
-		return User.builder().username(emailId).password(password).authorities(authorities).build();
+		PasswordEncoder encoder=new BCryptPasswordEncoder(); 
+		return User.builder().username(emailId).password(encoder.encode(password)).authorities(authorities).build();
 	}
 }

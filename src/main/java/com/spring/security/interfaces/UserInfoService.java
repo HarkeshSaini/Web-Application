@@ -20,4 +20,6 @@ public interface UserInfoService {
 	public String[] getAllRole();
 
 	public UserInfoRequest updateUser(@NotNull String id, @NotNull UserInfoRequest infoRequest);
+
+	public ResponseEntity<Object> addAdminUser(UserInfoRequest request);
 }

@@ -22,7 +22,7 @@
               </a>
             </div> -->
            
-            <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading">Sign in to your account</h2>
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading">${message}</h2>
            <form th:action="@{/login}" method="post">
               <div class="row gy-2 overflow-hidden">
                 <div class="col-12">

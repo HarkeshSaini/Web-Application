@@ -1,9 +1,11 @@
 package com.spring.security.entity;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,9 +13,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Document(value = "UserInfoDetail")
+@NoArgsConstructor
+@Document(collection = "UserInfoDetail")
 public class UserInfoDetail implements UserDetails {
 
 	/**

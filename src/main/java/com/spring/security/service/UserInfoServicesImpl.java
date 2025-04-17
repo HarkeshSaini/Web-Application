@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -47,7 +48,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 		if (ObjectUtils.isEmpty(findAll)) {
 			return new String[] { "NOT_RULE" };
 		}
-		return findAll.stream().map(x -> x.getRole()).toArray(String[]::new);
+		return findAll.stream().map(x->x.getRole()).toArray(String[]::new);
 	}
 
 	@Override
@@ -90,6 +91,17 @@ public class UserInfoServicesImpl implements UserInfoService {
 		userInfo.setCreateDate(System.currentTimeMillis());
 		userInfo = detailRepositorie.save(userInfo);
 		return modelMapper.map(userInfo, UserInfoRequest.class);
+	}
+
+	@Override
+	public ResponseEntity<Object> addAdminUser(UserInfoRequest request) {
+		List<UserInfoDetail> findAll = detailRepositorie.findAll();
+		if (ObjectUtils.isEmpty(findAll)) {
+			UserInfoDetail infoDetail = modelMapper.map(request, UserInfoDetail.class);
+			UserInfoDetail saveInfoDetail = detailRepositorie.save(infoDetail);
+			return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(saveInfoDetail, UserInfoRequest.class));
+		}
+		return ResponseEntity.badRequest().body("User already exits");
 	}
 
 }

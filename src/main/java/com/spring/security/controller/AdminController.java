@@ -26,6 +26,12 @@ public class AdminController {
 		this.registerService = registerService;
 	}
 
+	@GetMapping
+	public String dashBoardLogin(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "Sign in to your account");
+		return "admin/login";
+	}
+
 	@GetMapping("/dashboard")
 	private String dashboard(HttpServletRequest request, Model model) {
 		List<UserInfoRequest> userInfo = this.registerService.getAllUser();
@@ -68,7 +74,7 @@ public class AdminController {
 
 	@PostMapping("/editUserInfo/{id}")
 	private String editUserInfo(@NotNull @PathVariable String id, @NotNull UserInfoRequest infoRequest, Model model) {
-		UserInfoRequest userById = this.registerService.updateUser(id,infoRequest);
+		UserInfoRequest userById = this.registerService.updateUser(id, infoRequest);
 		if (ObjectUtils.isEmpty(userById)) {
 			model.addAttribute("id", id);
 			model.addAttribute("command", infoRequest);

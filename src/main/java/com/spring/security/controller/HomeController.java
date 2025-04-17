@@ -15,10 +15,4 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/admin")
-	public String dashBoardLogin(HttpServletRequest request, Model model) {
-		model.addAttribute("message", "success");
-		return "admin/login";
-	}
-
 }
