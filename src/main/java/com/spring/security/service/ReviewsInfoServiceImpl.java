@@ -9,6 +9,7 @@ import org.springframework.util.ObjectUtils;
 import com.spring.security.entity.ReviewInfoDetail;
 import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.repositories.ReviewsInfoRepository;
+import com.spring.security.request.ReviewInfoRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -22,7 +23,7 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService{
 	}
 
 	@Override
-	public ResponseEntity<Object> getAllReviews(HttpServletRequest request) {
+	public ResponseEntity<List<ReviewInfoDetail>> getAllReviews(HttpServletRequest request) {
 		List<ReviewInfoDetail> findAll = reviewsInfoRepository.findAll();
 		if(ObjectUtils.isEmpty(findAll)) {
 			return ResponseEntity.badRequest().body(null);

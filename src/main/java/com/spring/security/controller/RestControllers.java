@@ -1,5 +1,7 @@
 package com.spring.security.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.security.entity.ReviewInfoDetail;
 import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.request.UserInfoRequest;
@@ -32,7 +35,8 @@ public class RestControllers {
 	}
  
 	@GetMapping(value = "/getAllReviews")
-	private ResponseEntity<Object> getAllReviews(HttpServletRequest request){
-		return this.infoReviews.getAllReviews(request);
+	private List<ReviewInfoDetail> getAllReviews(HttpServletRequest request){
+		ResponseEntity<List<ReviewInfoDetail>> allReviews = this.infoReviews.getAllReviews(request);
+		return allReviews.getBody();
 	}
 }
