@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import com.spring.security.config.SecurityConfig;
 import com.spring.security.entity.UserInfoDetail;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
