@@ -1,11 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<% String roleUser = (String) session.getAttribute("role"); %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta id="viewport" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-    <title>Admin Login</title>
+    <title>All Admin User</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/admin/css/styles.css"/>
   </head>
@@ -40,7 +41,9 @@
                             <th>Status</th>
                             <th>phone</th>
                             <th>Edit</th>
-                            <th>Delete</th>
+                            <c:if test="${userRole == 'ADMIN'}">
+                             <th>Delete</th>
+                            </c:if>
                           </tr>
                         </thead>
                         <tbody>
@@ -53,7 +56,9 @@
                               <td>${data.status}</td>
                               <td>${data.phone}</td>
                               <td><a href="/admin/editUserInfo/${data.id}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                              <td><a href="/admin/deleteUserInfo/${data.id}"><i class="fa-solid fa-trash"></i></a></td>
+                              <c:if test="${userRole=='ADMIN'}">
+                               <td><a href="/admin/deleteUserInfo/${data.id}"><i class="fa-solid fa-trash"></i></a></td>
+                              </c:if>
                             </tr>
                           </c:forEach>
                         </tbody>
