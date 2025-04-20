@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.security.entity.ReviewInfoDetail;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.request.ContactInfoRequest;
+import com.spring.security.request.ReviewInfoRequest;
 import com.spring.security.request.UserInfoRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,9 +41,14 @@ public class RestControllers {
 	}
  
 	@GetMapping(value = "/getAllReviews")
-	private List<ReviewInfoDetail> getAllReviews(HttpServletRequest request){
-		ResponseEntity<List<ReviewInfoDetail>> allReviews = this.infoReviews.getAllReviews(request);
+	private List<ReviewInfoRequest> getAllReviews(HttpServletRequest request){
+		ResponseEntity<List<ReviewInfoRequest>> allReviews = this.infoReviews.getAllReviews(request);
 		return allReviews.getBody();
+	}
+	
+	@GetMapping(value = "/getReviewsByReviewUrl/{reviewUrl}")
+	private ResponseEntity<List<ReviewInfoRequest>> getReviewsByReviewUrl(@PathVariable String reviewUrl){
+		return this.infoReviews.getReviewsByReviewUrl(reviewUrl);
 	}
 	
 	@PostMapping(value = "/submitContactInfo")

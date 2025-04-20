@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.spring.security.entity.ReviewInfoDetail;
+import com.spring.security.request.ReviewInfoRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 public interface ReviewsInfoService {
 
-	ResponseEntity<List<ReviewInfoDetail>> getAllReviews(HttpServletRequest request);
+	ResponseEntity<List<ReviewInfoRequest>> getAllReviews(HttpServletRequest request);
+
+	ResponseEntity<List<ReviewInfoRequest>> getReviewsByReviewUrl(String reviewUrl);
 
 }
