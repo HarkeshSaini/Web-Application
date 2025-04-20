@@ -12,8 +12,7 @@
 
 
 <div class="content">
-  <button class="open-btn">&#9776; Open Sidebar</button>
-  <p>Main content goes here</p>
+  <p>index</p>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

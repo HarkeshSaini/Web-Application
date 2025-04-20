@@ -1,5 +1,6 @@
 package com.spring.security.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
@@ -10,9 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.UserInfoService;
+import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.UserInfoRequest;
+import com.spring.security.utility.CommanUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -21,75 +26,116 @@ import jakarta.servlet.http.HttpServletRequest;
 public class AdminController {
 
 	private final UserInfoService registerService;
+	
+	private final ContactInfoService contactInfoService;
 
-	public AdminController(UserInfoService registerService) {
+	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService) {
 		this.registerService = registerService;
+		this.contactInfoService = contactInfoService;
 	}
 
 	@GetMapping
 	public String dashBoardLogin(HttpServletRequest request, Model model) {
-		model.addAttribute("message", "Sign in to your account");
+		model.addAttribute("message", "Welcome back! Please sign in.");
+		CommanUtility.userRole(request,model);
 		return "admin/login";
 	}
 
 	@GetMapping("/dashboard")
 	private String dashboard(HttpServletRequest request, Model model) {
-		List<UserInfoRequest> userInfo = this.registerService.getAllUser();
-		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("message", "Admin Panel – Welcome");
+		CommanUtility.userRole(request,model);
 		return "admin/dashboard";
 	}
 
 	@GetMapping("/getAllUser")
-	private String getAllUser(Model model) {
+	private String getAllUser(HttpServletRequest request,Model model) {
 		List<UserInfoRequest> userInfo = this.registerService.getAllUser();
 		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("message", "All user informations");
-		return "admin/showUser";
+		CommanUtility.userRole(request,model);
+		model.addAttribute("message", "List of All Registered Users");
+		return "admin/user/showUser";
 	}
 
 	@GetMapping("/addUser")
-	private String addUser(Model model) {
-		model.addAttribute("message", "Add new user for admin!...");
-		return "admin/addUser";
+	private String addUser(HttpServletRequest request,Model model) {
+		model.addAttribute("message", "Create a new user with administrator privileges.");
+		CommanUtility.userRole(request,model);
+		return "admin/user/addUser";
 	}
 
 	@PostMapping("/addUser")
-	private String addUser(@NotNull UserInfoRequest userRequest, Model model) {
-		UserInfoRequest addUser = this.registerService.addUser(userRequest);
+	private String addUser(UserInfoRequest userRequest,MultipartFile file, Model model,HttpServletRequest request) {
+		userRequest.setCreateDate(new Timestamp(System.currentTimeMillis()));
+		UserInfoRequest addUser = this.registerService.addUser(userRequest,file);
+		CommanUtility.userRole(request,model);
 		if (ObjectUtils.isEmpty(addUser)) {
-			model.addAttribute("message", "User not update");
+			model.addAttribute("message", "User already exists!");
+			return "admin/user/addUser";
 		}
-		model.addAttribute("message", "User info successfully submit");
-		return "admin/addUser";
+		model.addAttribute("message", "User created successfully!");
+		return "admin/user/addUser";
 	}
 
 	@GetMapping("/editUserInfo/{id}")
-	private String editUserInfo(@NotNull @PathVariable String id, Model model) {
+	private String editUserInfo(@NotNull @PathVariable String id, Model model,HttpServletRequest request) {
 		UserInfoRequest userById = this.registerService.getUserById(id);
+		CommanUtility.userRole(request,model);
 		model.addAttribute("id", id);
 		model.addAttribute("command", userById);
-		model.addAttribute("message", "Edit user Info..");
-		return "admin/editUser";
+		model.addAttribute("message", "Update User Information");
+		return "admin/user/editUser";
 	}
 
 	@PostMapping("/editUserInfo/{id}")
-	private String editUserInfo(@NotNull @PathVariable String id, @NotNull UserInfoRequest infoRequest, Model model) {
-		UserInfoRequest userById = this.registerService.updateUser(id, infoRequest);
+	private String editUserInfo(@PathVariable String id,UserInfoRequest infoRequest,MultipartFile file, Model model,HttpServletRequest request) {
+		UserInfoRequest userById = this.registerService.updateUser(id,file, infoRequest);
+		CommanUtility.userRole(request,model);
 		if (ObjectUtils.isEmpty(userById)) {
 			model.addAttribute("id", id);
 			model.addAttribute("command", infoRequest);
-			model.addAttribute("message", "User not updated");
-			return "admin/editUser";
+			model.addAttribute("message", "User information could not be updated.");
+			return "admin/user/editUser";
 		}
 		model.addAttribute("id", id);
 		model.addAttribute("command", userById);
-		model.addAttribute("message", "Successfully updated user Info...");
-		return "redirect:/admin/addUser";
+		model.addAttribute("message", "User details have been successfully updated.");
+		return "admin/user/addUser";
 	}
 
-	@GetMapping("/deleteUserInfo")
-	private String deleteUserInfo(@NotNull @PathVariable String id, Model model) {
+	@GetMapping("/deleteUserInfo/{id}")
+	private String deleteUserInfo(@NotNull @PathVariable String id, Model model,HttpServletRequest request) {
+		CommanUtility.userRole(request,model);
 		this.registerService.deleteUserById(id);
 		return "redirect:/admin/getAllUser";
 	}
+	
+/* =====================================Contact Info================================================ */
+	
+	@GetMapping("/showAllContactInfo")
+	private String showAllContactInfo(HttpServletRequest request,Model model) {
+		List<ContactInfoRequest> contactInfo = this.contactInfoService.showAllContactInfo();
+		model.addAttribute("contactInfo", contactInfo);
+		CommanUtility.userRole(request,model);
+		model.addAttribute("message", "List of Users Who Submitted the Contact Us Form");
+		return "admin/contactUs";
+	}
+ 
+
+	@GetMapping("/deleteContactUsInfo/{id}")
+	private String deleteContactUsInfo(@NotNull @PathVariable String id, Model model,HttpServletRequest request) {
+		CommanUtility.userRole(request,model);
+		this.contactInfoService.deleteById(id);
+		return "redirect:/admin/showAllContactInfo";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 }

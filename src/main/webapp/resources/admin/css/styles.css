@@ -9,13 +9,81 @@
 }.bg-light {
     background-color: cadetblue!important;
 }section.bg-light.py-3.py-md-5 {
-    height: 300px;
+    /*height: 300px;*/
 }.border-light-subtle {
     border-color: #8c99a5 !important;
 }.shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem 8px rgb(51 20 20 / 19%) !important;
+    box-shadow: 0 0.125rem 0rem 8px rgb(51 20 20 / 7%) !important;
 }.text-secondary {
     color: rgb(0 0 0) !important;
 }button.btn.btn-primary.btn-lg {
     background-color: #5f9ea0;
 }
+.card.border.border-light-subtle.rounded-3.shadow-sm.messages {
+    margin-bottom: 28px;
+    margin-top: 0;
+}
+.message {
+    margin-top: 7px;
+    font-size: 16px;
+    margin-left: 20px;
+}.bg-light {
+    background-color: #ffffff !important;
+}.col.py-0 {
+    margin-top: 17px;
+}a.btn.btn-primary.user {
+    float: right;
+    padding: 5px;
+    margin: 4px;
+    margin-top: 4px;
+    margin-right: 4px;
+    background-color: #0e0b0be3;
+}i.fa-solid.fa-pen-to-square {
+    color: black;
+}i.fa-solid.fa-trash {
+    color: black;
+}input.form-control {
+    line-height: 2;
+    color: #000000;
+    border: var(--bs-border-width) solid #616264;
+    margin-bottom: 19px;
+}div#cke_notifications_area_content {
+    display: none;
+}select.form-control {
+	color: #000000;
+	border: var(--bs-border-width) solid #616264;
+    line-height: 2;
+}.col-auto.col-md-3.col-xl-2.px-sm-2.px-0.bg-dark {
+        box-shadow: 0 0.125rem 0rem 8px rgb(51 20 20 / 7%) !important;
+}.card.border.border-light-subtle.rounded-3.shadow-sm {
+    margin-bottom: 20px;
+}.text-white {
+    --bs-text-opacity: 1;
+    color: rgb(0 0 0) !important;
+}.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: rgb(255 255 255) !important;
+}li.nav-item {
+    list-style: none;
+}.crose-icon {
+    font-size: 22px;
+    color: #0e0e0e;
+    width: 42px;
+    margin-left: -19px;
+    height: 36px;
+    margin-top: 21px;
+    background-color: #f1eeee;
+    border-radius: 6px;
+    border: 1px solid #8c99a5;
+}.row.gorup-list-items {
+    border: 1px solid black;
+    border-radius: 7px;
+    box-shadow: 0 0.1rem 0rem 4px rgb(51 20 20 / 7%) !important;
+}img.imge-data {
+    width: 80%;
+    margin-bottom: -25px;
+    margin-top: -31px;
+}.modal-body .row {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+  }

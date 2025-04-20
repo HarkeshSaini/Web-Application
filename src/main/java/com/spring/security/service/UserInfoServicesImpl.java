@@ -2,6 +2,8 @@ package com.spring.security.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.entity.UserInfoDetail;
 import com.spring.security.interfaces.UserInfoService;
@@ -48,7 +51,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 		if (ObjectUtils.isEmpty(findAll)) {
 			return new String[] { "NOT_RULE" };
 		}
-		return findAll.stream().map(x->x.getRole()).toArray(String[]::new);
+		return findAll.stream().map(x -> x.getRole()).toArray(String[]::new);
 	}
 
 	@Override
@@ -63,34 +66,56 @@ public class UserInfoServicesImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserInfoRequest addUser(@NotNull UserInfoRequest infoRequest) {
+	public UserInfoRequest addUser(UserInfoRequest infoRequest, MultipartFile file) {
+		if (file.getSize() != 0) {
+			infoRequest.setImgUrl(file.getOriginalFilename());
+		}
 		UserInfoDetail userInfo = modelMapper.map(infoRequest, UserInfoDetail.class);
 		try {
 			Optional<UserInfoDetail> findById = detailRepositorie.findByEmail(userInfo.getEmail());
-			userInfo = findById.orElse(null);
-			if (!ObjectUtils.isEmpty(userInfo)) {
-				throw new RuntimeException("User Already Exits:- " + infoRequest.getEmail());
+			if (!ObjectUtils.isEmpty(findById.orElse(null))) {
+				return null;
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		userInfo.setCreateDate(System.currentTimeMillis());
+		userInfo.setRole("USER");
+		userInfo.setStatus("Active");
+		userInfo.setEmailVerified(true);
+		userInfo.setPassword(String.valueOf(UUID.randomUUID()));
 		userInfo = detailRepositorie.save(userInfo);
 		return modelMapper.map(userInfo, UserInfoRequest.class);
 	}
 
 	@Override
-	public UserInfoRequest updateUser(@NotNull String id, @NotNull UserInfoRequest infoRequest) {
+	public UserInfoRequest updateUser(String id,MultipartFile file, UserInfoRequest infoRequest) {
 		Optional<UserInfoDetail> findById = detailRepositorie.findById(id);
-		UserInfoDetail orElse = findById.orElse(null);
-		if (ObjectUtils.isEmpty(orElse)) {
-			return null;
+		UserInfoDetail adminRequest = findById.orElse(null);
+		try {
+			if (ObjectUtils.isEmpty(adminRequest)) {
+				return null;
+			}
+			if (file.getSize() != 0) {
+				infoRequest.setImgUrl(file.getOriginalFilename());
+			} else {
+				infoRequest.setImgUrl(adminRequest.getImgUrl());
+			}
+			adminRequest.setId(id);
+			adminRequest.setName(infoRequest.getName());
+			adminRequest.setEmail(infoRequest.getEmail());
+			adminRequest.setPhone(infoRequest.getPhone());
+			adminRequest.setAge(infoRequest.getAge());
+			adminRequest.setComment(infoRequest.getComment());
+			adminRequest.setPassword(infoRequest.getPassword());
+			adminRequest.setStatus(infoRequest.getStatus());
+			adminRequest.setRole(adminRequest.getRole());
+			adminRequest.setCreateDate(adminRequest.getCreateDate());
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		infoRequest.setId(id);
-		UserInfoDetail userInfo = modelMapper.map(infoRequest, UserInfoDetail.class);
-		userInfo.setCreateDate(System.currentTimeMillis());
-		userInfo = detailRepositorie.save(userInfo);
-		return modelMapper.map(userInfo, UserInfoRequest.class);
+		adminRequest.setUpdateDate(System.currentTimeMillis());
+		adminRequest = detailRepositorie.save(adminRequest);
+		return modelMapper.map(adminRequest, UserInfoRequest.class);
 	}
 
 	@Override
@@ -99,7 +124,8 @@ public class UserInfoServicesImpl implements UserInfoService {
 		if (ObjectUtils.isEmpty(findAll)) {
 			UserInfoDetail infoDetail = modelMapper.map(request, UserInfoDetail.class);
 			UserInfoDetail saveInfoDetail = detailRepositorie.save(infoDetail);
-			return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(saveInfoDetail, UserInfoRequest.class));
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(modelMapper.map(saveInfoDetail, UserInfoRequest.class));
 		}
 		return ResponseEntity.badRequest().body("User already exits");
 	}

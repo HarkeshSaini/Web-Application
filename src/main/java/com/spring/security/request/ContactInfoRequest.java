@@ -7,11 +7,12 @@ import lombok.Data;
 @Data
 public class ContactInfoRequest {
 
-	private int id;
+	private String id;
 	private String name;
 	private String email;
 	private String subject;
 	private String message;
+	private String status;
 	private String phone;
 	public Timestamp postTime;
 	public Timestamp updateTime;
