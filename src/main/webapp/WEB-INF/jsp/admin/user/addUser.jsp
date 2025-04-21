@@ -6,8 +6,6 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta id="viewport" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
     <title>All Admin User</title>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/admin/css/styles.css"/>
   </head>
   <body>
     <div class="container-fluid">
