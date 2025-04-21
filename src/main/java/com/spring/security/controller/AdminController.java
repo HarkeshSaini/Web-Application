@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.UserInfoService;
+import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommanUtility;
@@ -25,11 +27,15 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/admin")
 public class AdminController {
 
+	private final BlogInfoService blogService;
+
 	private final UserInfoService registerService;
-	
+
 	private final ContactInfoService contactInfoService;
 
-	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService) {
+	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,
+			BlogInfoService blogService) {
+		this.blogService = blogService;
 		this.registerService = registerService;
 		this.contactInfoService = contactInfoService;
 	}
@@ -37,38 +43,38 @@ public class AdminController {
 	@GetMapping
 	public String dashBoardLogin(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Welcome back! Please sign in.");
-		CommanUtility.userRole(request,model);
+		CommanUtility.userRole(request, model);
 		return "admin/login";
 	}
 
 	@GetMapping("/dashboard")
 	private String dashboard(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Admin Panel – Welcome");
-		CommanUtility.userRole(request,model);
+		CommanUtility.userRole(request, model);
 		return "admin/dashboard";
 	}
 
 	@GetMapping("/getAllUser")
-	private String getAllUser(HttpServletRequest request,Model model) {
+	private String getAllUser(HttpServletRequest request, Model model) {
 		List<UserInfoRequest> userInfo = this.registerService.getAllUser();
 		model.addAttribute("userInfo", userInfo);
-		CommanUtility.userRole(request,model);
+		CommanUtility.userRole(request, model);
 		model.addAttribute("message", "List of All Registered Users");
 		return "admin/user/showUser";
 	}
 
 	@GetMapping("/addUser")
-	private String addUser(HttpServletRequest request,Model model) {
+	private String addUser(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Create a new user with administrator privileges.");
-		CommanUtility.userRole(request,model);
+		CommanUtility.userRole(request, model);
 		return "admin/user/addUser";
 	}
 
 	@PostMapping("/addUser")
-	private String addUser(UserInfoRequest userRequest,MultipartFile file, Model model,HttpServletRequest request) {
+	private String addUser(UserInfoRequest userRequest, MultipartFile file, Model model, HttpServletRequest request) {
 		userRequest.setCreateDate(new Timestamp(System.currentTimeMillis()));
-		UserInfoRequest addUser = this.registerService.addUser(userRequest,file);
-		CommanUtility.userRole(request,model);
+		UserInfoRequest addUser = this.registerService.addUser(userRequest, file);
+		CommanUtility.userRole(request, model);
 		if (ObjectUtils.isEmpty(addUser)) {
 			model.addAttribute("message", "User already exists!");
 			return "admin/user/addUser";
@@ -78,9 +84,9 @@ public class AdminController {
 	}
 
 	@GetMapping("/editUserInfo/{id}")
-	private String editUserInfo(@NotNull @PathVariable String id, Model model,HttpServletRequest request) {
+	private String editUserInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
 		UserInfoRequest userById = this.registerService.getUserById(id);
-		CommanUtility.userRole(request,model);
+		CommanUtility.userRole(request, model);
 		model.addAttribute("id", id);
 		model.addAttribute("command", userById);
 		model.addAttribute("message", "Update User Information");
@@ -88,9 +94,10 @@ public class AdminController {
 	}
 
 	@PostMapping("/editUserInfo/{id}")
-	private String editUserInfo(@PathVariable String id,UserInfoRequest infoRequest,MultipartFile file, Model model,HttpServletRequest request) {
-		UserInfoRequest userById = this.registerService.updateUser(id,file, infoRequest);
-		CommanUtility.userRole(request,model);
+	private String editUserInfo(@PathVariable String id, UserInfoRequest infoRequest, MultipartFile file, Model model,
+			HttpServletRequest request) {
+		UserInfoRequest userById = this.registerService.updateUser(id, file, infoRequest);
+		CommanUtility.userRole(request, model);
 		if (ObjectUtils.isEmpty(userById)) {
 			model.addAttribute("id", id);
 			model.addAttribute("command", infoRequest);
@@ -104,38 +111,94 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteUserInfo/{id}")
-	private String deleteUserInfo(@NotNull @PathVariable String id, Model model,HttpServletRequest request) {
-		CommanUtility.userRole(request,model);
+	private String deleteUserInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		CommanUtility.userRole(request, model);
 		this.registerService.deleteUserById(id);
 		return "redirect:/admin/getAllUser";
 	}
-	
-/* =====================================Contact Info================================================ */
-	
+
+	/*
+	 * =====================================Contact Info================================================
+	 */
+
 	@GetMapping("/showAllContactInfo")
-	private String showAllContactInfo(HttpServletRequest request,Model model) {
+	private String showAllContactInfo(HttpServletRequest request, Model model) {
 		List<ContactInfoRequest> contactInfo = this.contactInfoService.showAllContactInfo();
 		model.addAttribute("contactInfo", contactInfo);
-		CommanUtility.userRole(request,model);
+		CommanUtility.userRole(request, model);
 		model.addAttribute("message", "List of Users Who Submitted the Contact Us Form");
 		return "admin/contactUs";
 	}
- 
 
 	@GetMapping("/deleteContactUsInfo/{id}")
-	private String deleteContactUsInfo(@NotNull @PathVariable String id, Model model,HttpServletRequest request) {
-		CommanUtility.userRole(request,model);
+	private String deleteContactUsInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		CommanUtility.userRole(request, model);
 		this.contactInfoService.deleteById(id);
 		return "redirect:/admin/showAllContactInfo";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
+	/*
+	 * =======================================Blog Content==========================================
+	 */
+
+	@GetMapping("/getAllBlog")
+	private String getAllBlog(HttpServletRequest request, Model model) {
+		List<BlogInfoRequest> blogRequest = this.blogService.getAllBlog();
+		model.addAttribute("blogRequest", blogRequest);
+		CommanUtility.userRole(request, model);
+		model.addAttribute("message", "List of All blog details");
+		return "admin/blog/showBlog";
+	}
+
+	@GetMapping("/addBlog")
+	private String addBlog(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "Create a new Blog with administrator privileges.");
+		CommanUtility.userRole(request, model);
+		return "admin/blog/addBlog";
+	}
+
+	@PostMapping("/addBlog")
+	private String addBlogs(BlogInfoRequest blogRequest, MultipartFile file, Model model, HttpServletRequest request) {
+		blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
+		BlogInfoRequest addBlog = this.blogService.addBlog(blogRequest, file);
+		CommanUtility.userRole(request, model);
+		if (ObjectUtils.isEmpty(addBlog)) {
+			model.addAttribute("message", "Blog already exists!");
+			return "admin/blog/addBlog";
+		}
+		model.addAttribute("message", "Blog created successfully!");
+		return "admin/blog/addBlog";
+	}
+
+	@GetMapping("/editBlogInfo/{id}")
+	private String editBlogInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		BlogInfoRequest blogById = this.blogService.getBlogById(id);
+		CommanUtility.userRole(request, model);
+		model.addAttribute("id", id);
+		model.addAttribute("command", blogById);
+		model.addAttribute("message", "Update Blog Information");
+		return "admin/blog/editBlog";
+	}
+
+	@PostMapping("/editBlogInfo/{id}")
+	private String editBlogInfos(@PathVariable String id, BlogInfoRequest infoRequest, MultipartFile file, Model model, HttpServletRequest request) {
+		BlogInfoRequest blogById = this.blogService.updateBlog(id, file, infoRequest);
+		CommanUtility.userRole(request, model);
+		if (ObjectUtils.isEmpty(blogById)) {
+			model.addAttribute("id", id);
+			model.addAttribute("command", infoRequest);
+			model.addAttribute("message", "Blog information could not be updated.");
+			return "admin/blog/editBlog";
+		}
+		model.addAttribute("message", "Blog details have been successfully updated.");
+		return "admin/blog/addBlog";
+	}
+
+	@GetMapping("/deleteBlogInfo/{id}")
+	private String deleteBlogInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		CommanUtility.userRole(request, model);
+		this.blogService.deleteBlogById(id);
+		return "redirect:/admin/getAllBlog";
+	}
+
 }
