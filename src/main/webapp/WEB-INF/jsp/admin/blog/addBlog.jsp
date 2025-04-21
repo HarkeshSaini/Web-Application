@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta id="viewport" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-    <title>Add new User</title>
+    <title>Add Blog</title>
   </head>
   <body>
     <div class="container-fluid">
@@ -22,7 +22,7 @@
 	                      <div class="message">${message}</div>
 	                    </div>
 	                    <div class="col link">
-	                      <a href="/admin/getAllUser" class="btn btn-primary user">All Users</a>
+	                      <a href="/admin/getAllBlog" class="btn btn-primary user">All Blog</a>
 	                     </div>
                        </div>
                     </div>
@@ -30,37 +30,51 @@
                     <div class="card-body p-3 p-md-4">
                        
                        <!-- start -->
-                      <form action="/admin/addUser" method="post" enctype="multipart/form-data">
+                      <form action="/admin/addBlog" method="post" enctype="multipart/form-data">
                        <div class="row">
     					<div class="col">
-	                        <input type="text" name="name" class="form-control" placeholder="Enter full name*" required="required">
+	                        <input type="text" name="title" class="form-control" placeholder="Enter blog Title*" required="required">
 	                    </div>
 	                    <div class="col">
-	                       <input type="email" name="email" class="form-control" placeholder="Enter email addrass*" required="required">
+	                       <input type="text" name="description" class="form-control" placeholder="Enter blog description*" required="required">
 	                    </div>
 	                    <div class="col">
-	                       <input type="number" name="phone" class="form-control" placeholder="Enter mobile no*" required="required">
+	                       <input type="text" name="keywords" class="form-control" placeholder="Enter blog keywords*" required="required">
 	                    </div>
                        </div>
+                       
+                       <div class="row">
+    					<div class="col">
+	                        <input type="text" name="heading" class="form-control" placeholder="Enter blog Heading*" required="required">
+	                    </div>
+	                    <div class="col">
+	                       <input type="text" id="titleUrl" name="titleUrl" class="form-control" placeholder="Enter blog pageUrl*" required="required">
+	                    </div>
+	                    <div class="col">
+	                       <input type="text" name="extarTag" class="form-control" placeholder="Enter blog Extar Key world">
+	                    </div>
+                       </div>
+                       
+                       <div class="row">
+                           <div class="form-outline col-md-12 mb-3">
+                               <textarea id="content" name="content" class="form-control form-control-lg" required="required"></textarea>
+                           </div>
+                        </div>
                        <div class="row">
     					<div class="col">
 	                       <input type="file" name="file" class="form-control" required="required">
 	                    </div>
-	                      
 	                    <div class="col">
-	                       <select name="age" class="form-control" required="required">
-	                       <option>Select Age*</option>
-	                        <c:forEach var="data" begin="1" end="60">
-	                       		<option value="${data}">${data}</option>
-	                        </c:forEach>
-	                       </select>
- 	                    </div>
+	                        <input type="number" name="tfnHeader" class="form-control" placeholder="Enter blog tfnHeader">
+	                    </div>
+	                    <div class="col">
+	                       <input type="number" name="tfnFooter" class="form-control" placeholder="Enter blog tfnFooter">
+	                    </div> 
+	                    <div class="col">
+	                       <input type="number" name="tfnPopup" class="form-control" placeholder="Enter blog tfnPopup">
+	                    </div> 
+	                     
                        </div>
-                       <div class="row">
-                           <div class="form-outline col-md-12 mb-3">
-                               <textarea id="content" name="comment" class="form-control form-control-lg" required="required"></textarea>
-                           </div>
-                        </div>
                         <button type="submit" class="btn btn-primary user">Submit</button>
                         </form>
                       <!-- end -->
@@ -74,6 +88,7 @@
         </div>
       </div>
     </div>
+    <script src="/resources/admin/js/script.js"></script>
     <script>CKEDITOR.replace( 'content' );</script>
   </body>
 </html>

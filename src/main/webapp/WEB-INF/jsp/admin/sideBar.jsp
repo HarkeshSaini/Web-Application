@@ -23,7 +23,12 @@
         <a href="/admin/getAllUser" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> 
         <span class="ms-1 d-none d-sm-inline">User Information</span> </a>
       </li>
+      
+      
+      
+      
       </c:if>
+      
       <li class="nav-item">
         <a href="/admin/showAllContactInfo" class="nav-link align-middle px-0"> 
         <i class="fs-4 bi-house"></i> 
@@ -35,9 +40,9 @@
         <span class="ms-1 d-none d-sm-inline">Category Details</span> </a>
       </li>
       <li class="nav-item">
-        <a href="/admin/dashboard" class="nav-link align-middle px-0"> 
+        <a href="/admin/getAllBlog" class="nav-link align-middle px-0"> 
         <i class="fs-4 bi-house"></i> 
-        <span class="ms-1 d-none d-sm-inline">Blogs Details</span> </a>
+        <span class="ms-1 d-none d-sm-inline">Blogs InfoDetails</span> </a>
       </li>
       <li class="nav-item">
         <a href="/admin/dashboard" class="nav-link align-middle px-0"> 
@@ -51,7 +56,7 @@
       </li>
     </ul>
     <div class="dropdown pb-4">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <a href="/logout" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
       <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle" />
       <span class="d-none d-sm-inline mx-1">loser</span>
       </a>
@@ -64,6 +69,7 @@
 <script src="/resources/admin/js/jquery-3.6.0.min.js"></script>
 <script src="/resources/admin/js/dataTables.js"></script>
 <script src="/resources/admin/js/bootstrap.bundle.min.js"></script>
+
 
 <script>
 $(document).ready(function(){

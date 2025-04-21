@@ -34,13 +34,18 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 
 	@Override
 	public BlogInfoRequest addBlog(BlogInfoRequest blogRequest, MultipartFile file) {
-		blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 		BlogInfoDetail mapData = new BlogInfoDetail();
 		try {
 			BlogInfoDetail urlContent = infoRepository.findByTitleUrl(blogRequest.getTitleUrl());
 			if (!ObjectUtils.isEmpty(urlContent)) {
 				return null;
 			}
+			blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
+			blogRequest.setStatus("Active");
+			if (blogRequest.getTitleUrl().endsWith("-")) {
+				blogRequest.setTitleUrl(blogRequest.getTitleUrl().substring(0, blogRequest.getTitleUrl().length() - 1)); 
+		    }
+			blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 			if (!file.isEmpty()) {
 				blogRequest.setImgUrl(file.getOriginalFilename());
 			}
@@ -62,10 +67,10 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 		BlogInfoDetail mapData = new BlogInfoDetail();
 		try {
 			blogRequest.setId(id);
-			blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
+			blogRequest.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 			blogRequest.setImgUrl(file.getOriginalFilename());
+			BlogInfoRequest blogById = getBlogById(id);
 			if (file.isEmpty()) {
-				BlogInfoRequest blogById = getBlogById(id);
 				blogRequest.setImgUrl(blogById.getImgUrl());
 			}
 			mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);
