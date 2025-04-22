@@ -15,7 +15,7 @@
         <li class="nav-item"><a class="nav-link" href="/about-us">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="/contact-us">Contact Us</a></li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/login">
             <img src="/resources/sites/image/login-icon-vector.jpg" alt="Login" class="rounded-pill" height="40">
           </a>
         </li>

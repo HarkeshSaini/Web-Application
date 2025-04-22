@@ -4,6 +4,10 @@ a.nav-link {
   .navbar-nav .nav-item {
     margin-bottom: 10px;
   }
+}p.address {
+    text-align: center;
+    margin-top: 32px;
+    color: aliceblue;
 }
 .bg-darks {
     background-color: rgb(30 52 74) !important;
@@ -204,4 +208,26 @@ a.nav-link {
     background-color: rgb(30 52 74) !important;
 }address.mb-4 {
     color: #ffffff;
+}@media (min-width: 1200px) {
+    .py-xls-8 {
+        padding-bottom: 4.5rem !important;
+        padding-top: 1.5rem !important;
+    }
+}p.mb-4.subscribe {
+    color: #ffffff;
+}h4.widget-title.mb-4 {
+    color: #ffffff;
+}a.text-decoration-none {
+    color: white;
+}nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 67px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }

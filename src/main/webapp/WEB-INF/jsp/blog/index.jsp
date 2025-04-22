@@ -23,7 +23,7 @@
      <c:forEach var="data" items="${blogDetail}">
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Service 1">
+          <img src="${data.imgUrl}" class="card-img-top" alt="Service 1">
           <div class="card-body">
             <h5 class="card-title">${data.heading}</h5>
             <p class="card-text">${data.heading}</p>
