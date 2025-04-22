@@ -20,4 +20,6 @@ public interface BlogInfoService {
 
 	void deleteBlogById(@NotNull String id);
 
+	List<BlogInfoRequest> findAllBlogByStatus();
+
 }

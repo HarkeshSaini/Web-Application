@@ -85,4 +85,10 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 		infoRepository.deleteById(id);
 	}
 
+	@Override
+	public List<BlogInfoRequest> findAllBlogByStatus() {
+		List<BlogInfoDetail> findAll = infoRepository.findByStatus("Active");
+		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+	}
+
 }
