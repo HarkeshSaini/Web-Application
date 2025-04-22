@@ -49,7 +49,7 @@
                               <td>${data.id}</td>
                               <td>${data.name}</td>
                               <td>${data.email}</td>
-                              <td><button type="button" class="btn user" onclick="fetchContactUsDetails('${data.id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">more</button></td>
+                              <td><button type="button" class="btn user" onclick="fetchContactUsDetails('${data.id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Detail</button></td>
                               <td>${data.phone}</td>
                               <td>${data.status}</td>
                               <c:if test="${userRole=='ADMIN'}">
