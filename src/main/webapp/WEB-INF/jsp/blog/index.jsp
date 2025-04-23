@@ -5,35 +5,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/resources/sites/css/home.css"/>
   <title>Index</title>
 </head>
 <body>
  <jsp:include page="../include/header.jsp"></jsp:include>
- <jsp:include page="../comman.jsp"></jsp:include>
-<section class="banner">
+ <section class="banner">
   <div class="banner-overlay"></div>
   <div class="banner-content">
-    <h1>Our Blog</h1>
+    <h1>Blog</h1>
   </div>
 </section>
 
-<div class="container py-5">
+<h2 class="text-center mb-4">Our Services</h2>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-     <c:forEach var="data" items="${blogDetail}">
-      <div class="col">
-        <div class="card">
-          <img src="${data.imgUrl}" class="card-img-top" alt="Service 1">
-          <div class="card-body">
-            <h5 class="card-title">${data.heading}</h5>
-            <p class="card-text">${data.heading}</p>
-          </div>
-        </div>
-      </div>
-	</c:forEach>
-       
-    </div>
-  </div>
+     
+ 
 <jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>

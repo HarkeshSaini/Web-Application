@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/resources/sites/css/header.css"/>
 <nav class="navbar navbar-expand-lg bg-darks border-bottom border-body" data-bs-theme="dark">
   <div class="container">
     <a class="navbar-brand" href="#">
@@ -5,7 +6,7 @@
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
+      <img src="/resources/sites/image/botton icon.png" alt="Logo" height="35">
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -23,3 +24,13 @@
     </div>
   </div>
 </nav>
+
+<script>
+  const toggler = document.querySelector('.navbar-toggler');
+  const collapse = document.querySelector('#navbarNav');
+
+  toggler.addEventListener('click', () => {
+    collapse.classList.toggle('active');
+  });
+</script>
+

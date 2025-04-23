@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/resources/sites/css/home.css"/>
   <title>Index</title>
 </head>
 <body>
  <jsp:include page="./include/header.jsp"></jsp:include>
- <jsp:include page="comman.jsp"></jsp:include>
 <section class="banner">
   <div class="banner-overlay"></div>
   <div class="banner-content">
-    <h1>Welcome to Our Website</h1>
+    <!-- <h1>Welcome to Our Website</h1> -->
     <p>Discover great content, stay connected, and grow with us.</p>
     <a href="#about" class="btn">Learn More</a>
   </div>
@@ -56,120 +56,48 @@
       </div>
     </div>
   </div>
-
-<div class="container py-5">
-    <h2 class="text-center mb-4">Customer Reviews</h2>
-
-    <div class="row">
-      <!-- Review 1 -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="review-card">
-          <div class="text-center">
-            <img src="https://via.placeholder.com/80" alt="Customer 1">
-            <div class="review-name">John Doe</div>
-            <div class="review-rating">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-half"></i>
-            </div>
+<div class="container">
+<section class="reviews-section">
+    <h2 class="reviews-title">What Our Customers Say</h2>
+    <div class="reviews-container">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="https://i.pravatar.cc/100?img=1" alt="User Avatar">
           </div>
-          <p class="review-text">“This product exceeded my expectations! Highly recommended for anyone looking for quality.”</p>
+          <div class="review-author">Alice Smith</div>
+        </div>
+        <div class="review-content">
+          “Amazing experience! Highly recommend their service. Everything was smooth and professional.”
         </div>
       </div>
 
-      <!-- Review 2 -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="review-card">
-          <div class="text-center">
-            <img src="https://via.placeholder.com/80" alt="Customer 2">
-            <div class="review-name">Jane Smith</div>
-            <div class="review-rating">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star"></i>
-            </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="https://i.pravatar.cc/100?img=2" alt="User Avatar">
           </div>
-          <p class="review-text">“The service was great, but the product could be improved. Still, I'm satisfied overall.”</p>
+          <div class="review-author">John Doe</div>
+        </div>
+        <div class="review-content">
+          “The quality exceeded my expectations. The team was supportive and responsive throughout.”
         </div>
       </div>
 
-      <!-- Review 3 -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="review-card">
-          <div class="text-center">
-            <img src="https://via.placeholder.com/80" alt="Customer 3">
-            <div class="review-name">Michael Brown</div>
-            <div class="review-rating">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <img src="https://i.pravatar.cc/100?img=3" alt="User Avatar">
           </div>
-          <p class="review-text">“Excellent product! Very happy with my purchase, will definitely buy again.”</p>
+          <div class="review-author">Samantha Lee</div>
         </div>
-      </div>
-
-      <!-- Review 4 -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="review-card">
-          <div class="text-center">
-            <img src="https://via.placeholder.com/80" alt="Customer 4">
-            <div class="review-name">Emily Davis</div>
-            <div class="review-rating">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star"></i>
-              <i class="bi bi-star"></i>
-            </div>
-          </div>
-          <p class="review-text">“Good product, but there are some improvements needed in terms of durability.”</p>
-        </div>
-      </div>
-
-      <!-- Review 5 -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="review-card">
-          <div class="text-center">
-            <img src="https://via.placeholder.com/80" alt="Customer 5">
-            <div class="review-name">Alex Johnson</div>
-            <div class="review-rating">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-          </div>
-          <p class="review-text">“Perfect! Exactly what I needed, great value for money!”</p>
-        </div>
-      </div>
-
-      <!-- Review 6 -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="review-card">
-          <div class="text-center">
-            <img src="https://via.placeholder.com/80" alt="Customer 6">
-            <div class="review-name">Sara Lee</div>
-            <div class="review-rating">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-half"></i>
-              <i class="bi bi-star"></i>
-            </div>
-          </div>
-          <p class="review-text">“Good quality, but the shipping took longer than expected.”</p>
+        <div class="review-content">
+          “I will definitely use this again. Great value and even better customer service!”
         </div>
       </div>
     </div>
-  </div>
+  </section>
+ </div>
 <jsp:include page="./include/footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
