@@ -10,6 +10,23 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="custom-dropdown">
+	  <div class="selected">
+	    <ul class="navbar-nav align-items-center">
+	     <li class="nav-item"><img class="flag" src="/resources/sites/image/flag.png" alt="Logo" height="18" width="31"></li>
+	     <li class="nav-item">EN</li>
+	     <li class="nav-item">INR</li>
+	     <li class="nav-item"><img class="flag" src="/resources/sites/image/icon-drop.png" alt="Logo" height="12" width="25"></li>
+	    </ul>
+	  </div>
+	  <ul class="options">
+	    <li data-value="1">Option 1</li>
+	    <li data-value="2">Option 2</li>
+	    <li data-value="3">Option 3</li>
+	  </ul>
+	</div>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav align-items-center">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
@@ -24,13 +41,5 @@
     </div>
   </div>
 </nav>
-
-<script>
-  const toggler = document.querySelector('.navbar-toggler');
-  const collapse = document.querySelector('#navbarNav');
-
-  toggler.addEventListener('click', () => {
-    collapse.classList.toggle('active');
-  });
-</script>
+<script src="/resources/sites/js/header.js"></script>
 

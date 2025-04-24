@@ -117,3 +117,53 @@ body {
     gap: 1rem;
   }
 }
+/*droup dwon */
+
+
+.custom-dropdown {
+  position: relative;
+  width: 200px;
+  font-family: Arial, sans-serif;
+}
+
+.selected {
+    padding: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+    border: 1px solid #c5b8b8;
+    user-select: none;
+    border-radius: 14px;
+    color: black;
+}
+img.flag {
+    width: 24px;
+    height: 23px;
+    margin-bottom: -5px;
+    margin-top: 2px;
+}
+.options {
+  list-style: none;
+  padding: 0;
+  color: black;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  display: none;
+  z-index: 100;
+}
+
+.options li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.options li:hover {
+  background-color: #eee;
+}
+
+.custom-dropdown.active .options {
+  display: block;
+}

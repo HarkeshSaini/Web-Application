@@ -13,7 +13,7 @@
  <section class="banner">
   <div class="banner-overlay"></div>
   <div class="banner-content">
-    <h1>Blog</h1>
+    <h2>Blog</h2>
   </div>
 </section>
 
