@@ -1,11 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta id="viewport" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-    <title>Add Blog</title>
+    <title>Update Default Pages</title>
   </head>
   <body>
     <div class="container-fluid">
@@ -22,7 +23,7 @@
 	                      <div class="message">${message}</div>
 	                    </div>
 	                    <div class="col link">
-	                      <a href="/admin/getAllBlog" class="btn btn-primary user">All Blog</a>
+	                      <a href="/admin/getAllDefaultContant" class="btn btn-primary user">All Default Pages</a>
 	                     </div>
                        </div>
                     </div>
@@ -30,53 +31,68 @@
                     <div class="card-body p-3 p-md-4">
                        
                        <!-- start -->
-                      <form action="/admin/addBlog" method="post" enctype="multipart/form-data">
+                      <form:form action="/admin/editDefaultInfo/${id}" method="post" enctype="multipart/form-data">
                        <div class="row">
-    					<div class="col">
-	                        <input type="text" name="title" class="form-control" placeholder="Enter blog Title*" required="required">
+    					 
+	                    <div class="col">
+	                       <form:input type="text" path="description" class="form-control" placeholder="Enter blog description*" required="required"/>
 	                    </div>
 	                    <div class="col">
-	                       <input type="text" name="description" class="form-control" placeholder="Enter blog description*" required="required">
-	                    </div>
-	                    <div class="col">
-	                       <input type="text" name="keywords" class="form-control" placeholder="Enter blog keywords*" required="required">
+	                       <form:input type="text" path="keywords" class="form-control" placeholder="Enter blog keywords*" required="required"/>
 	                    </div>
                        </div>
                        
                        <div class="row">
     					<div class="col">
-	                        <input type="text" name="heading" class="form-control" placeholder="Enter blog Heading*" required="required">
+	                        <form:input type="text" path="heading" class="form-control" placeholder="Enter blog Heading*" required="required"/>
 	                    </div>
+	                    
 	                    <div class="col">
-	                       <input type="text" id="titleUrl" name="titleUrl" class="form-control" placeholder="Enter blog pageUrl*" required="required">
-	                    </div>
-	                    <div class="col">
-	                       <input type="text" name="extarTag" class="form-control" placeholder="Enter blog Extar Key world">
-	                    </div>
+	                       <form:select path="category" class="form-control" required="required">
+	                       	 <form:option value="about-us">About Us</form:option>
+	                       </form:select>
+ 	                    </div>
                        </div>
                        
                        <div class="row">
                            <div class="form-outline col-md-12 mb-3">
-                               <textarea id="content" name="content" class="form-control form-control-lg" required="required"></textarea>
+                               <form:textarea id="content" path="content" class="form-control form-control-lg" required="required"/> 
                            </div>
                         </div>
                        <div class="row">
     					<div class="col">
-	                       <input type="file" name="file" class="form-control">
+	                       <input type="file" name="file" class="form-control"/>
+	                    </div>
+	                       
+	                     <c:if test="${not empty command.imgUrl}">
+		                    <div class="col">
+		                       <input type="text"  value="${command.imgUrl}" class="form-control"/>
+		                    </div>
+	                     </c:if> 
+	                    
+	                    <div class="col">
+	                       <form:select path="status" class="form-control" required="required">
+	                       	 <form:option value="Active">Active</form:option>
+	                       	 <form:option value="InActive">InActive</form:option>
+	                       </form:select>
+ 	                    </div>
+	                    
+	                     
+                       </div>
+                       <div class="row">
+	                    <div class="col">
+	                        <form:input type="number" path="tfnHeader" class="form-control" placeholder="Enter blog tfnHeader"/>
 	                    </div>
 	                    <div class="col">
-	                        <input type="number" name="tfnHeader" class="form-control" placeholder="Enter blog tfnHeader">
-	                    </div>
-	                    <div class="col">
-	                       <input type="number" name="tfnFooter" class="form-control" placeholder="Enter blog tfnFooter">
+	                       <form:input type="number" path="tfnFooter" class="form-control" placeholder="Enter blog tfnFooter"/>
 	                    </div> 
 	                    <div class="col">
-	                       <input type="number" name="tfnPopup" class="form-control" placeholder="Enter blog tfnPopup">
+	                       <form:input type="number" path="tfnPopup" class="form-control" placeholder="Enter blog tfnPopup"/>
 	                    </div> 
 	                     
                        </div>
                         <button type="submit" class="btn btn-primary user">Submit</button>
-                        </form>
+                        </form:form>
                       <!-- end -->
                        
                     </div>

@@ -15,9 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.interfaces.ContactInfoService;
+import com.spring.security.interfaces.DefaultInfoService;
 import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.ContactInfoRequest;
+import com.spring.security.request.DefaultInfoRequest;
 import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommanUtility;
 
@@ -30,13 +32,16 @@ public class AdminController {
 	private final BlogInfoService blogService;
 
 	private final UserInfoService registerService;
+	
+	private final DefaultInfoService defaultInfoService;
 
 	private final ContactInfoService contactInfoService;
 
 	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,
-			BlogInfoService blogService) {
+			BlogInfoService blogService, DefaultInfoService defaultInfoService) {
 		this.blogService = blogService;
 		this.registerService = registerService;
+		this.defaultInfoService = defaultInfoService;
 		this.contactInfoService = contactInfoService;
 	}
 
@@ -201,4 +206,67 @@ public class AdminController {
 		return "redirect:/admin/getAllBlog";
 	}
 
+	/*
+	 * =======================================Default Content==========================================
+	 */
+
+	@GetMapping("/getAllDefaultContant")
+	private String getAllDefaultContant(HttpServletRequest request, Model model) {
+		List<DefaultInfoRequest> defaultInfoRequests = this.defaultInfoService.getAllDefaultContant();
+		model.addAttribute("defaultInfoRequests", defaultInfoRequests);
+		CommanUtility.userRole(request, model);
+		model.addAttribute("message", "List of All default Info details");
+		return "admin/default/showDefault";
+	}
+
+	@GetMapping("/addDefault")
+	private String addDefault(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "Create a new Default with administrator privileges.");
+		CommanUtility.userRole(request, model);
+		return "admin/default/addDefault";
+	}
+
+	@PostMapping("/addDefault")
+	private String addDefault(DefaultInfoRequest defaultRequest, MultipartFile file, Model model, HttpServletRequest request) {
+		defaultRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
+		DefaultInfoRequest addDefault = this.defaultInfoService.addDefault(defaultRequest, file);
+		CommanUtility.userRole(request, model);
+		if (ObjectUtils.isEmpty(addDefault)) {
+			model.addAttribute("message", "Default already exists!");
+			return "admin/default/addDefault";
+		}
+		model.addAttribute("message", "Default created successfully!");
+		return "admin/default/addDefault";
+	}
+
+	@GetMapping("/editDefaultInfo/{id}")
+	private String editDefaultInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		DefaultInfoRequest defaultById = this.defaultInfoService.getDefaultById(id);
+		CommanUtility.userRole(request, model);
+		model.addAttribute("id", id);
+		model.addAttribute("command", defaultById);
+		model.addAttribute("message", "Update Default Information");
+		return "admin/default/editDefault";
+	}
+
+	@PostMapping("/editDefaultInfo/{id}")
+	private String editDefaultInfos(@PathVariable String id, DefaultInfoRequest infoRequest, MultipartFile file, Model model, HttpServletRequest request) {
+		DefaultInfoRequest defaultById = this.defaultInfoService.updateDefault(id, file, infoRequest);
+		CommanUtility.userRole(request, model);
+		if (ObjectUtils.isEmpty(defaultById)) {
+			model.addAttribute("id", id);
+			model.addAttribute("command", infoRequest);
+			model.addAttribute("message", "Default information could not be updated.");
+			return "admin/default/editDefault";
+		}
+		model.addAttribute("message", "Default details have been successfully updated.");
+		return "admin/default/addDefault";
+	}
+
+	@GetMapping("/deleteDefaultInfo/{id}")
+	private String deleteDefaultInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		CommanUtility.userRole(request, model);
+		this.defaultInfoService.deleteDefaultById(id);
+		return "redirect:/admin/getAllDefaultContant";
+	}
 }

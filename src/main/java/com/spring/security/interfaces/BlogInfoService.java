@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.request.BlogInfoRequest;
+import com.spring.security.request.DefaultInfoRequest;
 
 public interface BlogInfoService {
 
@@ -22,5 +23,6 @@ public interface BlogInfoService {
 	List<BlogInfoRequest> findAllBlogByStatus();
 
 	List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl);
+
 
 }
