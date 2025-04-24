@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -32,6 +33,9 @@ public class BlogController {
 	public String blog(@PathVariable String pageUrl, Model model) {
 		List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatusAndPageUrl(pageUrl);
 		model.addAttribute("blogDetail", blogDetail);
+		if(ObjectUtils.isEmpty(blogDetail)) {
+			throw new RuntimeException("Blog Contant Not found:");
+		}
 		return "blog/innerPage";
 	}
 

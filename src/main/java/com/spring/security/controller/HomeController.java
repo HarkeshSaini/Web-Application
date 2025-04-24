@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.spring.security.interfaces.DefaultInfoService;
@@ -34,8 +35,11 @@ public class HomeController {
 
 	@GetMapping("/about-us")
 	public String aboutUs(HttpServletRequest request, Model model) {
-		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatus();
+		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl("about-us");
 		model.addAttribute("defaultDetail", defaultDetail);
+		if(ObjectUtils.isEmpty(defaultDetail)) {
+			throw new RuntimeException("Default Info Contant Not found:");
+		}
 		return "default";
 	}
 
