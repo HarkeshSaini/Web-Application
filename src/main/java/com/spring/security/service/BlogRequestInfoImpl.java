@@ -94,4 +94,10 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
 	}
 
+	@Override
+	public List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl) {
+		List<BlogInfoDetail> findAll = infoRepository.findByStatusAndTitleUrl("Active",pageUrl);
+		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+	}
+
 }

@@ -34,7 +34,7 @@
             	<form action="#!">
             	 <div class="col-12">
                   <div class="input-group">
-                    <span class="input-group-text" id="email-newsletter-addon"></span>
+                    <!-- <span class="input-group-text" id="email-newsletter-addon"></span> -->
             	    <input type="email" class="form-control" id="email-newsletter" value="" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
             	    </div>
                   </div>

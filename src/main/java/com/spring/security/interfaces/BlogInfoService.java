@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.request.BlogInfoRequest;
-import com.spring.security.request.UserInfoRequest;
 
 public interface BlogInfoService {
 
@@ -21,5 +20,7 @@ public interface BlogInfoService {
 	void deleteBlogById(@NotNull String id);
 
 	List<BlogInfoRequest> findAllBlogByStatus();
+
+	List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl);
 
 }

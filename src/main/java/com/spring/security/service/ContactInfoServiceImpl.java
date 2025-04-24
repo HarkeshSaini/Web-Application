@@ -1,5 +1,6 @@
 package com.spring.security.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +42,9 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 
 	@Override
 	public ResponseEntity<ContactInfoRequest> submitContact(ContactInfoRequest request) {
+		request.setPostTime(new Timestamp(System.currentTimeMillis()));
+		request.setStatus("Active");
+		request.setLang_code("en");
 		ContactInfoDetail data = modelMapper.map(request, ContactInfoDetail.class);
 		ContactInfoDetail saveData = contactInfoRepository.save(data);
 		if(ObjectUtils.isEmpty(saveData)) {
@@ -63,6 +67,21 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 		ContactInfoRequest requestData = modelMapper.map(orElse, ContactInfoRequest.class);
 		ResponseEntity.ok(HttpStatus.OK);
 		return ResponseEntity.ok(requestData);
+	}
+
+	@Override
+	public ResponseEntity<Boolean> updateStatusOfContactUsByStatus(String id, String value) {
+		Optional<ContactInfoDetail> findById = contactInfoRepository.findById(id);
+		ContactInfoDetail orElse = findById.orElse(null);
+		if(ObjectUtils.isEmpty(orElse)) {
+			ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+			return ResponseEntity.ok(false);
+		}
+		orElse.setStatus(value.equals("1") ? "Active" : "InActive");
+		orElse.setUpdateTime(System.currentTimeMillis());
+		contactInfoRepository.save(orElse);
+		ResponseEntity.ok(HttpStatus.OK);
+		return ResponseEntity.ok(value.equals("1") ? true : false);
 	}
 
 

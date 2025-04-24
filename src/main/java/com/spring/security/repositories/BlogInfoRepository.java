@@ -14,4 +14,6 @@ public interface BlogInfoRepository extends MongoRepository<BlogInfoDetail, Stri
 
 	List<BlogInfoDetail> findByStatus(String string);
 
+	List<BlogInfoDetail> findByStatusAndTitleUrl(String string, String pageUrl);
+
 }

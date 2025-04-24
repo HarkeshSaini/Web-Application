@@ -51,7 +51,12 @@
                               <td>${data.email}</td>
                               <td><button type="button" class="btn user" onclick="fetchContactUsDetails('${data.id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Detail</button></td>
                               <td>${data.phone}</td>
-                              <td>${data.status}</td>
+                              <c:if test="${data.status=='Active'}">
+                                <td><input type="checkbox" checked="checked" onclick="checkbox('${data.id}')" id="opt1"> <span id="msg">${data.status}</span></td>
+                              </c:if>
+                              <c:if test="${data.status=='InActive'}">
+                              	<td><input type="checkbox" onclick="checkbox('${data.id}')" id="opt1"> <span id="msg">${data.status}</span></td>
+                              </c:if>
                               <c:if test="${userRole=='ADMIN'}">
                                <td><a href="/admin/deleteContactUsInfo/${data.id}"><i class="fa-solid fa-trash"></i></a></td>
                               </c:if>
@@ -130,6 +135,24 @@
           location.reload(true);
       });
   });
+  
+  function checkbox(id) {
+	  var checked = 'InActive';
+	  var value = '0';
+	  if (document.querySelector('#opt1:checked')) {
+		  checked= 'Active';
+	      value = '1';
+	  }
+	  document.getElementById('msg').innerText = checked;
+	  var settings = {
+	 	 "url": "/api/updateStatusOfContactUsByStatus/"+id+"/"+value,
+	 	 "method": "POST",
+	 	 "timeout": 0,
+	  };
+	  $.ajax(settings).done(function (response) {
+		 // console.log(response);
+	  });
+	}
 </script>
     
   </body>

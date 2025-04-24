@@ -60,4 +60,9 @@ public class RestControllers {
 	private ResponseEntity<ContactInfoRequest> findByIdContactUs(@PathVariable String id){
 		return this.contactInfoService.findByIdContactUs(id);
 	}
+	
+	@PostMapping(value = "/updateStatusOfContactUsByStatus/{id}/{value}")
+	private ResponseEntity<Boolean> updateStatusOfContactUsByStatus(@PathVariable String id,@PathVariable String value){
+		return this.contactInfoService.updateStatusOfContactUsByStatus(id,value);
+	}
 }

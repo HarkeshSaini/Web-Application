@@ -14,5 +14,11 @@ public class HomeController {
 		model.addAttribute("message", "success");
 		return "index";
 	}
+	
+	@GetMapping("/contact-us")
+	public String contactUs(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "success");
+		return "contactUs";
+	}
 
 }

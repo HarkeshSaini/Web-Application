@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.request.BlogInfoRequest;
@@ -25,6 +26,13 @@ public class BlogController {
 		List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatus();
 		model.addAttribute("blogDetail", blogDetail);
 		return "blog/index";
+	}
+	
+	@GetMapping("/blog/{pageUrl}")
+	public String blog(@PathVariable String pageUrl, Model model) {
+		List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatusAndPageUrl(pageUrl);
+		model.addAttribute("blogDetail", blogDetail);
+		return "blog/innerPage";
 	}
 
 }

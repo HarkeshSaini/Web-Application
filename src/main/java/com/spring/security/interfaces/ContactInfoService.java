@@ -17,4 +17,6 @@ public interface ContactInfoService {
 
 	ResponseEntity<ContactInfoRequest> findByIdContactUs(String id);
 
+	ResponseEntity<Boolean> updateStatusOfContactUsByStatus(String id, String value);
+
 }
