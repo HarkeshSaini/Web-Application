@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.spring.security.entity.CategoryInfoDetail;
+import com.spring.security.entity.Category;
 
 @Repository
-public interface CategoryRepository extends MongoRepository<CategoryInfoDetail, String> {
+public interface CategoryRepository extends MongoRepository<Category, String> {
 
-	CategoryInfoDetail findBycategoryUrl(String categoryUrl);
+	List<Category> findByStatus(String string);
 
-	List<CategoryInfoDetail> findByStatus(String string);
+	Category findByUrl(String url);
 
-	List<CategoryInfoDetail> findByStatusAndCategoryUrl(String string, String categoryUrl);
+	Category findByName(String name);
 
 }

@@ -23,7 +23,7 @@
 	                      <div class="message">${message}</div>
 	                    </div>
 	                    <div class="col link">
-	                      <a href="/admin/getAllCategory" class="btn btn-primary user">All Category</a>
+	                      <a href="/admin/getAllCategory" class="btn btn-primary user">All Category Details</a>
 	                     </div>
                        </div>
                     </div>
@@ -45,8 +45,12 @@
                        </div>
                        
                        <div class="row">
-    					<div class="col">
-	                        <form:input type="text" path="categoryName" class="form-control" placeholder="Enter Category Name*" required="required"/>
+	                   <div class="col">
+	                       <form:select path="categoryName" class="form-control" required="required">
+							  <c:forEach var="data" items="${infoCategory}">
+							    <form:option id="${data.url}" value="${data.name}">${data.name}</form:option>
+							  </c:forEach> 
+							</form:select>
 	                    </div>
 	                    <div class="col">
 	                       <form:input type="text" id="titleUrl" path="categoryUrl" class="form-control" placeholder="Enter Category Url*" required="required"/>
@@ -97,6 +101,17 @@
         </div>
       </div>
     </div>
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const categorySelect = document.querySelector("select[name='categoryName']");
+    const titleUrlInput = document.getElementById("titleUrl");
+
+    categorySelect.addEventListener("change", function() {
+      const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+      titleUrlInput.value = selectedOption.id || ''; // If no id, clear the input
+    });
+  });
+</script>
     <script src="/resources/admin/js/script.js"></script>
     <script>CKEDITOR.replace( 'content' );</script>
   </body>

@@ -20,6 +20,7 @@ import com.spring.security.interfaces.DefaultInfoService;
 import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.CategoryInfoRequest;
+import com.spring.security.request.CategoryReq;
 import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.DefaultInfoRequest;
 import com.spring.security.request.UserInfoRequest;
@@ -279,10 +280,13 @@ public class AdminController {
 	/*
 	 * =======================================Category Information Content==========================================
 	 */
+	
 
 	@GetMapping("/getAllCategory")
 	private String getAllCategory(HttpServletRequest request, Model model) {
 		List<CategoryInfoRequest> infoRequests = this.categoryService.getAllCategoryContant();
+		List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
+		model.addAttribute("infoCategory", allInfoCategory);
 		model.addAttribute("infoRequests", infoRequests);
 		CommanUtility.userRole(request, model);
 		model.addAttribute("message", "List of All Category Info details");
@@ -292,6 +296,8 @@ public class AdminController {
 	@GetMapping("/addCategory")
 	private String addCategory(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Create a new Category with administrator privileges.");
+		List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
+		model.addAttribute("infoCategory", allInfoCategory);
 		CommanUtility.userRole(request, model);
 		return "admin/category/addCategory";
 	}
@@ -301,6 +307,8 @@ public class AdminController {
 		defaultRequest.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		CategoryInfoRequest addRequest = this.categoryService.addCategory(defaultRequest, file);
 		CommanUtility.userRole(request, model);
+		List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
+		model.addAttribute("infoCategory", allInfoCategory);
 		if (ObjectUtils.isEmpty(addRequest)) {
 			model.addAttribute("message", "Category already exists!");
 			return "admin/category/addCategory";
@@ -312,6 +320,8 @@ public class AdminController {
 	@GetMapping("/editCategoryInfo/{id}")
 	private String editCategoryInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
 		CategoryInfoRequest requetInfoById = this.categoryService.getCategoryById(id);
+		List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
+		model.addAttribute("infoCategory", allInfoCategory);
 		CommanUtility.userRole(request, model);
 		model.addAttribute("id", id);
 		model.addAttribute("command", requetInfoById);
@@ -323,6 +333,8 @@ public class AdminController {
 	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file, Model model, HttpServletRequest request) {
 		CategoryInfoRequest requestById = this.categoryService.updateCategory(id, file, infoRequest);
 		CommanUtility.userRole(request, model);
+		List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
+		model.addAttribute("infoCategory", allInfoCategory);
 		if (ObjectUtils.isEmpty(requestById)) {
 			model.addAttribute("id", id);
 			model.addAttribute("command", infoRequest);
@@ -339,4 +351,5 @@ public class AdminController {
 		this.categoryService.deleteCategoryById(id);
 		return "redirect:/admin/getAllCategory";
 	}
+	
 }

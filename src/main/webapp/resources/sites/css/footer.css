@@ -101,7 +101,7 @@ button.btn.btn-primary {
 .btn {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #06648f;
+  background-image: linear-gradient(to left, rgb(181 239 255) 0%, rgb(81 134 219) 100%);
   color: #fff;
   border: none;
   text-align: center;

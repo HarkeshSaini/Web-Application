@@ -5,25 +5,33 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.security.entity.Category;
 import com.spring.security.entity.CategoryInfoDetail;
 import com.spring.security.interfaces.CategoryInfoService;
+import com.spring.security.repositories.CategoryInfoRepository;
 import com.spring.security.repositories.CategoryRepository;
 import com.spring.security.request.CategoryInfoRequest;
+import com.spring.security.request.CategoryReq;
 import com.spring.security.utility.CommanUtility;
 
 @Service
 public class CategoryServiceImpl implements CategoryInfoService {
-
+	
 	private final ModelMapper modelMapper;
+	
+	private final CategoryRepository repository;
 
-	private final CategoryRepository infoRepository;
+	private final CategoryInfoRepository infoRepository;
 
-	public CategoryServiceImpl(CategoryRepository infoRepository, ModelMapper modelMapper) {
+	public CategoryServiceImpl(CategoryInfoRepository infoRepository, ModelMapper modelMapper, CategoryRepository repository) {
 		this.modelMapper = modelMapper;
+		this.repository = repository;
 		this.infoRepository = infoRepository;
 	}
 
@@ -89,8 +97,8 @@ public class CategoryServiceImpl implements CategoryInfoService {
 
 	@Override
 	public List<CategoryInfoRequest> findAllCategoryByStatus() {
-		List<CategoryInfoDetail> findAll = infoRepository.findByStatus("Active");
-		return findAll.stream().map(x -> modelMapper.map(x, CategoryInfoRequest.class)).toList();
+		List<CategoryInfoDetail> findByStatus = infoRepository.findByStatus("Active");
+		return findByStatus.stream().map(x -> modelMapper.map(x, CategoryInfoRequest.class)).toList();
 	}
 
 	@Override
@@ -98,4 +106,34 @@ public class CategoryServiceImpl implements CategoryInfoService {
 		List<CategoryInfoDetail> findAll = infoRepository.findByStatusAndCategoryUrl("Active", categoryUrl);
 		return findAll.stream().map(x -> modelMapper.map(x, CategoryInfoRequest.class)).toList();
 	}
+
+	@Override
+	public ResponseEntity<String> addCategory(CategoryReq request) {
+		Category category = modelMapper.map(request, Category.class);
+		Category url = repository.findByUrl(request.getUrl());
+		Category name = repository.findByName(request.getName());
+		if(url!=null || name!=null) {
+			ResponseEntity.ok(HttpStatus.BAD_REQUEST);
+			return ResponseEntity.ok("Category already exists!");
+		}
+		category.setPostTime(System.currentTimeMillis());
+		category.setStatus("Active");
+		repository.save(category);
+		ResponseEntity.ok(HttpStatus.CREATED);
+		return ResponseEntity.ok("Category added successfully!");
+	}
+
+	@Override
+	public List<CategoryReq> getAllInfoCategory() {
+		List<Category> findByStatus = repository.findByStatus("Active");
+		return findByStatus.stream().map(x-> modelMapper.map(x, CategoryReq.class)).toList();
+	}
+
+	@Override
+	public void deleteCategory(@NotNull String id) {
+		repository.deleteById(id);
+	}
+
+	 
+
 }

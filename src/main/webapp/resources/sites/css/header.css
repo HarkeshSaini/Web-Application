@@ -166,4 +166,55 @@ img.flag {
 
 .custom-dropdown.active .options {
   display: block;
+}button.nav-link.services {
+    padding: 14px 25px;
+    font-size: 16px;
+    background-image: linear-gradient(to left, rgb(181 239 255) 0%, rgb(81 134 219) 100%);
+    border: 0px;
+    border-radius: 8px;
+}img.drp-icon {
+    height: 10px;
+    width: 14px;
+}/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  background-color: #e8eff5;
+    border: 1px solid #e1d0d0;
+    position: absolute;
+    min-width: 196px;
+    margin-top: 1px;
+    color: black;
+    border-radius: 8px;
+    z-index: 1;
+}
+div#dropdown-content {
+    box-shadow: 0px 13px 21px 6px rgba(0, 0, 0, 0.1);
+}
+/* Style each line inside the dropdown */
+.dropdown-content p {
+    padding: 3px 12px;
+    /*border-radius: 6px;
+    border: 1px solid;*/
+    margin: 2px;
+    cursor: pointer;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.drp-icon {
+  width: 12px;
+  margin-left: 5px;
+}
+
+a.nav-link.service {
+    padding: 8px 8px;
 }
