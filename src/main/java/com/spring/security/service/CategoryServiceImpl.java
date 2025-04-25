@@ -41,6 +41,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 			if (!ObjectUtils.isEmpty(urlContent)) {
 				return null;
 			}
+			request.setFeatured(true);
 			request.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 			request.setStatus("Active");
 			if (!file.isEmpty()) {
@@ -64,9 +65,11 @@ public class CategoryServiceImpl implements CategoryInfoService {
 		CategoryInfoDetail mapData = new CategoryInfoDetail();
 		try {
 			request.setId(id);
-			request.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-			request.setImgUrl(file.getOriginalFilename());
 			CategoryInfoRequest blogById = getCategoryById(id);
+			request.setCreatedAt(blogById.getCreatedAt());
+			request.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+			request.setFeatured(blogById.isFeatured());
+			request.setCreatedBy(blogById.getCreatedBy());
 			if (file.isEmpty()) {
 				request.setImgUrl(blogById.getImgUrl());
 			} else {

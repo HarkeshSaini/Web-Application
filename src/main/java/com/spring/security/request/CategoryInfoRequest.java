@@ -13,7 +13,7 @@ public class CategoryInfoRequest {
 	private String metaTitle;
 	private String metaKeywords;
 	private String metaDescription;
-	private String contant;
+	private String content;
 	private String status;
 	private String imgUrl;
 	private String createdBy;

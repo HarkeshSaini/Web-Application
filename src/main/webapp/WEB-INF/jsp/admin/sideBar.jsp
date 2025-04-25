@@ -35,7 +35,7 @@
         <span class="ms-1 d-none d-sm-inline">Contact Information</span> </a>
       </li>
       <li class="nav-item">
-        <a href="/admin/dashboard" class="nav-link align-middle px-0"> 
+        <a href="/admin/getAllCategory" class="nav-link align-middle px-0"> 
         <i class="fs-4 bi-house"></i> 
         <span class="ms-1 d-none d-sm-inline">Category Details</span> </a>
       </li>
