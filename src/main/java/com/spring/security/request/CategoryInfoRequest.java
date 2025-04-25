@@ -1,0 +1,26 @@
+package com.spring.security.request;
+
+import java.sql.Timestamp;
+
+import lombok.Data;
+
+@Data
+public class CategoryInfoRequest {
+
+	private String id;
+	private String categoryName;
+	private String categoryUrl;
+	private String metaTitle;
+	private String metaKeywords;
+	private String metaDescription;
+	private String contant;
+	private String status;
+	private String imgUrl;
+	private String createdBy;
+	private String updatedBy;
+	private Timestamp createdAt;
+	private Timestamp updatedAt;
+	private String categoryType;
+	private boolean isFeatured;
+
+}

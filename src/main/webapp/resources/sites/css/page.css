@@ -138,11 +138,13 @@ body {
   flex-direction: column;
   height: 100%;
 }
-
-.card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+ul {
+    margin-left: 20px;
 }
-
+ 
+.card {
+    box-shadow: 0 6px 23px rgba(0, 0, 0, 0.1);
+}
 .card-img-top {
   width: 100%;
   display: block;
@@ -158,9 +160,10 @@ body {
     margin-top: 28px;
     margin-bottom: 32px;
 }
- a.heading {
-    font-size: 18px;
-    color: black;
+a.heading {
+    color: #0c0c60;
+    font-size: 16px;
+    text-decoration: none;
 }
 .card-title {
   font-size: 1.25rem;

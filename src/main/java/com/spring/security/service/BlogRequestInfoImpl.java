@@ -41,7 +41,6 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 			if (!ObjectUtils.isEmpty(urlContent)) {
 				return null;
 			}
-			blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 			blogRequest.setStatus("Active");
 			if (blogRequest.getTitleUrl().endsWith("-")) {
 				blogRequest.setTitleUrl(blogRequest.getTitleUrl().substring(0, blogRequest.getTitleUrl().length() - 1)); 

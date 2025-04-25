@@ -8,7 +8,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <img src="/resources/sites/image/botton icon.png" alt="Logo" height="35">
     </button>
-
+ 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav align-items-center">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>

@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.interfaces.BlogInfoService;
+import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.DefaultInfoService;
 import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.request.BlogInfoRequest;
+import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.DefaultInfoRequest;
 import com.spring.security.request.UserInfoRequest;
@@ -33,14 +35,17 @@ public class AdminController {
 
 	private final UserInfoService registerService;
 	
+	private final CategoryInfoService categoryService;
+	
 	private final DefaultInfoService defaultInfoService;
 
 	private final ContactInfoService contactInfoService;
 
 	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,
-			BlogInfoService blogService, DefaultInfoService defaultInfoService) {
+		BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService) {
 		this.blogService = blogService;
 		this.registerService = registerService;
+		this.categoryService = categoryService;
 		this.defaultInfoService = defaultInfoService;
 		this.contactInfoService = contactInfoService;
 	}
@@ -268,5 +273,70 @@ public class AdminController {
 		CommanUtility.userRole(request, model);
 		this.defaultInfoService.deleteDefaultById(id);
 		return "redirect:/admin/getAllDefaultContant";
+	}
+	
+	
+	/*
+	 * =======================================Category Information Content==========================================
+	 */
+
+	@GetMapping("/getAllCategory")
+	private String getAllCategory(HttpServletRequest request, Model model) {
+		List<CategoryInfoRequest> infoRequests = this.categoryService.getAllCategoryContant();
+		model.addAttribute("infoRequests", infoRequests);
+		CommanUtility.userRole(request, model);
+		model.addAttribute("message", "List of All Category Info details");
+		return "admin/category/showCategory";
+	}
+
+	@GetMapping("/addCategory")
+	private String addCategory(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "Create a new Category with administrator privileges.");
+		CommanUtility.userRole(request, model);
+		return "admin/category/addCategory";
+	}
+
+	@PostMapping("/addCategory")
+	private String addCategory(CategoryInfoRequest defaultRequest, MultipartFile file, Model model, HttpServletRequest request) {
+		defaultRequest.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		CategoryInfoRequest addRequest = this.categoryService.addCategory(defaultRequest, file);
+		CommanUtility.userRole(request, model);
+		if (ObjectUtils.isEmpty(addRequest)) {
+			model.addAttribute("message", "Category already exists!");
+			return "admin/category/addCategory";
+		}
+		model.addAttribute("message", "Category created successfully!");
+		return "admin/category/addCategory";
+	}
+
+	@GetMapping("/editCategoryInfo/{id}")
+	private String editCategoryInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		CategoryInfoRequest requetInfoById = this.categoryService.getCategoryById(id);
+		CommanUtility.userRole(request, model);
+		model.addAttribute("id", id);
+		model.addAttribute("command", requetInfoById);
+		model.addAttribute("message", "Update Category Information");
+		return "admin/category/editCategory";
+	}
+
+	@PostMapping("/editCategoryInfo/{id}")
+	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file, Model model, HttpServletRequest request) {
+		CategoryInfoRequest requestById = this.categoryService.updateCategory(id, file, infoRequest);
+		CommanUtility.userRole(request, model);
+		if (ObjectUtils.isEmpty(requestById)) {
+			model.addAttribute("id", id);
+			model.addAttribute("command", infoRequest);
+			model.addAttribute("message", "Category information could not be updated.");
+			return "admin/category/editCategory";
+		}
+		model.addAttribute("message", "Category details have been successfully updated.");
+		return "admin/category/addCategory";
+	}
+
+	@GetMapping("/deleteCategoryInfo/{id}")
+	private String deleteCategoryInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		CommanUtility.userRole(request, model);
+		this.categoryService.deleteCategoryById(id);
+		return "redirect:/admin/getAllCategory";
 	}
 }
