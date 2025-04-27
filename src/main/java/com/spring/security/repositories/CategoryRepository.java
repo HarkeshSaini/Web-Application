@@ -16,4 +16,6 @@ public interface CategoryRepository extends MongoRepository<Category, String> {
 
 	Category findByName(String name);
 
+	Category findByStatusAndUrl(String string, String url);
+
 }

@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Category</title>
-  <meta name="description" content="Category">
-  <meta name="keywords" content="Category" />
+  <title>Technology Services</title>
+  <meta name="description" content="Technology Services">
+  <meta name="keywords" content="Technology Services" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/resources/sites/css/page.css"/>
@@ -16,11 +16,11 @@
  <section class="banner">
   <div class="banner-overlay"></div>
   <div class="banner-content">
-    <h2>Category</h2>
+    <h2>Technology Services for ${categoryRequest.name}</h2>
   </div>
 </section>
 <div class="container py-5">
-    <h2 class="text-center">Our Services</h2>
+    <h2 class="text-center">Our Technology</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <c:forEach var="data" items="${requestDetail}"> 
       <div class="col">

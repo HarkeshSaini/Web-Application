@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/resources/sites/css/header.css"/>
 <nav class="navbar navbar-expand-lg bg-darks border-bottom border-body" data-bs-theme="dark">
-  <div class="container">
+  <div class="container"> 
     <a class="navbar-brand" href="#">
       <img src="/resources/sites/image/logo.png" alt="Logo" height="40">
     </a>

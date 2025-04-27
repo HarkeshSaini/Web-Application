@@ -33,4 +33,6 @@ public interface CategoryInfoService {
 
 	List<CategoryInfoRequest> findCatergory(String url, String categoryUrl);
 
+	CategoryReq getCategoryByUrl(String url);
+
 }

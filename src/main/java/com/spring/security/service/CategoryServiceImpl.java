@@ -1,5 +1,7 @@
 package com.spring.security.service;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.xpath;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -138,6 +140,12 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	public List<CategoryInfoRequest> findCatergory(String url, String categoryUrl) {
 		List<CategoryInfoDetail> findAll = infoRepository.findByCategoryUrlAndPageUrl(url,categoryUrl);
 		return findAll.stream().map(x -> modelMapper.map(x, CategoryInfoRequest.class)).toList();
+	}
+
+	@Override
+	public CategoryReq getCategoryByUrl(String url) {
+		Category category= repository.findByStatusAndUrl("Active",url);
+		return modelMapper.map(category,CategoryReq.class);
 	}
 
 	 

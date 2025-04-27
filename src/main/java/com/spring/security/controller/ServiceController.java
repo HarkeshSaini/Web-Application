@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.request.CategoryInfoRequest;
+import com.spring.security.request.CategoryReq;
 
 @Controller
 public class ServiceController {
@@ -23,7 +24,9 @@ public class ServiceController {
 	@GetMapping("/{url}")
 	public String category(@PathVariable String url, Model model) {
 		List<CategoryInfoRequest> requestDetail = this.categoryService.findAllCategoryByStatusAndCategoryUrl(url);
+		CategoryReq categoryRequest = categoryService.getCategoryByUrl(url);
 		model.addAttribute("requestDetail", requestDetail);
+		model.addAttribute("categoryRequest", categoryRequest);
 		if (ObjectUtils.isEmpty(requestDetail)) {
 			throw new RuntimeException("Category Contant Not found:");
 		}
