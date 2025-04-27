@@ -46,8 +46,8 @@
             	</form>
             </div>
         </div>
-      </div></div><hr>
-    </div>
+      </div><hr>
+      </div>
     <div class="container">
     	<p class="address">&copy; 2025 My Website | All rights reserved, 123 Fake Street, Springfield, IL, 62701, USA A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.</p>
     </div>
