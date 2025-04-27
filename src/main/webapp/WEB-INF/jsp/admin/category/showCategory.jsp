@@ -49,7 +49,7 @@
                         <tbody>
                           <c:forEach var="data" items="${infoRequests}">
                             <tr>
-                              <td>${data.categoryName}</td>
+                              <td>${data.categoryUrl}</td>
                               <td>${data.categoryType}</td>
                               <td>${data.createdBy}</td>
                               <c:if test="${not empty data.updatedBy}">

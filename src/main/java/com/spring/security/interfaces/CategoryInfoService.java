@@ -31,4 +31,6 @@ public interface CategoryInfoService {
 
 	void deleteCategory(@NotNull String id);
 
+	List<CategoryInfoRequest> findCatergory(String url, String categoryUrl);
+
 }

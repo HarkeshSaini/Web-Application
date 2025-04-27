@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bg-darks border-bottom border-body" data-bs-theme="dark">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="logo.png" alt="Logo" height="40">
+      <img src="/resources/sites/image/logo.png" alt="Logo" height="40">
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

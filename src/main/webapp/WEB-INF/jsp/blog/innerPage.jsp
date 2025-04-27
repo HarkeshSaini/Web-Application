@@ -4,10 +4,12 @@
 <html lang="en">
 <c:forEach var="data" items="${blogDetail}"> 
 <head>
+  <title>${data.title}</title>
+  <meta name="description" content="${data.description}">
+  <meta name="keywords" content="${data.keywords}" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/resources/sites/css/page.css"/>
-  <title>Index</title>
 </head>
 <body>
  <jsp:include page="../include/header.jsp"></jsp:include>

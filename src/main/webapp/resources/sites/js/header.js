@@ -12,20 +12,30 @@ toggleButton.addEventListener('click', function() {
 });
   
   
-// Function to fetch categories and populate the dropdown
- document.getElementById('service-toggle').addEventListener('click', function() {
-        fetch('/api/getCategory')
-            .then(response => response.json())  
-            .then(data => {
-                const dropdownContent = document.getElementById('dropdown-content');
-                dropdownContent.innerHTML = '';  
-                data.forEach(category => {
-                    const categoryElement = document.createElement('p');
-                    categoryElement.innerHTML = `<a class="nav-link service" href="/category/${category.url}">${category.name}</a>`;
-                    dropdownContent.appendChild(categoryElement);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching categories:', error);
+document.getElementById('service-toggle').addEventListener('click', function() {
+    fetch('/api/getCategory')
+        .then(response => response.json())  
+        .then(data => {
+            const dropdownContent = document.getElementById('dropdown-content');
+            dropdownContent.innerHTML = '';  
+
+            const columnsPerRow = 2; // Set how many links per row
+            let row;
+
+            data.forEach((category, index) => {
+                if (index % columnsPerRow === 0) {
+                    row = document.createElement('div');
+                    row.classList.add('row');
+                    dropdownContent.appendChild(row);
+                }
+
+                const col = document.createElement('div');
+                col.classList.add('col');
+                col.innerHTML = `<a class="nav-link service" href="/${category.url}">${category.name}</a>`;
+                row.appendChild(col);
             });
-    });
+        })
+        .catch(error => {
+            console.error('Error fetching categories:', error);
+        });
+});

@@ -45,7 +45,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	public CategoryInfoRequest addCategory(CategoryInfoRequest request, MultipartFile file) {
 		CategoryInfoDetail mapData = new CategoryInfoDetail();
 		try {
-			CategoryInfoDetail urlContent = infoRepository.findBycategoryUrl(request.getCategoryUrl());
+			CategoryInfoDetail urlContent = infoRepository.findByPageUrl(request.getPageUrl());
 			if (!ObjectUtils.isEmpty(urlContent)) {
 				return null;
 			}
@@ -132,6 +132,12 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	@Override
 	public void deleteCategory(@NotNull String id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public List<CategoryInfoRequest> findCatergory(String url, String categoryUrl) {
+		List<CategoryInfoDetail> findAll = infoRepository.findByCategoryUrlAndPageUrl(url,categoryUrl);
+		return findAll.stream().map(x -> modelMapper.map(x, CategoryInfoRequest.class)).toList();
 	}
 
 	 

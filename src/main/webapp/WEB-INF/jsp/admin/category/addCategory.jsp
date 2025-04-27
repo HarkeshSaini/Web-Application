@@ -45,18 +45,18 @@
                        
                        <div class="row">
     					<div class="col">
-	                       <select name="categoryName" class="form-control" required="required">
+	                       <select name="categoryUrl" class="form-control" required="required">
 							  <option value="" disabled selected>Select Category</option>
 							  <c:forEach var="data" items="${infoCategory}">
-							    <option id="${data.url}" value="${data.name}">${data.name}</option>
+							    <option value="${data.url}">${data.name}</option>
 							  </c:forEach> 
 							</select>
  	                    </div>
 	                    <div class="col">
-						  <input type="text" id="titleUrl" name="categoryUrl" class="form-control" placeholder="Enter categoryUrl*" required="required">
+						  <input type="text" id="titleUrl" name="pageUrl" class="form-control" placeholder="Enter pageUrl*" required="required">
 	                    </div>
 	                    <div class="col">
-	                       <input type="text" name="categoryType" class="form-control" placeholder="Enter Category Type">
+	                       <input type="text" name="heading" class="form-control" placeholder="Enter Heading*" required="required">
 	                    </div>
                        </div>
                        
@@ -72,6 +72,9 @@
 	                    <div class="col">
 	                        <input type="text" name="createdBy" class="form-control" placeholder="CreatedBy*" required="required">
 	                    </div>
+	                    <div class="col">
+	                        <input type="text" name="categoryType" class="form-control" placeholder="categoryType" required="required">
+	                    </div>
                        </div>
                         <button type="submit" class="btn btn-primary user">Submit</button>
                         </form>
@@ -86,17 +89,6 @@
         </div>
       </div>
     </div>
-    <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const categorySelect = document.querySelector("select[name='categoryName']");
-    const titleUrlInput = document.getElementById("titleUrl");
-
-    categorySelect.addEventListener("change", function() {
-      const selectedOption = categorySelect.options[categorySelect.selectedIndex];
-      titleUrlInput.value = selectedOption.id || ''; // If no id, clear the input
-    });
-  });
-</script>
     <script src="/resources/admin/js/script.js"></script>
     <script>CKEDITOR.replace( 'content' );</script>
   </body>

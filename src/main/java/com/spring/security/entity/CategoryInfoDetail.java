@@ -11,7 +11,8 @@ public class CategoryInfoDetail {
 
 	@Id
 	private String id;
-	private String categoryName;
+	private String heading;
+	private String pageUrl;
 	private String categoryUrl;
 	private String metaTitle;
 	private String metaKeywords;

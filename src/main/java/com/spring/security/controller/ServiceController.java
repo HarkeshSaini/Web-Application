@@ -20,14 +20,24 @@ public class ServiceController {
 		this.categoryService = categoryService;
 	}
 
-	@GetMapping("/category/{categoryUrl}")
-	public String category(@PathVariable String categoryUrl, Model model) {
-		List<CategoryInfoRequest> requestDetail = this.categoryService.findAllCategoryByStatusAndCategoryUrl(categoryUrl);
+	@GetMapping("/{url}")
+	public String category(@PathVariable String url, Model model) {
+		List<CategoryInfoRequest> requestDetail = this.categoryService.findAllCategoryByStatusAndCategoryUrl(url);
 		model.addAttribute("requestDetail", requestDetail);
 		if (ObjectUtils.isEmpty(requestDetail)) {
 			throw new RuntimeException("Category Contant Not found:");
 		}
 		return "category/index";
+	}
+	
+	@GetMapping("/{url}/{categoryUrl}")
+	public String categoryPage(@PathVariable String url,@PathVariable String categoryUrl, Model model) {
+		List<CategoryInfoRequest> requestDetail = this.categoryService.findCatergory(url,categoryUrl);
+		model.addAttribute("requestDetail", requestDetail);
+		if (ObjectUtils.isEmpty(requestDetail)) {
+			throw new RuntimeException("Category Contant Not found:");
+		}
+		return "category/innerPage";
 	}
 
 }

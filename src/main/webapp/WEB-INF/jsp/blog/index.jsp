@@ -7,7 +7,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/resources/sites/css/page.css"/>
-  <title>Index</title>
+  <title>Blog</title>
+  <meta name="description" content="Blog">
+  <meta name="keywords" content="Blog" />
 </head>
 <body style="background-color: #f5f5f5;">
  <jsp:include page="../include/header.jsp"></jsp:include>
