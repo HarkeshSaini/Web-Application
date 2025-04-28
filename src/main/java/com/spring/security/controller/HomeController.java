@@ -35,10 +35,33 @@ public class HomeController {
 
 	@GetMapping("/about-us")
 	public String aboutUs(HttpServletRequest request, Model model) {
-		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl("about-us");
+		String str="about-us";
+		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
 		model.addAttribute("defaultDetail", defaultDetail);
 		if(ObjectUtils.isEmpty(defaultDetail)) {
-			throw new RuntimeException("Default Info Contant Not found:");
+			throw new RuntimeException(str+" Info Contant Not found:");
+		}
+		return "default";
+	}
+	
+	@GetMapping("/terms-and-conditions")
+	public String termsAndconditions(HttpServletRequest request, Model model) {
+		String str="terms-and-conditions";
+		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
+		model.addAttribute("defaultDetail", defaultDetail);
+		if(ObjectUtils.isEmpty(defaultDetail)) {
+			throw new RuntimeException(str+" Info Contant Not found:");
+		}
+		return "default";
+	}
+	
+	@GetMapping("/privacy-policy")
+	public String privacyPolicy(HttpServletRequest request, Model model) {
+		String str="privacy-policy";
+		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
+		model.addAttribute("defaultDetail", defaultDetail);
+		if(ObjectUtils.isEmpty(defaultDetail)) {
+			throw new RuntimeException(str+" Info Contant Not found:");
 		}
 		return "default";
 	}
