@@ -53,7 +53,7 @@ public class AdminController {
 
 	@GetMapping
 	public String dashBoardLogin(HttpServletRequest request, Model model) {
-		model.addAttribute("message", "Welcome back! Please sign in.");
+		model.addAttribute("message", "Welcome to the admin login! Please sign in");
 		CommanUtility.userRole(request, model);
 		return "admin/login";
 	}

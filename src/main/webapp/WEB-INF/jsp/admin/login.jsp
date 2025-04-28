@@ -45,7 +45,7 @@
                         Keep me logged in
                       </label>
                     </div>
-                    <a href="#!" class="link-primary text-decoration-none">Forgot password?</a>
+                    <!-- <a href="#!" class="link-primary text-decoration-none">Forgot password?</a> -->
                   </div>
                 </div>
                 <div class="col-12">
@@ -54,7 +54,7 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <p class="m-0 text-secondary text-center">Don't have an account? <a href="#!" class="link-primary text-decoration-none">Sign up</a></p>
+                  <a href="#!" class="link-primary text-decoration-none">Forgot password?</a>
                 </div>
                 <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
 			   <div class="error message">

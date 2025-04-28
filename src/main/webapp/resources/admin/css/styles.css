@@ -121,3 +121,140 @@
     border-radius: 11px;
     padding: 9px;
 }
+
+
+/* Base Styles */
+/*body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}*/
+
+.login-container {
+  text-align: center;
+}
+
+.login-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-btn {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.google-btn {
+  background-color: #db4437;
+}
+
+.github-btn {
+  background-color: #333;
+}
+
+.facebook-btn {
+  background-color: #4267B2;
+}
+
+.linkedin-btn {
+  background-color: #0077b5;
+}
+
+.google-btn:hover {
+  background-color: #c1351d;
+}
+
+.github-btn:hover {
+  background-color: #1a1a1a;
+}
+
+.facebook-btn:hover {
+  background-color: #365899;
+}
+
+.linkedin-btn:hover {
+  background-color: #006193;
+}
+
+.btn-icon {
+  font-size: 24px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .login-btn {
+    width: 40px;
+    height: 40px;
+    margin: 8px;
+    font-size: 18px;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-btn {
+    width: 35px;
+    height: 35px;
+    margin: 6px;
+    font-size: 16px;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+  }
+
+  .login-container {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-btn {
+    width: 60px;
+    height: 60px;
+    margin: 12px;
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1440px) {
+  body {
+    display: block;
+    height: 100vh;
+    padding: 50px;
+  }
+
+  .login-container {
+    width: 400px;
+  }
+
+  .login-btn {
+    width: 70px;
+    height: 70px;
+    margin: 15px;
+    font-size: 30px;
+  }
+}

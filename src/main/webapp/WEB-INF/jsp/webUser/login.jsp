@@ -5,9 +5,10 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <meta id="viewport" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-  <title>Admin Login</title>
+  <title>User Login</title>
   <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/resources/admin/css/styles.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <section class="bg-light py-3 py-md-5">
@@ -55,6 +56,30 @@
                 </div>
                 <div class="col-12">
                   <p class="m-0 text-secondary text-center">Don't have an account? <a href="/sign-up" class="link-primary text-decoration-none">Sign up</a></p>
+                </div>
+                 <div class="col-12">
+                	<div class="login-container">
+					    <!-- <h2>Login with</h2> -->
+					    <div class="login-buttons">
+					      <!-- Google -->
+					      <a href="#" class="login-btn google-btn">
+					        <i class="fab fa-google btn-icon"></i>
+					      </a>
+					      <!-- GitHub -->
+					      <a href="#" class="login-btn github-btn">
+					        <i class="fab fa-github btn-icon"></i>
+					      </a>
+					      <!-- Facebook -->
+					      <a href="#" class="login-btn facebook-btn">
+					        <i class="fab fa-facebook btn-icon"></i>
+					      </a>
+					      <!-- LinkedIn -->
+					      <a href="#" class="login-btn linkedin-btn">
+					        <i class="fab fa-linkedin btn-icon"></i>
+					      </a>
+					    </div>
+					  </div>
+
                 </div>
                 <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
 			   <div class="error message">
