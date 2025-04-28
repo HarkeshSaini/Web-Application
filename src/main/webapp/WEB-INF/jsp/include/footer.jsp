@@ -6,15 +6,17 @@
       <div class="row gy-4 gy-lg-0 justify-content-xl-between">
         <div class="col-12 col-md-3 col-lg-2 col-xl-2">
           <div class="widget">
-            <!-- <a href="#!">
-              <img src="/resources/sites/image/logo.png" alt="Logo" width="175" height="57">
-            </a> -->
+            <h4 class="widget-title mb-4">Learn More</h4>
+            <ul class="list-unstyled">
+              <li class="mb-0"><a href="#!" class="text-decoration-none">Blog</a></li>
+              <li class="mb-0"><a href="#!" class="text-decoration-none">Contact Us</a></li>
+            </ul>
           </div>
         </div>
         
         <div class="col-12 col-md-3 col-lg-3 col-xl-2">
           <div class="widget">
-            <h4 class="widget-title mb-4">Learn More</h4>
+            <h4 class="widget-title mb-4">About US</h4>
             <ul class="list-unstyled">
               <li class="mb-0"><a href="#!" class="text-decoration-none">Privacy policy</a></li>
               <li class="mb-0"><a href="#!" class="text-decoration-none">Terms and conditions</a></li>

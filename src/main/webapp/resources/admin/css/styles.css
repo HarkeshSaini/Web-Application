@@ -105,3 +105,19 @@
     padding: 11px 17px;
     margin-bottom: -21px;
 }
+
+/*Login page css for web site*/
+
+
+.message.text-center {
+    margin-bottom: 31px;
+}textarea.form-control.address {
+    border: var(--bs-border-width) solid #616264;
+}p.Password {
+    font-size: medium;
+    color: green;
+    border: 1px solid black;
+    background-color: #d2eaff;
+    border-radius: 11px;
+    padding: 9px;
+}
