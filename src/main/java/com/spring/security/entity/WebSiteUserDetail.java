@@ -15,6 +15,7 @@ public class WebSiteUserDetail {
 	private String email;
 	private String password;
 	private String status;
+	private String role;
 	private String phoneNumber;
 	private String username;
 	private String dateOfBirth;

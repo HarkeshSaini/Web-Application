@@ -1,7 +1,5 @@
 package com.spring.security.config;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -54,8 +49,10 @@ public class SecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(AbstractHttpConfigurer::disable);
+		
 		httpSecurity.authorizeHttpRequests(auth -> auth .requestMatchers("/admin/**").authenticated().anyRequest().permitAll());
 		httpSecurity.formLogin(x -> x.loginPage("/admin").permitAll().defaultSuccessUrl("/admin/dashboard", true));
+		
 		httpSecurity.logout(LogoutConfigurer::permitAll);
 		return httpSecurity.build();
 	}

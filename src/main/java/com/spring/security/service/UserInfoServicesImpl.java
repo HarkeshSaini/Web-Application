@@ -79,7 +79,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		userInfo.setRole("USER");
+		userInfo.setRole("ADMIN-USER");
 		userInfo.setStatus("Active");
 		userInfo.setEmailVerified(true);
 		userInfo.setPassword(String.valueOf(UUID.randomUUID()));
@@ -124,8 +124,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 		if (ObjectUtils.isEmpty(findAll)) {
 			UserInfoDetail infoDetail = modelMapper.map(request, UserInfoDetail.class);
 			UserInfoDetail saveInfoDetail = detailRepositorie.save(infoDetail);
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(modelMapper.map(saveInfoDetail, UserInfoRequest.class));
+			return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(saveInfoDetail, UserInfoRequest.class));
 		}
 		return ResponseEntity.badRequest().body("User already exits");
 	}

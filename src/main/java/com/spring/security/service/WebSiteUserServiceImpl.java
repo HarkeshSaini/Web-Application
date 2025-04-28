@@ -34,6 +34,7 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
 			WebSiteUserDetail detail = userRepository.findByEmail(request.getEmail());
 			if (ObjectUtils.isEmpty(detail)) {
 				mapData.setStatus("Active");
+				mapData.setRole("WEB-USER");
 				mapData.setCreatedAt(System.currentTimeMillis());
 				if (!file.isEmpty()) {
 					mapData.setImgUrl(CommanUtility.uploadFile(file));

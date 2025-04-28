@@ -16,6 +16,7 @@ public class WebSiteUserRequest {
 	private String status;
 	private String dateOfBirth;
 	private String gender;
+	private String role;
 	private String imgUrl;
 	private String address;
 	private Timestamp createdAt;
