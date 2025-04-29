@@ -42,9 +42,12 @@ public class CommanUtility {
 	}
 
 	public static String dateFormate(String dateTimeString) {
-		LocalDateTime dateTime = LocalDateTime.parse(dateTimeString);
-		LocalDate dateOnly = dateTime.toLocalDate();
-		return dateOnly.format(DateTimeFormatter.ISO_LOCAL_DATE);
+		if (dateTimeString != null && !dateTimeString.isEmpty()) {
+			LocalDateTime dateTime = LocalDateTime.parse(dateTimeString);
+			LocalDate dateOnly = dateTime.toLocalDate();
+			return dateOnly.format(DateTimeFormatter.ISO_LOCAL_DATE);
+		}
+		return dateTimeString;
 	}
 
 }

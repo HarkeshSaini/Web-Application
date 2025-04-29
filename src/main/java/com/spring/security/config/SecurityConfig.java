@@ -49,10 +49,8 @@ public class SecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(AbstractHttpConfigurer::disable);
-		
 		httpSecurity.authorizeHttpRequests(auth -> auth .requestMatchers("/admin/**").authenticated().anyRequest().permitAll());
 		httpSecurity.formLogin(x -> x.loginPage("/admin").permitAll().defaultSuccessUrl("/admin/dashboard", true));
-		
 		httpSecurity.logout(LogoutConfigurer::permitAll);
 		return httpSecurity.build();
 	}

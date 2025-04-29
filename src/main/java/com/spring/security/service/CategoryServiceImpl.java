@@ -4,6 +4,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
@@ -144,8 +145,11 @@ public class CategoryServiceImpl implements CategoryInfoService {
 
 	@Override
 	public CategoryReq getCategoryByUrl(String url) {
-		Category category= repository.findByStatusAndUrl("Active",url);
-		return modelMapper.map(category,CategoryReq.class);
+		Category category= repository.findByStatusAndUrl("Active",url).orElse(null);
+		if(!ObjectUtils.isEmpty(category)) {
+			return modelMapper.map(category,CategoryReq.class);
+		}
+		return new CategoryReq();
 	}
 
 	 

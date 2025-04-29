@@ -1,6 +1,7 @@
 package com.spring.security.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -16,6 +17,6 @@ public interface CategoryRepository extends MongoRepository<Category, String> {
 
 	Category findByName(String name);
 
-	Category findByStatusAndUrl(String string, String url);
+	Optional<Category> findByStatusAndUrl(String string, String url);
 
 }

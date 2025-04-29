@@ -8,6 +8,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.spring.security.exception.GlobalExceptionHandler;
+import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.request.BlogInfoRequest;
 
@@ -24,17 +26,22 @@ public class BlogController {
 
 	@GetMapping("/blog")
 	public String blog(HttpServletRequest request, Model model) {
-		List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatus();
-		model.addAttribute("blogDetail", blogDetail);
+		try {
+			List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatus();
+			model.addAttribute("blogDetail", blogDetail);
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
+		}
 		return "blog/index";
 	}
 	
 	@GetMapping("/blog/{pageUrl}")
 	public String blog(@PathVariable String pageUrl, Model model) {
-		List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatusAndPageUrl(pageUrl);
-		model.addAttribute("blogDetail", blogDetail);
-		if(ObjectUtils.isEmpty(blogDetail)) {
-			throw new RuntimeException("Blog Contant Not found:");
+		try {
+			List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatusAndPageUrl(pageUrl);
+			model.addAttribute("blogDetail", blogDetail);
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "blog/innerPage";
 	}

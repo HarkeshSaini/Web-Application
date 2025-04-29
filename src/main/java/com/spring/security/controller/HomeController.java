@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.spring.security.exception.GlobalExceptionHandler;
+import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.DefaultInfoService;
 import com.spring.security.request.DefaultInfoRequest;
 
@@ -35,33 +36,36 @@ public class HomeController {
 
 	@GetMapping("/about-us")
 	public String aboutUs(HttpServletRequest request, Model model) {
-		String str="about-us";
-		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
-		model.addAttribute("defaultDetail", defaultDetail);
-		if(ObjectUtils.isEmpty(defaultDetail)) {
-			throw new RuntimeException(str+" Info Contant Not found:");
+		try {
+			String str="about-us";
+			List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
+			model.addAttribute("defaultDetail", defaultDetail);
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "default";
 	}
 	
 	@GetMapping("/terms-and-conditions")
 	public String termsAndconditions(HttpServletRequest request, Model model) {
-		String str="terms-and-conditions";
-		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
-		model.addAttribute("defaultDetail", defaultDetail);
-		if(ObjectUtils.isEmpty(defaultDetail)) {
-			throw new RuntimeException(str+" Info Contant Not found:");
+		try {
+			String str="terms-and-conditions";
+			List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
+			model.addAttribute("defaultDetail", defaultDetail);
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "default";
 	}
 	
 	@GetMapping("/privacy-policy")
 	public String privacyPolicy(HttpServletRequest request, Model model) {
-		String str="privacy-policy";
-		List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
-		model.addAttribute("defaultDetail", defaultDetail);
-		if(ObjectUtils.isEmpty(defaultDetail)) {
-			throw new RuntimeException(str+" Info Contant Not found:");
+		try {
+			String str="privacy-policy";
+			List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(str);
+			model.addAttribute("defaultDetail", defaultDetail);
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "default";
 	}

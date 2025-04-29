@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.security.exception.GlobalExceptionHandler;
+import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.WebSiteUserService;
 import com.spring.security.request.WebSiteUserRequest;
 
@@ -36,9 +38,13 @@ public class UserController {
 
 	@PostMapping("/sign-up")
 	private String createNewUserForWeb(WebSiteUserRequest request, MultipartFile file, Model model) {
-		Map<String, String> messString = userService.createNewUserForWeb(request, file);
-		model.addAttribute("message", (String) messString.get("message"));
-		model.addAttribute("Password", (String) messString.get("Password"));
+		try {
+			Map<String, String> messString = userService.createNewUserForWeb(request, file);
+			model.addAttribute("message", (String) messString.get("message"));
+			model.addAttribute("Password", (String) messString.get("Password"));
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
+		}
 		return "webUser/signUp";
 	}
 
@@ -50,8 +56,12 @@ public class UserController {
 
 	@PostMapping("/forgotPassword")
 	private String forgotPasswordRet(WebSiteUserRequest request, Model model) {
-		String password = userService.forgotPassword(request);
-		model.addAttribute("message", "Your forgot password:- " + password);
+		try {
+			String password = userService.forgotPassword(request);
+			model.addAttribute("message", "Your forgot password:- " + password);
+		} catch (NotFoundException e) {
+			GlobalExceptionHandler.handleNotFoundException(e);
+		}
 		return "webUser/forPass";
 	}
 
