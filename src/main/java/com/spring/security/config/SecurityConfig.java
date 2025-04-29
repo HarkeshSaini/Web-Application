@@ -46,7 +46,7 @@ public class SecurityConfig {
 		builder.authenticationProvider(authenticationProvider());
 		return builder.build();
 	}
-	
+
 	@Bean
 	protected AuthRoleHandler authSuccessHandler() {
 		return new AuthRoleHandler();
@@ -55,9 +55,11 @@ public class SecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(AbstractHttpConfigurer::disable);
-		httpSecurity.authorizeHttpRequests(auth -> auth .requestMatchers("/admin/**").authenticated().anyRequest().permitAll());
-		httpSecurity.formLogin(x -> x.loginPage("/admin").successHandler(authSuccessHandler()).permitAll());
+		httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers("/admin/**").hasAnyRole("ADMIN", "ADMIN-USER")
+		.requestMatchers("/user/**").hasRole("USER").anyRequest().authenticated());
+		httpSecurity.formLogin(form -> form.loginPage("/admin").successHandler(authSuccessHandler()).permitAll());
 		httpSecurity.logout(LogoutConfigurer::permitAll);
 		return httpSecurity.build();
 	}
+
 }

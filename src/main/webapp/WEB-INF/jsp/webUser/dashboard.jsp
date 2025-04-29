@@ -10,7 +10,7 @@
    <body>
       <div class="container-fluid">
          <div class="row flex-nowrap">
-            <jsp:include page="sideBar.jsp"></jsp:include>
+            <jsp:include page="../admin/sideBar.jsp"></jsp:include>
             <div class="col py-3">
                <section class="bg-light py-3 py-md-5">
                   <div class="container">
