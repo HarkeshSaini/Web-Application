@@ -12,6 +12,7 @@ import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.WebSiteUserService;
 import com.spring.security.request.WebSiteUserRequest;
+import com.spring.security.utility.CommanUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -23,7 +24,7 @@ public class UserController {
 	public UserController(WebSiteUserService userService) {
 		this.userService = userService;
 	}
-
+	
 	@GetMapping("/login")
 	public String index(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Welcome back! Please sign in.");
@@ -63,6 +64,13 @@ public class UserController {
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "webUser/forPass";
+	}
+	
+	@GetMapping("/user/dashboard")
+	private String dashboard(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "User Panel – Welcome");
+		CommanUtility.userRole(request, model);
+		return "webUser/dashboard";
 	}
 
 }

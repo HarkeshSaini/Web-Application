@@ -1,16 +1,16 @@
 .error.message {
     font-size: 15px;
+    margin-bottom: 19px;
+    margin-top: -12px;
     height: 28px;
-    background-color: #5f9ea0;
+   /* background-color: #5f9ea0;*/
     color: red;
     /*border: 1px solid black;
     border-radius: 50px;*/
     text-align: center;
 }.bg-light {
     background-color: cadetblue!important;
-}section.bg-light.py-3.py-md-5 {
-    /*height: 300px;*/
-}.border-light-subtle {
+} .border-light-subtle {
     border-color: #8c99a5 !important;
 }.shadow-sm {
     box-shadow: 0 0.125rem 0rem 8px rgb(51 20 20 / 7%) !important;
@@ -24,7 +24,7 @@
     margin-top: 0;
 }
 .message {
-    margin-top: 7px;
+     
     font-size: 16px;
     margin-left: 20px;
 }.bg-light {
@@ -45,13 +45,13 @@
 }input.form-control {
     line-height: 2;
     color: #000000;
-    border: var(--bs-border-width) solid #616264;
+    border: var(--bs-border-width) solid #cfcfcf;
     margin-bottom: 19px;
 }div#cke_notifications_area_content {
     display: none;
 }select.form-control {
 	color: #000000;
-	border: var(--bs-border-width) solid #616264;
+	border: var(--bs-border-width) solid #cfcfcf;
     line-height: 2;
 }.col-auto.col-md-3.col-xl-2.px-sm-2.px-0.bg-dark {
         box-shadow: 0 0.125rem 0rem 8px rgb(51 20 20 / 7%) !important;
@@ -112,7 +112,7 @@
 .message.text-center {
     margin-bottom: 31px;
 }textarea.form-control.address {
-    border: var(--bs-border-width) solid #616264;
+    border: var(--bs-border-width) solid #cfcfcf;
 }p.Password {
     font-size: medium;
     color: green;
@@ -258,8 +258,6 @@
     font-size: 30px;
   }
 }
-section.bg-light.py-3.py-md-5.user-base {
-    margin-top: 60px;
-}nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body {
-    background-color: #f7f7f7;
+  section.bg-light.py-3.py-md-5 {
+    padding-bottom: 0rem !important;
 }

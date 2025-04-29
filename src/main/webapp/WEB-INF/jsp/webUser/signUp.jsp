@@ -10,8 +10,7 @@
     <title>Add new User</title>
   </head>
   <body>
-<jsp:include page="../include/header.jsp"></jsp:include>
-<section class="bg-light py-3 py-md-5 user-base">
+<section class="bg-light py-3 py-md-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-10 col-md-8 col-xxl-4">

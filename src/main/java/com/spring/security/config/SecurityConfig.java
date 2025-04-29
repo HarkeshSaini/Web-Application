@@ -1,6 +1,7 @@
 package com.spring.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,12 +46,17 @@ public class SecurityConfig {
 		builder.authenticationProvider(authenticationProvider());
 		return builder.build();
 	}
+	
+	@Bean
+	protected AuthRoleHandler authSuccessHandler() {
+		return new AuthRoleHandler();
+	}
 
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(AbstractHttpConfigurer::disable);
 		httpSecurity.authorizeHttpRequests(auth -> auth .requestMatchers("/admin/**").authenticated().anyRequest().permitAll());
-		httpSecurity.formLogin(x -> x.loginPage("/admin").permitAll().defaultSuccessUrl("/admin/dashboard", true));
+		httpSecurity.formLogin(x -> x.loginPage("/admin").successHandler(authSuccessHandler()).permitAll());
 		httpSecurity.logout(LogoutConfigurer::permitAll);
 		return httpSecurity.build();
 	}

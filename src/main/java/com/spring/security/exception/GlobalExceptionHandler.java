@@ -17,10 +17,10 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(NotFoundException.class)
     public static ModelAndView handleNotFoundException(NotFoundException exception) {
-        ModelAndView modelAndView = new ModelAndView("error/404");
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("error", "Not Found");
         modelAndView.addObject("message", exception.getMessage());
-        modelAndView.setViewName("/include/404-error");
+        modelAndView.setViewName("404-error");
         return modelAndView;
     }
 
