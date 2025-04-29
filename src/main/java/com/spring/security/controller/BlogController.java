@@ -1,5 +1,6 @@
 package com.spring.security.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -37,12 +38,16 @@ public class BlogController {
 	
 	@GetMapping("/blog/{pageUrl}")
 	public String blog(@PathVariable String pageUrl, Model model) {
+		List<BlogInfoRequest> blogDetail =new ArrayList<BlogInfoRequest>();
 		try {
-			List<BlogInfoRequest> blogDetail = this.blogService.findAllBlogByStatusAndPageUrl(pageUrl);
-			model.addAttribute("blogDetail", blogDetail);
+			blogDetail = this.blogService.findAllBlogByStatusAndPageUrl(pageUrl);
+			if(ObjectUtils.isEmpty(blogDetail)) {
+				throw new NotFoundException("Page not found:");
+			}
 		} catch (NotFoundException e) {
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
+		model.addAttribute("blogDetail", blogDetail);
 		return "blog/innerPage";
 	}
 

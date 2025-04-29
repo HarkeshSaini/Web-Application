@@ -20,6 +20,7 @@ public class GlobalExceptionHandler {
         ModelAndView modelAndView = new ModelAndView("error/404");
         modelAndView.addObject("error", "Not Found");
         modelAndView.addObject("message", exception.getMessage());
+        modelAndView.setViewName("/include/404-error");
         return modelAndView;
     }
 
