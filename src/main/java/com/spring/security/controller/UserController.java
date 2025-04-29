@@ -42,4 +42,17 @@ public class UserController {
 		return "webUser/signUp";
 	}
 
+	@GetMapping("/forgotPassword")
+	private String forgotPassword(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "Please provide the required details and then click on 'Forgot Password'.");
+		return "webUser/forPass";
+	}
+
+	@PostMapping("/forgotPassword")
+	private String forgotPasswordRet(WebSiteUserRequest request, Model model) {
+		String password = userService.forgotPassword(request);
+		model.addAttribute("message", "Your forgot password:- " + password);
+		return "webUser/forPass";
+	}
+
 }

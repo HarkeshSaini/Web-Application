@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -36,6 +39,12 @@ public class CommanUtility {
 			System.out.println(e.getMessage());
 			return null;
 		}
+	}
+
+	public static String dateFormate(String dateTimeString) {
+		LocalDateTime dateTime = LocalDateTime.parse(dateTimeString);
+		LocalDate dateOnly = dateTime.toLocalDate();
+		return dateOnly.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
 }

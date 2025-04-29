@@ -209,7 +209,7 @@
   }
 
   .login-buttons {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 
@@ -222,7 +222,7 @@
   }
 
   .login-buttons {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .login-container {

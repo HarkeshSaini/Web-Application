@@ -39,6 +39,7 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
 				if (!file.isEmpty()) {
 					mapData.setImgUrl(CommanUtility.uploadFile(file));
 				}
+				mapData.setDateOfBirth(CommanUtility.dateFormate(mapData.getDateOfBirth()));
 				mapData.setPassword(String.valueOf(UUID.randomUUID()));
 				WebSiteUserDetail saveData = userRepository.save(mapData);
 				map.put("message", "Successfully created a new user?");
@@ -50,6 +51,22 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
 		}
 		map.put("message", "User not created because the user already exists. Please change the email ID.");
 		return map;
+	}
+
+	@Override
+	public String forgotPassword(WebSiteUserRequest request) {
+		try {
+			String email = request.getEmail();
+			String dateOfBirth = CommanUtility.dateFormate(request.getDateOfBirth());
+			String username = request.getUsername();
+			WebSiteUserDetail user=userRepository.findByEmailAndDateOfBirthAndUsername(email,dateOfBirth,username);
+			if(ObjectUtils.isEmpty(user)){
+				return "No matching user found. Please check your details and try again.";
+			}
+			return user.getPassword();
+		} catch (Exception e) {
+			return "Submit required details for forgot password";
+		}
 	}
 
 }

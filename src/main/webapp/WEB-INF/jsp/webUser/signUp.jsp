@@ -11,9 +11,9 @@
   </head>
   <body>
  <section class="bg-light py-3 py-md-5">
-  <div class="containder">
+  <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+      <div class="col-12 col-sm-10 col-md-8 col-xxl-4">
         <div class="card border border-light-subtle rounded-3 shadow-sm">
           <div class="card-body p-3">
           <div class="rounded-3 messages">

@@ -10,4 +10,6 @@ public interface WebSiteUserService {
 
 	Map<String, String> createNewUserForWeb(WebSiteUserRequest request, MultipartFile file);
 
+	String forgotPassword(WebSiteUserRequest request);
+
 }

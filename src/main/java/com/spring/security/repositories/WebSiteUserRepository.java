@@ -10,4 +10,6 @@ public interface WebSiteUserRepository extends MongoRepository<WebSiteUserDetail
 
 	WebSiteUserDetail findByEmail(String email);
 
+	WebSiteUserDetail findByEmailAndDateOfBirthAndUsername(String email, String dateOfBirth, String username);
+
 }
