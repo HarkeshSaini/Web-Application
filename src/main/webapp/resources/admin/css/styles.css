@@ -258,3 +258,8 @@
     font-size: 30px;
   }
 }
+section.bg-light.py-3.py-md-5.user-base {
+    margin-top: 60px;
+}nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body {
+    background-color: #f7f7f7;
+}

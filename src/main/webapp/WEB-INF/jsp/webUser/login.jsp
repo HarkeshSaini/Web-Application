@@ -11,7 +11,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<section class="bg-light py-3 py-md-5">
+<jsp:include page="../include/header.jsp"></jsp:include>
+<section class="bg-light py-3 py-md-5 user-base">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
