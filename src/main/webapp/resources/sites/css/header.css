@@ -49,7 +49,7 @@ body {
 }
 
 .nav-item .nav-link {
-  color: #000000;
+  color: #0a0a0a;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
@@ -169,7 +169,8 @@ img.flag {
 }button.nav-link.services {
     padding: 14px 25px;
     font-size: 16px;
-    background-image: linear-gradient(to left, rgb(181 239 255) 0%, rgb(81 134 219) 100%);
+        color: white!important;
+    background-image: linear-gradient(to left, rgb(129 228 255) 0%, rgb(26 40 62) 100%);
     border: 0px;
     border-radius: 8px;
 }img.drp-icon {

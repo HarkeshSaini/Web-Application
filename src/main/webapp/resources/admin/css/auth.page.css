@@ -112,7 +112,7 @@
 
 .message.text-center {
     margin-bottom: 31px;
-    color: lawngreen!important;
+    /*color: lawngreen!important;*/
 }textarea.form-control.address {
     border: var(--bs-border-width) solid #cfcfcf;
 }p.Password {

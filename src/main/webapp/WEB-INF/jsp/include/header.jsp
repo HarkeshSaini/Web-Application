@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav align-items-center">
         <li class="nav-item category">
-		  <button class="nav-link services" id="service-toggle">Technical Category <!-- <img class="drp-icon" src="/resources/sites/image/icon-drop.png" alt="Logo"> --></button>
+		  <button class="nav-link services" id="service-toggle">Technology <!-- <img class="drp-icon" src="/resources/sites/image/icon-drop.png" alt="Logo"> --></button>
 		  <div class="dropdown-content" id="dropdown-content"></div>
 		</li>
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>

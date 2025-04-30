@@ -248,7 +248,7 @@ public class AdminController {
 			logger.error("Error updating blog info: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
-		return "admin/blog/editBlog";
+		return "admin/blog/addBlog";
 	}
 
 	@DeleteMapping("/deleteBlogInfo/{id}")
@@ -268,6 +268,8 @@ public class AdminController {
 	@GetMapping("/getAllCategory")
 	private String getAllCategory(HttpServletRequest request, Model model) {
 		try {
+			List<CategoryReq> infoRequests = this.categoryService.getAllInfoCategory();
+			model.addAttribute("infoCategory", infoRequests);
 			List<CategoryInfoRequest> categoryInfo = this.categoryService.getAllCategoryContant();
 			model.addAttribute("categoryInfo", categoryInfo);
 			CommonUtility.userRole(request, model);
@@ -281,14 +283,15 @@ public class AdminController {
 
 	@GetMapping("/addCategory")
 	private String addCategory(HttpServletRequest request, Model model) {
+		List<CategoryReq> infoRequests = this.categoryService.getAllInfoCategory();
+		model.addAttribute("infoCategory", infoRequests);
 		model.addAttribute("message", "Create a new Category");
 		CommonUtility.userRole(request, model);
 		return "admin/category/addCategory";
 	}
 
 	@PostMapping("/addCategory")
-	private String addCategory(CategoryInfoRequest categoryRequest, MultipartFile file, Model model,
-			HttpServletRequest request) {
+	private String addCategory(CategoryInfoRequest categoryRequest, MultipartFile file, Model model, HttpServletRequest request) {
 		try {
 			categoryRequest.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 			ResponseEntity<CategoryInfoRequest> addCategory = this.categoryService.addCategory(categoryRequest, file);
@@ -310,6 +313,8 @@ public class AdminController {
 		try {
 			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.getCategoryById(id);
 			CommonUtility.userRole(request, model);
+			List<CategoryReq> infoRequests = this.categoryService.getAllInfoCategory();
+			model.addAttribute("infoCategory", infoRequests);
 			model.addAttribute("id", id);
 			model.addAttribute("command", categoryById.getBody());
 			model.addAttribute("message", "Update Category Information");
@@ -321,11 +326,9 @@ public class AdminController {
 	}
 
 	@PostMapping("/editCategoryInfo/{id}")
-	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file,
-			Model model, HttpServletRequest request) {
+	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file, Model model, HttpServletRequest request) {
 		try {
-			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.updateCategory(id, file,
-					infoRequest);
+			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.updateCategory(id, file, infoRequest);
 			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(categoryById.getBody())) {
 				model.addAttribute("id", id);
@@ -338,7 +341,7 @@ public class AdminController {
 			logger.error("Error updating category info: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
-		return "admin/category/editCategory";
+		return "admin/category/addCategory";
 	}
 
 	@DeleteMapping("/deleteCategoryInfo/{id}")

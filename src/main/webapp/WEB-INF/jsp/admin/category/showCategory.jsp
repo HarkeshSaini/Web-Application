@@ -47,7 +47,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <c:forEach var="data" items="${infoRequests}">
+                          <c:forEach var="data" items="${categoryInfo}">
                             <tr>
                               <td>${data.categoryUrl}</td>
                               <td>${data.categoryType}</td>
