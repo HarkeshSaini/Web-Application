@@ -15,7 +15,7 @@ import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.*;
 import com.spring.security.request.*;
-import com.spring.security.utility.CommanUtility;
+import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotNull;
@@ -48,14 +48,14 @@ public class AdminController {
 	@GetMapping
 	public String dashBoardLogin(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Welcome to the admin login! Please sign in");
-		CommanUtility.userRole(request, model);
+		CommonUtility.userRole(request, model);
 		return "admin/login";
 	}
 
 	@GetMapping("/dashboard")
 	private String dashboard(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Admin Panel – Welcome");
-		CommanUtility.userRole(request, model);
+		CommonUtility.userRole(request, model);
 		return "admin/dashboard";
 	}
 
@@ -66,7 +66,7 @@ public class AdminController {
 		try {
 			List<UserInfoRequest> userInfo = this.registerService.getAllUser();
 			model.addAttribute("userInfo", userInfo);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("message", "List of All Registered Users");
 		} catch (NotFoundException e) {
 			logger.error("Error fetching users: {}", e.getMessage());
@@ -78,7 +78,7 @@ public class AdminController {
 	@GetMapping("/addUser")
 	private String addUser(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Create a new user with administrator privileges.");
-		CommanUtility.userRole(request, model);
+		CommonUtility.userRole(request, model);
 		return "admin/user/addUser";
 	}
 
@@ -87,7 +87,7 @@ public class AdminController {
 		try {
 			userRequest.setCreateDate(new Timestamp(System.currentTimeMillis()));
 			UserInfoRequest addUser = this.registerService.addUser(userRequest, file);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(addUser)) {
 				model.addAttribute("message", "User already exists!");
 				return "admin/user/addUser";
@@ -104,7 +104,7 @@ public class AdminController {
 	private String editUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			UserInfoRequest userById = this.registerService.getUserById(id);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("id", id);
 			model.addAttribute("command", userById);
 			model.addAttribute("message", "Update User Information");
@@ -115,12 +115,12 @@ public class AdminController {
 		return "admin/user/editUser";
 	}
 
-	@PutMapping("/editUserInfo/{id}")
+	@PostMapping("/editUserInfo/{id}")
 	private String editUserInfo(@PathVariable String id, UserInfoRequest infoRequest, MultipartFile file, Model model,
 			HttpServletRequest request) {
 		try {
 			UserInfoRequest userById = this.registerService.updateUser(id, file, infoRequest);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(userById)) {
 				model.addAttribute("id", id);
 				model.addAttribute("command", infoRequest);
@@ -138,7 +138,7 @@ public class AdminController {
 	@DeleteMapping("/deleteUserInfo/{id}")
 	private String deleteUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			this.registerService.deleteUserById(id);
 		} catch (NotFoundException e) {
 			logger.error("Error deleting user by ID: {}", e.getMessage());
@@ -154,7 +154,7 @@ public class AdminController {
 		try {
 			List<ContactInfoRequest> contactInfo = this.contactInfoService.showAllContactInfo();
 			model.addAttribute("contactInfo", contactInfo);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("message", "List of Users Who Submitted the Contact Us Form");
 		} catch (NotFoundException e) {
 			logger.error("Error fetching contact information: {}", e.getMessage());
@@ -166,7 +166,7 @@ public class AdminController {
 	@DeleteMapping("/deleteContactUsInfo/{id}")
 	private String deleteContactUsInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			this.contactInfoService.deleteById(id);
 		} catch (NotFoundException e) {
 			logger.error("Error deleting contact info by ID: {}", e.getMessage());
@@ -182,7 +182,7 @@ public class AdminController {
 		try {
 			List<BlogInfoRequest> blogRequest = this.blogService.getAllBlog();
 			model.addAttribute("blogRequest", blogRequest);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("message", "List of All Blog Details");
 		} catch (NotFoundException e) {
 			logger.error("Error fetching blog details: {}", e.getMessage());
@@ -194,7 +194,7 @@ public class AdminController {
 	@GetMapping("/addBlog")
 	private String addBlog(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Create a new Blog with administrator privileges.");
-		CommanUtility.userRole(request, model);
+		CommonUtility.userRole(request, model);
 		return "admin/blog/addBlog";
 	}
 
@@ -203,7 +203,7 @@ public class AdminController {
 		try {
 			blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 			BlogInfoRequest addBlog = this.blogService.addBlog(blogRequest, file);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(addBlog)) {
 				model.addAttribute("message", "Blog already exists!");
 				return "admin/blog/addBlog";
@@ -220,7 +220,7 @@ public class AdminController {
 	private String editBlogInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			BlogInfoRequest blogById = this.blogService.getBlogById(id);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("id", id);
 			model.addAttribute("command", blogById);
 			model.addAttribute("message", "Update Blog Information");
@@ -231,12 +231,12 @@ public class AdminController {
 		return "admin/blog/editBlog";
 	}
 
-	@PutMapping("/editBlogInfo/{id}")
+	@PostMapping("/editBlogInfo/{id}")
 	private String editBlogInfos(@PathVariable String id, BlogInfoRequest infoRequest, MultipartFile file, Model model,
 			HttpServletRequest request) {
 		try {
 			BlogInfoRequest blogById = this.blogService.updateBlog(id, file, infoRequest);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(blogById)) {
 				model.addAttribute("id", id);
 				model.addAttribute("command", infoRequest);
@@ -254,7 +254,7 @@ public class AdminController {
 	@DeleteMapping("/deleteBlogInfo/{id}")
 	private String deleteBlogInfos(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			this.blogService.deleteBlogById(id);
 		} catch (NotFoundException e) {
 			logger.error("Error deleting blog by ID: {}", e.getMessage());
@@ -270,7 +270,7 @@ public class AdminController {
 		try {
 			List<CategoryInfoRequest> categoryInfo = this.categoryService.getAllCategoryContant();
 			model.addAttribute("categoryInfo", categoryInfo);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("message", "All Categories");
 		} catch (NotFoundException e) {
 			logger.error("Error fetching categories: {}", e.getMessage());
@@ -282,7 +282,7 @@ public class AdminController {
 	@GetMapping("/addCategory")
 	private String addCategory(HttpServletRequest request, Model model) {
 		model.addAttribute("message", "Create a new Category");
-		CommanUtility.userRole(request, model);
+		CommonUtility.userRole(request, model);
 		return "admin/category/addCategory";
 	}
 
@@ -292,7 +292,7 @@ public class AdminController {
 		try {
 			categoryRequest.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 			ResponseEntity<CategoryInfoRequest> addCategory = this.categoryService.addCategory(categoryRequest, file);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(addCategory.getBody())) {
 				model.addAttribute("message", "Category already exists!");
 				return "admin/category/addCategory";
@@ -309,7 +309,7 @@ public class AdminController {
 	private String editCategoryInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.getCategoryById(id);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			model.addAttribute("id", id);
 			model.addAttribute("command", categoryById.getBody());
 			model.addAttribute("message", "Update Category Information");
@@ -320,13 +320,13 @@ public class AdminController {
 		return "admin/category/editCategory";
 	}
 
-	@PutMapping("/editCategoryInfo/{id}")
+	@PostMapping("/editCategoryInfo/{id}")
 	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file,
 			Model model, HttpServletRequest request) {
 		try {
 			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.updateCategory(id, file,
 					infoRequest);
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(categoryById.getBody())) {
 				model.addAttribute("id", id);
 				model.addAttribute("command", infoRequest);
@@ -344,7 +344,7 @@ public class AdminController {
 	@DeleteMapping("/deleteCategoryInfo/{id}")
 	private String deleteCategoryInfos(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
-			CommanUtility.userRole(request, model);
+			CommonUtility.userRole(request, model);
 			this.categoryService.deleteCategoryById(id);
 		} catch (NotFoundException e) {
 			logger.error("Error deleting category by ID: {}", e.getMessage());
@@ -363,7 +363,7 @@ public class AdminController {
             logger.info("Fetching all default info");
             List<DefaultInfoRequest> defaultInfoRequests = this.defaultInfoService.getAllDefaultContant();
             model.addAttribute("defaultInfoRequests", defaultInfoRequests);
-            CommanUtility.userRole(request, model);
+            CommonUtility.userRole(request, model);
             model.addAttribute("message", "List of All Default Info details");
         } catch (NotFoundException e) {
             logger.error("Error fetching default info: {}", e.getMessage());
@@ -375,7 +375,7 @@ public class AdminController {
     @GetMapping("/addDefault")
     public String addDefault(HttpServletRequest request, Model model) {
         logger.info("Accessing add default page");
-        CommanUtility.userRole(request, model);
+        CommonUtility.userRole(request, model);
         model.addAttribute("message", "Create a new Default with administrator privileges.");
         return "admin/default/addDefault";
     }
@@ -387,7 +387,7 @@ public class AdminController {
             logger.info("Creating new default with request: {}", defaultRequest);
             defaultRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
             ResponseEntity<DefaultInfoRequest> addedDefault = this.defaultInfoService.addDefault(defaultRequest, file);
-            CommanUtility.userRole(request, model);
+            CommonUtility.userRole(request, model);
 
             if (ObjectUtils.isEmpty(addedDefault.getBody())) {
                 model.addAttribute("message", "Default already exists!");
@@ -408,7 +408,7 @@ public class AdminController {
         try {
             logger.info("Fetching default info for editing with id: {}", id);
             ResponseEntity<DefaultInfoRequest> defaultById = this.defaultInfoService.getDefaultById(id);
-            CommanUtility.userRole(request, model);
+            CommonUtility.userRole(request, model);
             model.addAttribute("id", id);
             model.addAttribute("command", defaultById.getBody());
             model.addAttribute("message", "Update Default Information");
@@ -419,13 +419,13 @@ public class AdminController {
         return "admin/default/editDefault";
     }
 
-    @PutMapping("/editDefaultInfo/{id}")
+    @PostMapping("/editDefaultInfo/{id}")
     public String editDefaultInfos(@PathVariable String id, DefaultInfoRequest infoRequest, MultipartFile file,
             Model model, HttpServletRequest request) {
         try {
             logger.info("Updating default info with id: {}", id);
             ResponseEntity<DefaultInfoRequest> updatedDefault = this.defaultInfoService.updateDefault(id, file, infoRequest);
-            CommanUtility.userRole(request, model);
+            CommonUtility.userRole(request, model);
 
             if (ObjectUtils.isEmpty(updatedDefault.getBody())) {
                 model.addAttribute("id", id);
@@ -435,7 +435,7 @@ public class AdminController {
             }
 
             model.addAttribute("message", "Default details have been successfully updated.");
-            return "redirect:/admin/getAllDefaultContant"; // Redirect after PUT to avoid resubmission
+            return "redirect:/admin/getAllDefaultContant"; // Redirect after Post to avoid resubmission
         } catch (NotFoundException e) {
             logger.error("Error updating default info with ID {}: {}", id, e.getMessage());
             GlobalExceptionHandler.handleNotFoundException(e);
@@ -447,7 +447,7 @@ public class AdminController {
     public String deleteDefaultInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
         try {
             logger.info("Deleting default info with id: {}", id);
-            CommanUtility.userRole(request, model);
+            CommonUtility.userRole(request, model);
             this.defaultInfoService.deleteDefaultById(id);
             return "redirect:/admin/getAllDefaultContant"; // Redirect to avoid resubmission
         } catch (NotFoundException e) {

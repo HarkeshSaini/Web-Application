@@ -17,7 +17,7 @@ import com.spring.security.entity.DefaultInfoDetail;
 import com.spring.security.interfaces.DefaultInfoService;
 import com.spring.security.repositories.DefaultInfoRepository;
 import com.spring.security.request.DefaultInfoRequest;
-import com.spring.security.utility.CommanUtility;
+import com.spring.security.utility.CommonUtility;
 
 @Service
 public class DefaultRequestInfoImpl implements DefaultInfoService {
@@ -51,7 +51,7 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 			defaultRequest.setStatus("Active");
 			defaultRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 			if (!file.isEmpty()) {
-				defaultRequest.setImgUrl(CommanUtility.uploadFile(file));
+				defaultRequest.setImgUrl(CommonUtility.uploadFile(file));
 			}
 
 			// Convert to entity and save
@@ -91,7 +91,7 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 			defaultRequest.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
 			if (file != null && !file.isEmpty()) {
-				defaultRequest.setImgUrl(CommanUtility.uploadFile(file));
+				defaultRequest.setImgUrl(CommonUtility.uploadFile(file));
 			} else {
 				// Keep the existing image URL if no file is uploaded
 				defaultRequest.setImgUrl(existingData.get().getImgUrl());

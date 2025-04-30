@@ -17,29 +17,29 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
 		LOGGER.log(Level.SEVERE, "RuntimeException occurred: " + ex.getMessage());
-		ErrorResponse errorResponse = new ErrorResponse("User Not Found", ex.getMessage(), System.currentTimeMillis());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+		ErrorResponse errorResponse = new ErrorResponse("Internal Server Error", ex.getMessage(), System.currentTimeMillis());
+		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(NotFoundException.class)
 	public static ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) {
 		LOGGER.log(Level.WARNING, "NotFoundException occurred: " + ex.getMessage());
-		ErrorResponse errorResponse = new ErrorResponse("User Not Found", ex.getMessage(), System.currentTimeMillis());
+		ErrorResponse errorResponse = new ErrorResponse("Resource Not Found", ex.getMessage(), System.currentTimeMillis());
 		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(Exception.class)
 	public static ResponseEntity<ErrorResponse> handleException(Exception ex) {
 		LOGGER.log(Level.SEVERE, "General exception occurred: " + ex.getMessage());
-		ErrorResponse errorResponse = new ErrorResponse("User Not Found", ex.getMessage(), System.currentTimeMillis());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+		ErrorResponse errorResponse = new ErrorResponse("Unexpected Error", ex.getMessage(), System.currentTimeMillis());
+		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
 	public static ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException ex) {
 		LOGGER.log(Level.WARNING, "IllegalArgumentException occurred: " + ex.getMessage());
-		ErrorResponse errorResponse = new ErrorResponse("User Not Found", ex.getMessage(), System.currentTimeMillis());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+		ErrorResponse errorResponse = new ErrorResponse("Invalid InPost", ex.getMessage(), System.currentTimeMillis());
+		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(UsernameNotFoundException.class)

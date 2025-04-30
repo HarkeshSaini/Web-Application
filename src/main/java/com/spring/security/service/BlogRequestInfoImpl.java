@@ -13,7 +13,7 @@ import com.spring.security.entity.BlogInfoDetail;
 import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.repositories.BlogInfoRepository;
 import com.spring.security.request.BlogInfoRequest;
-import com.spring.security.utility.CommanUtility;
+import com.spring.security.utility.CommonUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +52,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
             blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 
             if (!file.isEmpty()) {
-                blogRequest.setImgUrl(CommanUtility.uploadFile(file));
+                blogRequest.setImgUrl(CommonUtility.uploadFile(file));
             }
 
             mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);
@@ -83,7 +83,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
             if (file.isEmpty()) {
                 blogRequest.setImgUrl(blogById.getImgUrl());
             } else {
-                blogRequest.setImgUrl(CommanUtility.uploadFile(file));
+                blogRequest.setImgUrl(CommonUtility.uploadFile(file));
             }
 
             mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);

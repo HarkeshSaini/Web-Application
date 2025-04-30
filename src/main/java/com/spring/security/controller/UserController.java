@@ -14,7 +14,7 @@ import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.WebSiteUserService;
 import com.spring.security.request.WebSiteUserRequest;
-import com.spring.security.utility.CommanUtility;
+import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -115,7 +115,7 @@ public class UserController {
     private String dashboard(HttpServletRequest request, Model model) {
         logger.info("User dashboard accessed for: {}", request.getRemoteUser());
         model.addAttribute("message", "User Panel – Welcome");
-        CommanUtility.userRole(request, model);
+        CommonUtility.userRole(request, model);
         return "webUser/dashboard";
     }
 

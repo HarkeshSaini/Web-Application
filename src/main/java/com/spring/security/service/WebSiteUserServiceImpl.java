@@ -14,7 +14,7 @@ import com.spring.security.entity.WebSiteUserDetail;
 import com.spring.security.interfaces.WebSiteUserService;
 import com.spring.security.repositories.WebSiteUserRepository;
 import com.spring.security.request.WebSiteUserRequest;
-import com.spring.security.utility.CommanUtility;
+import com.spring.security.utility.CommonUtility;
 
 @Service
 public class WebSiteUserServiceImpl implements WebSiteUserService {
@@ -46,11 +46,11 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
             user.setStatus("Active");
             user.setRole("WEB-USER");
             user.setCreatedAt(System.currentTimeMillis());
-            user.setDateOfBirth(CommanUtility.dateFormate(request.getDateOfBirth()));
+            user.setDateOfBirth(CommonUtility.dateFormate(request.getDateOfBirth()));
 
             // Handle file upload if present
             if (!file.isEmpty()) {
-                user.setImgUrl(CommanUtility.uploadFile(file));
+                user.setImgUrl(CommonUtility.uploadFile(file));
             }
 
             // Secure password handling (you should use a password hash in production)
@@ -73,7 +73,7 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
     public String forgotPassword(WebSiteUserRequest request) {
         try {
             String email = request.getEmail();
-            String dateOfBirth = CommanUtility.dateFormate(request.getDateOfBirth());
+            String dateOfBirth = CommonUtility.dateFormate(request.getDateOfBirth());
             String username = request.getUsername();
 
             // Fetch user based on email, dateOfBirth, and username

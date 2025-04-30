@@ -19,7 +19,7 @@ import com.spring.security.repositories.CategoryInfoRepository;
 import com.spring.security.repositories.CategoryRepository;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
-import com.spring.security.utility.CommanUtility;
+import com.spring.security.utility.CommonUtility;
 
 @Service
 public class CategoryServiceImpl implements CategoryInfoService {
@@ -58,7 +58,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 			request.setStatus("Active");
 
 			if (!file.isEmpty()) {
-				request.setImgUrl(CommanUtility.uploadFile(file));
+				request.setImgUrl(CommonUtility.uploadFile(file));
 			}
 
 			// Map and save the data
@@ -101,7 +101,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 
 				// Handle file upload
 				if (!file.isEmpty()) {
-					request.setImgUrl(CommanUtility.uploadFile(file));
+					request.setImgUrl(CommonUtility.uploadFile(file));
 				} else {
 					request.setImgUrl(existingData.getImgUrl());
 				}
