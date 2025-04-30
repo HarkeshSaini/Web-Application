@@ -1,8 +1,10 @@
 package com.spring.security.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -13,12 +15,15 @@ import com.spring.security.repositories.ReviewsInfoRepository;
 import com.spring.security.request.ReviewInfoRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
-public class ReviewsInfoServiceImpl implements ReviewsInfoService{
-	
+public class ReviewsInfoServiceImpl implements ReviewsInfoService {
+
+	private static final Logger logger = LoggerFactory.getLogger(ReviewsInfoServiceImpl.class);
+
 	private final ModelMapper modelMapper;
-	
 	private final ReviewsInfoRepository reviewsInfoRepository;
 
 	public ReviewsInfoServiceImpl(ReviewsInfoRepository reviewsInfoRepository, ModelMapper modelMapper) {
@@ -28,22 +33,33 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService{
 
 	@Override
 	public ResponseEntity<List<ReviewInfoRequest>> getAllReviews(HttpServletRequest request) {
-		List<ReviewInfoDetail> findAll = reviewsInfoRepository.findAll();
-		if(ObjectUtils.isEmpty(findAll)) {
-			return ResponseEntity.badRequest().body(null);
+		try {
+			List<ReviewInfoDetail> findAll = reviewsInfoRepository.findAll();
+			if (ObjectUtils.isEmpty(findAll)) {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null); // No content found
+			}
+			List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class))
+					.toList();
+			return ResponseEntity.ok().body(listData);
+		} catch (Exception e) {
+			logger.error("Error retrieving all reviews: {}", e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
-		List<ReviewInfoRequest> listData = findAll.stream().map(x-> modelMapper.map(x, ReviewInfoRequest.class)).toList();
-		return ResponseEntity.ok().body(listData);
 	}
 
 	@Override
 	public ResponseEntity<List<ReviewInfoRequest>> getReviewsByReviewUrl(String reviewUrl) {
-		List<ReviewInfoDetail> findAll = reviewsInfoRepository.findByReviewUrl(reviewUrl);
-		if(ObjectUtils.isEmpty(findAll)) {
-			return ResponseEntity.badRequest().body(null);
+		try {
+			List<ReviewInfoDetail> findAll = reviewsInfoRepository.findByReviewUrl(reviewUrl);
+			if (ObjectUtils.isEmpty(findAll)) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Not found
+			}
+			List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class))
+					.toList();
+			return ResponseEntity.ok().body(listData);
+		} catch (Exception e) {
+			logger.error("Error retrieving reviews for URL {}: {}", reviewUrl, e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
-		List<ReviewInfoRequest> listData = findAll.stream().map(x-> modelMapper.map(x, ReviewInfoRequest.class)).toList();
-		return ResponseEntity.ok().body(listData);
 	}
-
 }

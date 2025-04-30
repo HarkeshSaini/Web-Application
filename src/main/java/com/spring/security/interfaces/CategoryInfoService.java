@@ -13,13 +13,13 @@ public interface CategoryInfoService {
 
 	List<CategoryInfoRequest> getAllCategoryContant();
 
-	CategoryInfoRequest addCategory(CategoryInfoRequest defaultRequest, MultipartFile file);
+	ResponseEntity<CategoryInfoRequest> addCategory(CategoryInfoRequest defaultRequest, MultipartFile file);
 
-	CategoryInfoRequest getCategoryById(@NotNull String id);
+	ResponseEntity<CategoryInfoRequest> getCategoryById(@NotNull String id);
 
-	CategoryInfoRequest updateCategory(String id, MultipartFile file, CategoryInfoRequest infoRequest);
+	ResponseEntity<CategoryInfoRequest> updateCategory(String id, MultipartFile file, CategoryInfoRequest infoRequest);
 
-	void deleteCategoryById(@NotNull String id);
+	ResponseEntity<Void> deleteCategoryById(@NotNull String id);
 
 	List<CategoryInfoRequest> findAllCategoryByStatus();
 
@@ -29,10 +29,10 @@ public interface CategoryInfoService {
 
 	List<CategoryReq> getAllInfoCategory();
 
-	void deleteCategory(@NotNull String id);
+	ResponseEntity<String> deleteCategory(@NotNull String id);
 
-	List<CategoryInfoRequest> findCatergory(String url, String categoryUrl);
+	List<CategoryInfoRequest> findCategory(String url, String categoryUrl);
 
-	CategoryReq getCategoryByUrl(String url);
+	ResponseEntity<CategoryReq> getCategoryByUrl(String url);
 
 }

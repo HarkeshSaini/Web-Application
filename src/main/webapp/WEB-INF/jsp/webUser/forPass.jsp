@@ -17,7 +17,7 @@
       <div class="col-12 col-sm-10 col-md-8  col-xxl-4">
         <div class="card border border-light-subtle rounded-3 shadow-sm">
           <div class="card-body p-3 p-md-4 p-xl-5">
-            <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading">${message}</h2>
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading message">${message}</h2>
              <form action="/forgotPassword" method="post">
              
               <div class="row gy-2 overflow-hidden">

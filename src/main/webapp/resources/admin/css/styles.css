@@ -24,9 +24,10 @@
     margin-top: 0;
 }
 .message {
-     
+    margin-top: 13px;
     font-size: 16px;
     margin-left: 20px;
+    margin-bottom: 15px;
 }.bg-light {
     background-color: #ffffff !important;
 }.col.py-0 {
@@ -35,9 +36,9 @@
     float: right;
     padding: 5px;
     margin: 4px;
-    margin-top: 4px;
-    margin-right: 4px;
-    background-color: #0e0b0be3;
+    margin-top: 8px;
+    margin-right: 8px;
+    background-color: #000000;
 }i.fa-solid.fa-pen-to-square {
     color: black;
 }i.fa-solid.fa-trash {
@@ -99,7 +100,7 @@
     float: inline-end;
     border: 1px solid;
     color: white;
-    margin-top: 3px;
+    margin-top: 7px;
     background-color: #282626;
 }form.category {
     padding: 11px 17px;

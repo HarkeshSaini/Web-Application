@@ -14,89 +14,111 @@ import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.repositories.BlogInfoRepository;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.utility.CommanUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class BlogRequestInfoImpl implements BlogInfoService {
 
-	private final ModelMapper modelMapper;
+    private static final Logger logger = LoggerFactory.getLogger(BlogRequestInfoImpl.class);
+    
+    private final ModelMapper modelMapper;
+    private final BlogInfoRepository infoRepository;
 
-	private final BlogInfoRepository infoRepository;
+    public BlogRequestInfoImpl(ModelMapper modelMapper, BlogInfoRepository infoRepository) {
+        this.modelMapper = modelMapper;
+        this.infoRepository = infoRepository;
+    }
 
-	public BlogRequestInfoImpl(ModelMapper modelMapper, BlogInfoRepository infoRepository) {
-		this.modelMapper = modelMapper;
-		this.infoRepository = infoRepository;
-	}
+    @Override
+    public List<BlogInfoRequest> getAllBlog() {
+        List<BlogInfoDetail> findAll = infoRepository.findAll();
+        return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+    }
 
-	@Override
-	public List<BlogInfoRequest> getAllBlog() {
-		List<BlogInfoDetail> findAll = infoRepository.findAll();
-		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
-	}
+    @Override
+    public BlogInfoRequest addBlog(BlogInfoRequest blogRequest, MultipartFile file) {
+        BlogInfoDetail mapData = new BlogInfoDetail();
+        try {
+            BlogInfoDetail urlContent = infoRepository.findByTitleUrl(blogRequest.getTitleUrl());
+            if (!ObjectUtils.isEmpty(urlContent)) {
+                logger.warn("Blog with titleUrl '{}' already exists.", blogRequest.getTitleUrl());
+                return null;
+            }
 
-	@Override
-	public BlogInfoRequest addBlog(BlogInfoRequest blogRequest, MultipartFile file) {
-		BlogInfoDetail mapData = new BlogInfoDetail();
-		try {
-			BlogInfoDetail urlContent = infoRepository.findByTitleUrl(blogRequest.getTitleUrl());
-			if (!ObjectUtils.isEmpty(urlContent)) {
-				return null;
-			}
-			blogRequest.setStatus("Active");
-			if (blogRequest.getTitleUrl().endsWith("-")) {
-				blogRequest.setTitleUrl(blogRequest.getTitleUrl().substring(0, blogRequest.getTitleUrl().length() - 1)); 
-		    }
-			blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
-			if (!file.isEmpty()) {
-				blogRequest.setImgUrl(CommanUtility.uploadFile(file));
-			}
-			mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return modelMapper.map(infoRepository.save(mapData), BlogInfoRequest.class);
-	}
+            blogRequest.setStatus("Active");
+            // Trim the trailing hyphen from the titleUrl
+            blogRequest.setTitleUrl(trimTrailingHyphen(blogRequest.getTitleUrl()));
+            blogRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 
-	@Override
-	public BlogInfoRequest getBlogById(@NotNull String id) {
-		BlogInfoDetail blogData = infoRepository.findById(id).orElse(null);
-		return modelMapper.map(blogData, BlogInfoRequest.class);
-	}
+            if (!file.isEmpty()) {
+                blogRequest.setImgUrl(CommanUtility.uploadFile(file));
+            }
 
-	@Override
-	public BlogInfoRequest updateBlog(String id, MultipartFile file, BlogInfoRequest blogRequest) {
-		BlogInfoDetail mapData = new BlogInfoDetail();
-		try {
-			blogRequest.setId(id);
-			blogRequest.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-			blogRequest.setImgUrl(file.getOriginalFilename());
-			BlogInfoRequest blogById = getBlogById(id);
-			if (file.isEmpty()) {
-				blogRequest.setImgUrl(blogById.getImgUrl());
-			}else {
-				blogRequest.setImgUrl(CommanUtility.uploadFile(file));
-			}
-			mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return modelMapper.map(infoRepository.save(mapData), BlogInfoRequest.class);
-	}
+            mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);
+        } catch (Exception e) {
+            logger.error("Error occurred while adding blog post");
+        }
+        return modelMapper.map(infoRepository.save(mapData), BlogInfoRequest.class);
+    }
 
-	@Override
-	public void deleteBlogById(@NotNull String id) {
-		infoRepository.deleteById(id);
-	}
+    @Override
+    public BlogInfoRequest getBlogById(@NotNull String id) {
+        BlogInfoDetail blogData = infoRepository.findById(id).orElse(null);
+        if (blogData == null) {
+            logger.warn("Blog with ID '{}' not found.", id);
+            return null;
+        }
+        return modelMapper.map(blogData, BlogInfoRequest.class);
+    }
 
-	@Override
-	public List<BlogInfoRequest> findAllBlogByStatus() {
-		List<BlogInfoDetail> findAll = infoRepository.findByStatus("Active");
-		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
-	}
+    @Override
+    public BlogInfoRequest updateBlog(String id, MultipartFile file, BlogInfoRequest blogRequest) {
+        BlogInfoDetail mapData = new BlogInfoDetail();
+        try {
+            blogRequest.setId(id);
+            blogRequest.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+            BlogInfoRequest blogById = getBlogById(id);
 
-	@Override
-	public List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl) {
-		List<BlogInfoDetail> findAll = infoRepository.findByStatusAndTitleUrl("Active",pageUrl);
-		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
-	}
+            if (file.isEmpty()) {
+                blogRequest.setImgUrl(blogById.getImgUrl());
+            } else {
+                blogRequest.setImgUrl(CommanUtility.uploadFile(file));
+            }
 
+            mapData = modelMapper.map(blogRequest, BlogInfoDetail.class);
+        } catch (Exception e) {
+            logger.error("Error occurred while updating blog post with ID '{}'", id);
+        }
+        return modelMapper.map(infoRepository.save(mapData), BlogInfoRequest.class);
+    }
+
+    @Override
+    public void deleteBlogById(@NotNull String id) {
+        try {
+            infoRepository.deleteById(id);
+            logger.info("Blog with ID '{}' successfully deleted.", id);
+        } catch (Exception e) {
+            logger.error("Error occurred while deleting blog post with ID '{}'", id);
+        }
+    }
+
+    @Override
+    public List<BlogInfoRequest> findAllBlogByStatus() {
+        List<BlogInfoDetail> findAll = infoRepository.findByStatus("Active");
+        return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+    }
+
+    @Override
+    public List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl) {
+        List<BlogInfoDetail> findAll = infoRepository.findByStatusAndTitleUrl("Active", pageUrl);
+        return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+    }
+
+    private String trimTrailingHyphen(String titleUrl) {
+        if (titleUrl != null && titleUrl.endsWith("-")) {
+            return titleUrl.substring(0, titleUrl.length() - 1);
+        }
+        return titleUrl;
+    }
 }

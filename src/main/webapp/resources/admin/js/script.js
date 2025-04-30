@@ -46,7 +46,7 @@ document.getElementById('category_delete').addEventListener('click', async funct
 	  "data": " ",
 	};
 	$.ajax(settings).done(function (response) {
-	  responseBox.innerText = JSON.stringify("Successfully category permanently delete", null, 2);
+	  responseBox.innerText = JSON.stringify(response, null, 2);
 	  responseBox.style.color = 'green';
 	});
 	

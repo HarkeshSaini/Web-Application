@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.entity.WebSiteUserDetail;
@@ -17,56 +18,77 @@ import com.spring.security.utility.CommanUtility;
 
 @Service
 public class WebSiteUserServiceImpl implements WebSiteUserService {
-	private final ModelMapper modelMapper;
 
-	private final WebSiteUserRepository userRepository;
+    private static final Logger logger = LoggerFactory.getLogger(WebSiteUserServiceImpl.class);
 
-	public WebSiteUserServiceImpl(WebSiteUserRepository userRepository, ModelMapper modelMapper) {
-		this.modelMapper = modelMapper;
-		this.userRepository = userRepository;
-	}
+    private final ModelMapper modelMapper;
+    private final WebSiteUserRepository userRepository;
 
-	@Override
-	public Map<String, String> createNewUserForWeb(WebSiteUserRequest request, MultipartFile file) {
-		Map<String, String> map = new HashMap<String, String>();
-		WebSiteUserDetail mapData = modelMapper.map(request, WebSiteUserDetail.class);
-		try {
-			WebSiteUserDetail detail = userRepository.findByEmail(request.getEmail());
-			if (ObjectUtils.isEmpty(detail)) {
-				mapData.setStatus("Active");
-				mapData.setRole("WEB-USER");
-				mapData.setCreatedAt(System.currentTimeMillis());
-				if (!file.isEmpty()) {
-					mapData.setImgUrl(CommanUtility.uploadFile(file));
-				}
-				mapData.setDateOfBirth(CommanUtility.dateFormate(mapData.getDateOfBirth()));
-				mapData.setPassword(String.valueOf(UUID.randomUUID()));
-				WebSiteUserDetail saveData = userRepository.save(mapData);
-				map.put("message", "Successfully created a new user?");
-				map.put("Password", saveData.getPassword());
-				return map;
-			}
-		} catch (Exception e) {
-			throw new RuntimeException("User not Created.");
-		}
-		map.put("message", "User not created because the user already exists. Please change the email ID.");
-		return map;
-	}
+    public WebSiteUserServiceImpl(WebSiteUserRepository userRepository, ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
+    }
 
-	@Override
-	public String forgotPassword(WebSiteUserRequest request) {
-		try {
-			String email = request.getEmail();
-			String dateOfBirth = CommanUtility.dateFormate(request.getDateOfBirth());
-			String username = request.getUsername();
-			WebSiteUserDetail user=userRepository.findByEmailAndDateOfBirthAndUsername(email,dateOfBirth,username);
-			if(ObjectUtils.isEmpty(user)){
-				return "No matching user found. Please check your details and try again.";
-			}
-			return user.getPassword();
-		} catch (Exception e) {
-			return "Submit required details for forgot password";
-		}
-	}
+    @Override
+    public Map<String, String> createNewUserForWeb(WebSiteUserRequest request, MultipartFile file) {
+        Map<String, String> response = new HashMap<>();
 
+        // Check if the user already exists
+        WebSiteUserDetail existingUser = userRepository.findByEmail(request.getEmail());
+        if (existingUser != null) {
+            response.put("message", "User already exists. Please change the email ID.");
+            logger.warn("Attempted to create a user with an existing email: {}", request.getEmail());
+            return response;
+        }
+
+        try {
+            WebSiteUserDetail user = modelMapper.map(request, WebSiteUserDetail.class);
+            user.setStatus("Active");
+            user.setRole("WEB-USER");
+            user.setCreatedAt(System.currentTimeMillis());
+            user.setDateOfBirth(CommanUtility.dateFormate(request.getDateOfBirth()));
+
+            // Handle file upload if present
+            if (!file.isEmpty()) {
+                user.setImgUrl(CommanUtility.uploadFile(file));
+            }
+
+            // Secure password handling (you should use a password hash in production)
+            user.setPassword(UUID.randomUUID().toString()); // Temporary placeholder, replace with password hashing
+
+            WebSiteUserDetail savedUser = userRepository.save(user);
+
+            response.put("message", "Successfully created a new user.");
+            response.put("Password", savedUser.getPassword()); // Return the password for initial login (in real life, it should be hashed)
+            logger.info("User created successfully with email: {}", savedUser.getEmail());
+        } catch (Exception e) {
+            response.put("message", "An error occurred while creating the user.");
+            logger.error("Error creating user for email {}: {}", request.getEmail(), e.getMessage());
+        }
+
+        return response;
+    }
+
+    @Override
+    public String forgotPassword(WebSiteUserRequest request) {
+        try {
+            String email = request.getEmail();
+            String dateOfBirth = CommanUtility.dateFormate(request.getDateOfBirth());
+            String username = request.getUsername();
+
+            // Fetch user based on email, dateOfBirth, and username
+            WebSiteUserDetail user = userRepository.findByEmailAndDateOfBirthAndUsername(email, dateOfBirth, username);
+
+            if (user == null) {
+                logger.warn("No matching user found for email: {}, username: {}, dateOfBirth: {}", email, username, dateOfBirth);
+                return "No matching user found. Please check your details and try again.";
+            }
+
+            logger.info("Password retrieved for user: {}", email);
+            return user.getPassword();
+        } catch (Exception e) {
+            logger.error("Error retrieving password for user with email {}: {}", request.getEmail(), e.getMessage());
+            return "An error occurred. Please provide the required details for password recovery.";
+        }
+    }
 }

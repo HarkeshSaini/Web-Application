@@ -11,7 +11,7 @@ public interface ContactInfoService {
 
 	List<ContactInfoRequest> showAllContactInfo();
 
-	void deleteById(@NotNull String id);
+	ResponseEntity<Void> deleteById(@NotNull String id);
 
 	ResponseEntity<ContactInfoRequest> submitContact(ContactInfoRequest request);
 

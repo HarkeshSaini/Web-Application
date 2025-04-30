@@ -35,11 +35,12 @@ public class AuthRoleHandler implements AuthenticationSuccessHandler {
 			Authentication authentication) throws IOException, ServletException {
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		try {
+			String username = authentication.getName();
 			for (GrantedAuthority authority : authorities) {
-				if (authority.getAuthority().equals(getRoleAdminUser(authentication.getName()))) {
+				if (authority.getAuthority().equals(getRoleAdmin(username))) {
 					response.sendRedirect("/admin/dashboard");
 					return;
-				} else if (authority.getAuthority().equals(getRoleWebUser(authentication.getName()))) {
+				} else if (authority.getAuthority().equals(getRoleWeb(username))) {
 					response.sendRedirect("/user/dashboard");
 					return;
 				}
@@ -49,7 +50,7 @@ public class AuthRoleHandler implements AuthenticationSuccessHandler {
 		}
 	}
 
-	private String getRoleAdminUser(String userName) {
+	private String getRoleAdmin(String userName) {
 		UserInfoDetail orElse = userInfoDetailRepositorie.findByEmail(userName).orElse(null);
 		if (ObjectUtils.isEmpty(orElse)) {
 			return "NOT_ROLE";
@@ -57,7 +58,7 @@ public class AuthRoleHandler implements AuthenticationSuccessHandler {
 		return orElse.getRole();
 	}
 
-	private String getRoleWebUser(String userName) {
+	private String getRoleWeb(String userName) {
 		WebSiteUserDetail data = webSiteUserRepository.findByUsername(userName);
 		if (ObjectUtils.isEmpty(data)) {
 			return "NOT_ROLE";

@@ -23,7 +23,7 @@
                   </div>
                 </c:if>
                 <c:if test="${empty SPRING_SECURITY_LAST_EXCEPTION.message}">
-                  <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading">${message}</h2>
+                  <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading message">${message}</h2>
                 </c:if>
                 <form th:action="@{/login}" method="post">
                   <div class="row gy-2 overflow-hidden">

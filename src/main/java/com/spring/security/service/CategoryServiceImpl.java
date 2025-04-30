@@ -1,17 +1,15 @@
 package com.spring.security.service;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.xpath;
-
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.entity.Category;
@@ -25,14 +23,15 @@ import com.spring.security.utility.CommanUtility;
 
 @Service
 public class CategoryServiceImpl implements CategoryInfoService {
-	
-	private final ModelMapper modelMapper;
-	
-	private final CategoryRepository repository;
 
+	private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
+
+	private final ModelMapper modelMapper;
+	private final CategoryRepository repository;
 	private final CategoryInfoRepository infoRepository;
 
-	public CategoryServiceImpl(CategoryInfoRepository infoRepository, ModelMapper modelMapper, CategoryRepository repository) {
+	public CategoryServiceImpl(CategoryInfoRepository infoRepository, ModelMapper modelMapper,
+			CategoryRepository repository) {
 		this.modelMapper = modelMapper;
 		this.repository = repository;
 		this.infoRepository = infoRepository;
@@ -45,57 +44,91 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	}
 
 	@Override
-	public CategoryInfoRequest addCategory(CategoryInfoRequest request, MultipartFile file) {
-		CategoryInfoDetail mapData = new CategoryInfoDetail();
+	public ResponseEntity<CategoryInfoRequest> addCategory(CategoryInfoRequest request, MultipartFile file) {
 		try {
+			// Check if the page URL already exists
 			CategoryInfoDetail urlContent = infoRepository.findByPageUrl(request.getPageUrl());
-			if (!ObjectUtils.isEmpty(urlContent)) {
-				return null;
+			if (urlContent != null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			}
+
+			// Set default values
 			request.setFeatured(true);
 			request.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 			request.setStatus("Active");
+
 			if (!file.isEmpty()) {
 				request.setImgUrl(CommanUtility.uploadFile(file));
 			}
-			mapData = modelMapper.map(request, CategoryInfoDetail.class);
+
+			// Map and save the data
+			CategoryInfoDetail mapData = modelMapper.map(request, CategoryInfoDetail.class);
+			CategoryInfoDetail savedData = infoRepository.save(mapData);
+			CategoryInfoRequest response = modelMapper.map(savedData, CategoryInfoRequest.class);
+
+			return ResponseEntity.status(HttpStatus.CREATED).body(response);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.error("Error adding category: {}", e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
-		return modelMapper.map(infoRepository.save(mapData), CategoryInfoRequest.class);
 	}
 
 	@Override
-	public CategoryInfoRequest getCategoryById(@NotNull String id) {
-		CategoryInfoDetail data = infoRepository.findById(id).orElse(null);
-		return modelMapper.map(data, CategoryInfoRequest.class);
+	public ResponseEntity<CategoryInfoRequest> getCategoryById(String id) {
+		Optional<CategoryInfoDetail> data = infoRepository.findById(id);
+		if (data.isPresent()) {
+			return ResponseEntity.ok(modelMapper.map(data.get(), CategoryInfoRequest.class));
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
 	}
 
 	@Override
-	public CategoryInfoRequest updateCategory(String id, MultipartFile file, CategoryInfoRequest request) {
-		CategoryInfoDetail mapData = new CategoryInfoDetail();
+	public ResponseEntity<CategoryInfoRequest> updateCategory(String id, MultipartFile file,
+			CategoryInfoRequest request) {
 		try {
 			request.setId(id);
-			CategoryInfoRequest blogById = getCategoryById(id);
-			request.setCreatedAt(blogById.getCreatedAt());
-			request.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-			request.setFeatured(blogById.isFeatured());
-			request.setCreatedBy(blogById.getCreatedBy());
-			if (file.isEmpty()) {
-				request.setImgUrl(blogById.getImgUrl());
+			Optional<CategoryInfoRequest> existingCategory = Optional.ofNullable(getCategoryById(id).getBody());
+
+			if (existingCategory.isPresent()) {
+				CategoryInfoRequest existingData = existingCategory.get();
+
+				// Preserve old values where necessary
+				request.setCreatedAt(existingData.getCreatedAt());
+				request.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+				request.setFeatured(existingData.isFeatured());
+				request.setCreatedBy(existingData.getCreatedBy());
+
+				// Handle file upload
+				if (!file.isEmpty()) {
+					request.setImgUrl(CommanUtility.uploadFile(file));
+				} else {
+					request.setImgUrl(existingData.getImgUrl());
+				}
+
+				CategoryInfoDetail mapData = modelMapper.map(request, CategoryInfoDetail.class);
+				CategoryInfoDetail updatedData = infoRepository.save(mapData);
+				CategoryInfoRequest response = modelMapper.map(updatedData, CategoryInfoRequest.class);
+
+				return ResponseEntity.status(HttpStatus.OK).body(response);
 			} else {
-				request.setImgUrl(CommanUtility.uploadFile(file));
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 			}
-			mapData = modelMapper.map(request, CategoryInfoDetail.class);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.error("Error updating category: {}", e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
-		return modelMapper.map(infoRepository.save(mapData), CategoryInfoRequest.class);
 	}
 
 	@Override
-	public void deleteCategoryById(@NotNull String id) {
-		infoRepository.deleteById(id);
+	public ResponseEntity<Void> deleteCategoryById(String id) {
+		Optional<CategoryInfoDetail> category = infoRepository.findById(id);
+		if (category.isPresent()) {
+			infoRepository.deleteById(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
 	}
 
 	@Override
@@ -112,46 +145,50 @@ public class CategoryServiceImpl implements CategoryInfoService {
 
 	@Override
 	public ResponseEntity<String> addCategory(CategoryReq request) {
-		Category category = modelMapper.map(request, Category.class);
-		Category url = repository.findByUrl(request.getUrl());
-		Category name = repository.findByName(request.getName());
-		if(url!=null || name!=null) {
-			ResponseEntity.ok(HttpStatus.BAD_REQUEST);
-			return ResponseEntity.ok("Category already exists!");
+		try {
+			Category category = modelMapper.map(request, Category.class);
+
+			// Check for duplicates
+			if (repository.findByUrl(request.getUrl()) != null || repository.findByName(request.getName()) != null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Category already exists!");
+			}
+
+			category.setPostTime(System.currentTimeMillis());
+			category.setStatus("Active");
+			repository.save(category);
+			return ResponseEntity.status(HttpStatus.CREATED).body("Category added successfully!");
+		} catch (Exception e) {
+			logger.error("Error adding category: {}", e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding category.");
 		}
-		category.setPostTime(System.currentTimeMillis());
-		category.setStatus("Active");
-		repository.save(category);
-		ResponseEntity.ok(HttpStatus.CREATED);
-		return ResponseEntity.ok("Category added successfully!");
 	}
 
 	@Override
 	public List<CategoryReq> getAllInfoCategory() {
 		List<Category> findByStatus = repository.findByStatus("Active");
-		return findByStatus.stream().map(x-> modelMapper.map(x, CategoryReq.class)).toList();
+		return findByStatus.stream().map(x -> modelMapper.map(x, CategoryReq.class)).toList();
 	}
 
 	@Override
-	public void deleteCategory(@NotNull String id) {
-		repository.deleteById(id);
+	public ResponseEntity<String> deleteCategory(String id) {
+		Optional<Category> category = repository.findById(id);
+		if (category.isPresent()) {
+			repository.deleteById(id);
+			return ResponseEntity.ok("Successfully deleted category by provided id.");
+		}	
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category not found by provided id.");
 	}
 
 	@Override
-	public List<CategoryInfoRequest> findCatergory(String url, String categoryUrl) {
-		List<CategoryInfoDetail> findAll = infoRepository.findByCategoryUrlAndPageUrl(url,categoryUrl);
+	public List<CategoryInfoRequest> findCategory(String url, String categoryUrl) {
+		List<CategoryInfoDetail> findAll = infoRepository.findByCategoryUrlAndPageUrl(url, categoryUrl);
 		return findAll.stream().map(x -> modelMapper.map(x, CategoryInfoRequest.class)).toList();
 	}
 
 	@Override
-	public CategoryReq getCategoryByUrl(String url) {
-		Category category= repository.findByStatusAndUrl("Active",url).orElse(null);
-		if(!ObjectUtils.isEmpty(category)) {
-			return modelMapper.map(category,CategoryReq.class);
-		}
-		return new CategoryReq();
+	public ResponseEntity<CategoryReq> getCategoryByUrl(String url) {
+		Optional<Category> category = repository.findByStatusAndUrl("Active", url);
+		return category.map(c -> ResponseEntity.ok(modelMapper.map(c, CategoryReq.class)))
+				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CategoryReq()));
 	}
-
-	 
-
 }
