@@ -3,47 +3,35 @@ package com.spring.security.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 
 import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
-import com.spring.security.interfaces.BlogInfoService;
-import com.spring.security.interfaces.CategoryInfoService;
-import com.spring.security.interfaces.ContactInfoService;
-import com.spring.security.interfaces.DefaultInfoService;
-import com.spring.security.interfaces.UserInfoService;
-import com.spring.security.request.BlogInfoRequest;
-import com.spring.security.request.CategoryInfoRequest;
-import com.spring.security.request.CategoryReq;
-import com.spring.security.request.ContactInfoRequest;
-import com.spring.security.request.DefaultInfoRequest;
-import com.spring.security.request.UserInfoRequest;
+import com.spring.security.interfaces.*;
+import com.spring.security.request.*;
 import com.spring.security.utility.CommanUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	private static final Logger logger = LogManager.getLogger(AdminController.class);
+
 	private final BlogInfoService blogService;
-
 	private final UserInfoService registerService;
-
 	private final CategoryInfoService categoryService;
-
 	private final DefaultInfoService defaultInfoService;
-
 	private final ContactInfoService contactInfoService;
 
 	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,
@@ -54,6 +42,8 @@ public class AdminController {
 		this.defaultInfoService = defaultInfoService;
 		this.contactInfoService = contactInfoService;
 	}
+
+	// ===================== LOGIN AND DASHBOARD =====================
 
 	@GetMapping
 	public String dashBoardLogin(HttpServletRequest request, Model model) {
@@ -69,6 +59,8 @@ public class AdminController {
 		return "admin/dashboard";
 	}
 
+	// ===================== USER MANAGEMENT =====================
+
 	@GetMapping("/getAllUser")
 	private String getAllUser(HttpServletRequest request, Model model) {
 		try {
@@ -77,6 +69,7 @@ public class AdminController {
 			CommanUtility.userRole(request, model);
 			model.addAttribute("message", "List of All Registered Users");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching users: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/user/showUser";
@@ -101,13 +94,14 @@ public class AdminController {
 			}
 			model.addAttribute("message", "User created successfully!");
 		} catch (NotFoundException e) {
+			logger.error("Error adding user: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/user/addUser";
 	}
 
 	@GetMapping("/editUserInfo/{id}")
-	private String editUserInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String editUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			UserInfoRequest userById = this.registerService.getUserById(id);
 			CommanUtility.userRole(request, model);
@@ -115,6 +109,7 @@ public class AdminController {
 			model.addAttribute("command", userById);
 			model.addAttribute("message", "Update User Information");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching user by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/user/editUser";
@@ -132,30 +127,27 @@ public class AdminController {
 				model.addAttribute("message", "User information could not be updated.");
 				return "admin/user/editUser";
 			}
-			model.addAttribute("id", id);
-			model.addAttribute("command", userById);
 			model.addAttribute("message", "User details have been successfully updated.");
 		} catch (NotFoundException e) {
+			logger.error("Error updating user info: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
-		return "admin/user/addUser";
+		return "admin/user/editUser";
 	}
 
 	@DeleteMapping("/deleteUserInfo/{id}")
-	private String deleteUserInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommanUtility.userRole(request, model);
 			this.registerService.deleteUserById(id);
 		} catch (NotFoundException e) {
+			logger.error("Error deleting user by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "redirect:/admin/getAllUser";
 	}
 
-	/*
-	 * =====================================Contact
-	 * Info================================================
-	 */
+	// ===================== CONTACT MANAGEMENT =====================
 
 	@GetMapping("/showAllContactInfo")
 	private String showAllContactInfo(HttpServletRequest request, Model model) {
@@ -165,26 +157,25 @@ public class AdminController {
 			CommanUtility.userRole(request, model);
 			model.addAttribute("message", "List of Users Who Submitted the Contact Us Form");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching contact information: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/contactUs";
 	}
 
 	@DeleteMapping("/deleteContactUsInfo/{id}")
-	private String deleteContactUsInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteContactUsInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommanUtility.userRole(request, model);
 			this.contactInfoService.deleteById(id);
 		} catch (NotFoundException e) {
+			logger.error("Error deleting contact info by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "redirect:/admin/showAllContactInfo";
 	}
 
-	/*
-	 * =======================================Blog
-	 * Content==========================================
-	 */
+	// ===================== BLOG MANAGEMENT =====================
 
 	@GetMapping("/getAllBlog")
 	private String getAllBlog(HttpServletRequest request, Model model) {
@@ -192,8 +183,9 @@ public class AdminController {
 			List<BlogInfoRequest> blogRequest = this.blogService.getAllBlog();
 			model.addAttribute("blogRequest", blogRequest);
 			CommanUtility.userRole(request, model);
-			model.addAttribute("message", "List of All blog details");
+			model.addAttribute("message", "List of All Blog Details");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching blog details: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/blog/showBlog";
@@ -218,13 +210,14 @@ public class AdminController {
 			}
 			model.addAttribute("message", "Blog created successfully!");
 		} catch (NotFoundException e) {
+			logger.error("Error adding blog: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/blog/addBlog";
 	}
 
 	@GetMapping("/editBlogInfo/{id}")
-	private String editBlogInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String editBlogInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			BlogInfoRequest blogById = this.blogService.getBlogById(id);
 			CommanUtility.userRole(request, model);
@@ -232,6 +225,7 @@ public class AdminController {
 			model.addAttribute("command", blogById);
 			model.addAttribute("message", "Update Blog Information");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching blog by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/blog/editBlog";
@@ -251,124 +245,35 @@ public class AdminController {
 			}
 			model.addAttribute("message", "Blog details have been successfully updated.");
 		} catch (NotFoundException e) {
+			logger.error("Error updating blog info: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
-		return "admin/blog/addBlog";
+		return "admin/blog/editBlog";
 	}
 
 	@DeleteMapping("/deleteBlogInfo/{id}")
-	private String deleteBlogInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteBlogInfos(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommanUtility.userRole(request, model);
 			this.blogService.deleteBlogById(id);
 		} catch (NotFoundException e) {
+			logger.error("Error deleting blog by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "redirect:/admin/getAllBlog";
 	}
 
-	/*
-	 * =======================================Default
-	 * Content==========================================
-	 */
-
-	@GetMapping("/getAllDefaultContant")
-	private String getAllDefaultContant(HttpServletRequest request, Model model) {
-		try {
-			List<DefaultInfoRequest> defaultInfoRequests = this.defaultInfoService.getAllDefaultContant();
-			model.addAttribute("defaultInfoRequests", defaultInfoRequests);
-			CommanUtility.userRole(request, model);
-			model.addAttribute("message", "List of All default Info details");
-		} catch (NotFoundException e) {
-			GlobalExceptionHandler.handleNotFoundException(e);
-		}
-		return "admin/default/showDefault";
-	}
-
-	@GetMapping("/addDefault")
-	private String addDefault(HttpServletRequest request, Model model) {
-		model.addAttribute("message", "Create a new Default with administrator privileges.");
-		CommanUtility.userRole(request, model);
-		return "admin/default/addDefault";
-	}
-
-	@PostMapping("/addDefault")
-	private String addDefault(DefaultInfoRequest defaultRequest, MultipartFile file, Model model,
-			HttpServletRequest request) {
-		try {
-			defaultRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
-			DefaultInfoRequest addDefault = this.defaultInfoService.addDefault(defaultRequest, file);
-			CommanUtility.userRole(request, model);
-			if (ObjectUtils.isEmpty(addDefault)) {
-				model.addAttribute("message", "Default already exists!");
-				return "admin/default/addDefault";
-			}
-			model.addAttribute("message", "Default created successfully!");
-		} catch (NotFoundException e) {
-			GlobalExceptionHandler.handleNotFoundException(e);
-		}
-		return "admin/default/addDefault";
-	}
-
-	@GetMapping("/editDefaultInfo/{id}")
-	private String editDefaultInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
-		try {
-			DefaultInfoRequest defaultById = this.defaultInfoService.getDefaultById(id);
-			CommanUtility.userRole(request, model);
-			model.addAttribute("id", id);
-			model.addAttribute("command", defaultById);
-			model.addAttribute("message", "Update Default Information");
-		} catch (NotFoundException e) {
-			GlobalExceptionHandler.handleNotFoundException(e);
-		}
-		return "admin/default/editDefault";
-	}
-
-	@PutMapping("/editDefaultInfo/{id}")
-	private String editDefaultInfos(@PathVariable String id, DefaultInfoRequest infoRequest, MultipartFile file,
-			Model model, HttpServletRequest request) {
-		try {
-			DefaultInfoRequest defaultById = this.defaultInfoService.updateDefault(id, file, infoRequest);
-			CommanUtility.userRole(request, model);
-			if (ObjectUtils.isEmpty(defaultById)) {
-				model.addAttribute("id", id);
-				model.addAttribute("command", infoRequest);
-				model.addAttribute("message", "Default information could not be updated.");
-				return "admin/default/editDefault";
-			}
-			model.addAttribute("message", "Default details have been successfully updated.");
-		} catch (NotFoundException e) {
-			GlobalExceptionHandler.handleNotFoundException(e);
-		}
-		return "admin/default/addDefault";
-	}
-
-	@DeleteMapping("/deleteDefaultInfo/{id}")
-	private String deleteDefaultInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
-		try {
-			CommanUtility.userRole(request, model);
-			this.defaultInfoService.deleteDefaultById(id);
-		} catch (NotFoundException e) {
-			GlobalExceptionHandler.handleNotFoundException(e);
-		}
-		return "redirect:/admin/getAllDefaultContant";
-	}
-
-	/*
-	 * =======================================Category Information
-	 * Content==========================================
-	 */
+	// ===================== CATEGORY MANAGEMENT =====================
 
 	@GetMapping("/getAllCategory")
 	private String getAllCategory(HttpServletRequest request, Model model) {
 		try {
-			List<CategoryInfoRequest> infoRequests = this.categoryService.getAllCategoryContant();
-			List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
-			model.addAttribute("infoCategory", allInfoCategory);
-			model.addAttribute("infoRequests", infoRequests);
+			List<CategoryInfoRequest> categoryInfo = this.categoryService.getAllCategoryContant();
+			model.addAttribute("categoryInfo", categoryInfo);
 			CommanUtility.userRole(request, model);
-			model.addAttribute("message", "List of All Category Info details");
+			model.addAttribute("message", "All Categories");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching categories: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/category/showCategory";
@@ -376,48 +281,40 @@ public class AdminController {
 
 	@GetMapping("/addCategory")
 	private String addCategory(HttpServletRequest request, Model model) {
-		try {
-			model.addAttribute("message", "Create a new Category with administrator privileges.");
-			List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
-			model.addAttribute("infoCategory", allInfoCategory);
-			CommanUtility.userRole(request, model);
-		} catch (NotFoundException e) {
-			GlobalExceptionHandler.handleNotFoundException(e);
-		}
+		model.addAttribute("message", "Create a new Category");
+		CommanUtility.userRole(request, model);
 		return "admin/category/addCategory";
 	}
 
 	@PostMapping("/addCategory")
-	private String addCategory(CategoryInfoRequest defaultRequest, MultipartFile file, Model model,
+	private String addCategory(CategoryInfoRequest categoryRequest, MultipartFile file, Model model,
 			HttpServletRequest request) {
 		try {
-			defaultRequest.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-			CategoryInfoRequest addRequest = this.categoryService.addCategory(defaultRequest, file);
+			categoryRequest.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+			ResponseEntity<CategoryInfoRequest> addCategory = this.categoryService.addCategory(categoryRequest, file);
 			CommanUtility.userRole(request, model);
-			List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
-			model.addAttribute("infoCategory", allInfoCategory);
-			if (ObjectUtils.isEmpty(addRequest)) {
+			if (ObjectUtils.isEmpty(addCategory.getBody())) {
 				model.addAttribute("message", "Category already exists!");
 				return "admin/category/addCategory";
 			}
 			model.addAttribute("message", "Category created successfully!");
 		} catch (NotFoundException e) {
+			logger.error("Error adding category: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/category/addCategory";
 	}
 
 	@GetMapping("/editCategoryInfo/{id}")
-	private String editCategoryInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String editCategoryInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
-			CategoryInfoRequest requetInfoById = this.categoryService.getCategoryById(id);
-			List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
-			model.addAttribute("infoCategory", allInfoCategory);
+			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.getCategoryById(id);
 			CommanUtility.userRole(request, model);
 			model.addAttribute("id", id);
-			model.addAttribute("command", requetInfoById);
+			model.addAttribute("command", categoryById.getBody());
 			model.addAttribute("message", "Update Category Information");
 		} catch (NotFoundException e) {
+			logger.error("Error fetching category by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "admin/category/editCategory";
@@ -427,11 +324,10 @@ public class AdminController {
 	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file,
 			Model model, HttpServletRequest request) {
 		try {
-			CategoryInfoRequest requestById = this.categoryService.updateCategory(id, file, infoRequest);
+			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.updateCategory(id, file,
+					infoRequest);
 			CommanUtility.userRole(request, model);
-			List<CategoryReq> allInfoCategory = categoryService.getAllInfoCategory();
-			model.addAttribute("infoCategory", allInfoCategory);
-			if (ObjectUtils.isEmpty(requestById)) {
+			if (ObjectUtils.isEmpty(categoryById.getBody())) {
 				model.addAttribute("id", id);
 				model.addAttribute("command", infoRequest);
 				model.addAttribute("message", "Category information could not be updated.");
@@ -439,20 +335,127 @@ public class AdminController {
 			}
 			model.addAttribute("message", "Category details have been successfully updated.");
 		} catch (NotFoundException e) {
+			logger.error("Error updating category info: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
-		return "admin/category/addCategory";
+		return "admin/category/editCategory";
 	}
 
 	@DeleteMapping("/deleteCategoryInfo/{id}")
-	private String deleteCategoryInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteCategoryInfos(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommanUtility.userRole(request, model);
 			this.categoryService.deleteCategoryById(id);
 		} catch (NotFoundException e) {
+			logger.error("Error deleting category by ID: {}", e.getMessage());
 			GlobalExceptionHandler.handleNotFoundException(e);
 		}
 		return "redirect:/admin/getAllCategory";
 	}
+	
+	
+	// ===================== Default MANAGEMENT =====================
 
+	
+	@GetMapping("/getAllDefaultContant")
+    public String getAllDefaultContant(HttpServletRequest request, Model model) {
+        try {
+            logger.info("Fetching all default info");
+            List<DefaultInfoRequest> defaultInfoRequests = this.defaultInfoService.getAllDefaultContant();
+            model.addAttribute("defaultInfoRequests", defaultInfoRequests);
+            CommanUtility.userRole(request, model);
+            model.addAttribute("message", "List of All Default Info details");
+        } catch (NotFoundException e) {
+            logger.error("Error fetching default info: {}", e.getMessage());
+            GlobalExceptionHandler.handleNotFoundException(e);
+        }
+        return "admin/default/showDefault";
+    }
+
+    @GetMapping("/addDefault")
+    public String addDefault(HttpServletRequest request, Model model) {
+        logger.info("Accessing add default page");
+        CommanUtility.userRole(request, model);
+        model.addAttribute("message", "Create a new Default with administrator privileges.");
+        return "admin/default/addDefault";
+    }
+
+    @PostMapping("/addDefault")
+    public String addDefault(DefaultInfoRequest defaultRequest, MultipartFile file, Model model,
+            HttpServletRequest request) {
+        try {
+            logger.info("Creating new default with request: {}", defaultRequest);
+            defaultRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
+            ResponseEntity<DefaultInfoRequest> addedDefault = this.defaultInfoService.addDefault(defaultRequest, file);
+            CommanUtility.userRole(request, model);
+
+            if (ObjectUtils.isEmpty(addedDefault.getBody())) {
+                model.addAttribute("message", "Default already exists!");
+                return "admin/default/addDefault";
+            }
+
+            model.addAttribute("message", "Default created successfully!");
+            return "redirect:/admin/getAllDefaultContant"; // Post/Redirect/Get pattern
+        } catch (NotFoundException e) {
+            logger.error("Error creating default info: {}", e.getMessage());
+            GlobalExceptionHandler.handleNotFoundException(e);
+            return "admin/default/addDefault";
+        }
+    }
+
+    @GetMapping("/editDefaultInfo/{id}")
+    public String editDefaultInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+        try {
+            logger.info("Fetching default info for editing with id: {}", id);
+            ResponseEntity<DefaultInfoRequest> defaultById = this.defaultInfoService.getDefaultById(id);
+            CommanUtility.userRole(request, model);
+            model.addAttribute("id", id);
+            model.addAttribute("command", defaultById.getBody());
+            model.addAttribute("message", "Update Default Information");
+        } catch (NotFoundException e) {
+            logger.error("Error fetching default info by ID {}: {}", id, e.getMessage());
+            GlobalExceptionHandler.handleNotFoundException(e);
+        }
+        return "admin/default/editDefault";
+    }
+
+    @PutMapping("/editDefaultInfo/{id}")
+    public String editDefaultInfos(@PathVariable String id, DefaultInfoRequest infoRequest, MultipartFile file,
+            Model model, HttpServletRequest request) {
+        try {
+            logger.info("Updating default info with id: {}", id);
+            ResponseEntity<DefaultInfoRequest> updatedDefault = this.defaultInfoService.updateDefault(id, file, infoRequest);
+            CommanUtility.userRole(request, model);
+
+            if (ObjectUtils.isEmpty(updatedDefault.getBody())) {
+                model.addAttribute("id", id);
+                model.addAttribute("command", infoRequest);
+                model.addAttribute("message", "Default information could not be updated.");
+                return "admin/default/editDefault";
+            }
+
+            model.addAttribute("message", "Default details have been successfully updated.");
+            return "redirect:/admin/getAllDefaultContant"; // Redirect after PUT to avoid resubmission
+        } catch (NotFoundException e) {
+            logger.error("Error updating default info with ID {}: {}", id, e.getMessage());
+            GlobalExceptionHandler.handleNotFoundException(e);
+            return "admin/default/editDefault";
+        }
+    }
+
+    @DeleteMapping("/deleteDefaultInfo/{id}")
+    public String deleteDefaultInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+        try {
+            logger.info("Deleting default info with id: {}", id);
+            CommanUtility.userRole(request, model);
+            this.defaultInfoService.deleteDefaultById(id);
+            return "redirect:/admin/getAllDefaultContant"; // Redirect to avoid resubmission
+        } catch (NotFoundException e) {
+            logger.error("Error deleting default info with ID {}: {}", id, e.getMessage());
+            GlobalExceptionHandler.handleNotFoundException(e);
+            return "redirect:/admin/getAllDefaultContant"; // Ensure redirection even on error
+        }
+    }
+
+     
 }
