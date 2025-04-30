@@ -8,8 +8,8 @@
           <div class="widget">
             <h4 class="widget-title mb-4">Learn More</h4>
             <ul class="list-unstyled">
-              <li class="mb-0"><p class="icon-arrow">><a href="#!" class="text-decoration-none">Blog</a></li>
-              <li class="mb-0"><p class="icon-arrow">><a href="#!" class="text-decoration-none">Contact Us</a></li>
+              <li class="mb-0"><a href="/blog" class="text-decoration-none">Blog</a></li>
+              <li class="mb-0"><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -18,16 +18,18 @@
           <div class="widget">
             <h4 class="widget-title mb-4">About US</h4>
             <ul class="list-unstyled">
-              <li class="mb-0"><p class="icon-arrow">><a href="#!" class="text-decoration-none">Privacy policy</a></li>
-              <li class="mb-0"><p class="icon-arrow">><a href="#!" class="text-decoration-none">Terms and conditions</a></li>
+              <li class="mb-0"><a href="/privacy-policy" class="text-decoration-none">Privacy policy</a></li>
+              <li class="mb-0"><a href="/terms-and-conditions" class="text-decoration-none">Terms and conditions</a></li>
             </ul>
           </div>
         </div>
         <div class="col-12 col-md-3 col-lg-4 col-xl-2">
           <div class="widget">
             <h4 class="widget-title mb-4">Get in Touch</h4>
-            <p class="mb-0"><p class="icon-arrow">> Phone: <a class="text-decoration-none" href="tel:+15057922430">+1-(180)-2123-312</a></p>
-            <p class="mb-0"><p class="icon-arrow">> Email: <a class="text-decoration-none" href="mailto:demo@yourdomain.com">demo@yourdomain.com</a></p>
+            <ul class="list-unstyled">
+             <li class="mb-0"> Phone: <a class="text-decoration-none" href="tel:+15057922430">+1-(180)-2123-312</a></li>
+             <li class="mb-0"> Email: <a class="text-decoration-none" href="mailto:demo@yourdomain.com">demo@yourdomain.com</a></li>
+          	</ul>
           </div>
         </div>
         <div class="col-12 col-md-3 col-lg-4 col-xl-2">
@@ -48,7 +50,7 @@
             	</form>
             </div>
         </div>
-      </div><hr>
+      </div><hr class="hori_line">
       </div>
     <div class="container">
     	<p class="address">&copy; 2025 My Website | All rights reserved, 123 Fake Street, Springfield, IL, 62701, USA A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.</p>

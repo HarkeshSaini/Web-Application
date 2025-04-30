@@ -82,7 +82,7 @@ public class UserController {
      */
     @GetMapping("/forgotPassword")
     private String forgotPassword(HttpServletRequest request, Model model) {
-        model.addAttribute("message", "Please provide the required details and then click on 'Forgot Password'.");
+        model.addAttribute("message", "Please provide the required details and then click on Submit.");
         return "webUser/forPass";
     }
 

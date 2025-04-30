@@ -27,6 +27,7 @@ public class CommonUtility {
     public static void userRole(HttpServletRequest request, Model model) {
         if (request != null && model != null) {
             String role =(String) request.getSession().getAttribute("role");
+            request.getSession().setAttribute("role", role);
             model.addAttribute("userRole", role);
         } else {
             LOGGER.warn("Request or Model is null in userRole method");

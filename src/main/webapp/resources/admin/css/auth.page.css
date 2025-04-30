@@ -1,4 +1,4 @@
-.error.message {
+ .error.message {
     font-size: 15px;
     margin-bottom: 19px;
     margin-top: -12px;
@@ -112,6 +112,7 @@
 
 .message.text-center {
     margin-bottom: 31px;
+    color: lawngreen!important;
 }textarea.form-control.address {
     border: var(--bs-border-width) solid #cfcfcf;
 }p.Password {
@@ -262,3 +263,144 @@
 
 
  
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1060px!important;
+    }
+}
+.text-secondary {
+    color: white !important;
+}
+/* Navbar Background Gradient */
+nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body {
+  background-image: linear-gradient(to left, rgb(0 0 0) 0%, rgb(54 161 203) 100%);
+}
+.col-md-6.login-form-side.p-4 {
+    background-image: linear-gradient(to left, rgb(21 28 28) 0%, rgb(53 129 159) 100%);
+}
+/* Navigation Links */
+.nav-item .nav-link {
+  color: white !important;
+}
+
+/* Header Margin */
+.header_auth {
+  margin-top: 108px;
+}
+
+/* Hide Category by Default */
+li.nav-item.category {
+  display: none;
+}
+
+/* Login Card Styles */
+.login-card {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Form Side */
+.login-form-side {
+  background-color: #ffffff;
+  flex: 1 1 50%;
+  padding: 2rem;
+}
+
+/* Icon Side */
+.login-icon-side {
+  background-color: #f8f9fa;
+  border-left: 1px solid #dee2e6;
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Social Login Buttons */
+.login-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.login-buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+}
+
+.google-btn {
+  background-color: #db4437;
+}
+
+.github-btn {
+  background-color: #333;
+}
+
+.facebook-btn {
+  background-color: #3b5998;
+}
+
+.linkedin-btn {
+  background-color: #0077b5;
+}
+
+.login-buttons a:hover {
+  opacity: 0.85;
+}
+
+/* --------------------
+   RESPONSIVE DESIGN
+-------------------- */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .header_auth {
+    margin-top: 100px;
+  }
+
+  .login-card {
+    flex-direction: column;
+  }
+
+  .login-form-side,
+  .login-icon-side {
+    flex: 1 1 100%;
+    padding: 1.5rem;
+  }
+
+  .login-icon-side {
+    border-left: none;
+    border-top: 1px solid #dee2e6;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .header_auth {
+    margin-top: 60px;
+  }
+
+  .login-buttons a {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  nav.navbar {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+  }
+}

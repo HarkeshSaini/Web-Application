@@ -3,17 +3,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}hr.hori_line {
+    margin-top: -11px;
+    margin-bottom: -21px;
 }
 li.mb-0 {
     margin-top: 10px;
 }p.mb-0{
 	color: white;
+}li.mb-0 {
+    list-style: auto;
+    color: white;
 }
 .footer {
-  background-color: #222222;
+  /*background-color: #222222;*/
+  background-image: linear-gradient(to left, rgb(12 85 104) 0%, rgb(15 22 22) 100%);
   padding: 2rem 1rem;
   font-family: Arial, sans-serif;
   color: #212529;
+}li.mb-0 {
+    list-style: auto;
+    color: white;
+    margin-left: 16px;
 }
 footer.footer {
     margin-top: 30px;
