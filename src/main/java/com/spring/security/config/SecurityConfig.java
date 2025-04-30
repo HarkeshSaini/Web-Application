@@ -21,6 +21,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 public class SecurityConfig {
+	
+	private final static String ADMIN_URL = "/admin/process";
+	
+	private final static String USER_URL = "/login/process";
+	
+	private final static String[] UNSECURE_URL = {"/admin",ADMIN_URL,"/login/",USER_URL};
 
 	@Autowired
 	private UserInfoService userInfoService;
@@ -67,29 +73,21 @@ public class SecurityConfig {
 	 */
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http, AuthRoleHandler authRoleHandler) throws Exception {
-	    // Create separate filters for admin and user logins
-	    CustomLoginFilter adminFilter = new CustomLoginFilter(authenticationManager(http), authRoleHandler, "/admin/process");
-	    CustomLoginFilter userFilter = new CustomLoginFilter(authenticationManager(http), authRoleHandler, "/login/process");
-
+	    CustomLoginFilter adminFilter = new CustomLoginFilter(authenticationManager(http), authRoleHandler, ADMIN_URL);
+	    CustomLoginFilter userFilter = new CustomLoginFilter(authenticationManager(http), authRoleHandler, USER_URL);
 	    http.csrf(AbstractHttpConfigurer::disable)
-	        .authorizeHttpRequests(auth -> auth
-	        	.requestMatchers("/login", "/login/process", "/admin", "/admin/process").permitAll()
-	            
-	            .requestMatchers("/admin/**").hasAnyRole(userInfoService.getAllRole())  
-	            .requestMatchers("/user/**").hasRole("WEB-USER")
-	            .anyRequest().permitAll()
-	        )
-
-	        // Custom login filters before default Spring filter
-	        .addFilterBefore(adminFilter, UsernamePasswordAuthenticationFilter.class)
-	        .addFilterBefore(userFilter, UsernamePasswordAuthenticationFilter.class)
-
-	        // Disable Spring’s default form login
-	        .formLogin(AbstractHttpConfigurer::disable)
-
-	        // Enable logout
-	        .logout(LogoutConfigurer::permitAll);
-
+	    
+	    .authorizeHttpRequests(auth -> auth
+	        .requestMatchers(UNSECURE_URL).permitAll()
+	        .requestMatchers("/admin/**").hasAnyRole(userInfoService.getAllRole())
+	        .requestMatchers("/user/**").hasRole("WEB-USER")
+	        .anyRequest().permitAll()  
+	    )
+	    
+        .addFilterBefore(adminFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(userFilter, UsernamePasswordAuthenticationFilter.class)
+        .formLogin(AbstractHttpConfigurer::disable)
+        .logout(LogoutConfigurer::permitAll);
 	    return http.build();
 	}
 
