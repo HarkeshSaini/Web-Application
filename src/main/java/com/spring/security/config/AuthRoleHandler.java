@@ -61,7 +61,7 @@ public class AuthRoleHandler implements AuthenticationSuccessHandler {
             response.sendRedirect("/access-denied");
         } catch (NotFoundException e) {
             logger.error("Authentication role resolution failed for user '{}': {}", username, e.getMessage(), e);
-            GlobalExceptionHandler.handleNotFoundException(e);
+            GlobalExceptionHandler.handleNotFoundException(request,e);
         }
     }
 

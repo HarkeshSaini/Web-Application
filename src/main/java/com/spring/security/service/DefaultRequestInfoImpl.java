@@ -22,8 +22,6 @@ import com.spring.security.utility.CommonUtility;
 @Service
 public class DefaultRequestInfoImpl implements DefaultInfoService {
 
-	private static final Logger logger = LoggerFactory.getLogger(DefaultRequestInfoImpl.class);
-
 	private final ModelMapper modelMapper;
 	private final DefaultInfoRepository infoRepository;
 
@@ -61,7 +59,6 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 			DefaultInfoRequest savedRequest = modelMapper.map(savedData, DefaultInfoRequest.class);
 			return ResponseEntity.status(HttpStatus.CREATED).body(savedRequest);
 		} catch (Exception e) {
-			logger.error("Error while adding default info: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
@@ -103,7 +100,6 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 
 			return ResponseEntity.status(HttpStatus.OK).body(updatedRequest);
 		} catch (Exception e) {
-			logger.error("Error while updating default info: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
@@ -119,7 +115,6 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 			}
 		} catch (Exception e) {
-			logger.error("Error while deleting default info: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}

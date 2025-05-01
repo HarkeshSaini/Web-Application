@@ -21,8 +21,6 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
 
-    private static final Logger logger = LogManager.getLogger(UserController.class);
-    
     private final WebSiteUserService userService;
 
     public UserController(WebSiteUserService userService) {
@@ -61,15 +59,13 @@ public class UserController {
      * @return the view name for sign-up page
      */
     @PostMapping("/sign-up")
-    private String createNewUserForWeb(WebSiteUserRequest request, MultipartFile file, Model model) {
+    private String createNewUserForWeb(WebSiteUserRequest request,HttpServletRequest servletRequest, MultipartFile file, Model model) {
         try {
-            logger.info("Processing new user sign-up for: {}", request.getUsername());
             Map<String, String> messString = userService.createNewUserForWeb(request, file);
             model.addAttribute("message", messString.get("message"));
             model.addAttribute("Password", messString.get("Password"));
         } catch (NotFoundException e) {
-            logger.error("Error occurred during sign-up process for: {}", request.getUsername());
-            GlobalExceptionHandler.handleNotFoundException(e);
+        	throw new NotFoundException(e.getLocalizedMessage());
         }
         return "webUser/signUp";
     }
@@ -93,14 +89,12 @@ public class UserController {
      * @return the view name for forgot password page
      */
     @PostMapping("/forgotPassword")
-    private String forgotPasswordRet(WebSiteUserRequest request, Model model) {
+    private String forgotPasswordRet(WebSiteUserRequest request,HttpServletRequest servletRequest, Model model) {
         try {
-            logger.info("Processing forgot password request for: {}", request.getUsername());
             String password = userService.forgotPassword(request);
             model.addAttribute("message", "Your forgot password:- " + password);
         } catch (NotFoundException e) {
-            logger.error("Error occurred during password recovery for: {}", request.getUsername());
-            GlobalExceptionHandler.handleNotFoundException(e);
+            throw new NotFoundException(e.getLocalizedMessage());
         }
         return "webUser/forPass";
     }
@@ -113,7 +107,6 @@ public class UserController {
      */
     @GetMapping("/user/dashboard")
     private String dashboard(HttpServletRequest request, Model model) {
-        logger.info("User dashboard accessed for: {}", request.getRemoteUser());
         model.addAttribute("message", "User Panel – Welcome");
         CommonUtility.userRole(request, model);
         return "webUser/dashboard";

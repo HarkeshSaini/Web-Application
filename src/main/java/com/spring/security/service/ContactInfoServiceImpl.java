@@ -20,7 +20,6 @@ import com.spring.security.request.ContactInfoRequest;
 @Service
 public class ContactInfoServiceImpl implements ContactInfoService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ContactInfoServiceImpl.class);
 
     private final ModelMapper modelMapper;
     private final ContactInfoRepository contactInfoRepository;
@@ -67,7 +66,6 @@ public class ContactInfoServiceImpl implements ContactInfoService {
             ContactInfoRequest responseData = modelMapper.map(savedData, ContactInfoRequest.class);
             return ResponseEntity.status(HttpStatus.CREATED).body(responseData);
         } catch (Exception e) {
-            logger.error("Error while submitting contact info: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

@@ -21,8 +21,6 @@ import org.slf4j.LoggerFactory;
 @Service
 public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 
-	private static final Logger logger = LoggerFactory.getLogger(ReviewsInfoServiceImpl.class);
-
 	private final ModelMapper modelMapper;
 	private final ReviewsInfoRepository reviewsInfoRepository;
 
@@ -42,7 +40,6 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 					.toList();
 			return ResponseEntity.ok().body(listData);
 		} catch (Exception e) {
-			logger.error("Error retrieving all reviews: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
@@ -58,7 +55,6 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 					.toList();
 			return ResponseEntity.ok().body(listData);
 		} catch (Exception e) {
-			logger.error("Error retrieving reviews for URL {}: {}", reviewUrl, e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}

@@ -24,8 +24,6 @@ import com.spring.security.utility.CommonUtility;
 @Service
 public class CategoryServiceImpl implements CategoryInfoService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
-
 	private final ModelMapper modelMapper;
 	private final CategoryRepository repository;
 	private final CategoryInfoRepository infoRepository;
@@ -68,7 +66,6 @@ public class CategoryServiceImpl implements CategoryInfoService {
 
 			return ResponseEntity.status(HttpStatus.CREATED).body(response);
 		} catch (Exception e) {
-			logger.error("Error adding category: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
@@ -115,7 +112,6 @@ public class CategoryServiceImpl implements CategoryInfoService {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 			}
 		} catch (Exception e) {
-			logger.error("Error updating category: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
@@ -158,7 +154,6 @@ public class CategoryServiceImpl implements CategoryInfoService {
 			repository.save(category);
 			return ResponseEntity.status(HttpStatus.CREATED).body("Category added successfully!");
 		} catch (Exception e) {
-			logger.error("Error adding category: {}", e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding category.");
 		}
 	}
@@ -175,7 +170,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 		if (category.isPresent()) {
 			repository.deleteById(id);
 			return ResponseEntity.ok("Successfully deleted category by provided id.");
-		}	
+		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category not found by provided id.");
 	}
 

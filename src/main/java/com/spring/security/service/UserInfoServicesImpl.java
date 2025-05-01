@@ -1,5 +1,6 @@
 package com.spring.security.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,8 +25,6 @@ import org.slf4j.LoggerFactory;
 @Service
 public class UserInfoServicesImpl implements UserInfoService {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserInfoServicesImpl.class);
-
 	private final ModelMapper modelMapper;
 	private final UserInfoDetailRepositorie detailRepositorie;
 
@@ -38,7 +37,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 	public List<UserInfoRequest> getAllUser() {
 		List<UserInfoDetail> allUser = detailRepositorie.findAll();
 		if (ObjectUtils.isEmpty(allUser)) {
-			logger.warn("No users found.");
+			return new ArrayList<UserInfoRequest>();
 		}
 		return allUser.stream().map(x -> modelMapper.map(x, UserInfoRequest.class)).toList();
 	}
@@ -52,14 +51,12 @@ public class UserInfoServicesImpl implements UserInfoService {
 	@Override
 	public ResponseEntity<String> deleteUserById(@NotNull String id) {
 		UserInfoDetail userInfo = findUserById(id);
-		if(ObjectUtils.isEmpty(userInfo)) {
+		if (ObjectUtils.isEmpty(userInfo)) {
 			detailRepositorie.deleteById(id);
-			logger.info("User with id {} deleted successfully", id);
 			return ResponseEntity.ok("User deleted successfully");
 		}
-		logger.info("User id not found {} ", id);
 		return ResponseEntity.ok("User not deleted");
-		
+
 	}
 
 	@Override
@@ -69,7 +66,6 @@ public class UserInfoServicesImpl implements UserInfoService {
 		}
 
 		if (isEmailAlreadyTaken(infoRequest.getEmail())) {
-			logger.warn("User with email {} already exists.", infoRequest.getEmail());
 			return null;
 		}
 
@@ -80,7 +76,6 @@ public class UserInfoServicesImpl implements UserInfoService {
 		userInfo.setPassword(generateRandomPassword());
 		userInfo = detailRepositorie.save(userInfo);
 
-		logger.info("User added successfully with email {}", userInfo.getEmail());
 		return modelMapper.map(userInfo, UserInfoRequest.class);
 	}
 
@@ -104,7 +99,6 @@ public class UserInfoServicesImpl implements UserInfoService {
 		adminRequest.setUpdateDate(System.currentTimeMillis());
 
 		adminRequest = detailRepositorie.save(adminRequest);
-		logger.info("User with id {} updated successfully", id);
 
 		return modelMapper.map(adminRequest, UserInfoRequest.class);
 	}
@@ -112,20 +106,16 @@ public class UserInfoServicesImpl implements UserInfoService {
 	@Override
 	public ResponseEntity<Object> addAdminUser(UserInfoRequest request) {
 		if (isEmailAlreadyTaken(request.getEmail())) {
-			logger.warn("Admin user with email {} already exists.", request.getEmail());
 			return ResponseEntity.badRequest().body("User already exists");
 		}
 
 		UserInfoDetail infoDetail = modelMapper.map(request, UserInfoDetail.class);
 		UserInfoDetail saveInfoDetail = detailRepositorie.save(infoDetail);
-		logger.info("Admin user with email {} added successfully", request.getEmail());
-
 		return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(saveInfoDetail, UserInfoRequest.class));
 	}
 
 	private UserInfoDetail findUserById(String id) {
 		return detailRepositorie.findById(id).orElseThrow(() -> {
-			logger.error("User not found with id {}", id);
 			return new RuntimeException("User not found By provided Id: " + id);
 		});
 	}
