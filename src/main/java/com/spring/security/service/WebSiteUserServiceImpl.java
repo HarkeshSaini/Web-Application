@@ -1,6 +1,7 @@
 package com.spring.security.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -91,4 +92,10 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
             return "An error occurred. Please provide the required details for password recovery.";
         }
     }
+
+	@Override
+	public String[] getWebRole() {
+		List<WebSiteUserDetail> findAll = userRepository.findAll();
+		return findAll.stream().map(WebSiteUserDetail::getRole).toArray(String[]::new);
+	}
 }

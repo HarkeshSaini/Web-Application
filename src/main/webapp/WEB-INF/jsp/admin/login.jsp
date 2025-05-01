@@ -24,7 +24,7 @@
                 <c:if test="${empty SPRING_SECURITY_LAST_EXCEPTION.message}">
                 <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading">${message}</h2>
                 </c:if>
-                <form action="/admin/process" method="post">
+                <form action="/adminUser" method="post">
                   <div class="row gy-2 overflow-hidden">
                     <div class="col-12">
                       <div class="form-floating mb-3">

@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +19,10 @@ import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
 import com.spring.security.repositories.WebSiteUserRepository;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class AuthRoleHandler implements AuthenticationSuccessHandler {

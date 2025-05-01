@@ -18,7 +18,7 @@ public interface UserInfoService {
 
 	public UserInfoRequest addUser(UserInfoRequest userRegistrationObject, MultipartFile file);
 
-	public String[] getAllRole();
+	public String[] getAdminRole();
 
 	public UserInfoRequest updateUser(@NotNull String id, MultipartFile file, @NotNull UserInfoRequest infoRequest);
 

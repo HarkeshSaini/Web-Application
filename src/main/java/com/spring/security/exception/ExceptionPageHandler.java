@@ -33,4 +33,25 @@ public class ExceptionPageHandler implements ErrorController{
         mav.addObject("url", request.getRequestURI());
         return mav;
     }
+	
+	
+	public static Object handlerWebPage(ErrorResponse errorResponse,HttpServletRequest request, HttpStatus status) {
+        Integer statusCode = status != null ? Integer.parseInt(status.toString()) : 500;
+
+        String accept = request.getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            return new ResponseEntity<>(
+                new ErrorResponse("Error occurred", "Status code: " + statusCode, System.currentTimeMillis()),
+                HttpStatus.valueOf(statusCode)
+            );
+        }
+
+        ModelAndView mav = new ModelAndView("404-error");
+        mav.addObject("message", errorResponse.getMessage());
+        mav.addObject("url", request.getRequestURI());
+        mav.addObject("error", errorResponse.getError());
+        mav.addObject("timestamp", errorResponse.getTimestamp());
+        
+        return mav;
+    }
 }

@@ -28,7 +28,7 @@
         <c:if test="${empty SPRING_SECURITY_LAST_EXCEPTION.message}">
           <h2 class="fs-6 fw-normal text-center text-secondary mb-4 heading message">${message}</h2>
         </c:if>
-        <form action="/login/process" method="post">
+        <form action="/webUser" method="post">
           <div class="form-floating mb-3">
             <input type="text" class="form-control" name="username" id="email" placeholder="name@example.com" required>
             <label for="text" class="form-label">Username</label>

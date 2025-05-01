@@ -15,6 +15,8 @@ import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class ServiceController {
 
@@ -34,7 +36,7 @@ public class ServiceController {
 	 * @return the view name for the category index page
 	 */
 	@GetMapping("/{url}")
-	public String category(@PathVariable String url, Model model) {
+	public String category(@PathVariable String url,HttpServletRequest request, Model model) {
 		try {
 			logger.info("Fetching category details for URL: {}", url);
 			// Fetch category details based on the provided 'url'
@@ -50,10 +52,10 @@ public class ServiceController {
 			model.addAttribute("categoryRequest", categoryRequest.getBody());
 		} catch (IllegalArgumentException e) {
 			logger.error("Error occurred while fetching category for URL: {}", url);
-			GlobalExceptionHandler.handleIllegalArgumentException(e);
+			GlobalExceptionHandler.handleIllegalArgumentException(request, e);
 		} catch (Exception e) {
 			logger.error("Unexpected error occurred while fetching category for URL: {}", url);
-			GlobalExceptionHandler.handleException(e);
+			GlobalExceptionHandler.handleException(request, e);
 		}
 		return "category/index";
 	}
@@ -68,7 +70,7 @@ public class ServiceController {
 	 * @return the view name for the category inner page
 	 */
 	@GetMapping("/{url}/{categoryUrl}")
-	public String categoryPage(@PathVariable String url, @PathVariable String categoryUrl, Model model) {
+	public String categoryPage(@PathVariable String url,HttpServletRequest request, @PathVariable String categoryUrl, Model model) {
 		try {
 			logger.info("Fetching category page details for URL: {} and category URL: {}", url, categoryUrl);
 
@@ -84,10 +86,10 @@ public class ServiceController {
 		} catch (IllegalArgumentException e) {
 			logger.error("Error occurred while fetching category page for URL: {} and category URL: {}", url,
 					categoryUrl);
-			GlobalExceptionHandler.handleIllegalArgumentException(e);
+			GlobalExceptionHandler.handleIllegalArgumentException(request, e);
 		} catch (Exception e) {
 			logger.error("Unexpected error occurred while fetching category page for URL: {} and category URL: {}", url,categoryUrl);
-			GlobalExceptionHandler.handleException(e);
+			GlobalExceptionHandler.handleException(request, e);
 		}
 		return "category/innerPage";
 	}

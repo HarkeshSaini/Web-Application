@@ -8,6 +8,8 @@ import com.spring.security.request.WebSiteUserRequest;
 
 public interface WebSiteUserService {
 
+	String[] getWebRole();
+
 	Map<String, String> createNewUserForWeb(WebSiteUserRequest request, MultipartFile file);
 
 	String forgotPassword(WebSiteUserRequest request);

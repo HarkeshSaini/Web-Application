@@ -140,7 +140,7 @@ public class UserInfoServicesImpl implements UserInfoService {
 	}
 
 	@Override
-	public String[] getAllRole() {
+	public String[] getAdminRole() {
 		List<UserInfoDetail> findAll = detailRepositorie.findAll();
 		return findAll.stream().map(UserInfoDetail::getRole).toArray(String[]::new);
 	}
