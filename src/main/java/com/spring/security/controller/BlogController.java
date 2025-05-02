@@ -32,8 +32,6 @@ public class BlogController {
 				model.addAttribute("message", "No blog posts available at the moment.");
 			}
 			model.addAttribute("blogDetail", blogDetail);
-		} catch (NotFoundException e) {
-			throw new NotFoundException(e.getMessage());
 		} catch (Exception e) {
 			throw new NotFoundException(e.getMessage());
 		}
@@ -48,9 +46,7 @@ public class BlogController {
 			if (ObjectUtils.isEmpty(blogDetail)) {
 				throw new NotFoundException("Page not found: " + pageUrl);
 			}
-		} catch (NotFoundException e) {
-			throw new NotFoundException(e.getMessage());
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			throw new NotFoundException(e.getMessage());
 		}
 		model.addAttribute("blogDetail", blogDetail);
