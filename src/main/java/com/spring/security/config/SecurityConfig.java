@@ -30,8 +30,6 @@ public class SecurityConfig {
 	@Autowired
 	private WebSiteUserService siteUserService;
 
-    private static final Logger logger = LoggerFactory.getLogger(CustomLoginFilter.class);
-	
 	/**
 	 * Defines the custom UserDetailsService implementation.
 	 */
@@ -80,12 +78,11 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth.requestMatchers("/admin", "/login").permitAll()
-           
-        .requestMatchers("/admin/**").hasAnyRole(userInfoService.getAdminRole())
-        .requestMatchers("/user/**").hasAnyRole(siteUserService.getWebRole()).anyRequest().permitAll())
+        .requestMatchers("/admin/**","/user/**").authenticated().anyRequest().permitAll())
         
         .addFilterBefore(adminFilter, UsernamePasswordAuthenticationFilter.class)
         .addFilterBefore(userFilter, UsernamePasswordAuthenticationFilter.class)
+       
         .formLogin(AbstractHttpConfigurer::disable)
         .logout(LogoutConfigurer::permitAll)
         .exceptionHandling(acc -> acc.accessDeniedPage("/accessDenied"));

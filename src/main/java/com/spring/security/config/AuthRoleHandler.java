@@ -15,7 +15,6 @@ import org.springframework.util.ObjectUtils;
 
 import com.spring.security.entity.UserInfoDetail;
 import com.spring.security.entity.WebSiteUserDetail;
-import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
 import com.spring.security.repositories.WebSiteUserRepository;
@@ -61,7 +60,7 @@ public class AuthRoleHandler implements AuthenticationSuccessHandler {
             response.sendRedirect("/access-denied");
         } catch (NotFoundException e) {
             logger.error("Authentication role resolution failed for user '{}': {}", username, e.getMessage(), e);
-            GlobalExceptionHandler.handleNotFoundException(request,e);
+            throw new NotFoundException(e.getLocalizedMessage());
         }
     }
 

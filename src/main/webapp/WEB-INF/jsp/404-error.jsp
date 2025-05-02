@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jsp:useBean id="dateValue" class="java.util.Date"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +21,11 @@
 <body>
   <div class="container">
     <h1 class="error-code">404</h1>
-    <h2 class="error-message">Page Not Found</h2>
-    <p class="error-description">
-      Sorry, the page you're looking for doesn't exist or has been moved.
-    </p>
+    <jsp:setProperty name="dateValue" property="time" value="${timestamp}"/>
+    
+    <p class="error-message">${message}<p>
+    <p class="error-description">Sorry, the page you're looking for doesn't exist or has been moved.</p>
+    <p><fmt:formatDate value="${dateValue}" pattern="MM/dd/yyyy HH:mm"/></p>
     <a href="/" class="home-button">Go to Homepage</a>
   </div>
 </body>

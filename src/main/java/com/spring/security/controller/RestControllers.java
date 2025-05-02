@@ -80,12 +80,11 @@ public class RestControllers {
 	}
 
 	@PostMapping(value = "/submitContactInfo")
-	public ResponseEntity<ContactInfoRequest> submitContact(@RequestBody ContactInfoRequest request) {
+	public ResponseEntity<String> submitContact(@RequestBody ContactInfoRequest request) {
 		try {
 			return this.contactInfoService.submitContact(request);
 		} catch (Exception e) {
-			logger.error("Error submitting contact info: {}", e.getMessage());
-			return ResponseEntity.status(500).body(null);
+			return ResponseEntity.status(500).body(e.getMessage());
 		}
 	}
 

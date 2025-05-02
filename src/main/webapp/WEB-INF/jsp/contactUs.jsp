@@ -11,7 +11,7 @@
 	<jsp:include page="./include/header.jsp"></jsp:include>
 	<div class="contact-container">
         <h1>Contact Us</h1>
-        <p>We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
+        <p class="message">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
         
         <form class="contact-form">
         
@@ -39,7 +39,7 @@
                 <textarea id="message" name="message" rows="4" required placeholder="Your Message"></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" class="submit-btn">Submit</button>
         </form>
     </div>
 	

@@ -13,7 +13,7 @@ public interface ContactInfoService {
 
 	ResponseEntity<Void> deleteById(@NotNull String id);
 
-	ResponseEntity<ContactInfoRequest> submitContact(ContactInfoRequest request);
+	ResponseEntity<String> submitContact(ContactInfoRequest request);
 
 	ResponseEntity<ContactInfoRequest> findByIdContactUs(String id);
 

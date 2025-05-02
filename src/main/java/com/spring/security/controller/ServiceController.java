@@ -45,7 +45,7 @@ public class ServiceController {
 					throw new NotFoundException("Page not found: " + url);
 				}
 			} catch (Exception e) {
-				throw new NotFoundException("Page not found: ");
+				throw new NotFoundException("Page not found: "+ url);
 			}
 			model.addAttribute("requestDetail", requestDetail);
 			model.addAttribute("categoryRequest", categoryRequest.getBody());

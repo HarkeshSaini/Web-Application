@@ -27,12 +27,14 @@ public class ExceptionPageHandler implements ErrorController {
 			}
 
 			ModelAndView mav = new ModelAndView("404-error");
-			mav.addObject("status", statusCode);
+			mav.addObject("message", request.getMethod());
 			mav.addObject("url", request.getRequestURI());
+			mav.addObject("error", RequestDispatcher.ERROR_STATUS_CODE.toString());
+			mav.addObject("timestamp", System.currentTimeMillis());
 			return mav;
 
 		} catch (Exception ex) {
-			return fallbackErrorPage(request);
+			return fallbackErrorPage(request,ex.getMessage());
 		}
 	}
 
@@ -53,14 +55,15 @@ public class ExceptionPageHandler implements ErrorController {
 			return mav;
 
 		} catch (Exception ex) {
-			return fallbackErrorPage(request);
+			return fallbackErrorPage(request,errorResponse.getError());
 		}
 	}
 
-	private static Object fallbackErrorPage(HttpServletRequest request) {
+	private static Object fallbackErrorPage(HttpServletRequest request, String error) {
 		ModelAndView mav = new ModelAndView("404-error");
 		mav.addObject("message", "An unexpected error occurred.");
 		mav.addObject("url", request.getRequestURI());
+		mav.addObject("error", error);
 		mav.addObject("timestamp", System.currentTimeMillis());
 		return mav;
 	}

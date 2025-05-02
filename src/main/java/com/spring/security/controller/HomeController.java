@@ -56,14 +56,14 @@ public class HomeController {
 			List<DefaultInfoRequest> defaultDetail = defaultInfoService.findAllDefaultByStatusAndPageUrl(pageUrl);
 			if (defaultDetail.isEmpty()) {
 				model.addAttribute("message", "Page content not available.");
-				throw new NotFoundException("Page content not available.");
+				throw new NotFoundException("Page content not available. " +pageUrl);
 			} else {
 				model.addAttribute("defaultDetail", defaultDetail);
 			}
 		} catch (NotFoundException e) {
-			throw new NotFoundException(e.getLocalizedMessage());
+			throw new NotFoundException(e.getLocalizedMessage()+pageUrl);
 		} catch (Exception e) {
-			throw new NotFoundException(e.getLocalizedMessage());
+			throw new NotFoundException(e.getLocalizedMessage()+pageUrl);
 		}
 		return "default"; // The page will render using "default" template
 	}
