@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 
 import com.spring.security.request.ContactInfoRequest;
+import com.spring.security.request.SubscribeInfoRequest;
 
 public interface ContactInfoService {
 
@@ -18,5 +19,13 @@ public interface ContactInfoService {
 	ResponseEntity<ContactInfoRequest> findByIdContactUs(String id);
 
 	ResponseEntity<Boolean> updateStatusOfContactUsByStatus(String id, String value);
+
+	ResponseEntity<String> subscribe(@NotNull SubscribeInfoRequest request);
+
+	ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(String id, String value);
+
+	List<SubscribeInfoRequest> showAllSubscribeInfo();
+
+	ResponseEntity<Object> deleteSubscribeInfoById(String id);
 
 }

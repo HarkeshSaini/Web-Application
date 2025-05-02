@@ -6,18 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document(collection = "ContactInfoDetail")
-public class ContactInfoDetail {
-
+@Document(collection = "SubscribeInfoDetail")
+public class SubscribeInfoDetail {
+	
 	@Id
 	private String id;
-	private String name;
-	private String email;
-	private String subject;
-	private String message;
-	private String status;
-	private String phone;
 	public long postTime;
 	public long updateTime;
-	private String lang_code;
+	private String Status;
+	private String email;
+
 }

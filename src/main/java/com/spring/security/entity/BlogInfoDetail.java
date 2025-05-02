@@ -1,5 +1,6 @@
 package com.spring.security.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.Data;
 @Document(collection = "BlogInfoDetail")
 public class BlogInfoDetail {
 
+	@Id
 	public String id;
 	public String title;
 	public String titleUrl;

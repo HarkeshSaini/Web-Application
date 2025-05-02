@@ -59,6 +59,11 @@
         <i class="fs-4 bi-house"></i> 
         <span class="ms-1 d-none d-sm-inline">Default Info Page </span> </a>
       </li>
+      <li class="nav-item">
+        <a href="/admin/showAllSubscribeInfo" class="nav-link align-middle px-0"> 
+        <i class="fs-4 bi-house"></i> 
+        <span class="ms-1 d-none d-sm-inline">Subscribe Information </span> </a>
+      </li>
     </ul>
     <div class="dropdown pb-4">
       <a href="/logout" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">

@@ -3,6 +3,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}p.subscribing.message {
+    color: white;
 }hr.hori_line {
     margin-top: -11px;
     margin-bottom: -21px;

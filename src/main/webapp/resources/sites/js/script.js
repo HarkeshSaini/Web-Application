@@ -43,4 +43,38 @@ $(document).ready(function () {
     });
   });
 });
+/*======================/subscribe=======================*/
+$(document).ready(function () {
+  $('.subscribe').on('click', function (e) {
+    e.preventDefault();
 
+    const form = $(this).closest('form')[0];
+    const email = $(form).find('#email').val();
+
+    if (!email) {
+      $('.message').text('Please enter a valid email.');
+      return;
+    }
+
+    $.ajax({
+      url: '/api/subscribe',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ email }),
+      success: function (response) {
+        const message = typeof response === 'string'
+          ? response : (response || 'Thank you for subscribing!');
+        $('.message').text(message);
+        
+        setTimeout(() => {
+          form.reset();  
+        }, 2000);
+      },
+      error: function (xhr) {
+        console.error('Error:', xhr.responseText);
+        $('.message').text('Something went wrong. Please try again.');
+        
+      }
+    });
+  });
+});

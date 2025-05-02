@@ -100,5 +100,6 @@
  </div>
 <jsp:include page="./include/footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/resources/sites/js/script.js"></script>
 </body>
 </html>

@@ -22,6 +22,7 @@ import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.ReviewInfoRequest;
+import com.spring.security.request.SubscribeInfoRequest;
 import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommonUtility;
 
@@ -148,6 +149,27 @@ public class RestControllers {
 		} catch (Exception e) {
 			logger.error("Error deleting category with ID '{}': {}", id, e.getMessage());
 			return "Error deleting category";
+		}
+	}
+	
+	@PostMapping(value = "/subscribe")
+	public ResponseEntity<String> subscribe(@RequestBody @NotNull SubscribeInfoRequest request) {
+		try {
+			return this.contactInfoService.subscribe(request);
+		} catch (Exception e) {
+			logger.error("Error subscribe: {}", e.getMessage());
+			return ResponseEntity.status(500).body("Error subscribe");
+		}
+	}
+	
+	@PostMapping(value = "/updateStatusOfSubscribeInfoByStatus/{id}/{value}")
+	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(@PathVariable String id,
+			@PathVariable String value) {
+		try {
+			return this.contactInfoService.updateStatusOfSubscribeInfoByStatus(id, value);
+		} catch (Exception e) {
+			logger.error("Error updating status for Subscribe info ID '{}': {}", id, e.getMessage());
+			return ResponseEntity.status(500).body(false);
 		}
 	}
 }

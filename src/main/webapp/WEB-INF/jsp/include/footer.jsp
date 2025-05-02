@@ -35,19 +35,26 @@
         <div class="col-12 col-md-3 col-lg-4 col-xl-2">
         	<div class="widget">
             <h4 class="widget-title mb-4">Our Newsletter</h4>
-            	<form action="#!">
-            	 <div class="col-12">
-                  <div class="input-group">
-                    <!-- <span class="input-group-text" id="email-newsletter-addon"></span> -->
-            	    <input type="email" class="form-control" id="email-newsletter" value="" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
-            	    </div>
-                  </div>
-                  <div class="col-12">
-                  <div class="d-grid">
-                    <button class="btn btn-primary" type="submit">Subscribe</button>
-                  </div>
-                 </div>
-            	</form>
+            	<form class="subscribe-form">
+			  <div class="col-12">
+			    <div class="input-group">
+			      <span class="input-group-text" id="email-newsletter-addon">
+			        <img src="/resources/sites/image/email-icon.png" alt="Logo" height="16">
+			      </span>
+			      <input type="email" class="form-control" id="email" name="email"
+			             placeholder="Email Address" aria-label="email-newsletter"
+			             aria-describedby="email-newsletter-addon" required>
+			    </div>
+			  </div>
+			
+			  <div class="col-12">
+			    <div class="d-grid">
+			      <button type="button" class="btn btn-primary subscribe">Subscribe</button>
+			    </div>
+			  </div>
+			  <p class="subscribing message"></p>
+			</form>
+
             </div>
         </div>
       </div><hr class="hori_line">

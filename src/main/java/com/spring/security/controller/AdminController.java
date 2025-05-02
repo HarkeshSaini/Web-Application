@@ -165,6 +165,30 @@ public class AdminController {
 		}
 		return "redirect:/admin/showAllContactInfo";
 	}
+	
+	@GetMapping("/showAllSubscribeInfo")
+	private String showAllSubscribeInfo(HttpServletRequest request, Model model) {
+		try {
+			List<SubscribeInfoRequest> SubscribeInfo = this.contactInfoService.showAllSubscribeInfo();
+			model.addAttribute("SubscribeInfo", SubscribeInfo);
+			CommonUtility.userRole(request, model);
+			model.addAttribute("message", "List of Users Who Submitted the Subscribe Us Form");
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getLocalizedMessage());
+		}
+		return "admin/subscribeUs";
+	}
+
+	@DeleteMapping("/deleteSubscribeInfo/{id}")
+	private String deleteSubscribeInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+		try {
+			CommonUtility.userRole(request, model);
+			this.contactInfoService.deleteSubscribeInfoById(id);
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getLocalizedMessage());
+		}
+		return "redirect:/admin/showAllSubscribeInfo";
+	}
 
 	// ===================== BLOG MANAGEMENT =====================
 
