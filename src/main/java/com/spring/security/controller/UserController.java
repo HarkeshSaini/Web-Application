@@ -14,24 +14,16 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController {
 
-	private final WebSiteUserService userService;
+    private final WebSiteUserService userService;
 
-	public UserController(WebSiteUserService userService) {
-		this.userService = userService;
-	}
+    public UserController(WebSiteUserService userService) {
+        this.userService = userService;
+    }
 
-	/**
-	 * Displays the user dashboard.
-	 * 
-	 * @param request the HttpServletRequest object
-	 * @param model   the Model to add attributes
-	 * @return the view name for the user dashboard
-	 */
-
-	@GetMapping("/dashboard")
-	private String dashboard(HttpServletRequest request, Model model) {
-		model.addAttribute("message", "User Panel – Welcome");
-		CommonUtility.userRole(request, model);
-		return "webUser/Dashboard";
-	}
+    @GetMapping("/dashboard")
+    private String dashboard(HttpServletRequest request, Model model) {
+        model.addAttribute("message", "User Panel – Welcome");
+        CommonUtility.userRole(request, model);   
+        return "webUser/Dashboard";   
+    }
 }

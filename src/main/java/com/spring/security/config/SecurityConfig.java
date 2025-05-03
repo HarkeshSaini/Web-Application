@@ -2,6 +2,7 @@ package com.spring.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -11,12 +12,16 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.spring.security.service.CustomUserService;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Component
 @Configuration
@@ -72,19 +77,36 @@ public class SecurityConfig {
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http,AuthenticationManager authenticationManager) throws Exception {
 		CustomFilterChain adminFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager, "/adminUser");
 		CustomFilterChain userFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager, "/loginUser");
-		
-		http.csrf(AbstractHttpConfigurer::disable)
-			.authorizeHttpRequests(authz -> authz.requestMatchers("/login", "/admin").permitAll()
-			.requestMatchers("/admin/**").hasRole("ADMIN")
-			.requestMatchers("/user/**").hasRole("WEB-USER").anyRequest().permitAll()
-		);
+        
+		http.cors(withDefaults()).csrf(AbstractHttpConfigurer::disable)
+        .authorizeHttpRequests(authz -> authz.requestMatchers("/login", "/admin").permitAll()
+            .requestMatchers("/admin/**").hasAuthority("ADMIN")
+            .requestMatchers("/user/**").hasAuthority("WEB-USER").anyRequest().permitAll()
+        );
 		
 		http.addFilterBefore(adminFilterChain, UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(userFilterChain, UsernamePasswordAuthenticationFilter.class);
 		
-        http.formLogin(login -> login.disable()).logout(logout -> logout.logoutUrl("/logout").permitAll());
-		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));  
+        http.formLogin(x->x.disable()).logout(logout -> logout.logoutUrl("/logout").permitAll());
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
+
 		return http.build();
 	}
+	
+	@Bean
+	protected CorsConfigurationSource corsConfigurationSource() {
+	    CorsConfiguration configuration = new CorsConfiguration();
+	    configuration.addAllowedOrigin("http://localhost:8080");  
+	    configuration.addAllowedMethod(HttpMethod.GET);  
+	    configuration.addAllowedMethod(HttpMethod.POST);  
+	    configuration.addAllowedHeader("Authorization");  
+	    configuration.addAllowedHeader("Content-Type");   
+	    configuration.setAllowCredentials(true);  
+
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);   
+	    return source;
+	}
+
 
 }

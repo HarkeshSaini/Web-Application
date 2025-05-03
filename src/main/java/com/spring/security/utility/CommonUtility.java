@@ -9,20 +9,28 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.security.entity.UserInfoDetail;
+import com.spring.security.entity.WebSiteUserDetail;
+import com.spring.security.repositories.UserInfoDetailRepositorie;
+import com.spring.security.repositories.WebSiteUserRepository;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 public class CommonUtility {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommonUtility.class);
-    private static final String DIR = File.separator;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(CommonUtility.class);
+    
+	private static final String DIR = File.separator;
 
     public static void userRole(HttpServletRequest request, Model model) {
         if (request != null && model != null) {
