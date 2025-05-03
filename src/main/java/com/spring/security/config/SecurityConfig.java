@@ -4,12 +4,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
@@ -20,9 +22,6 @@ import com.spring.security.service.CustomUserService;
 @Configuration
 public class SecurityConfig {
 	
-	private static final String LOGIN_URL_ADMIN = "/admin";
-	private static final String LOGIN_URL_USER = "/login";
-
 	/**
 	 * Defines the custom AuthenticationHandler implementation.
 	 */
@@ -68,14 +67,14 @@ public class SecurityConfig {
 		builder.authenticationProvider(authenticationProvider());
 		return builder.build();
 	}
-
+	
 	@Bean
-	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		CustomFilterChain adminFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager(http), LOGIN_URL_ADMIN);
-		CustomFilterChain userFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager(http),	LOGIN_URL_USER);
-
+	protected SecurityFilterChain securityFilterChain(HttpSecurity http,AuthenticationManager authenticationManager) throws Exception {
+		CustomFilterChain adminFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager, "/adminUser");
+		CustomFilterChain userFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager, "/loginUser");
+		
 		http.csrf(AbstractHttpConfigurer::disable)
-			.authorizeHttpRequests(authz -> authz.requestMatchers(LOGIN_URL_USER,LOGIN_URL_ADMIN).permitAll()
+			.authorizeHttpRequests(authz -> authz.requestMatchers("/login", "/admin").permitAll()
 			.requestMatchers("/admin/**").hasRole("ADMIN")
 			.requestMatchers("/user/**").hasRole("WEB-USER").anyRequest().permitAll()
 		);
@@ -83,9 +82,8 @@ public class SecurityConfig {
 		http.addFilterBefore(adminFilterChain, UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(userFilterChain, UsernamePasswordAuthenticationFilter.class);
 		
-        http.formLogin(login -> login.disable());
-		http.logout(logout -> logout.logoutUrl("/logout").permitAll());
-		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));  
+        http.formLogin(login -> login.disable()).logout(logout -> logout.logoutUrl("/logout").permitAll());
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));  
 		return http.build();
 	}
 
