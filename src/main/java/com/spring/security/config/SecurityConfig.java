@@ -1,7 +1,5 @@
 package com.spring.security.config;
 
-import java.util.Arrays;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,19 +7,30 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.stereotype.Component;
 
 import com.spring.security.service.CustomUserService;
 
+@Component
 @Configuration
 public class SecurityConfig {
+	
+	private static final String LOGIN_URL_ADMIN = "/admin";
+	private static final String LOGIN_URL_USER = "/login";
+
+	/**
+	 * Defines the custom AuthenticationHandler implementation.
+	 */
+	private final AuthSuccessHandler authSuccessHandler;
+
+	public SecurityConfig(AuthSuccessHandler authSuccessHandler) {
+		this.authSuccessHandler = authSuccessHandler;
+	}
 
 	/**
 	 * Defines the custom UserDetailsService implementation.
@@ -60,36 +69,24 @@ public class SecurityConfig {
 		return builder.build();
 	}
 
-	/**
-	 * Configures HTTP security, login, and access control.
-	 */
-
 	@Bean
-	protected SecurityFilterChain filterChain(HttpSecurity http, AuthRoleHandler authRoleHandler) throws Exception {
-		CustomLoginFilter adminFilter = new CustomLoginFilter(authenticationManager(http), authRoleHandler, "/adminUser");
-		CustomLoginFilter userFilter = new CustomLoginFilter(authenticationManager(http), authRoleHandler, "/webUser");
-		http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> auth
-				
-		.requestMatchers("/admin", "/login").permitAll()
-		.requestMatchers("/admin/**").hasAnyRole("ADMIN", "ADMIN-USER")
-		.requestMatchers("/user/**").hasRole("WEB-USER").anyRequest()
-		.permitAll())
+	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		CustomFilterChain adminFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager(http), LOGIN_URL_ADMIN);
+		CustomFilterChain userFilterChain = new CustomFilterChain(authSuccessHandler, authenticationManager(http),	LOGIN_URL_USER);
 
-		.addFilterBefore(adminFilter, UsernamePasswordAuthenticationFilter.class)
-		.addFilterBefore(userFilter, UsernamePasswordAuthenticationFilter.class)
-		.formLogin(x->x.disable()).logout(LogoutConfigurer::permitAll)
-		.exceptionHandling(acc -> acc.accessDeniedPage("/accessDenied"));
+		http.csrf(AbstractHttpConfigurer::disable)
+			.authorizeHttpRequests(authz -> authz.requestMatchers(LOGIN_URL_USER,LOGIN_URL_ADMIN).permitAll()
+			.requestMatchers("/admin/**").hasRole("ADMIN")
+			.requestMatchers("/user/**").hasRole("WEB-USER").anyRequest().permitAll()
+		);
+		
+		http.addFilterBefore(adminFilterChain, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(userFilterChain, UsernamePasswordAuthenticationFilter.class);
+		
+        http.formLogin(login -> login.disable());
+		http.logout(logout -> logout.logoutUrl("/logout").permitAll());
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));  
 		return http.build();
-	}
-
-	@Bean
-	protected CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
 	}
 
 }

@@ -13,7 +13,7 @@ public class SubscribeInfoDetail {
 	private String id;
 	public long postTime;
 	public long updateTime;
-	private String Status;
+	private String status;
 	private String email;
 
 }

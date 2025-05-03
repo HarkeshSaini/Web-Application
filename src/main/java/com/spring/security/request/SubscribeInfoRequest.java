@@ -11,7 +11,7 @@ public class SubscribeInfoRequest {
 	private String id;
 	private Timestamp postTime;
 	private Timestamp updateTime;
-	private String Status;
+	private String status;
 	private String email;
 
 }

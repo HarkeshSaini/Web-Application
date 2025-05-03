@@ -3,24 +3,33 @@ package com.spring.security.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.security.exception.GlobalExceptionHandler;
 import com.spring.security.exception.NotFoundException;
-import com.spring.security.interfaces.*;
-import com.spring.security.request.*;
+import com.spring.security.interfaces.BlogInfoService;
+import com.spring.security.interfaces.CategoryInfoService;
+import com.spring.security.interfaces.ContactInfoService;
+import com.spring.security.interfaces.DefaultInfoService;
+import com.spring.security.interfaces.UserInfoService;
+import com.spring.security.request.BlogInfoRequest;
+import com.spring.security.request.CategoryInfoRequest;
+import com.spring.security.request.CategoryReq;
+import com.spring.security.request.ContactInfoRequest;
+import com.spring.security.request.DefaultInfoRequest;
+import com.spring.security.request.SubscribeInfoRequest;
+import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotNull;
-
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/admin")
@@ -129,7 +138,7 @@ public class AdminController {
 		return "admin/user/editUser";
 	}
 
-	@DeleteMapping("/deleteUserInfo/{id}")
+	@GetMapping("/deleteUserInfo/{id}")
 	private String deleteUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
@@ -155,7 +164,7 @@ public class AdminController {
 		return "admin/contactUs";
 	}
 
-	@DeleteMapping("/deleteContactUsInfo/{id}")
+	@GetMapping("/deleteContactUsInfo/{id}")
 	private String deleteContactUsInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
@@ -169,8 +178,8 @@ public class AdminController {
 	@GetMapping("/showAllSubscribeInfo")
 	private String showAllSubscribeInfo(HttpServletRequest request, Model model) {
 		try {
-			List<SubscribeInfoRequest> SubscribeInfo = this.contactInfoService.showAllSubscribeInfo();
-			model.addAttribute("SubscribeInfo", SubscribeInfo);
+			List<SubscribeInfoRequest> subscribeInfo = this.contactInfoService.showAllSubscribeInfo();
+			model.addAttribute("subscribeInfos", subscribeInfo);
 			CommonUtility.userRole(request, model);
 			model.addAttribute("message", "List of Users Who Submitted the Subscribe Us Form");
 		} catch (NotFoundException e) {
@@ -179,7 +188,7 @@ public class AdminController {
 		return "admin/subscribeUs";
 	}
 
-	@DeleteMapping("/deleteSubscribeInfo/{id}")
+	@GetMapping("/deleteSubscribeInfo/{id}")
 	private String deleteSubscribeInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
@@ -262,7 +271,7 @@ public class AdminController {
 		return "admin/blog/addBlog";
 	}
 
-	@DeleteMapping("/deleteBlogInfo/{id}")
+	@GetMapping("/deleteBlogInfo/{id}")
 	private String deleteBlogInfos(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
@@ -353,7 +362,7 @@ public class AdminController {
 		return "admin/category/addCategory";
 	}
 
-	@DeleteMapping("/deleteCategoryInfo/{id}")
+	@GetMapping("/deleteCategoryInfo/{id}")
 	private String deleteCategoryInfos(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
@@ -442,7 +451,7 @@ public class AdminController {
 		}
 	}
 
-	@DeleteMapping("/deleteDefaultInfo/{id}")
+	@GetMapping("/deleteDefaultInfo/{id}")
 	public String deleteDefaultInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);

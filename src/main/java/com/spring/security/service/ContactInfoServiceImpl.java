@@ -128,7 +128,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	@Override
 	public List<SubscribeInfoRequest> showAllSubscribeInfo() {
 		List<SubscribeInfoDetail> findAll = subscribeRepo.findAll();
-		return findAll.stream().map(x-> modelMapper.map(findAll, SubscribeInfoRequest.class)).toList();
+		return findAll.stream().map(x-> modelMapper.map(x, SubscribeInfoRequest.class)).toList();
 	}
 
 	@Override

@@ -140,7 +140,7 @@ public class RestControllers {
 		}
 	}
 
-	@DeleteMapping("/deleteCategory/{id}")
+	@GetMapping("/deleteCategory/{id}")
 	public String deleteCategory(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);

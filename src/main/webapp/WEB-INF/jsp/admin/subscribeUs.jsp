@@ -42,7 +42,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <c:forEach var="data" items="${subscribeInfo}">
+                          <c:forEach var="data" items="${subscribeInfos}">
                             <tr>
                               <td>${data.id}</td>
                               <td>${data.email}</td>

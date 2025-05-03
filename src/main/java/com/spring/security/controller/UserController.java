@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.security.interfaces.WebSiteUserService;
+import com.spring.security.utility.CommonUtility;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user")
@@ -26,9 +29,9 @@ public class UserController {
 	 */
 
 	@GetMapping("/dashboard")
-    public String showUserDashboard(Model model) {
-        model.addAttribute("message", "Welcome to the admin dashboard");
-        return "webUser/Dashboard";  
-    }
-
+	private String dashboard(HttpServletRequest request, Model model) {
+		model.addAttribute("message", "User Panel – Welcome");
+		CommonUtility.userRole(request, model);
+		return "webUser/Dashboard";
+	}
 }

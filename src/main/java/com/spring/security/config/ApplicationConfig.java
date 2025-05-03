@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-public class AppConfig {
+public class ApplicationConfig {
 	
 	@Bean
 	public ModelMapper modelMapper() {
