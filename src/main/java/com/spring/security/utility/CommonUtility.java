@@ -60,11 +60,12 @@ public class CommonUtility {
             Path destination = Paths.get(pathUrl, file.getOriginalFilename());
             Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
             LOGGER.info("File uploaded successfully to {}", destination);
-            return destination.toString();
+           // return destination.toString(); for live server
+            return file.getOriginalFilename();
         } catch (IOException e) {
-            LOGGER.error("IOException during file upload: {}", e.getMessage(), e);
+            LOGGER.error("IOException during file upload: {}", e.getMessage());
         } catch (Exception e) {
-            LOGGER.error("Unexpected error during file upload: {}", e.getMessage(), e);
+            LOGGER.error("Unexpected error during file upload: {}", e.getMessage());
         }
 
         return null;
@@ -77,7 +78,7 @@ public class CommonUtility {
                 LocalDate dateOnly = dateTime.toLocalDate();
                 return dateOnly.format(DateTimeFormatter.ISO_LOCAL_DATE);
             } catch (Exception e) {
-                LOGGER.error("Invalid date format: {}", dateTimeString, e);
+                LOGGER.error("Invalid date format: {}", dateTimeString);
             }
         } else {
             LOGGER.warn("Provided date string is null or empty");

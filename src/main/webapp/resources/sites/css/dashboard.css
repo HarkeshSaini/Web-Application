@@ -1,0 +1,99 @@
+ .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .dashboard-card {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .address-info {
+            padding: 10px;
+        }
+        .user-detail h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .user-detail p {
+            font-size: 1rem;
+        }
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+              .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .dashboard-card {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .address-info {
+            padding: 10px;
+        }
+        .user-detail h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .user-detail p {
+            font-size: 1rem;
+        }
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            .card.dashboard-card.border-0.shadow-sm {
+    margin-top: 12px;
+}
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+       .row.user-dash {
+    margin-top: 58px;
+}.bg-light {
+   background-image: linear-gradient(to left, rgb(124 228 255 ) 0%, rgb(0 113 255) 100%);
+}body {
+    /*background-color: rgb(237 237 237) !important;*/
+}button.btn.btn-primary.w-100 {
+    background-image: linear-gradient(to left, rgb(129 228 255) 0%, rgb(26 40 62) 100%);
+}.card-header.bg-primary.text-white {
+    background-image: linear-gradient(to left, rgb(129 228 255) 0%, rgb(26 40 62) 100%);
+}.info-item {
+    padding: 1rem;
+        border-radius: 0.5rem;
+    background-image: linear-gradient(to left, rgb(181 146 146) 0%, rgb(87 121 126) 100%);
+}
+.info-item p {
+    margin: 0;
+}.text-muted {
+    color: #ff00006e !important;
+    font-size: 20px;
+}
+.card-body {	
+    border: 1px solid #7a7272;
+    background-color: #cfd2d399;
+    border-radius: 4px;
+}  .profile-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #0d6efd;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .chart-container {
+      margin-bottom: 30px;
+    }

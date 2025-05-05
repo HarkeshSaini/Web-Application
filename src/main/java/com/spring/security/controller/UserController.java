@@ -1,12 +1,15 @@
 package com.spring.security.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.WebSiteUserService;
-import com.spring.security.utility.CommonUtility;
+import com.spring.security.request.WebSiteUserRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -21,9 +24,31 @@ public class UserController {
     }
 
     @GetMapping("/dashboard")
-    private String dashboard(HttpServletRequest request, Model model) {
-        model.addAttribute("message", "User Panel – Welcome");
-        CommonUtility.userRole(request, model);   
-        return "webUser/Dashboard";   
-    }
+	public String userDashboard(Principal principal ,HttpServletRequest request, Model model) {
+    	try {
+    		WebSiteUserRequest userRequest=	userService.findUserByUserName(principal.getName());
+        	model.addAttribute("message", "success");
+        	model.addAttribute("userDetail", userRequest);
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new NotFoundException(e.getMessage());
+		}
+		return "webUser/dashboard";
+	}
+    
+    @GetMapping("/information")
+	public String userInformation(Principal principal ,HttpServletRequest request, Model model) {
+    	try {
+    		WebSiteUserRequest userRequest=	userService.findUserByUserName(principal.getName());
+        	model.addAttribute("message", "success");
+        	model.addAttribute("userDetail", userRequest);
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new NotFoundException(e.getMessage());
+		}
+		return "webUser/information";
+	}
+
 }

@@ -50,7 +50,7 @@ public class ServiceController {
 			model.addAttribute("requestDetail", requestDetail);
 			model.addAttribute("categoryRequest", categoryRequest.getBody());
 		} catch (IllegalArgumentException e) {
-			throw new NotFoundException(e.getLocalizedMessage());
+			throw new IllegalArgumentException(e.getLocalizedMessage());
 		} catch (Exception e) {
 			throw new NotFoundException(e.getMessage());
 		}
@@ -77,8 +77,7 @@ public class ServiceController {
 			}
 			model.addAttribute("requestDetail", requestDetail);
 		} catch (IllegalArgumentException e) {
-			GlobalExceptionHandler.handleIllegalArgumentException(request, e);
-			throw new NotFoundException(e.getLocalizedMessage());
+			throw new IllegalArgumentException(e.getLocalizedMessage());
 		} catch (Exception e) {
 			throw new NotFoundException(e.getMessage());
 		}

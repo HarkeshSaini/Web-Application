@@ -21,6 +21,7 @@
 </section>
 <div class="container py-5">
     <p class="text-center">${data.content}</p>
+    <jsp:include page="../include/review.jsp"></jsp:include>
 </div>
 <jsp:include page="../include/footer.jsp"></jsp:include>
 </body>

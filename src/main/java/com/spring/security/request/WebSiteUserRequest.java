@@ -12,6 +12,8 @@ public class WebSiteUserRequest {
 	private String email;
 	private String password;
 	private String phone;
+	private String destination;
+	private String aboutMe;
 	private String username;
 	private String status;
 	private String dateOfBirth;

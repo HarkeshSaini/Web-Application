@@ -1,5 +1,6 @@
 package com.spring.security.interfaces;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -13,5 +14,9 @@ public interface WebSiteUserService {
 	Map<String, String> createNewUserForWeb(WebSiteUserRequest request, MultipartFile file);
 
 	String forgotPassword(WebSiteUserRequest request);
+
+	WebSiteUserRequest findUserByUserName(String name);
+
+	List<WebSiteUserRequest> findAllUser();
 
 }

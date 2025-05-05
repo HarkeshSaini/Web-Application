@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -163,8 +162,7 @@ public class RestControllers {
 	}
 	
 	@PostMapping(value = "/updateStatusOfSubscribeInfoByStatus/{id}/{value}")
-	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(@PathVariable String id,
-			@PathVariable String value) {
+	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(@PathVariable String id,@PathVariable String value) {
 		try {
 			return this.contactInfoService.updateStatusOfSubscribeInfoByStatus(id, value);
 		} catch (Exception e) {

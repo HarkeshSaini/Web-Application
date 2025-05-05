@@ -91,4 +91,16 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
 		List<WebSiteUserDetail> findAll = userRepository.findAll();
 		return findAll.stream().map(WebSiteUserDetail::getRole).toArray(String[]::new);
 	}
+
+	@Override
+	public WebSiteUserRequest findUserByUserName(String name) {
+		WebSiteUserDetail findByUsername = userRepository.findByUsername(name);
+		return modelMapper.map(findByUsername, WebSiteUserRequest.class);
+	}
+	
+	@Override
+	public List<WebSiteUserRequest> findAllUser() {
+		List<WebSiteUserDetail> userDetail = userRepository.findAll();
+		return userDetail.stream().map(x-> modelMapper.map(x, WebSiteUserRequest.class)).toList();
+	}
 }

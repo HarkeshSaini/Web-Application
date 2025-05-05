@@ -1,12 +1,11 @@
 package com.spring.security.entity;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -50,7 +49,7 @@ public class UserInfoDetail implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Set.of(new SimpleGrantedAuthority(role));
+   	 return Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+role));
 	}
 
 	@Override
