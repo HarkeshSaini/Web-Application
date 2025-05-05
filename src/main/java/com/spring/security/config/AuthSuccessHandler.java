@@ -16,7 +16,6 @@ import com.spring.security.entity.UserInfoDetail;
 import com.spring.security.entity.WebSiteUserDetail;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
 import com.spring.security.repositories.WebSiteUserRepository;
-import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
