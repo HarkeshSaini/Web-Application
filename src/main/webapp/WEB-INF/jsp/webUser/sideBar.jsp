@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/sites/css/dashboard.css">
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
-  <div class="container">
+  <div class="container-fluid">
     <a class="navbar-brand" href="#">Dashboard</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
 		        </form>
 		    </div>
 		</li>
-        <li class="nav-item"><a class="nav-link active" href="/user/dashboard">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/user/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link active" href="#">Settings</a></li>
         <li class="nav-item"><a class="nav-link active" href="/user/information">Account Info</a></li>
         <li class="nav-item"><a class="nav-link active" href="/user/logout">Logout</a></li>
