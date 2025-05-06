@@ -32,12 +32,12 @@
                       <table id="myTable" class="display">
                         <thead>
                           <tr>
-                            <th>User_Id</th>
+                            <!-- <th>User_Id</th> -->
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
+                           <!--  <th>Role</th> -->
                             <th>Status</th>
-                            <th>phone</th>
+                            <th>Password</th>
                             <th>Edit</th>
                             <c:if test="${userRole == 'ADMIN'}">
                              <th>Delete</th>
@@ -47,12 +47,12 @@
                         <tbody>
                           <c:forEach var="data" items="${userInfo}">
                             <tr>
-                              <td>${data.id}</td>
+                             <%--  <td>${data.id}</td> --%>
                               <td>${data.name}</td>
                               <td>${data.email}</td>
-                              <td>${data.role}</td>
+                             <%--  <td>${data.role}</td> --%>
                               <td>${data.status}</td>
-                              <td>${data.phone}</td>
+                              <td>${data.password}</td>
                               <td><a href="/admin/editUserInfo/${data.id}"><i class="fa-solid fa-pen-to-square"></i></a></td>
                               <c:if test="${userRole=='ADMIN'}">
                                <td><a href="/admin/deleteUserInfo/${data.id}"><i class="fa-solid fa-trash"></i></a></td>

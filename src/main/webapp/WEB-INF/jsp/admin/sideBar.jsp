@@ -64,9 +64,14 @@
         <i class="fs-4 bi-house"></i> 
         <span class="ms-1 d-none d-sm-inline">Subscribe Information </span> </a>
       </li>
+      <li class="nav-item">
+        <a href="/admin/logout" class="nav-link align-middle px-0"> 
+        <i class="fs-4 bi-house"></i> 
+        <span class="ms-1 d-none d-sm-inline">Log Out </span> </a>
+      </li>
     </ul>
     <div class="dropdown pb-4">
-      <a href="/logout" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
+      <a href="/admin/logout" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="true">
       <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle" />
       <span class="d-none d-sm-inline mx-1">loser</span>
       </a>

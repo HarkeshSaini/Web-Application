@@ -69,7 +69,7 @@ public class SecurityConfig {
 	@Order(1)
 	protected SecurityFilterChain adminSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(AbstractHttpConfigurer::disable).securityMatcher("/admin/**", "/admin", "/adminUser")
-		.authorizeHttpRequests(auth -> auth.requestMatchers("/admin", "/adminUser").permitAll().anyRequest().hasRole("ADMIN"))
+		.authorizeHttpRequests(auth -> auth.requestMatchers("/admin", "/adminUser").permitAll().anyRequest().hasAnyRole("ADMIN","ADMIN-USER"))
 		.formLogin(form -> form.loginPage("/admin").loginProcessingUrl("/adminUser").defaultSuccessUrl("/admin/dashboard", true).permitAll())
 		.logout(logout -> logout.logoutUrl("/admin/logout").logoutSuccessUrl("/admin?logout"));
 		return http.build();
