@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -83,7 +84,7 @@ public class SecurityConfig {
 		http.csrf(AbstractHttpConfigurer::disable).securityMatcher("/user/**", "/login", "/loginUser")
 		.authorizeHttpRequests(auth -> auth.requestMatchers("/login", "/loginUser").permitAll().anyRequest().hasRole("WEB-USER"))
 		.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/loginUser").defaultSuccessUrl("/user/dashboard", true).permitAll())
-		.logout(logout -> logout.logoutUrl("/login/logout").logoutSuccessUrl("/login?logout"));
+		.logout(logout -> logout.logoutUrl("/user/logout").logoutSuccessUrl("/login?logout"));
 		return http.build();
 	}
 
