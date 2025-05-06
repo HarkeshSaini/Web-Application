@@ -33,12 +33,14 @@
     <a href="/user/update-profile" class="btn btn-primary w-100">Edit Profile</a>
   </div>
   <div class="card p-3">
-    <h5>Address</h5>
-    <p><strong>Street:</strong> 123 Main St</p>
-    <p><strong>City:</strong> New York</p>
-    <p><strong>State:</strong> NY</p>
-    <p><strong>ZIP:</strong> 10001</p>
-    <p><strong>Country:</strong> USA</p>
+    <h5>Other information</h5>
+     <ul class="list-group nav-pills box flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
+      <li class="nav-item c"><a href="/user/dashboard" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard Overview and Summary</span> </a></li>
+      <li class="nav-item c"><a href="/user/information" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Your Account Information Detail</span> </a></li>
+      <li class="nav-item c"><a href="/user/update-profile" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Change Your Account Information</span> </a></li>
+      <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Change Your Account Settings</span> </a></li>
+      <li class="nav-item c"><a href="/user/logout" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Logout</span> </a></li>
+    </ul>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

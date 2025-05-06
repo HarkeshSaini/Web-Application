@@ -1,7 +1,6 @@
 package com.spring.security.controller;
 
 import java.security.Principal;
-import java.sql.Timestamp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.security.entity.WebSiteUserDetail;
 import com.spring.security.exception.NotFoundException;
 import com.spring.security.interfaces.WebSiteUserService;
 import com.spring.security.request.WebSiteUserRequest;

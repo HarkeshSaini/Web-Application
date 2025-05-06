@@ -76,7 +76,7 @@
 		          <div class="col-md-4">
 		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="createdAt">Account Status</label>
-		              <input type="text" id="updatedAt" value="Active" class="form-control"/>
+		              <input type="text" id="status" value="Active" class="form-control"/>
 		            </div>
 		          </div>
 		          <div class="col-md-6">

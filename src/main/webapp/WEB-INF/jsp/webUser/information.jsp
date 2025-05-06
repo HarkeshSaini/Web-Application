@@ -18,61 +18,61 @@
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Your login UserName</label>
+                    <label class="form-label text-muted mb-0">Your login UserName:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.username}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Your login Password</label>
+                    <label class="form-label text-muted mb-0">Your login Password:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.password}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Full Name</label>
+                    <label class="form-label text-muted mb-0">Full Name:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.fullName}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Email</label>
+                    <label class="form-label text-muted mb-0">Email:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.email}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Phone Number</label>
+                    <label class="form-label text-muted mb-0">Phone Number:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.phone}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0"> Gender</label>
+                    <label class="form-label text-muted mb-0"> Gender:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.gender}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0"> Account Create Date</label>
+                    <label class="form-label text-muted mb-0"> Account Create Date:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.createdAt}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Date of birth</label>
+                    <label class="form-label text-muted mb-0">Date of birth:- </label>
                     <p class="fw-semibold fs-6 mb-0">${userDetail.dateOfBirth}</p>
                   </div>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">Address</label>
-                    <p class="fw-semibold fs-6 mb-0">${userDetail.address}</p>
+                    <label class="form-label text-muted mb-0">Address:- </label>
+                    <p class="text-body">${userDetail.address}</p>
                   </div>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                   <div class="info-item">
-                    <label class="form-label text-muted mb-0">About Me</label>
+                    <label class="form-label text-muted mb-0">About Me:- </label>
                     <p class="text-body">${userDetail.aboutMe}</p>
                   </div>
                 </div>
