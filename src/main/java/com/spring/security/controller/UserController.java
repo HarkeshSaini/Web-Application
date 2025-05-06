@@ -50,5 +50,21 @@ public class UserController {
 		}
 		return "webUser/information";
 	}
+    
+    @GetMapping("/update-profile")
+	public String updateProfile(Principal principal ,HttpServletRequest request, Model model) {
+    	try {
+    		WebSiteUserRequest userRequest=	userService.findUserByUserName(principal.getName());
+        	model.addAttribute("message", "success");
+        	model.addAttribute("userDetail", userRequest);
+        	model.addAttribute("id", userRequest.getId());
+			model.addAttribute("command", userRequest);
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new NotFoundException(e.getMessage());
+		}
+		return "webUser/updateProfile";
+	}
 
 }

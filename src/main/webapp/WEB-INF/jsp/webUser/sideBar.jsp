@@ -10,6 +10,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+		    <div class="search">
+		        <form action="" class="search-form">
+		            <input type="search" name="" required="required" placeholder="Search...">
+		        </form>
+		    </div>
+		</li>
         <li class="nav-item"><a class="nav-link active" href="/user/dashboard">Home</a></li>
         <li class="nav-item"><a class="nav-link active" href="#">Settings</a></li>
         <li class="nav-item"><a class="nav-link active" href="/user/information">Account Info</a></li>
@@ -23,7 +30,7 @@
     <img src="/resources/admin/image/${userDetail.imgUrl}" alt="User" class="profile-img mx-auto mb-3" />
     <h5 class="card-title">${userDetail.fullName}</h5>
     <p class="card-text text-muted">${userDetail.destination}</p>
-    <button class="btn btn-primary w-100">Edit Profile</button>
+    <a href="/user/update-profile" class="btn btn-primary w-100">Edit Profile</a>
   </div>
   <div class="card p-3">
     <h5>Address</h5>
