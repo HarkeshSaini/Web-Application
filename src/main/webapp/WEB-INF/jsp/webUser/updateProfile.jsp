@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,71 +13,95 @@
       <div class="row user-dash">
         <jsp:include page="sideBar.jsp"></jsp:include>
         <div class="col-md-8">
-		  <form action="#" method="post">
+		  <form:form action="/user/update-profile" method="post" enctype="multipart/form-data">
 		    <div class="card dashboard-card border-0 shadow-sm">
 		      <div class="card-header bg-primary text-white">
-		        <h5 class="mb-0"><i class="bi bi-person-circle me-2"></i>Update Information</h5>
+		      	 <p class="mb-0">Update Account Information <p>${message}</p> 
 		      </div>
 		      <div class="card-body">
 		        <div class="row g-3">
 		          <div class="col-md-6">
-		            <div class="info-item">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="username">Your login Username</label>
-		              <input type="text" id="username" name="username" class="form-control" placeholder="Enter username">
+		              <form:input type="text" id="username" path="username" class="form-control" placeholder="Enter username"/>
 		            </div>
 		          </div>
 		          <div class="col-md-6">
-		            <div class="info-item">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="password">Your login Password</label>
-		              <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
+		              <form:input type="text" id="password" path="password" class="form-control" placeholder="Enter password"/>
 		            </div>
 		          </div>
 		          <div class="col-md-6">
-		            <div class="info-item">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="fullname">Full Name</label>
-		              <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter full name">
+		              <form:input type="text" id="fullname" path="fullName" class="form-control" placeholder="Enter full name"/>
 		            </div>
 		          </div>
 		          <div class="col-md-6">
-		            <div class="info-item">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="email">Email</label>
-		              <input type="email" id="email" name="email" class="form-control" placeholder="Enter email">
+		              <form:input type="email" id="email" path="email" class="form-control" placeholder="Enter email"/>
 		            </div>
 		          </div>
 		          <div class="col-md-6">
-		            <div class="info-item">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="phone">Phone Number</label>
-		              <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter phone number">
+		              <form:input type="tel" id="phone" path="phone" class="form-control" placeholder="Enter phone number"/>
 		            </div>
 		          </div>
-		          <div class="col-md-6">
-		            <div class="info-item">
+		           <div class="col-md-6">
+		            <div class="info-item edit">
+		              <label class="form-label text-muted mb-0" for="phone">Your Destination</label>
+		              <form:input type="text" id="destination" path="destination" class="form-control" placeholder="Enter Destination"/>
+		            </div>
+		          </div>
+		          <div class="col-md-4">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="gender">Gender</label>
-		              <input type="text" id="gender" name="gender" class="form-control" placeholder="Enter gender">
+		              <form:select id="gender" path="gender" class="form-control">
+						  <form:option value="male">Male</form:option>
+						  <form:option value="female">Female</form:option>
+						  <form:option value="other">Other</form:option>
+					  </form:select>
+		            </div>
+		          </div>
+		           
+		           <div class="col-md-4">
+		            <div class="info-item edit">
+		              <label class="form-label text-muted mb-0" for="image">Account Image</label>
+		              <input type="file" id="file" name="file" class="form-control"/>
+		            </div>
+		          </div>
+		          <div class="col-md-4">
+		            <div class="info-item edit">
+		              <label class="form-label text-muted mb-0" for="createdAt">Account Status</label>
+		              <input type="text" id="updatedAt" value="Active" class="form-control"/>
 		            </div>
 		          </div>
 		          <div class="col-md-6">
-		            <div class="info-item">
-		              <label class="form-label text-muted mb-0" for="accountDate">Account Create Date</label>
-		              <input type="date" id="accountDate" name="accountDate" class="form-control">
+		            <div class="info-item edit">
+		              <label class="form-label text-muted mb-0" for="createdAt">Account Update Date ${userDetail.updatedAt}</label>
+		              <input type="text" id="updatedAt" value="${userDetail.updatedAt}" class="form-control"/>
 		            </div>
 		          </div>
+		          
 		          <div class="col-md-6">
-		            <div class="info-item">
-		              <label class="form-label text-muted mb-0" for="dob">Date of Birth</label>
-		              <input type="date" id="dob" name="dob" class="form-control">
+		            <div class="info-item edit">
+		              <label class="form-label text-muted mb-0" for="dob">Date of Birth:-  ${userDetail.dateOfBirth}</label>
+		              <form:input type="datetime-local" id="dateOfBirth" path="dateOfBirth" class="form-control"/>
 		            </div>
 		          </div>
-		          <div class="col-12">
-		            <div class="info-item">
+		          <div class="col-6">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="address">Address</label>
-		              <textarea id="address" name="address" class="form-control" rows="3" placeholder="Enter address"></textarea>
+		              <form:textarea id="address" path="address" class="form-control" rows="3" placeholder="Enter address"/>
 		            </div>
 		          </div>
-		          <div class="col-12">
-		            <div class="info-item">
+		          <div class="col-6">
+		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="about">About Me</label>
-		              <textarea id="about" name="about" class="form-control" rows="3" placeholder="Tell us about yourself"></textarea>
+		              <form:textarea id="aboutMe" path="aboutMe" class="form-control" rows="3" placeholder="Tell us about yourself"/>
 		            </div>
 		          </div>
 		          <div class="col-12 text-end">
@@ -83,7 +110,7 @@
 		        </div>
 		      </div>
 		    </div>
-		  </form>
+		  </form:form>
 		</div>
 
       </div>

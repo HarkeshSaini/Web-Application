@@ -1,5 +1,6 @@
 package com.spring.security.service;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.entity.WebSiteUserDetail;
@@ -102,5 +104,31 @@ public class WebSiteUserServiceImpl implements WebSiteUserService {
 	public List<WebSiteUserRequest> findAllUser() {
 		List<WebSiteUserDetail> userDetail = userRepository.findAll();
 		return userDetail.stream().map(x-> modelMapper.map(x, WebSiteUserRequest.class)).toList();
+	}
+
+	@Override
+	public String updateProfiles(WebSiteUserRequest siteUserRequest, MultipartFile file,Principal principal) {
+		WebSiteUserRequest dataRequest = findUserByUserName(principal.getName());
+		WebSiteUserDetail user = modelMapper.map(siteUserRequest, WebSiteUserDetail.class);
+		try {
+			user.setId(dataRequest.getId());
+			user.setStatus("Active");
+			user.setRole("WEB-USER");
+			user.setUpdatedAt(System.currentTimeMillis());
+			user.setDateOfBirth(CommonUtility.dateFormate(siteUserRequest.getDateOfBirth()));
+			if (!file.isEmpty()) {
+				user.setImgUrl(CommonUtility.uploadFile(file));
+			}else {
+				
+				user.setImgUrl(dataRequest.getImgUrl());
+			}
+		} catch (Exception e) {
+			return "Something went wrong. Your profile could not be updated.";
+		}
+		WebSiteUserDetail save = userRepository.save(user);
+		if(!ObjectUtils.isEmpty(save)) {
+			return " Your profile has been successfully updated!";
+		}
+		return "Something went wrong. Your profile could not be updated.";
 	}
 }

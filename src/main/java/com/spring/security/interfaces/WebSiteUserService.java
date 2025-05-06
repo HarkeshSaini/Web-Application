@@ -1,5 +1,6 @@
 package com.spring.security.interfaces;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -18,5 +19,7 @@ public interface WebSiteUserService {
 	WebSiteUserRequest findUserByUserName(String name);
 
 	List<WebSiteUserRequest> findAllUser();
+
+	String updateProfiles(WebSiteUserRequest siteUserRequest, MultipartFile file, Principal principal);
 
 }

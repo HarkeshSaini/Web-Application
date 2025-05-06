@@ -15,7 +15,7 @@
         <div class="col-md-8">
           <div class="card dashboard-card border-0 shadow-sm">
             <div class="card-header bg-primary text-white">
-              <h5 class="mb-0"><i class="bi bi-person-circle me-2"></i>User Dashboard</h5>
+              <p class="mb-0">User Dashboard <p>${message}</p></p>
             </div>
             <div class="container mt-5">
               <!-- User Base Graph, Rating, and Author Total -->

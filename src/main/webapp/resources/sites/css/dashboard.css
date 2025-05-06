@@ -72,14 +72,13 @@
 }.info-item {
     padding: 1rem;
     background-color: #f1f1f1f2;
-    /*background-color: aliceblue;*/
+     
         border-radius: 0.5rem;
-    /*background-image: linear-gradient(to left, rgb(181 146 146) 0%, rgb(87 121 126) 100%);*/
 }
 .info-item p {
     margin: 0;
 }.text-muted {
-    color: #ff00006e !important;
+     
     font-size: 20px;
 }
 /*.card-body {	
@@ -193,4 +192,11 @@
     background-image: linear-gradient(to left, rgb(129 228 255) 0%, rgb(26 40 62) 100%);
 }.mt-5 {
     margin-top: 1rem !important;
-} 
+} .info-item.edit {
+    padding: 0.1rem;
+    background-color: #dbecf7;
+    border-radius: 0.5rem;
+    text-align: -webkit-center;
+}.info-item.edit label.form-label.text-muted.mb-0 {
+    font-size: medium;
+}
