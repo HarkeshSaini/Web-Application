@@ -98,6 +98,28 @@
     </div>
   </section>
  </div>
+ <section class="why-us" id="why-us">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose Us?</h2>
+            <p>We are committed to providing the best service for our customers. Here’s why you should choose us for your needs.</p>
+        </div>
+        
+        <div class="row">
+            <div class="column">
+                <img src="/resources/sites/image/why-us.avif" alt="Quality Service" class="section-image">
+            </div>
+            <div class="column">
+                <div class="benefits-list">
+                    <p>United Airlines has an operating route to multiple international and domestic destinations. So, the flight of the airline to those destinations from an assigned airport and Buffalo Niagara International Airport is among them. This airport is located in Cheektowaga, New York, and is 
+                    laced with distinct services to enhance an overall travel experience  Airlines has an operating route to multiple international and domestic destinations. So, the flight of the airline to those destinations from an assigned airport and Buffalo Niagara International Airport is among them. This airport is located in Cheektowaga, New York, and is 
+                    laced with distinct services to enhance an overall travel experience. Whenever you get an issue related to the airline at the airport, then approach its respective customer service team for a resolution. Moreover, the explanation of its contact methods has been displayed in the subheads.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
 <jsp:include page="./include/footer.jsp"></jsp:include>
 </body>
 </html>
