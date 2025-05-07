@@ -25,7 +25,7 @@
       <!-- Card 1 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Service 1">
+          <img src="/resources/sites/image/image1.jpg" class="card-img-top" alt="Service 1">
           <div class="card-body">
             <h5 class="card-title">Web Design</h5>
             <p class="card-text">Responsive and modern web designs that capture your audience's attention.</p>
@@ -36,7 +36,7 @@
       <!-- Card 2 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Service 2">
+          <img src="/resources/sites/image/image2.jpg" class="card-img-top" alt="Service 2">
           <div class="card-body">
             <h5 class="card-title">Development</h5>
             <p class="card-text">Custom web and mobile applications built with cutting-edge technologies.</p>
@@ -47,7 +47,7 @@
       <!-- Card 3 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Service 3">
+          <img src="/resources/sites/image/image3.jpg" class="card-img-top" alt="Service 3">
           <div class="card-body">
             <h5 class="card-title">SEO Optimization</h5>
             <p class="card-text">Increase your site's visibility with our effective SEO strategies.</p>

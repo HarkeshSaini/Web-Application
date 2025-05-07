@@ -53,11 +53,20 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	@Override
 	public ResponseEntity<String> submitContact(ContactInfoRequest request) {
 		try {
-			request.setPostTime(new Timestamp(System.currentTimeMillis()));
-			request.setStatus("Active");
-			request.setLang_code("en");
-			ContactInfoDetail data = modelMapper.map(request, ContactInfoDetail.class);
-			ContactInfoDetail savedData = contactInfoRepository.save(data);
+			if (request.getEmail() == null || request.getEmail().trim().isEmpty() ||
+		        request.getName() == null || request.getName().trim().isEmpty() ||
+		        request.getSubject() == null || request.getSubject().trim().isEmpty()) {
+		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("All fields are required. Please fill in all fields and try again.");
+			}
+		}  catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+		request.setPostTime(new Timestamp(System.currentTimeMillis()));
+		request.setStatus("Active");
+		request.setLang_code("en");
+		ContactInfoDetail data = modelMapper.map(request, ContactInfoDetail.class);
+		ContactInfoDetail savedData = contactInfoRepository.save(data);
+		try {
 			if (savedData == null) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong. Please try again.");
 			}
