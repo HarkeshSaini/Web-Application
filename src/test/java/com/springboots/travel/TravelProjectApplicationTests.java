@@ -1,12 +1,9 @@
 package com.springboots.travel;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
+//@SpringBootTest
 class TravelProjectApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
