@@ -1,9 +1,11 @@
 package com.spring.security.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.interfaces.UserInfoService;
+import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 import com.spring.security.request.ContactInfoRequest;
@@ -34,17 +38,25 @@ public class RestControllers {
 
 	private static final Logger logger = LogManager.getLogger(RestControllers.class);
 
+	private final BlogInfoService blogService;
 	private final UserInfoService infoService;
 	private final ReviewsInfoService infoReviews;
 	private final CategoryInfoService categoryService;
 	private final ContactInfoService contactInfoService;
 
 	public RestControllers(UserInfoService infoService, ReviewsInfoService infoReviews,
-			ContactInfoService contactInfoService, CategoryInfoService categoryService) {
+			ContactInfoService contactInfoService, CategoryInfoService categoryService, BlogInfoService blogService) {
+		this.blogService = blogService;
 		this.infoService = infoService;
 		this.infoReviews = infoReviews;
 		this.categoryService = categoryService;
 		this.contactInfoService = contactInfoService;
+	}
+	
+	@GetMapping("/getLatestBlog")
+	public ResponseEntity<Object> getLatestBlog() {
+	    List<BlogInfoRequest> infoRequest = blogService.getLatestBlog();
+	    return new ResponseEntity<>(infoRequest, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/addAdminUser")

@@ -1,6 +1,7 @@
 package com.spring.security.interfaces;
 
 import java.util.List;
+import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,8 @@ public interface BlogInfoService {
 	List<BlogInfoRequest> findAllBlogByStatus();
 
 	List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl);
+
+	List<BlogInfoRequest> getLatestBlog();
 
 
 }

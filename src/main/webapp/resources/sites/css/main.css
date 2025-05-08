@@ -4,8 +4,16 @@ body {
   line-height: 1.6;
   color: #333;
 }
- 
-
+ p.time-date {
+    margin-bottom: 21px;
+    font-size: 19px;
+    color: #243a50;
+}
+a.data-url {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+}
 /* Base styles for the container */
 .container {
   width: 100%;

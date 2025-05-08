@@ -117,4 +117,10 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 		}
 		return titleUrl;
 	}
+
+	@Override
+	public List<BlogInfoRequest> getLatestBlog() {
+		List<BlogInfoDetail> findAll = infoRepository.findFirst3ByStatusOrderByPostTimeDesc("Active");
+		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+	}
 }
