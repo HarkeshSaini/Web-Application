@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/sites/css/main.css"/>
     <title>Index</title>
+    <meta name="description" content="Index">
+    <meta name="keywords" content="Index" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/resources/sites/css/main.css"/>
+    <jsp:include page="./include/comman.jsp"></jsp:include>
   </head>
   <body>
     <jsp:include page="./include/header.jsp"></jsp:include>

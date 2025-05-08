@@ -12,8 +12,8 @@ public class ReviewInfoRequest {
 	private String userEmail;
 	private String userPhone;
 	private String reviewMessage;
-	private String reviewDate;
-	private String reviewRating;
+	private Timestamp reviewDate;
+	private int reviewRating;
 	private String reviewRpyId;
 	private String reviewStatus;
 	private String reviewUrl;

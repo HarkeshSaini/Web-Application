@@ -18,12 +18,14 @@ import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.DefaultInfoService;
+import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.interfaces.UserInfoService;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.DefaultInfoRequest;
+import com.spring.security.request.ReviewInfoRequest;
 import com.spring.security.request.SubscribeInfoRequest;
 import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommonUtility;
@@ -35,17 +37,19 @@ import jakarta.validation.constraints.NotNull;
 @RequestMapping("/admin")
 public class AdminController {
 
+	
 	private final BlogInfoService blogService;
 	private final UserInfoService registerService;
 	private final CategoryInfoService categoryService;
+	private final ReviewsInfoService reviewsInfoService;
 	private final DefaultInfoService defaultInfoService;
 	private final ContactInfoService contactInfoService;
 
-	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,
-			BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService) {
+	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService, ReviewsInfoService reviewsInfoService) {
 		this.blogService = blogService;
 		this.registerService = registerService;
 		this.categoryService = categoryService;
+		this.reviewsInfoService = reviewsInfoService;
 		this.defaultInfoService = defaultInfoService;
 		this.contactInfoService = contactInfoService;
 	}
@@ -461,5 +465,30 @@ public class AdminController {
 			throw new NotFoundException(e.getLocalizedMessage());
 		}
 	}
-
+	
+	//===============================REVIEWS-MANAGEMENT================================
+	
+	@GetMapping("/getAllReviews")
+	public String reviewInfoRequests(HttpServletRequest request,Model model){
+		List<ReviewInfoRequest> infoRequests=reviewsInfoService.reviewsInfoService();
+		try {
+			model.addAttribute("infoRequests", infoRequests);
+			CommonUtility.userRole(request, model);
+			model.addAttribute("message", "List of All Reviews Info details");
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getLocalizedMessage());
+		}
+		return "admin/review";
+	}
+	
+	@GetMapping("/deleteReviewInfo/{id}")
+	public String deleteReviewInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+		try {
+			CommonUtility.userRole(request, model);
+			this.reviewsInfoService.deleteReviewInfo(id);
+			return "redirect:/admin/getAllReviews"; // Redirect to avoid resubmission
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getLocalizedMessage());
+		}
+	}
 }

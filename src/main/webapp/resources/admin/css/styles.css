@@ -97,7 +97,7 @@
     padding: 6px 11px;
 }
   button.btn.user {
-    float: inline-end;
+   /* float: inline-end;*/
     border: 1px solid;
     color: white;
     margin-top: 7px;

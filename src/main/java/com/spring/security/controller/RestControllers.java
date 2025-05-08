@@ -1,7 +1,6 @@
 package com.spring.security.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +37,7 @@ public class RestControllers {
 
 	private static final Logger logger = LogManager.getLogger(RestControllers.class);
 
-	private final BlogInfoService blogService;
+	private final BlogInfoService blogService;	
 	private final UserInfoService infoService;
 	private final ReviewsInfoService infoReviews;
 	private final CategoryInfoService categoryService;
@@ -69,6 +68,18 @@ public class RestControllers {
 		}
 	}
 
+	@PostMapping("/addNewReviews")
+	public ResponseEntity<Object> addNewReviews(@RequestBody ReviewInfoRequest infoRequest) {
+	    try {
+	        return this.infoReviews.addNewReviews(infoRequest);
+	    } catch (Exception e) {
+	        logger.error("Error add reviews: {}", e.getMessage());
+	        String errorMessage = String.format("Error add reviews: %s", e.getMessage());
+	        return ResponseEntity.badRequest().body(errorMessage);
+	    }
+	}
+
+	
 	@GetMapping(value = "/getAllReviews")
 	public ResponseEntity<List<ReviewInfoRequest>> getAllReviews(HttpServletRequest request) {
 		ResponseEntity<List<ReviewInfoRequest>> allReviews = null;
@@ -88,6 +99,26 @@ public class RestControllers {
 		} catch (Exception e) {
 			logger.error("Error fetching reviews by URL '{}': {}", reviewUrl, e.getMessage());
 			return ResponseEntity.status(500).body(List.of()); // Return an empty list on error
+		}
+	}
+	
+	@GetMapping(value = "/findByIdReviews/{id}")
+	public ResponseEntity<ReviewInfoRequest> findByIdReviews(@PathVariable String id) {
+		try {
+			return this.infoReviews.findByIdReviews(id);
+		} catch (Exception e) {
+			logger.error("Error add reviews: {}", e.getMessage());
+	        return ResponseEntity.badRequest().body(null);
+		}
+	}
+	
+	@PostMapping(value = "/updateReviewsByStatus/{id}/{value}")
+	public ResponseEntity<Boolean> updateReviewsByStatus(@PathVariable String id, @PathVariable String value) {
+		try {
+			return this.infoReviews.updateReviewsByStatus(id, value);
+		} catch (Exception e) {
+			logger.error("Error updating status for contact info ID '{}': {}", id, e.getMessage());
+			return ResponseEntity.status(500).body(false);
 		}
 	}
 
