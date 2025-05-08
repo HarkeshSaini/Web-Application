@@ -26,8 +26,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	private final ContactInfoRepository contactInfoRepository;
 	private final SubscribeRepository subscribeRepo;
 
-	public ContactInfoServiceImpl(ContactInfoRepository contactInfoRepository, ModelMapper modelMapper,
-			SubscribeRepository subscribeRepo) {
+	public ContactInfoServiceImpl(ContactInfoRepository contactInfoRepository, ModelMapper modelMapper,SubscribeRepository subscribeRepo) {
 		this.modelMapper = modelMapper;
 		this.contactInfoRepository = contactInfoRepository;
 		this.subscribeRepo = subscribeRepo;
@@ -53,9 +52,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	@Override
 	public ResponseEntity<String> submitContact(ContactInfoRequest request) {
 		try {
-			if (request.getEmail() == null || request.getEmail().trim().isEmpty() ||
-		        request.getName() == null || request.getName().trim().isEmpty() ||
-		        request.getSubject() == null || request.getSubject().trim().isEmpty()) {
+			if (request.getEmail() == null ||request.getName() == null) {
 		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("All fields are required. Please fill in all fields and try again.");
 			}
 		}  catch (Exception e) {

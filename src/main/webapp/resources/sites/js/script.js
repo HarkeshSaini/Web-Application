@@ -12,7 +12,7 @@ $(document).ready(function(){
   });
 });
 $(document).ready(function () {
-  $('.submit-btn').on('click', function (e) {
+  $('#contact-form').on('click', function (e) {
     e.preventDefault(); // prevent form from submitting normally
 
     const form = $(this).closest('form')[0]; // Get the form element
@@ -32,13 +32,13 @@ $(document).ready(function () {
         message: message
       }),
       success: function (response) {
-        $('.message').text(response || 'Thank you for contacting us!');
+        $('.message-contact-form').text(response || 'Thank you for contacting us!');
         setTimeout(() => {
           form.reset();  
         }, 2000);
       },
       error: function (xhr) {
-        $('.message').text('Something went wrong. Please try again.');
+        $('.message-contact-form').text('Something went wrong. Please try again.');
       }
     });
   });
@@ -52,7 +52,7 @@ $(document).ready(function () {
     const email = $(form).find('#email').val();
 
     if (!email) {
-      $('.message').text('Please enter a valid email.');
+      $('.message-subscribe').text('Please enter a valid email.');
       return;
     }
 
@@ -64,7 +64,7 @@ $(document).ready(function () {
       success: function (response) {
         const message = typeof response === 'string'
           ? response : (response || 'Thank you for subscribing!');
-        $('.message').text(message);
+        $('.message-subscribe').text(message);
         
         setTimeout(() => {
           form.reset();  
@@ -72,7 +72,7 @@ $(document).ready(function () {
       },
       error: function (xhr) {
         console.error('Error:', xhr.responseText);
-        $('.message').text('Something went wrong. Please try again.');
+        $('.message-subscribe').text('Something went wrong. Please try again.');
         
       }
     });

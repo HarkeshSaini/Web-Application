@@ -52,7 +52,7 @@
 			      <button type="button" class="btn btn-primary subscribe">Subscribe</button>
 			    </div>
 			  </div>
-			  <p class="subscribing message"></p>
+			  <p class="subscribing message message-subscribe"></p>
 			</form>
 
             </div>

@@ -18,7 +18,7 @@
     <!-- Contact Form Section -->
     <div class="form-container">
       <h1>Contact Us</h1>
-      <p class="message">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
+      <p class="message message-contact-form">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
       <form class="contact-form">
         <div class="row">
           <div class="col">
@@ -45,7 +45,7 @@
           <textarea id="message" name="message" rows="4" required placeholder="Your Message"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Submit</button>
+        <button type="submit" class="submit-btn" id="contact-form">Submit</button>
       </form>
     </div>
   </div>
