@@ -3,6 +3,27 @@
 <footer class="footer">
   <section class="bg-lights py-4 py-md-5 py-xls-8 border-top border-light">
     <div class="container overflow-hidden">
+    <div class="icon-social">saadsadsad</div>
+    
+    <div class="row gy-4 gy-lg-0 justify-content-xl-between new-line">
+    	<div class="col-3 col-md-3 col-lg-3 col-xl-2">
+    		 <h4 class="widget-title mb-4 subscribing message message-subscribe">Sign up for our newsletter</h4>
+    	</div>
+    	<div class="col-3 col-md-3 col-lg-3 col-xl-2">
+		    <div class="input-group">
+		      <!-- <span class="input-group-text" id="email-newsletter-addon">
+		        <img src="/resources/sites/image/email-icon.png" alt="Logo" height="16">
+		      </span> -->
+		      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
+		    </div>
+		   </div>
+    	<div class="col-12 col-md-3 col-lg-3 col-xl-2">
+    		<div class="d-grid">
+			  <button type="button" class="btn btn-primary subscribe">Subscribe</button>
+			 </div>
+    	</div>
+    </div>
+    
       <div class="row gy-4 gy-lg-0 justify-content-xl-between">
         <div class="col-12 col-md-3 col-lg-2 col-xl-2">
           <div class="widget">
@@ -13,7 +34,15 @@
             </ul>
           </div>
         </div>
-        
+        <div class="col-12 col-md-3 col-lg-4 col-xl-2">
+          <div class="widget">
+            <h4 class="widget-title mb-4">Useful links</h4>
+            <ul class="list-unstyled">
+             <li class="mb-0"><a class="text-decoration-none" href="#/technology">Technology</a></li>
+             <li class="mb-0"><a class="text-decoration-none" href="#/category">Category</a></li>
+          	</ul>
+          </div>
+        </div>
         <div class="col-12 col-md-3 col-lg-3 col-xl-2">
           <div class="widget">
             <h4 class="widget-title mb-4">About US</h4>
@@ -23,7 +52,8 @@
             </ul>
           </div>
         </div>
-        <div class="col-12 col-md-3 col-lg-4 col-xl-2">
+        
+         <div class="col-12 col-md-3 col-lg-4 col-xl-2">
           <div class="widget">
             <h4 class="widget-title mb-4">Get in Touch</h4>
             <ul class="list-unstyled">
@@ -32,32 +62,8 @@
           	</ul>
           </div>
         </div>
-        <div class="col-12 col-md-3 col-lg-4 col-xl-2">
-        	<div class="widget">
-            <h4 class="widget-title mb-4">Our Newsletter</h4>
-            	<form class="subscribe-form">
-			  <div class="col-12">
-			    <div class="input-group">
-			      <span class="input-group-text" id="email-newsletter-addon">
-			        <img src="/resources/sites/image/email-icon.png" alt="Logo" height="16">
-			      </span>
-			      <input type="email" class="form-control" id="email" name="email"
-			             placeholder="Email Address" aria-label="email-newsletter"
-			             aria-describedby="email-newsletter-addon" required>
-			    </div>
-			  </div>
-			
-			  <div class="col-12">
-			    <div class="d-grid">
-			      <button type="button" class="btn btn-primary subscribe">Subscribe</button>
-			    </div>
-			  </div>
-			  <p class="subscribing message message-subscribe"></p>
-			</form>
-
-            </div>
-        </div>
-      </div><hr class="hori_line">
+      </div>
+      <hr class="hori_line">
       </div>
     <div class="container">
     	<p class="address">&copy; 2025 My Website | All rights reserved, 123 Fake Street, Springfield, IL, 62701, USA A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.</p>
