@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     const form = $(this).closest('form')[0];
     const email = $(form).find('#email').val();
-
+	console.log(email);
     if (!email) {
       $('.message-subscribe').text('Please enter a valid email.');
       return;

@@ -197,3 +197,86 @@ input#email {
     transition: transform 0.2s;
     background-color: #8aacbd30;
 }
+
+
+/* Basic reset and styling */
+ 
+/* Container for the buttons */
+.login-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+/* Basic styling for each button */
+.login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  width: 180px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.login-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Google button */
+.google-btn {
+  background-color: #db4437;
+}
+
+/* GitHub button */
+.github-btn {
+  background-color: #333;
+}
+
+/* Facebook button */
+.facebook-btn {
+  background-color: #3b5998;
+}
+
+/* LinkedIn button */
+.linkedin-btn {
+  background-color: #0077b5;
+}
+
+/* Icons inside the buttons */
+.login-btn i {
+  margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) { /* Desktop */
+  .login-btn {
+    width: 160px; /* Slightly smaller on large desktop screens */
+  }
+}
+
+@media (max-width: 768px) { /* Tablet */
+  .login-btn {
+    width: 150px; /* Smaller buttons for tablet screens */
+  }
+}
+
+@media (max-width: 480px) { /* Mobile */
+  .login-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .login-btn {
+    width: 100%; /* Full-width buttons on mobile */
+  }
+}

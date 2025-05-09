@@ -3,8 +3,15 @@
 <footer class="footer">
   <section class="bg-lights py-4 py-md-5 py-xls-8 border-top border-light">
     <div class="container overflow-hidden">
-    <div class="icon-social">saadsadsad</div>
-    
+    <div class="icon-social">&nbsp;
+    	<!-- <div class="login-buttons d-flex gap-3">
+        <a href="#" class="login-btn google-btn"><i class="fab fa-google"></i></a>
+        <a href="#" class="login-btn github-btn"><i class="fab fa-github"></i></a>
+        <a href="#" class="login-btn facebook-btn"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="login-btn linkedin-btn"><i class="fab fa-linkedin"></i></a>
+      </div> -->
+    </div>
+    <form class="subscribe-form">
     <div class="row gy-4 gy-lg-0 justify-content-xl-between new-line">
     	<div class="col-3 col-md-3 col-lg-3 col-xl-2">
     		 <h4 class="widget-title mb-4 subscribing message message-subscribe">Sign up for our newsletter</h4>
@@ -17,13 +24,13 @@
 		      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
 		    </div>
 		   </div>
-    	<div class="col-12 col-md-3 col-lg-3 col-xl-2">
+    	  <div class="col-12 col-md-3 col-lg-3 col-xl-2">
     		<div class="d-grid">
 			  <button type="button" class="btn btn-primary subscribe">Subscribe</button>
 			 </div>
     	</div>
     </div>
-    
+    </form>
       <div class="row gy-4 gy-lg-0 justify-content-xl-between">
         <div class="col-12 col-md-3 col-lg-2 col-xl-2">
           <div class="widget">

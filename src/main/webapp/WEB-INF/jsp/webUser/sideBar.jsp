@@ -25,7 +25,7 @@
     </div>
   </div>
 </nav>
-<div class="col-md-3 col-sm-12 mb-4">
+<div class="col-md-3 col-sm-12 mb-4 side-bar">
   <div class="card text-center p-3">
     <img src="/resources/admin/image/${userDetail.imgUrl}" alt="User" class="profile-img mx-auto mb-3" />
     <h5 class="card-title">${userDetail.fullName}</h5>

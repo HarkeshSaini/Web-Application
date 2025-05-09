@@ -181,3 +181,7 @@ a.heading {
 }
  /*review page css*/
   
+.row.gy-4.gy-lg-0.justify-content-xl-between.new-line {
+    margin-bottom: 37px;
+    padding: 26px!important;
+}
