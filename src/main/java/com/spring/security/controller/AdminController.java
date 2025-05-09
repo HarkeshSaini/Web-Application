@@ -45,7 +45,7 @@ public class AdminController {
 	private final DefaultInfoService defaultInfoService;
 	private final ContactInfoService contactInfoService;
 
-	public AdminController(UserInfoService registerService, ContactInfoService contactInfoService,BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService, ReviewsInfoService reviewsInfoService) {
+	public AdminController(UserInfoService registerService,ContactInfoService contactInfoService,BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService, ReviewsInfoService reviewsInfoService) {
 		this.blogService = blogService;
 		this.registerService = registerService;
 		this.categoryService = categoryService;
