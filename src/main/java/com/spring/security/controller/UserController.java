@@ -40,7 +40,7 @@ public class UserController {
 	}
 
 	@GetMapping("/information")
-	public String userInformation(Principal principal, HttpServletRequest request, Model model) {
+	public String AdminUserInfoRmation(Principal principal, HttpServletRequest request, Model model) {
 		try {
 			WebSiteUserRequest userRequest = userService.findUserByUserName(principal.getName());
 			model.addAttribute("message", "All your information is here. Please review and update as needed.");

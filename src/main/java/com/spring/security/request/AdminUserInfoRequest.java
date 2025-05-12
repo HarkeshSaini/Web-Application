@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 @Data
-public class UserInfoRequest {
+public class AdminUserInfoRequest {
 
 	private String id;
 	private String name;

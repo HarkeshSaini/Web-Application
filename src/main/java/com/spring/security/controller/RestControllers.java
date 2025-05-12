@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.security.interfaces.AdminUserInfoService;
 import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.ReviewsInfoService;
-import com.spring.security.interfaces.UserInfoService;
+import com.spring.security.request.AdminUserInfoRequest;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.ReviewInfoRequest;
 import com.spring.security.request.SubscribeInfoRequest;
-import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,12 +38,12 @@ public class RestControllers {
 	private static final Logger logger = LogManager.getLogger(RestControllers.class);
 
 	private final BlogInfoService blogService;	
-	private final UserInfoService infoService;
+	private final AdminUserInfoService infoService;
 	private final ReviewsInfoService infoReviews;
 	private final CategoryInfoService categoryService;
 	private final ContactInfoService contactInfoService;
 
-	public RestControllers(UserInfoService infoService, ReviewsInfoService infoReviews,
+	public RestControllers(AdminUserInfoService infoService, ReviewsInfoService infoReviews,
 			ContactInfoService contactInfoService, CategoryInfoService categoryService, BlogInfoService blogService) {
 		this.blogService = blogService;
 		this.infoService = infoService;
@@ -59,7 +59,7 @@ public class RestControllers {
 	}
 
 	@PostMapping(value = "/addAdminUser")
-	public ResponseEntity<Object> addAdminUser(@RequestBody UserInfoRequest request) {
+	public ResponseEntity<Object> addAdminUser(@RequestBody AdminUserInfoRequest request) {
 		try {
 			return this.infoService.addAdminUser(request);
 		} catch (Exception e) {

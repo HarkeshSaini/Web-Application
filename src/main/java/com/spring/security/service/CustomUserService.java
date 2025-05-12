@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.spring.security.entity.UserInfoDetail;
+import com.spring.security.entity.AdminUserInfoDetail;
 import com.spring.security.entity.WebSiteUserDetail;
 import com.spring.security.repositories.UserInfoDetailRepositorie;
 import com.spring.security.repositories.WebSiteUserRepository;
@@ -39,9 +39,9 @@ public class CustomUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String emailId) throws UsernameNotFoundException {
         try {
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-            Optional<UserInfoDetail> optionalUserInfo = userInfoDetailRepositorie.findByEmail(emailId);
+            Optional<AdminUserInfoDetail> optionalUserInfo = userInfoDetailRepositorie.findByEmail(emailId);
             if (optionalUserInfo.isPresent()) {
-                UserInfoDetail userInfo = optionalUserInfo.get();
+            	AdminUserInfoDetail userInfo = optionalUserInfo.get();
                 setSessionRole(request, userInfo.getRole());
                 return buildUserDetails(emailId, userInfo.getPassword(), userInfo.getAuthorities());
             }

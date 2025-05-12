@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.exception.NotFoundException;
+import com.spring.security.interfaces.AdminUserInfoService;
 import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.interfaces.ContactInfoService;
 import com.spring.security.interfaces.DefaultInfoService;
 import com.spring.security.interfaces.ReviewsInfoService;
-import com.spring.security.interfaces.UserInfoService;
+import com.spring.security.request.AdminUserInfoRequest;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
@@ -27,7 +28,6 @@ import com.spring.security.request.ContactInfoRequest;
 import com.spring.security.request.DefaultInfoRequest;
 import com.spring.security.request.ReviewInfoRequest;
 import com.spring.security.request.SubscribeInfoRequest;
-import com.spring.security.request.UserInfoRequest;
 import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,13 +39,13 @@ public class AdminController {
 
 	
 	private final BlogInfoService blogService;
-	private final UserInfoService registerService;
+	private final AdminUserInfoService registerService;
 	private final CategoryInfoService categoryService;
 	private final ReviewsInfoService reviewsInfoService;
 	private final DefaultInfoService defaultInfoService;
 	private final ContactInfoService contactInfoService;
 
-	public AdminController(UserInfoService registerService,ContactInfoService contactInfoService,BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService, ReviewsInfoService reviewsInfoService) {
+	public AdminController(AdminUserInfoService registerService,ContactInfoService contactInfoService,BlogInfoService blogService, DefaultInfoService defaultInfoService, CategoryInfoService categoryService, ReviewsInfoService reviewsInfoService) {
 		this.blogService = blogService;
 		this.registerService = registerService;
 		this.categoryService = categoryService;
@@ -75,7 +75,7 @@ public class AdminController {
 	@GetMapping("/getAllUser")
 	private String getAllUser(HttpServletRequest request, Model model) {
 		try {
-			List<UserInfoRequest> userInfo = this.registerService.getAllUser();
+			List<AdminUserInfoRequest> userInfo = this.registerService.getAllUser();
 			model.addAttribute("userInfo", userInfo);
 			CommonUtility.userRole(request, model);
 			model.addAttribute("message", "List of All Registered Users");
@@ -93,10 +93,10 @@ public class AdminController {
 	}
 
 	@PostMapping("/addUser")
-	private String addUser(UserInfoRequest userRequest, MultipartFile file, Model model, HttpServletRequest request) {
+	private String addUser(AdminUserInfoRequest userRequest, MultipartFile file, Model model, HttpServletRequest request) {
 		try {
 			userRequest.setCreateDate(new Timestamp(System.currentTimeMillis()));
-			UserInfoRequest addUser = this.registerService.addUser(userRequest, file);
+			AdminUserInfoRequest addUser = this.registerService.addUser(userRequest, file);
 			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(addUser)) {
 				model.addAttribute("message", "User already exists!");
@@ -112,7 +112,7 @@ public class AdminController {
 	@GetMapping("/editUserInfo/{id}")
 	private String editUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
 		try {
-			UserInfoRequest userById = this.registerService.getUserById(id);
+			AdminUserInfoRequest userById = this.registerService.getUserById(id);
 			CommonUtility.userRole(request, model);
 			model.addAttribute("id", id);
 			model.addAttribute("command", userById);
@@ -124,10 +124,10 @@ public class AdminController {
 	}
 
 	@PostMapping("/editUserInfo/{id}")
-	private String editUserInfo(@PathVariable String id, UserInfoRequest infoRequest, MultipartFile file, Model model,
+	private String editUserInfo(@PathVariable String id, AdminUserInfoRequest infoRequest, MultipartFile file, Model model,
 			HttpServletRequest request) {
 		try {
-			UserInfoRequest userById = this.registerService.updateUser(id, file, infoRequest);
+			AdminUserInfoRequest userById = this.registerService.updateUser(id, file, infoRequest);
 			CommonUtility.userRole(request, model);
 			if (ObjectUtils.isEmpty(userById)) {
 				model.addAttribute("id", id);

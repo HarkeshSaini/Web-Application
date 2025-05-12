@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.spring.security.entity.UserInfoDetail;
+import com.spring.security.entity.AdminUserInfoDetail;
 
 @Repository
-public interface UserInfoDetailRepositorie extends MongoRepository<UserInfoDetail, String> {
+public interface UserInfoDetailRepositorie extends MongoRepository<AdminUserInfoDetail, String> {
 
-	Optional<UserInfoDetail> findByEmail(String emailID);
+	Optional<AdminUserInfoDetail> findByEmail(String emailID);
 }

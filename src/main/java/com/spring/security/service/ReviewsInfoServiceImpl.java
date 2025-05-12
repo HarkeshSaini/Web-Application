@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import com.spring.security.entity.ContactInfoDetail;
 import com.spring.security.entity.ReviewInfoDetail;
 import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.repositories.ReviewsInfoRepository;
@@ -18,9 +17,6 @@ import com.spring.security.request.ReviewInfoRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotNull;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class ReviewsInfoServiceImpl implements ReviewsInfoService {

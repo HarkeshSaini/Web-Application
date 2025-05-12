@@ -1,13 +1,11 @@
 package com.spring.security.interfaces;
 
 import java.util.List;
-import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.request.BlogInfoRequest;
-import com.spring.security.request.DefaultInfoRequest;
 
 public interface BlogInfoService {
 

@@ -2,7 +2,6 @@ package com.spring.security.entity;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.data.annotation.Id;
@@ -17,8 +16,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Document(collection = "UserInfoDetail")
-public class UserInfoDetail implements UserDetails {
+@Document(collection = "AdminUserInfoDetail")
+public class AdminUserInfoDetail implements UserDetails {
 
 	/**
 	 * 
@@ -41,7 +40,7 @@ public class UserInfoDetail implements UserDetails {
 	private boolean emailVerified;
 	private String imgUrl;
 
-	public UserInfoDetail(User user) {
+	public AdminUserInfoDetail(User user) {
 		this.email = user.getUsername();
 		this.password = user.getPassword();
 		this.role = user.getAuthorities().stream().map(x -> x.getAuthority()).collect(Collectors.joining(", "));

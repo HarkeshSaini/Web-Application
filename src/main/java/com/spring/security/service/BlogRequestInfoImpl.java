@@ -15,8 +15,6 @@ import com.spring.security.interfaces.BlogInfoService;
 import com.spring.security.repositories.BlogInfoRepository;
 import com.spring.security.request.BlogInfoRequest;
 import com.spring.security.utility.CommonUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class BlogRequestInfoImpl implements BlogInfoService {
