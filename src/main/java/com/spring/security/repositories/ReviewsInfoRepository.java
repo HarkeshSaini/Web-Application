@@ -12,4 +12,6 @@ public interface ReviewsInfoRepository extends MongoRepository<ReviewInfoDetail,
 
 	List<ReviewInfoDetail> findByReviewUrl(String reviewUrl);
 
+	List<ReviewInfoDetail> findFirst6ByReviewStatusOrderByPostTimeDesc(String string);
+
 }

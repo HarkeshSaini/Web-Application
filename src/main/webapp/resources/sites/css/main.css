@@ -231,6 +231,7 @@ a.data-url {
       border-radius: 50%;
       overflow: hidden;
       margin-right: 15px;
+      margin-top: -9px;
     }
 
     .review-avatar img {
@@ -544,4 +545,24 @@ textarea {
 .footer {
 	padding: 0rem 0rem!important;
 	}
-	
+.review-stars {
+  color: gold;
+  font-size: 18px;
+  margin: 5px 0;
+}
+	.review-author.name {
+    font-size: 14px;
+    
+}.review-content.content-data {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    font-size: 16px;
+    -webkit-line-clamp: 2;
+        margin-top: -20px;
+    -webkit-box-orient: vertical;
+}.review-card.review-size-count
+Specificity: (0,2,0)
+ {
+    padding: 10px;
+}

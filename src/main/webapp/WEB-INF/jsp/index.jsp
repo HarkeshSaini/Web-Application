@@ -14,7 +14,7 @@
     <section class="banner">
       <div class="banner-overlay"></div>
       <div class="banner-content">
-        <!-- <h1>Welcome to Our Website</h1> -->
+        <h1>Welcome to Our Website</h1>
         <p>Discover great content, stay connected, and grow with us.</p>
         <a href="#about" class="btn">Learn More</a>
       </div>
@@ -55,41 +55,7 @@
       </div>
       <section class="reviews-section">
         <h2 class="reviews-title">What Our Customers Say</h2>
-        <div class="reviews-container">
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-avatar">
-                <img src="https://i.pravatar.cc/100?img=1" alt="User Avatar">
-              </div>
-              <div class="review-author">Alice Smith</div>
-            </div>
-            <div class="review-content">
-              “Amazing experience! Highly recommend their service. Everything was smooth and professional.”
-            </div>
-          </div>
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-avatar">
-                <img src="https://i.pravatar.cc/100?img=2" alt="User Avatar">
-              </div>
-              <div class="review-author">John Doe</div>
-            </div>
-            <div class="review-content">
-              “The quality exceeded my expectations. The team was supportive and responsive throughout.”
-            </div>
-          </div>
-          <div class="review-card">
-            <div class="review-header">
-              <div class="review-avatar">
-                <img src="https://i.pravatar.cc/100?img=3" alt="User Avatar">
-              </div>
-              <div class="review-author">Samantha Lee</div>
-            </div>
-            <div class="review-content">
-              “I will definitely use this again. Great value and even better customer service!”
-            </div>
-          </div>
-        </div>
+        <div class="reviews-container review-show"></div>
       </section>
     </div>
     <section class="why-us" id="why-us">
@@ -114,11 +80,9 @@
       </div>
     </section>
     <div class="container">
-      <section class="reviews-section">
+      <section class="reviews-section ">
         <h2 class="reviews-title">Check out our latest blog post for fresh insights and updates!</h2>
-        <div class="reviews-container" id="reviews-container">
-          <!-- Reviews will be inserted here dynamically -->
-        </div>
+        <div class="reviews-container" id="blog-show"></div>
       </section>
     </div>
     <jsp:include page="./include/footer.jsp"></jsp:include>

@@ -32,12 +32,11 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	@Override
 	public ResponseEntity<List<ReviewInfoRequest>> getAllReviews(HttpServletRequest request) {
 		try {
-			List<ReviewInfoDetail> findAll = reviewsInfoRepository.findAll();
+			List<ReviewInfoDetail> findAll = reviewsInfoRepository.findFirst6ByReviewStatusOrderByPostTimeDesc("Active");
 			if (ObjectUtils.isEmpty(findAll)) {
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null); // No content found
 			}
-			List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class))
-					.toList();
+			List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class)).toList();
 			return ResponseEntity.ok().body(listData);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
