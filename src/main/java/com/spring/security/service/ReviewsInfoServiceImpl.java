@@ -3,12 +3,16 @@ package com.spring.security.service;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.data.domain.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import com.spring.security.entity.ReviewInfoDetail;
 import com.spring.security.interfaces.ReviewsInfoService;
@@ -32,7 +36,7 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	@Override
 	public ResponseEntity<List<ReviewInfoRequest>> getAllReviews(HttpServletRequest request) {
 		try {
-			List<ReviewInfoDetail> findAll = reviewsInfoRepository.findFirst6ByReviewStatusOrderByPostTimeDesc("Active");
+			List<ReviewInfoDetail> findAll = reviewsInfoRepository.findFirst6ByReviewStatusOrderByPostTimeAsc("Active");
 			if (ObjectUtils.isEmpty(findAll)) {
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null); // No content found
 			}
@@ -50,8 +54,7 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 			if (ObjectUtils.isEmpty(findAll)) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Not found
 			}
-			List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class))
-					.toList();
+			List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class)).toList();
 			return ResponseEntity.ok().body(listData);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -115,4 +118,50 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
+
+	@Override
+	public ResponseEntity<List<ReviewInfoRequest>> getReviewsWithPaginate(String strValue, HttpServletRequest request) {
+	    Pageable pageable = null;
+	    int page = 0;
+	    int size = 6;  
+	    try {
+	        if (request.getSession().getAttribute("strValue") == null) {
+	            request.getSession().setAttribute("page", 0);  
+	            request.getSession().setAttribute("size", size);  
+	            request.getSession().setAttribute("strValue", strValue);  
+	        }
+	        page = (int) request.getSession().getAttribute("page");
+	        if (strValue.equals("right")) {
+	            page += 1;  
+	        } else if (strValue.equals("left")) {
+	            if (page > 0) {
+	                page -= 1;
+	            }
+	        }
+	        if (page < 0) {
+	            page = 0;  
+	        }
+	        request.getSession().setAttribute("page", page);
+	        request.getSession().setAttribute("size", size);
+	        
+	        pageable = PageRequest.of(page, size, Sort.by("postTime").ascending());
+	        Page<ReviewInfoDetail> findAll = reviewsInfoRepository.findAll(pageable);
+	        
+	        if (findAll == null || findAll.isEmpty()) {
+	            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+	        }
+	        
+	        List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class)).collect(Collectors.toList());
+	        List<ReviewInfoRequest> activeListData = listData.stream().filter(x->x.getReviewStatus().equals("Active")).toList();
+	        if (CollectionUtils.isEmpty(listData)) {
+	            return getAllReviews(request);
+	        }
+	        return ResponseEntity.ok().body(activeListData);
+	        
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	    }
+	}
+
+
 }

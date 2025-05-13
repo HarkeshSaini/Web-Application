@@ -456,7 +456,7 @@ textarea {
 .why-us {
     background-color: #fff;
     padding: 40px 20px;
-    margin-top: 50px;
+    margin-top: 70px;
     box-shadow: 0px -8px 16px rgb(0 0 0 / 3%);
     text-align: center;
 }
@@ -561,8 +561,24 @@ textarea {
     -webkit-line-clamp: 2;
         margin-top: -20px;
     -webkit-box-orient: vertical;
-}.review-card.review-size-count
-Specificity: (0,2,0)
- {
+}.review-card.review-size-count.Specificity: (0,2,0) {
     padding: 10px;
+}img.left-icon {
+    width: 23px;
+}
+img.right-icon {
+    width: 23px;
+}.arrow-icon {
+    margin-top: 15px;
+    float: inline-end;
+}button.left-arrow {
+    padding: 6px 7px;
+    border: 1px solid #a9a9a99c;
+    border-radius: 7px;
+}button.right-arrow {
+    padding: 6px 7px;
+    border: 1px solid #a9a9a99c;
+    border-radius: 7px;
+}img.loader {
+    width: 100%;
 }

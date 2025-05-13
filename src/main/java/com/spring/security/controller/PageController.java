@@ -31,6 +31,7 @@ public class PageController {
 	
 	@GetMapping("/")
 	public String index(HttpServletRequest request, Model model) {
+		request.getSession().setAttribute("strValue",null);
 		model.addAttribute("message", "success");
 		return "index";
 	}

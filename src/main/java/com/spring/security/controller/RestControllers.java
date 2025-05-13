@@ -91,6 +91,18 @@ public class RestControllers {
 			return allReviews; // Return an empty list on error
 		}
 	}
+	
+	@GetMapping(value = "/getReviewsWithPaginate/{strValue}")
+	public ResponseEntity<List<ReviewInfoRequest>> getReviewsWithPaginate(@PathVariable String strValue,HttpServletRequest request) {
+		ResponseEntity<List<ReviewInfoRequest>> allReviews = null;
+		try {
+			allReviews = this.infoReviews.getReviewsWithPaginate(strValue,request);
+			return allReviews;
+		} catch (Exception e) {
+			logger.error("Error fetching all reviews: {}", e.getMessage());
+			return allReviews; // Return an empty list on error
+		}
+	}
 
 	@GetMapping(value = "/getReviewsByReviewUrl/{reviewUrl}")
 	public ResponseEntity<List<ReviewInfoRequest>> getReviewsByReviewUrl(@PathVariable String reviewUrl) {

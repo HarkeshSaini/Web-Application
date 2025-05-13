@@ -56,6 +56,10 @@
       <section class="reviews-section">
         <h2 class="reviews-title">What Our Customers Say</h2>
         <div class="reviews-container review-show"></div>
+        <div class="arrow-icon">
+	        <button id="left" onclick="getclickname(this); return false;" type="button" class="left-arrow"><img src="/resources/sites/image/left-icon.png" class="left-icon" alt="left-icon"></button>
+	        <button id="right" onclick="getclickname(this); return false;" type="button" class="right-arrow"><img src="/resources/sites/image/right-icon.png" class="right-icon" alt="right-icon"></button>
+        </div>
       </section>
     </div>
     <section class="why-us" id="why-us">

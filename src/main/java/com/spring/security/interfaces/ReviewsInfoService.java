@@ -25,4 +25,6 @@ public interface ReviewsInfoService {
 
 	ResponseEntity<ReviewInfoRequest> findByIdReviews(String id);
 
+	ResponseEntity<List<ReviewInfoRequest>> getReviewsWithPaginate(String strValue, HttpServletRequest request);
+
 }
