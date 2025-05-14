@@ -24,7 +24,7 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <!-- Card 1 -->
         <div class="col">
-          <div class="card">
+          <div class="card main-card">
             <img src="/resources/sites/image/image1.jpg" class="card-img-top" alt="Service 1">
             <div class="card-body">
               <h5 class="card-title">Web Design</h5>
@@ -34,7 +34,7 @@
         </div>
         <!-- Card 2 -->
         <div class="col">
-          <div class="card">
+          <div class="card main-card">
             <img src="/resources/sites/image/image2.jpg" class="card-img-top" alt="Service 2">
             <div class="card-body">
               <h5 class="card-title">Development</h5>
@@ -44,7 +44,7 @@
         </div>
         <!-- Card 3 -->
         <div class="col">
-          <div class="card">
+          <div class="card main-card">
             <img src="/resources/sites/image/image3.jpg" class="card-img-top" alt="Service 3">
             <div class="card-body">
               <h5 class="card-title">SEO Optimization</h5>

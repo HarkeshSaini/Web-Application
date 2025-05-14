@@ -169,7 +169,7 @@ input#email {
   }
 
   .input-group {
-    flex-direction: column;
+   /* flex-direction: column;*/
     align-items: stretch;
   }
 

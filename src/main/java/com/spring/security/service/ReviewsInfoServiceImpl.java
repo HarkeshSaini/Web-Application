@@ -153,9 +153,6 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	        
 	        List<ReviewInfoRequest> listData = findAll.stream().map(x -> modelMapper.map(x, ReviewInfoRequest.class)).collect(Collectors.toList());
 	        List<ReviewInfoRequest> activeListData = listData.stream().filter(x->x.getReviewStatus().equals("Active")).toList();
-	        if (CollectionUtils.isEmpty(listData)) {
-	            return getAllReviews(request);
-	        }
 	        return ResponseEntity.ok().body(activeListData);
 	        
 	    } catch (Exception e) {
