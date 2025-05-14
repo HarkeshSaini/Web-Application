@@ -1,6 +1,7 @@
 package com.spring.security.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,6 @@ import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @Controller
 public class ServiceController {
 
@@ -25,39 +24,27 @@ public class ServiceController {
 		this.categoryService = categoryService;
 	}
 
-	/**
-	 * Handles the general category page with a single 'url' path variable.
-	 * 
+     /* Handles the general category page with a single 'url' path variable.
 	 * @param url   the category URL
-	 * @param model the model to add attributes
-	 * @return the view name for the category index page
-	 */
+     * @param model the model to add attributes
+     * @return the view name for the category index page
+     */
+
 	@GetMapping("/{url}")
-	public String category(@PathVariable String url, HttpServletRequest request, Model model) {
-		try {
-			List<CategoryInfoRequest> requestDetail = this.categoryService.findAllCategoryByStatusAndCategoryUrl(url);
-			ResponseEntity<CategoryReq> categoryRequest = categoryService.getCategoryByUrl(url);
-			try {
-				if (ObjectUtils.isEmpty(requestDetail)) {
-					throw new NotFoundException("Page not found: " + url);
-				}
-			} catch (Exception e) {
-				throw new NotFoundException("Page not found: "+ url);
-			}
-			model.addAttribute("requestDetail", requestDetail);
-			model.addAttribute("categoryRequest", categoryRequest.getBody());
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(e.getLocalizedMessage());
-		} catch (Exception e) {
-			throw new NotFoundException(e.getMessage());
+	public String category(@PathVariable String url, Model model) {
+		List<CategoryInfoRequest> requestDetail = categoryService.findAllCategoryByStatusAndCategoryUrl(url);
+		if (ObjectUtils.isEmpty(requestDetail)) {
+			throw new NotFoundException("Page not found: " + url);
 		}
+		ResponseEntity<CategoryReq> categoryRequest = categoryService.getCategoryByUrl(url);
+		model.addAttribute("requestDetail", requestDetail);
+		model.addAttribute("categoryRequest", Optional.ofNullable(categoryRequest.getBody()).orElseThrow(() -> new NotFoundException("Category not found for URL: " + url)));
 		return "category/index";
 	}
 
 	/**
-	 * Handles the specific category page with two path variables: 'url' and
-	 * 'categoryUrl'.
-	 * 
+	 * Handles the specific category page with two path variables: 'url' and 'categoryUrl'.
+	 *
 	 * @param url         the main category URL
 	 * @param categoryUrl the specific category URL
 	 * @param model       the model to add attributes
@@ -65,19 +52,12 @@ public class ServiceController {
 	 */
 
 	@GetMapping("/{url}/{categoryUrl}")
-	public String categoryPage(@PathVariable String url, HttpServletRequest request, @PathVariable String categoryUrl,
-			Model model) {
-		try {
-			List<CategoryInfoRequest> requestDetail = this.categoryService.findCategory(url, categoryUrl);
-			if (requestDetail == null || requestDetail.isEmpty()) {
-				throw new NotFoundException("Page not found: ");
-			}
-			model.addAttribute("requestDetail", requestDetail);
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(e.getLocalizedMessage());
-		} catch (Exception e) {
-			throw new NotFoundException(e.getMessage());
+	public String categoryPage(@PathVariable String url, @PathVariable String categoryUrl, Model model) {
+		List<CategoryInfoRequest> requestDetail = categoryService.findCategory(url, categoryUrl);
+		if (ObjectUtils.isEmpty(requestDetail)) {
+			throw new NotFoundException("Page not found for URL: " + url + "/" + categoryUrl);
 		}
+		model.addAttribute("requestDetail", requestDetail);
 		return "category/innerPage";
 	}
 }
