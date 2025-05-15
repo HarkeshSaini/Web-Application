@@ -181,7 +181,29 @@ a.heading {
 }
  /*review page css*/
   
-.row.gy-4.gy-lg-0.justify-content-xl-between.new-line {
-    margin-bottom: 37px;
-    padding: 26px!important;
+ 
+
+
+p.card-content {
+    color: #333;
+    text-align: left;
+    -webkit-box-orient: vertical;
+    font-size: 15px;
+}
+
+a.heading {
+    color: #333;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 17px;
+}.card:hover {
+    transform: translateY(-5px);
+}.container.py-5.blog
+
+ {
+    margin-top: 30px;
 }

@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Index">
     <meta name="keywords" content="Index" />
     <meta charset="UTF-8">
@@ -69,7 +70,7 @@
           <p>We are committed to providing the best service for our customers. Here’s why you should choose us for your needs.</p>
         </div>
         <div class="row">
-          <div class="column">
+          <div class="column section-images">
             <img src="/resources/sites/image/why-us.avif" alt="Quality Service" class="section-image">
           </div>
           <div class="column">

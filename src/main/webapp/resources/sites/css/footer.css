@@ -18,7 +18,7 @@ li.mb-0 {
     color: white;
 }
 .footer {
-  /*background-color: #222222;*/
+ /* background-color: #222222;*/
   background-image: linear-gradient(to left, rgb(12 85 104) 0%, rgb(15 22 22) 100%);
   padding: 2rem 1rem;
   font-family: Arial, sans-serif;
@@ -28,9 +28,7 @@ li.mb-0 {
     color: white;
     margin-left: 16px;
 }
-footer.footer {
-    margin-top: 30px;
-}
+
 .footer .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -190,14 +188,7 @@ input#email {
 /*Annd new section for social midia*/
 
 
-.row.gy-4.gy-lg-0.justify-content-xl-between.new-line {
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0px 2px rgb(0 0 0 / 38%);
-    transition: transform 0.2s;
-    background-color: #8aacbd30;
-}
-
+ 
 
 /* Basic reset and styling */
  
@@ -279,4 +270,8 @@ input#email {
   .login-btn {
     width: 100%; /* Full-width buttons on mobile */
   }
+}
+footer.footer.message-subscribe-submit {
+    background-image: linear-gradient(to left, rgb(11 98 118) 0%, rgb(31 36 36) 100%);
+    margin-top: 27px;
 }

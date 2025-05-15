@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Review Page</title>
     <link rel="stylesheet" href="/resources/sites/css/review.css"/>
-</head>
-
-<body>
     <section class="review-container">
         <div class="review-form">
             <h2 class="review-heading">Submit Your Review</h2>
             <form class="review-form-content">
                 <!-- Review Section at the top -->
                 <div class="form-group">
-                    <label for="user-comment" class="form-label">Your Comment</label>
-                    <textarea id="user-comment" class="form-textarea" rows="4" placeholder="Write your review here..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="user-rating" class="form-label">Rate Us</label>
+                <div class="form-group row">
+                    <div class="col">
+                      Submit Your Review
+                    </div>
+                    <div class="col">
                     <div class="rating-stars">
                         <input type="radio" name="rating" value="5" id="star-5">
                         <label for="star-5" class="star">&#9733;</label>
@@ -33,9 +22,9 @@
                         <input type="radio" name="rating" value="1" id="star-1">
                         <label for="star-1" class="star">&#9733;</label>
                     </div>
+                    </div>
                 </div>
-
-                <!-- Username and Email in the same row -->
+                </div>
                 <div class="form-group row">
                     <div class="col">
                         <label for="user-name" class="form-label">Your Name</label>
@@ -46,11 +35,12 @@
                         <input type="email" id="user-email" class="form-input" placeholder="Enter your email">
                     </div>
                 </div>
-
-                <button type="submit" class="submit-btn">Submit Review</button>
+                 <div class="form-group">
+                    <label for="user-comment" class="form-label">Your Comment</label>
+                    <textarea id="user-comment" class="form-textarea" rows="4" placeholder="Write your review here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary review-submit">Submit Review</button>
             </form>
         </div>
     </section>
-</body>
-
-</html>
+ 

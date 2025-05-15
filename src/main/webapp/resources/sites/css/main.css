@@ -26,6 +26,8 @@ a.data-url {
   margin-right: auto;
 }
 
+
+
 /* For large desktops (screen width greater than or equal to 1200px) */
 @media (min-width: 1200px) {
   .container {
@@ -545,9 +547,7 @@ textarea {
         font-size: 1rem;
     }
 }
-.footer {
-	padding: 0rem 0rem!important;
-	}
+ 
 .review-stars {
   color: gold;
   font-size: 18px;
