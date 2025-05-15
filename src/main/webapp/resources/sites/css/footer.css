@@ -68,7 +68,7 @@ button.btn.btn-primary {
 
 .widget-title {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
   font-weight: bold;
 }
 
@@ -134,9 +134,9 @@ input#email {
 }
 
 .address {
-  text-align: center;
+  text-align: justify;
   margin-top: 2rem;
-  font-size: 0.9rem;
+  font-size: 17px;
   color: #ffffff;
 }
 
