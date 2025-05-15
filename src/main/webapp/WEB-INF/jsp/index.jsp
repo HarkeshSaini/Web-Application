@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
     <title>Index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Index">
     <meta name="keywords" content="Index" />
     <meta charset="UTF-8">

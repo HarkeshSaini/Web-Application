@@ -35,37 +35,41 @@
           <div class="widget">
             <h4 class="widget-title mb-4">Learn More</h4>
             <ul class="list-unstyled">
-              <li class="mb-0"><a href="/blog" class="text-decoration-none">Blog</a></li>
+              <li class="mb-0"><a href="/blog" class="text-decoration-none">Blog Content</a></li>
+              <li class="mb-0"><a href="/about-us" class="text-decoration-none">About Us</a></li>
               <li class="mb-0"><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
             </ul>
           </div>
         </div>
         <div class="col-12 col-md-3 col-lg-4 col-xl-2">
           <div class="widget">
-            <h4 class="widget-title mb-4">Useful links</h4>
-            <ul class="list-unstyled">
-             <li class="mb-0"><a class="text-decoration-none" href="#/technology">Technology</a></li>
-             <li class="mb-0"><a class="text-decoration-none" href="#/category">Category</a></li>
-          	</ul>
-          </div>
-        </div>
-        <div class="col-12 col-md-3 col-lg-3 col-xl-2">
-          <div class="widget">
             <h4 class="widget-title mb-4">About US</h4>
             <ul class="list-unstyled">
               <li class="mb-0"><a href="/privacy-policy" class="text-decoration-none">Privacy policy</a></li>
+              <li class="mb-0"><a href="/faq" class="text-decoration-none">FAQ Questions</a></li>
               <li class="mb-0"><a href="/terms-and-conditions" class="text-decoration-none">Terms and conditions</a></li>
             </ul>
           </div>
         </div>
-        
          <div class="col-12 col-md-3 col-lg-4 col-xl-2">
           <div class="widget">
             <h4 class="widget-title mb-4">Get in Touch</h4>
             <ul class="list-unstyled">
+             <li class="mb-0">&nbsp;</li>
              <li class="mb-0"> Phone: <a class="text-decoration-none" href="tel:+15057922430">+1-(180)-2123-312</a></li>
              <li class="mb-0"> Email: <a class="text-decoration-none" href="mailto:demo@yourdomain.com">demo@yourdomain.com</a></li>
           	</ul>
+          </div>
+        </div>
+         <div class="col-12 col-md-3 col-lg-3 col-xl-2">
+          <div class="widget">
+            <h4 class="widget-title mb-4">Address</h4>
+           <div class="main-add"> 
+             123 Example Street, Suite 456, Faketown, CA 90210<br>
+		     456 Demo Avenue, Floor 3, Testville, NY 10001<br>
+		     789 Placeholder Blvd, Unit 101, Sample City, TX 73301<br>
+		     321 Mockup Road, Apt 202, Imaginetown, FL 33101 
+            </div>
           </div>
         </div>
       </div>

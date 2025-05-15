@@ -40,6 +40,12 @@ public class PageController {
 		model.addAttribute("message", "success");
 		return "contactUs";
 	}
+	
+	@GetMapping("/faq")
+	public String frequentlyAskedQuestions(Model model) {
+		model.addAttribute("message", "success");
+		return "faq";
+	}
 
 	@GetMapping("/about-us")
 	public String aboutUs(HttpServletRequest request, Model model) {
