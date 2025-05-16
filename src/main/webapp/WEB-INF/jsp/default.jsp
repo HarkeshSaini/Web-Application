@@ -18,7 +18,9 @@
   </div>
 </section>
 <div class="container py-5">
-    <p class="text-center">${data.content}</p>
+    <div class="text-data">
+      <p class="text-center">${data.content}</p>
+    </div>
 </div>
 <jsp:include page="include/footer.jsp"></jsp:include>
 </body>

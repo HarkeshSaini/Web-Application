@@ -50,6 +50,8 @@
 	                       <select name="category" class="form-control" required="required">
 	                       <option>Select Category*</option>
 	                       	 <option value="about-us">About Us</option>
+	                       	 <option value="terms-and-conditions">Terms And Conditions</option>
+	                       	 <option value="privacy-policy">Privacy Policy</option>
 	                       </select>
  	                    </div>
                        </div>

@@ -50,6 +50,8 @@
 	                    <div class="col">
 	                       <form:select path="category" class="form-control" required="required">
 	                       	 <form:option value="about-us">About Us</form:option>
+	                       	 <form:option value="terms-and-conditions">Terms And Conditions</form:option>
+	                       	 <form:option value="privacy-policy">Privacy Policy</form:option>	                       	 
 	                       </form:select>
  	                    </div>
                        </div>

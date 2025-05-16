@@ -38,6 +38,7 @@ public class BlogController {
 		.filter(details -> !details.isEmpty())
 		.orElseThrow(() -> new NotFoundException("Page not found: " + pageUrl));
 		model.addAttribute("blogDetail", blogDetail);
+		model.addAttribute("recentBlog", blogService.getLatestBlog());
 		return "blog/innerPage";
 	}
 }

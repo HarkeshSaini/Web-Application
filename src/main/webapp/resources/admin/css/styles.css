@@ -60,11 +60,17 @@
     margin-bottom: 20px;
 }.text-white {
     --bs-text-opacity: 1;
-   /* color: rgb(0 0 0) !important;*/
+    color: rgb(0 0 0) !important;
 }.bg-dark {
     --bs-bg-opacity: 1;
-        background-color: rgb(0 0 0) !important;
-}li.nav-item {
+       /* background-color: rgb(0 0 0) !important;*/
+}
+.col-auto.col-md-3.col-xl-2.px-sm-2.px-0.bg-dark
+ 
+ {
+    background-color: #ffffff !important;
+}
+li.nav-item {
     list-style: none;
 }.crose-icon {
     font-size: 22px;
