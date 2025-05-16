@@ -63,7 +63,7 @@
       </section>
     </div>
     <section class="why-us" id="why-us">
-      <div class="container">
+      <div class="container py-5">
         <div class="section-header">
           <h2>Why Choose Us?</h2>
           <p>We are committed to providing the best service for our customers. Here’s why you should choose us for your needs.</p>
@@ -75,8 +75,8 @@
           <div class="column">
             <div class="benefits-list">
               <p>United Airlines has an operating route to multiple international and domestic destinations. So, the flight of the airline to those destinations from an assigned airport and Buffalo Niagara International Airport is among them. This airport is located in Cheektowaga, New York, and is 
-                laced with distinct services to enhance an overall Airlines has an an operating route to multiple international and an operating route multiple international and an operating route to multiple international and domestic destinat domestic destinat operating route to multiple travel experience  Airlines has an operating route to multiple international and domestic destinations. So, the flight of the airline to those destinations from an assigned airport and Buffalo Niagara International Airport is among them. This airport is located in Cheektowaga, New York, and is 
-                laced with distinct services to enhance an overall travel experience. Whenever you get an issue related to the airline at the airport, then approach its respective customer service team for a resolution. Moreover, the explanation of its contact methods has been displayed in the subheads.
+                laced with distinct services to enhance an overall Airlines has an an operating route to multiple international and an operating route multiple international and an operating route to multiple international and domestic destinat domestic destinat operating route to multiple travel 
+                laced wit. Whenever you get an issue related to the airline at the airport, then approach its respective customer service team for a resolution. Moreover, the explanation of its contact methods has been displayed in the subheads.
               </p>
             </div>
           </div>

@@ -1,27 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/resources/sites/css/footer.css"/>
 <footer class="footer message-subscribe-submit">
-<section class="bg-lights py-4 py-md-5 py-xls-8 border-top border-light">
+<section class="subscribe-section">
  <div class="container overflow-hidden">
   <form class="subscribe-form">
-    <div class="row gy-4 gy-lg-0 justify-content-xl-between new-line">
-    	<div class="col-3 col-md-3 col-lg-3 col-xl-2">
-    		 <h4 class="widget-title mb-4 subscribing message message-subscribe">Subscribe Us <br>Wanna Know Our Latest Offers And Deals Just Subscribe Here</h4>
-    	</div>
-    	<div class="col-3 col-md-3 col-lg-3 col-xl-2">
-		    <div class="input-group">
-		      <!-- <span class="input-group-text" id="email-newsletter-addon">
-		        <img src="/resources/sites/image/email-icon.png" alt="Logo" height="16">
-		      </span> -->
-		      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
-		    </div>
-		   </div>
-    	  <div class="col-12 col-md-3 col-lg-3 col-xl-2">
-    		<div class="d-grid">
-			  <button type="button" class="btn btn-primary subscribe">Subscribe</button>
-			 </div>
-    	</div>
-       </div>
+    <div class="row subscribe-row">
+  <div class="col-md-3 col-title">
+    <h4 class="widget-title mb-4 subscribing message message-subscribe">Subscribe Us <br>Wanna Know Our Latest Offers And Deals? Just Subscribe Here</h4>
+  </div>
+  <div class="col-md-8 col-email">
+    <div class="input-group">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" aria-label="email-newsletter" aria-describedby="email-newsletter-addon" required>
+    </div>
+  </div>
+  <div class="col-md-3 col-button">
+    <div class="d-grid">
+      <button type="button" class="btn btn-primary subscribe">Subscribe</button>
+    </div>
+  </div>
+</div>
+
     </form>
     </div>
    </section>
