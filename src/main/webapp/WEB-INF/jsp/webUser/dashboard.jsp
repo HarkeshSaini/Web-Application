@@ -18,80 +18,87 @@
               <p class="mb-0">User Dashboard <p>${message}</p></p>
             </div>
             <div class="container mt-5">
-              <!-- User Base Graph, Rating, and Author Total -->
-              <div class="row g-3">
-                <!-- User Base Graph -->
-                <div class="col-md-4">
-                  <div class="card dashboard-section">
-                    <div class="card-header">
-                      <h5>User Base Graph</h5>
-                    </div>
-                    <div class="card-body">
-                      <div class="chart-container">
-                        <canvas id="userBaseGraph"></canvas>
-                      </div>
-                      <p>This approach improves the readability and clarity of your HTML structure, making it easier</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- Rating -->
-                <div class="col-md-4">
-                  <div class="card dashboard-section c-1">
-                    <div class="card-header">
-                      <h5>Rating</h5>
-                    </div>
-                    <div class="card-body">
-                      <div class="info-box">
-                        <div class="info-title">Average Rating</div>
-                        <div class="info-value">4.7</div>
-                        <p>I have kept the styling structure of Bootstrap and used appropriate card headers and body sections.</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="card dashboard-section c-2">
-                    <div class="card-header">
-                      <h5>Rating</h5>
-                    </div>
-                    <div class="card-body">
-                      <div class="info-box">
-                        <div class="info-title">Average Rating</div>
-                        <div class="info-value">4.7</div>
-                        <p>The script for the user base graph remains intact, and it will still render the chart dynamically once</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                </div>
-                <!-- Author Total -->
-                <div class="col-md-4">
-                  <div class="card dashboard-section c-1">
-                    <div class="card-header">
-                      <h5>Author Total</h5>
-                    </div>
-                    <div class="card-body">
-                      <div class="info-box">
-                        <div class="info-title">Total Authors</div>
-                        <div class="info-value">150</div>
-                        <p>This approach improves the readability and clarity of your HTML structure, making it easier</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card dashboard-section c-2">
-                    <div class="card-header">
-                      <h5>Author Total</h5>
-                    </div>
-                    <div class="card-body">
-                      <div class="info-box">
-                        <div class="info-title">Total Authors</div>
-                        <div class="info-value">150</div>
-                        <p>maintain different categories. You can now expand each section independently,</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+			  <!-- User Base Graph, Rating, and Author Total -->
+			  <div class="row g-3">
+			  
+			    <!-- User Base Graph -->
+			    <div class="col-12 col-sm-6 col-md-4 mb-4">
+			      <div class="card dashboard-section">
+			        <div class="card-header">
+			          <h5>User Base Graph</h5>
+			        </div>
+			        <div class="card-body">
+			          <div class="chart-container">
+			            <canvas id="userBaseGraph"></canvas>
+			          </div>
+			          <p>This approach improves the readability and clarity of your HTML structure, making it easier</p>
+			        </div>
+			      </div>
+			    </div>
+			
+			    <!-- Rating Card 1 -->
+			    <div class="col-12 col-sm-6 col-md-4 mb-4">
+			      <div class="card dashboard-section c-1">
+			        <div class="card-header">
+			          <h5>Rating</h5>
+			        </div>
+			        <div class="card-body">
+			          <div class="info-box">
+			            <div class="info-title">Average Rating</div>
+			            <div class="info-value">4.7</div>
+			            <p>I have kept the styling structure of Bootstrap and used appropriate card headers and body sections.</p>
+			          </div>
+			        </div>
+			      </div>
+			
+			      <!-- Rating Card 2 -->
+			      <div class="card dashboard-section c-2 mt-3">
+			        <div class="card-header">
+			          <h5>Rating</h5>
+			        </div>
+			        <div class="card-body">
+			          <div class="info-box">
+			            <div class="info-title">Average Rating</div>
+			            <div class="info-value">4.7</div>
+			            <p>The script for the user base graph remains intact, and it will still render the chart dynamically once</p>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			
+			    <!-- Author Total Card 1 -->
+			    <div class="col-12 col-sm-6 col-md-4 mb-4">
+			      <div class="card dashboard-section c-1">
+			        <div class="card-header">
+			          <h5>Author Total</h5>
+			        </div>
+			        <div class="card-body">
+			          <div class="info-box">
+			            <div class="info-title">Total Authors</div>
+			            <div class="info-value">150</div>
+			            <p>This approach improves the readability and clarity of your HTML structure, making it easier</p>
+			          </div>
+			        </div>
+			      </div>
+			
+			      <!-- Author Total Card 2 -->
+			      <div class="card dashboard-section c-2 mt-3">
+			        <div class="card-header">
+			          <h5>Author Total</h5>
+			        </div>
+			        <div class="card-body">
+			          <div class="info-box">
+			            <div class="info-title">Total Authors</div>
+			            <div class="info-value">150</div>
+			            <p>maintain different categories. You can now expand each section independently,</p>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			
+			  </div>
+			</div>
+
           </div>
         </div>
       </div>
@@ -125,6 +132,5 @@
           });
       });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
