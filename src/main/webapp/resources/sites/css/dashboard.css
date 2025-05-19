@@ -73,6 +73,8 @@ body {
 
 .card-body {
   padding: 20px;
+      height: 500px;
+    overflow: auto;
 }
 
 .card.text-center.p-3 {
@@ -204,6 +206,15 @@ p.fw-semibold.fs-6.mb-0 {
 
 .search input::placeholder {
   color: #999;
+}
+
+
+.row.g-3 {
+    height: 500px;
+    overflow: auto;
+}ul.list-group.nav-pills.box.flex-column.mb-sm-auto.mb-0.align-items-center.align-items-sm-start {
+    height: 150px;
+    overflow: auto;
 }
 
 /* Responsive for Tablets and Phones */
