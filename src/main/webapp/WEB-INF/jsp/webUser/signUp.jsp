@@ -78,7 +78,6 @@
                     <textarea name="address" class="form-control" rows="3" placeholder="Full address *" required></textarea>
                   </div>
                 </div>
-
                 <div class="d-grid my-4">
                   <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
@@ -97,11 +96,10 @@
               <a href="#" class="btn btn-outline-secondary rounded-circle"><i class="fab fa-linkedin"></i></a>
             </div>
             <p class="text-secondarys px-3">
-              Already have an account?
-              <a href="/login" class="link-primary text-decoration-none">Sign in</a>
-            </p>
+	              Already have an account?
+	              <a href="/login" class="link-primary text-decoration-none">Sign in</a>
+	            </p>
           </div>
-
         </div>
       </div>
     </div>

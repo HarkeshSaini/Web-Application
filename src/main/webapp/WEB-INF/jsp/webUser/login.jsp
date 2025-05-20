@@ -77,7 +77,7 @@
             </div>
             <p class="text-center">
               Welcome! Please log in to access your dashboard and view your profile.<br>
-              Don’t have an account? <a href="/sign-up" class="link-primary text-decoration-none">Sign Up</a>
+             <!--  Don’t have an account? <a href="/sign-up" class="link-primary text-decoration-none">Sign Up</a> -->
             </p>
           </div>
 

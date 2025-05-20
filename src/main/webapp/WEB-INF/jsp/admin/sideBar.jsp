@@ -20,7 +20,11 @@
       </li>
       <c:if test="${userRole == 'ADMIN'}">
       <li class="nav-item">
-        <a href="/admin/getAllUser" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> 
+        <a href="/admin/getAllUserAdmin" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> 
+        <span class="ms-1 d-none d-sm-inline">Admin Information</span> </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/getAllUserWebSite" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> 
         <span class="ms-1 d-none d-sm-inline">User Information</span> </a>
       </li>
       

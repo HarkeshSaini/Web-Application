@@ -72,7 +72,7 @@ public class AdminController {
 
 	// ===================== USER MANAGEMENT =====================
 
-	@GetMapping("/getAllUser")
+	@GetMapping("/getAllUserAdmin")
 	private String getAllUser(HttpServletRequest request, Model model) {
 		try {
 			List<AdminUserInfoRequest> userInfo = this.registerService.getAllUser();
@@ -150,7 +150,7 @@ public class AdminController {
 		} catch (NotFoundException e) {
 			throw new NotFoundException(e.getLocalizedMessage());
 		}
-		return "redirect:/admin/getAllUser";
+		return "redirect:/admin/getAllUserAdmin";
 	}
 
 	// ===================== CONTACT MANAGEMENT =====================
