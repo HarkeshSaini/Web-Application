@@ -1,6 +1,6 @@
  body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #e2e5e5;;
 }
  .col-12.col-md-6.login-form-side {
     border-left: 1px solid #dee2e6;
@@ -309,7 +309,7 @@ li.nav-item.category {
 
 /* Form Side */
 .login-form-side {
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
   flex: 1 1 50%;
   padding: 2rem;
 }
@@ -467,6 +467,11 @@ p.text-secondarys.px-3 {
 
 /* Mobile Devices */
 @media (max-width: 480px) {
+	h2.fs-6.fw-normal.text-center.text-secondary.mb-4.forgot {
+    margin-top: 0px!important;
+}.col-12.col-md-6 {
+    margin-bottom: 5px;
+}
   .header_auth {
     margin-top: 60px;
   }
@@ -490,7 +495,11 @@ p.text-secondarys.px-3 {
   .login-icon {
     max-width: 80px;
     height: auto;
-  }
+  }.col-12.col-md-6 {
+    margin-bottom: 5px;
+}.col-12.col-md-6 {
+    margin-bottom: 5px!important;
+}
 
   .form-control,
   .form-select {
@@ -507,7 +516,7 @@ p.text-secondarys.px-3 {
 
  {
 	    padding: 0px;
-	    background-color: #f5f5f5;
+	    background-color: #e2e5e5;
 }.card {
     display: inline;
 }
@@ -521,5 +530,17 @@ nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body{
     border-left: 1px solid #dee2e6;
 } select.form-select {
     padding: .375rem 2.25rem 1rem 0.75rem;
+}h2.fs-6.fw-normal.text-center.text-secondary.mb-4.forgot {
+    margin-top: 28px;
+}.col-12.col-md-6 {
+    margin-bottom: -5px;
+}input.form-control {
+    border-radius: 16px !important;
+    /*background-color: #74f5f914;*/
+}select.form-select {
+    border-radius: 16px !important;
+    /*background-color: #74f5f914;*/
+}.form-floating.forgot {
+    margin-top: -13px;
 }
  

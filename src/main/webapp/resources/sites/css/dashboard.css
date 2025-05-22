@@ -12,6 +12,12 @@ body {
 
 .bg-light {
   background-color: rgb(255, 255, 255) !important;
+}.card-body.upadate {
+    overflow: hidden;
+}.text-end {
+    margin-bottom: 15px!important;
+}.info-item {
+    height: 100%;
 }
 
 /* Navbar */

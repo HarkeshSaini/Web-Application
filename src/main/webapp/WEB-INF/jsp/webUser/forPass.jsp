@@ -25,23 +25,23 @@
           <!-- Left Side: Forgot Password Form -->
           <div class="col-12 col-md-6">
             <div class="card-body">
-              <h2 class="fs-6 fw-normal text-center text-secondary mb-4">${message}</h2>
+              <h2 class="fs-6 fw-normal text-center text-secondary mb-4 forgot">${message}</h2>
               <form action="/forgotPassword" method="post">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
-                    <div class="form-floating">
+                    <div class="form-floating forgot">
                       <label for="email">Email Id</label>
                       <input type="email" class="form-control" name="email" id="email" required>
                     </div>
                   </div>
-                  <div class="col-12 col-md-6">
-                    <div class="form-floating">
+                  <div class="col-12 col-md-6 forgot">
+                    <div class="form-floating forgot">
                       <label for="username">Username</label>
                       <input type="text" class="form-control" name="username" id="username" required>
                     </div>
                   </div>
                   <div class="col-12">
-                    <div class="form-floating">
+                    <div class="form-floating forgot">
                       <input type="datetime-local" name="dateOfBirth" id="dateOfBirth" class="form-control" required>
                       <label for="dateOfBirth">Date of Birth</label>
                     </div>

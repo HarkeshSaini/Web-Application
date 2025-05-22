@@ -18,8 +18,8 @@
 		      <div class="card-header bg-primary text-white">
 		      	 <p class="mb-0">Update Account Information <p>${message}</p> 
 		      </div>
-		      <div class="card-body">
-		        <div class="row g-3">
+		      <div class="card-body upadate">
+		        <div class="row g-3 ">
 		          <div class="col-md-6">
 		            <div class="info-item edit">
 		              <label class="form-label text-muted mb-0" for="username">Your login Username</label>

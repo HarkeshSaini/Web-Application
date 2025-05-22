@@ -35,26 +35,26 @@
                 </c:if>
               </div>
 
-              <form action="/sign-up" method="post" enctype="multipart/form-data">
+              <form action="/sign-up" class="sign-up-form" method="post" enctype="multipart/form-data">
                 <div class="row">
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <input type="text" name="fullName" class="form-control" placeholder="Full name *" required>
                   </div>
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <input type="text" name="username" class="form-control" placeholder="Username *" required>
                   </div>
 
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <input type="email" name="email" class="form-control" placeholder="Email address *" required>
                   </div>
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <input type="tel" name="phone" class="form-control" placeholder="Mobile no *" required>
                   </div>
 
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <input type="datetime-local" name="dateOfBirth" class="form-control" placeholder="Date of Birth *" required>
                   </div>
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <select name="gender" class="form-select" required>
                       <option disabled selected>Select gender *</option>
                       <option value="male">Male</option>
@@ -62,10 +62,10 @@
                     </select>
                   </div>
 
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6 ">
                     <input type="file" name="file" class="form-control">
                   </div>
-                  <div class="col-12 col-md-6 mb-3">
+                  <div class="col-12 col-md-6">
                     <select name="age" class="form-select" required>
                       <option disabled selected>Select Age *</option>
                       <c:forEach var="data" begin="1" end="60">
