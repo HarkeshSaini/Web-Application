@@ -1,6 +1,8 @@
  body {
     font-family: Arial, sans-serif;
     background-color: #e2e5e5;;
+}.form-control {
+    color: #595c5f!important;
 }
  .col-12.col-md-6.login-form-side {
     border-left: 1px solid #dee2e6;
@@ -538,6 +540,7 @@ nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body{
     border-radius: 16px !important;
     /*background-color: #74f5f914;*/
 }select.form-select {
+	color: #605f5f!important;;
     border-radius: 16px !important;
     /*background-color: #74f5f914;*/
 }.form-floating.forgot {

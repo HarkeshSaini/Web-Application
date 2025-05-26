@@ -768,3 +768,33 @@ img.faq-image {
         padding: 0 10px;
     }
 }
+
+/*========progress================*/
+
+
+progress {
+    width: 250px;
+    height: 25px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  /* Style for Firefox */
+  progress::-moz-progress-bar {
+    background-color: #4caf50;
+    border-radius: 12px;
+  }
+
+  /* Style for Chrome, Safari, Opera */
+  progress::-webkit-progress-bar {
+    background-color: #ddd;
+    border-radius: 12px;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: #4caf50;
+    border-radius: 12px;
+    transition: width 0.25s ease-in-out;
+  }
+
+ 

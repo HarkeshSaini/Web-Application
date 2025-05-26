@@ -86,7 +86,7 @@ $.ajax(settings).done(function (response) {
               <img src="https://i.pravatar.cc/100?img=${i + 1}" alt="User Avatar">
             </div>
             <div class="review-data">
-              <div class="review-author name">Anonymous</div>
+              <div class="review-author name"><progress class="progress"></progress></div>
               <div class="review-stars">☆☆☆☆☆</div>
             </div>
           </div>
@@ -161,16 +161,14 @@ function getclickname(obj) {
           <div class="review-card review-size-count">
             <div class="review-header">
               <div class="review-avatar">
-                <img src="https://i.pravatar.cc/100?img=${i + 1}" alt="User Avatar">
+                <img src="/resources/sites/image/defoult-img.png" alt="User Avatar">
               </div>
               <div class="review-data">
-                <div class="review-author name">Anonymous</div>
-                <div class="review-stars">☆☆☆☆☆</div>
+                <div class="review-author name"><progress></progress></div>
+                <div class="review-stars"><progress></progress></div>
               </div>
             </div>
-            <div class="review-content content-data">
-              “No reviews yet.”  
-            </div>
+            <div class="review-content content-data"><progress class="progress"></progress></div>
           </div>
         `;
         reviewsContainer.append(staticReviewBox);
