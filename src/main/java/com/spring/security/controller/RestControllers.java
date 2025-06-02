@@ -34,7 +34,7 @@ public class RestControllers {
 
 	@GetMapping("/getLatestBlog")
 	public ResponseEntity<List<BlogInfoRequest>> getLatestBlog() {
-		return ResponseEntity.ok(blogService.getLatestBlog());
+		return ResponseEntity.ok(blogService.getLatestBlog(3));
 	}
 
 	@PostMapping("/addAdminUser")

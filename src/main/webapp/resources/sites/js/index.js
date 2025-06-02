@@ -19,8 +19,8 @@ $.ajax(settings).done(function (response) {
             var staticBlogBox = `
                 <div class="review-card">
                     <div class="review-content">
-                        <p class="time-date">No posts available</p>
-                        <a class="data-url" href="#">No Blog Post Available</a>
+                        <p class="time-date"><progress class="progress"></progress></p>
+                        <a class="data-url" href="#"><progress class="progress"></progress></a>
                     </div>
                 </div>
             `;
@@ -83,16 +83,14 @@ $.ajax(settings).done(function (response) {
         <div class="review-card review-size-count">
           <div class="review-header">
             <div class="review-avatar">
-              <img src="https://i.pravatar.cc/100?img=${i + 1}" alt="User Avatar">
-            </div>
+                <img src="/resources/sites/image/defoult-img.png" alt="User Avatar">
+              </div>
             <div class="review-data">
               <div class="review-author name"><progress class="progress"></progress></div>
-              <div class="review-stars">☆☆☆☆☆</div>
+              <div class="review-stars"><progress class="progress"></progress></div>
             </div>
           </div>
-          <div class="review-content content-data">
-            “No reviews yet.”  
-          </div>
+          <div class="review-content content-data"><progress class="progress"></progress></div>
         </div>
       `;
       reviewsContainer.append(staticReviewBox);

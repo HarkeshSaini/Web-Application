@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -99,7 +100,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 
 	@Override
 	public List<BlogInfoRequest> findAllBlogByStatus() {
-		List<BlogInfoDetail> findAll = infoRepository.findByStatus("Active");
+		List<BlogInfoDetail> findAll = infoRepository.findByStatusOrderByPostTimeDesc("Active");
 		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
 	}
 
@@ -113,12 +114,12 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 		if (titleUrl != null && titleUrl.endsWith("-")) {
 			return titleUrl.substring(0, titleUrl.length() - 1);
 		}
-		return titleUrl;
+		return titleUrl.toLowerCase();
 	}
 
 	@Override
-	public List<BlogInfoRequest> getLatestBlog() {
-		List<BlogInfoDetail> findAll = infoRepository.findFirst3ByStatusOrderByPostTimeDesc("Active");
+	public List<BlogInfoRequest> getLatestBlog(int blogValue) {
+		List<BlogInfoDetail> findAll = infoRepository.findTopByStatusOrderByPostTimeDesc("Active", PageRequest.of(0, blogValue));
 		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
 	}
 }

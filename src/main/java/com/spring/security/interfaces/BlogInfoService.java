@@ -23,7 +23,7 @@ public interface BlogInfoService {
 
 	List<BlogInfoRequest> findAllBlogByStatusAndPageUrl(String pageUrl);
 
-	List<BlogInfoRequest> getLatestBlog();
+	List<BlogInfoRequest> getLatestBlog(int blogValue);
 
 
 }

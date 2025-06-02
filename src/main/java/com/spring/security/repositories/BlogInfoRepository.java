@@ -2,6 +2,7 @@ package com.spring.security.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,10 +13,10 @@ public interface BlogInfoRepository extends MongoRepository<BlogInfoDetail, Stri
 
 	BlogInfoDetail findByTitleUrl(String titleUrl);
 
-	List<BlogInfoDetail> findByStatus(String string);
-
 	List<BlogInfoDetail> findByStatusAndTitleUrl(String string, String pageUrl);
 	
-	 List<BlogInfoDetail> findFirst3ByStatusOrderByPostTimeDesc(String status);
+	List<BlogInfoDetail> findTopByStatusOrderByPostTimeDesc(String string, PageRequest of);
+
+	List<BlogInfoDetail> findByStatusOrderByPostTimeDesc(String string);
 
 }
