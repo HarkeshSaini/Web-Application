@@ -33,7 +33,7 @@
 				                </div>
 				            </div>
 				        </div>
-				    </div>
+				    </div><hr>
 				</div><br>
                 <div class="form-group-review row">
                     <div class="col-review">
