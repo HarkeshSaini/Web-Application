@@ -89,6 +89,7 @@
         <div class="reviews-container" id="blog-show"></div>
       </section>
     </div>
+   
     <jsp:include page="./include/footer.jsp"></jsp:include>
     <script src="/resources/sites/js/index.js"></script>
   </body>

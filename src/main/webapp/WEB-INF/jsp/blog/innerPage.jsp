@@ -23,7 +23,7 @@
   <div class="custom-row">
     <div class="custom-col custom-col-9">
       <p class="text-center">${data.content}</p>
-     <%--  <jsp:include page="../include/review.jsp" /> --%>
+      
     </div>
     <div class="custom-col custom-col-3">
       <div class="recent-blog-data">
@@ -42,7 +42,9 @@
 		</section>
       </div>
     </div>
+    
   </div>
+  <jsp:include page="../include/review.jsp" />
 </div>
 
 
