@@ -3,6 +3,7 @@ package com.spring.security.interfaces;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.request.ReviewInfoRequest;
 
@@ -17,7 +18,7 @@ public interface ReviewsInfoService {
 
 	List<ReviewInfoRequest> reviewsInfoService();
 
-	ResponseEntity<Object> addNewReviews(ReviewInfoRequest infoRequest);
+	ResponseEntity<Object> addNewReviews(ReviewInfoRequest infoRequest, MultipartFile file);
 
 	void deleteReviewInfo(@NotNull String id);
 

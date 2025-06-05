@@ -13,11 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.security.entity.ReviewInfoDetail;
 import com.spring.security.interfaces.ReviewsInfoService;
 import com.spring.security.repositories.ReviewsInfoRepository;
 import com.spring.security.request.ReviewInfoRequest;
+import com.spring.security.utility.CommonUtility;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotNull;
@@ -68,8 +70,9 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Object> addNewReviews(ReviewInfoRequest infoRequest) {
+	public ResponseEntity<Object> addNewReviews(ReviewInfoRequest infoRequest,MultipartFile file) {
 		try {
+			infoRequest.setImgUrl(CommonUtility.uploadFile(file));
 			infoRequest.setLang_code("en");
 			infoRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 			infoRequest.setReviewDate(new Timestamp(System.currentTimeMillis()));
@@ -81,7 +84,7 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 			}
 			return ResponseEntity.status(HttpStatus.CREATED).body("Thank you for Reviews us!");
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error.");
 		}
 	}
 

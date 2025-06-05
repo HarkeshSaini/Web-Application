@@ -14,6 +14,7 @@ public class ReviewInfoDetail {
 	private String userName;
 	private String userEmail;
 	private String userPhone;
+	private String imgUrl;
 	private String reviewMessage;
 	private long reviewDate;
 	private int reviewRating;

@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -43,8 +45,15 @@ public class RestControllers {
 	}
 
 	@PostMapping("/addNewReviews")
-	public ResponseEntity<Object> addNewReviews(@RequestBody ReviewInfoRequest infoRequest) {
-		return handleServiceCall(() -> infoReviews.addNewReviews(infoRequest));
+	public ResponseEntity<Object> addNewReviews(@RequestParam("userName") String userName, @RequestParam("userEmail") String userEmail, @RequestParam("reviewMessage") String reviewMessage, @RequestParam("rating") String rating, @RequestParam("reviewUrl") String reviewUrl,@RequestParam(value = "file", required = false) MultipartFile file) {
+		ReviewInfoRequest infoRequest=new ReviewInfoRequest();
+		infoRequest.setUserName(userName);
+		infoRequest.setUserEmail(userEmail);
+		infoRequest.setReviewMessage(reviewMessage);
+		int rattings=!StringUtils.hasText(rating)? 1:Integer.valueOf(rating);
+		infoRequest.setReviewRating(rattings);
+		infoRequest.setReviewUrl(reviewUrl);
+		return handleServiceCall(() -> infoReviews.addNewReviews(infoRequest ,file));
 	}
 
 	@GetMapping("/getAllReviews")
