@@ -1,281 +1,298 @@
- 
 /* Review Container */
 .review-container {
+  width: 100%;
+  /*max-width: 600px;*/
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+  border-radius: 8px;
+}
+section.review-container {
+  margin-top: 29px;
+}
+button.btn.btn-primary.review-submit {
+  margin-left: 14px;
+  margin-top: 18px;
+  width: auto;
+}
+@media (max-width: 992px) {
+  button.btn.btn-primary {
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+  .review-col,
+  .col-review {
     width: 100%;
-    /*max-width: 600px;*/
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-    border-radius: 8px;
-}section.review-container {
-    margin-top: 29px;
-}button.btn.btn-primary.review-submit {
-	    margin-top: 18px;
-    width: auto;
-}@media (max-width: 992px) {
-    button.btn.btn-primary {
-		width: 100%!important;
-		}
-		}
+  }
+  .form-group-review.row {
+    padding: 0px !important;
+  }
+  .form-group-review {
+    padding: 0px !important;
+  }
+  hr.hori-line {
+    display: none;
+  }
+  .fileUploadInput {
+    margin-left: -9px;
+  }
+  label.star {
+    font-size: 37px;
+    margin-left: -2px;
+    width: 100%;
+  }
+}
 
 /* Heading */
- 
 
 /* Form Group */
 .form-group-review {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-     
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 /* Columns */
-.review-col, .col-review {
-    flex: 1;
-    min-width: 250px;
+.review-col,
+.col-review {
+  flex: 1;
+  width: 100%;
 }
 
 /* Labels & Inputs */
 .form-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
-.form-input, .form-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+
+  border-radius: 5px;
 }
 
 /* Rating Stars */
 .rating-stars {
-	margin-right: 44px;
-    display: flex;
-    justify-content: center;
+  margin-right: 44px;
+  display: flex;
+  justify-content: center;
 }
 
 .star {
-	font-size: 40px;
-    margin-left: 8px;
-    cursor: pointer;
-    color: #ccc;
+  font-size: 40px;
+  margin-left: 8px;
+  cursor: pointer;
+  color: #ccc;
 }
 
 input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 input[type="radio"]:checked + .star {
-    color: #5da3bc;
+  color: #5da3bc;
 }
 
 /* Submit Button */
 .review-submit {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .review-submit:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .review-container {
-        padding: 15px;
-    }
+  .review-container {
+    padding: 15px;
+  }
 
-    .form-group-review {
-        flex-direction: column;
-    }
-}@media (max-width: 200px) {
-    .review-container {
-        padding: 10px;
-        
-    }
+  .form-group-review {
+    flex-direction: column;
+  }
+}
+@media (max-width: 200px) {
+  .review-container {
+    padding: 10px;
+  }
 
-    .review-heading {
-        font-size: 16px;
-    }
+  .review-heading {
+    font-size: 16px;
+  }
 
-    .form-group-review {
-        flex-direction: column;
-    }
+  .form-group-review {
+    flex-direction: column;
+  }
 
-    .form-input, .form-textarea {
-        font-size: 14px;
-        padding: 8px;
-    }
+  .form-input,
+  .form-textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
 
-    .rating-stars .star {
-        font-size: 18px;
-    }
+  .rating-stars .star {
+    font-size: 18px;
+  }
 
-    .review-submit {
-        font-size: 14px;
-        padding: 8px;
-        width: 100%;
-    }
+  .review-submit {
+    font-size: 14px;
+    padding: 8px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 330px) {
-    .form-group-review {
-        flex-direction: column;
-    }
-    
-    .col-review {
-        width: 100!important%;
-    }
+  .form-group-review {
+    flex-direction: column;
+  }
 
-    .form-input {
-        font-size: 16px;
-        padding: 12px;
-    }
+  .col-review {
+    width: 100!important%;
+  }
+
+  .form-input {
+    font-size: 16px;
+    padding: 12px;
+  }
 }
 
 @media (max-width: 480px) {
-    .form-label {
-        font-size: 14px;
-    }
+  .form-label {
+    font-size: 14px;
+  }
 
-    .form-input {
-        font-size: 14px;
-        padding: 8px;
-    }
+  .form-input {
+    font-size: 14px;
+    padding: 8px;
+  }
 }
 /*=======================*/
 
 .rating-stars {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .star {
-    /*font-size: 30px;*/
-    color: gray;
-    cursor: pointer;
+  /*font-size: 30px;*/
+  color: gray;
+  cursor: pointer;
 }
 img.avatar-img {
-    border-radius: 90px;
-    margin-top: 10px;
-    width: 22%;
+  border-radius: 90px;
+  margin-top: 10px;
+  width: 22%;
 }
 input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 .star:hover,
 .star:hover ~ .star,
 input[type="radio"]:checked ~ .star {
-    color: #5da3bc;
+  color: #5da3bc;
 }
 p.reviews-data {
-    margin-top: 25px;
-    
-}h2.review-heading {
-    text-align: center;
-}.form-group-review.row {
-    padding: 0px 15px;
-}.form-group-review {
-    padding: 0px 15px;
-}input#user-email {
-    border: 1px solid #323262;
-}input#user-name {
-	border: 1px solid #323262;
-}textarea#user-comment {
-    border: 1px solid #323262;
+  margin-top: 25px;
+  margin-left: -15px;
+}
+h2.review-heading {
+  text-align: center;
+}
+.form-group-review.row {
+  padding: 0px 15px;
+}
+.form-group-review {
+  padding: 0px 15px;
+}
+input#user-email {
+  border: 1px solid #323262;
+}
+input#user-name {
+  border: 1px solid #323262;
+}
+textarea#user-comment {
+  border: 1px solid #323262;
 }
 /*==============*/
- 
-
 
 .fileUploadInput {
   display: grid;
+  margin-right: -9px;
   grid-gap: 10px;
   position: relative;
-  z-index: 1; }
-  
-  .fileUploadInput label {
-    display: flex;
-    align-items: center;
-    color: setColor(primary, 0.5);
-    background: setColor(white);
-    transition: .4s ease;
-    font-family: arial, sans-serif;
-    font-size: .75em;
-    font-weight: regular; }
-    
-  .fileUploadInput input {
-    position: relative;
-    z-index: 1;
-    padding: 0 gap(m);
-    width: 100%;
-    height: 50px;
-    border: 1px solid #323262;
-    border-radius: 3px;
-    font-family: arial, sans-serif;
-    font-size: 1rem;
-    user-select: none;
-    cursor: pointer;
-    font-weight: regular; }
-    .fileUploadInput input[type="file"] {
-      padding: 0 gap(m); }
-      .fileUploadInput input[type="file"]::-webkit-file-upload-button {
-        visibility: hidden;
-        margin-left: 10px;
-        padding: 0;
-        height: 50px;
-        width: 0; }
-        
-  .fileUploadInput button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    line-height: 0;
-    user-select: none;
-    color: white;
-    background-color: #43748b;
-    border-radius: 0 3px 3px 0;
-    font-family: arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 800; }
-    .fileUploadInput button svg {
-      width: auto;
-      height: 50%; }
+  z-index: 1;
+}
 
-/** {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  border: 0px;
-  outline: 0;
-  background-repeat: no-repeat;
-  appearance: none;
-  border-radius: 0;
-  vertical-align: middle;
-  font-weight: inherit;
-  font-style: inherit;
-  font-family: inherit;
-  text-decoration: none;
-  list-style: none;
-  user-select: text;
-  line-height: 1.333em; }*/
+.fileUploadInput label {
+  display: flex;
+  align-items: center;
+  color: setColor(primary, 0.5);
+  background: setColor(white);
+  transition: 0.4s ease;
+  font-family: arial, sans-serif;
+  font-size: 0.75em;
+  font-weight: regular;
+}
 
- 
- 
+.fileUploadInput input {
+  position: relative;
+  z-index: 1;
+  padding: 0 gap(m);
+  width: 100%;
+  height: 50px;
+  border: 1px solid #323262;
+  border-radius: 3px;
+  font-family: arial, sans-serif;
+  font-size: 1rem;
+  user-select: none;
+  cursor: pointer;
+  font-weight: regular;
+}
+.fileUploadInput input[type="file"] {
+  padding: 0 gap(m);
+}
+.fileUploadInput input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+  margin-left: 10px;
+  padding: 0;
+  height: 50px;
+  width: 0;
+}
+
+.fileUploadInput button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 0;
+  user-select: none;
+  color: white;
+  background-color: #43748b;
+  border-radius: 0 3px 3px 0;
+  font-family: arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.fileUploadInput button svg {
+  width: auto;
+  height: 50%;
+}
 
 @-moz-document url-prefix() {
-.fileUploadInput button{
-    display: none
-}
+  .fileUploadInput button {
+    display: none;
+  }
 }

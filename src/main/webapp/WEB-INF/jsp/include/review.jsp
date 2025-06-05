@@ -1,3 +1,5 @@
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/resources/sites/css/review.css"/>
     <section class="review-container">
@@ -27,19 +29,18 @@
 				                </div>
 				                <div class="col-md-4">
 				                    <div class="fileUploadInput">
-								     
-								    <input type="file" />
+								    <input type="file" name="file" id="file"/>
 								    <button>+</button></div>
 				                </div>
 				            </div>
 				        </div>
-				    </div><hr>
+				    </div><hr class="hori-line">
 				</div><br>
                 <div class="form-group-review row">
                     <div class="col-review">
                         <label for="user-name" class="form-label">Your Name</label>
                         <input type="text" id="user-name" class="form-input" placeholder="Enter your name">
-                    </div>
+                    </div> 
                     <div class="col-review">
                         <label for="user-email" class="form-label">Your Email</label>
                         <input type="email" id="user-email" class="form-input" placeholder="Enter your email">
@@ -50,6 +51,7 @@
                     <textarea id="user-comment" class="form-textarea" rows="4" placeholder="Write your review here..."></textarea>
                 </div>
                 <button type="button" class="btn btn-primary review-submit">Submit Review</button>
+           		<p class="review-mess"></p>
             </form>
         </div>
     </section>
@@ -62,6 +64,43 @@ document.querySelectorAll('.rating-stars input').forEach(star => {
             label.style.color = label.htmlFor.split('-')[1] <= selectedRating ? '#5da3bc' : 'gray';
         });
     });
+});
+
+document.querySelector(".review-submit").addEventListener("click", async function () {
+    const userName = document.getElementById("user-name").value;
+    const userEmail = document.getElementById("user-email").value;
+    const userComment = document.getElementById("user-comment").value;
+    const url = window.location.pathname
+    const fileInput = document.getElementById("file").files[0];
+    const rating = document.querySelector('input[name="rating"]:checked')?.value;
+    
+    const formData = new FormData();
+    formData.append("userName", userName);
+    formData.append("userEmail", userEmail);
+    formData.append("reviewMessage", userComment);
+    formData.append("rating", rating);
+    formData.append("reviewUrl", url);
+    if (fileInput) {
+        formData.append("file", fileInput);
+    }
+    try {
+        const response = await fetch("/api/addNewReviews", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+        $('.review-mess').text(result);
+        setTimeout(() => {
+            form.reset();  
+          }, 2000);
+        
+    } catch (error) {
+    	$('.review-mess').text(error);
+    	setTimeout(() => {
+            form.reset();  
+          }, 2000);
+    }
 });
 
 </script>
