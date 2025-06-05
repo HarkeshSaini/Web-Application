@@ -1,6 +1,6 @@
 /* Review Container */
 .review-container {
-  width: 100%;
+  max-width:: 1320px;
   /*max-width: 600px;*/
   padding: 20px;
   background: white;

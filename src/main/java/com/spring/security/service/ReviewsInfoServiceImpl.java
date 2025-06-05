@@ -73,6 +73,7 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	public ResponseEntity<Object> addNewReviews(ReviewInfoRequest infoRequest,MultipartFile file) {
 		try {
 			infoRequest.setImgUrl(CommonUtility.uploadFile(file));
+			infoRequest.setUserPhone(String.valueOf(System.currentTimeMillis()));
 			infoRequest.setLang_code("en");
 			infoRequest.setPostTime(new Timestamp(System.currentTimeMillis()));
 			infoRequest.setReviewDate(new Timestamp(System.currentTimeMillis()));

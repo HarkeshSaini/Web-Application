@@ -50,8 +50,7 @@ public class RestControllers {
 		infoRequest.setUserName(userName);
 		infoRequest.setUserEmail(userEmail);
 		infoRequest.setReviewMessage(reviewMessage);
-		int rattings=!StringUtils.hasText(rating)? 1:Integer.valueOf(rating);
-		infoRequest.setReviewRating(rattings);
+		infoRequest.setReviewRating(Integer.valueOf(rating));
 		infoRequest.setReviewUrl(reviewUrl);
 		return handleServiceCall(() -> infoReviews.addNewReviews(infoRequest ,file));
 	}
@@ -75,7 +74,7 @@ public class RestControllers {
 	public ResponseEntity<ReviewInfoRequest> findByIdReviews(@PathVariable String id) {
 		return handleServiceCall(() -> infoReviews.findByIdReviews(id));
 	}
-
+// data 
 	@PostMapping("/updateReviewsByStatus/{id}/{value}")
 	public ResponseEntity<Boolean> updateReviewsByStatus(@PathVariable String id, @PathVariable String value) {
 		return handleServiceCall(() -> infoReviews.updateReviewsByStatus(id, value));
