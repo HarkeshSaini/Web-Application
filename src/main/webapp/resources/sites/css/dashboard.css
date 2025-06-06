@@ -63,7 +63,7 @@ body {
 /* Cards and Info Styling */
 .card {
   margin-bottom: 20px;
-  box-shadow: rgba(51, 20, 20, 0.07) 0px 0.125rem 0rem 8px !important;
+  
 }
 
 .card.dashboard-card.border-0.shadow-sm {
@@ -78,8 +78,8 @@ body {
 }
 
 .card-body {
-  padding: 20px;
-      height: 500px;
+   
+      
     overflow: auto;
 }
 

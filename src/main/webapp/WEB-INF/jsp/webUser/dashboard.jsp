@@ -31,8 +31,7 @@
 			          <div class="chart-container">
 			            <canvas id="userBaseGraph"></canvas>
 			          </div>
-			          <p>This approach improves the readability and clarity of your HTML structure, making it easier</p>
-			        </div>
+			           </div>
 			      </div>
 			    </div>
 			

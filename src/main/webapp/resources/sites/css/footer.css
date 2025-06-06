@@ -44,7 +44,7 @@ button.btn.btn-primary {
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 0.7rem;
   justify-content: space-between;
 }h4.widget-title.mb-4 {
     color: #ffffff;
@@ -62,7 +62,7 @@ button.btn.btn-primary {
 .col-lg-3,
 .col-lg-4 {
   flex: 1 1 auto;
-  min-width: 200px;
+  /*min-width: 200px;*/
 }
 
 .widget {
@@ -193,10 +193,7 @@ footer.footer {
   gap: 15px;
 }
 
-/* 12-column grid classes */
-[class*="cols-"] {
-  padding: 10px;
-}
+ 
 
 .cols-12 {
   flex: 0 0 100%;

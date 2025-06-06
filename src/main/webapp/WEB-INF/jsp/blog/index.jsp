@@ -11,7 +11,7 @@
   <meta name="description" content="Blog">
   <meta name="keywords" content="Blog" />
 </head>
-<body style="background-color: #f3f3f3;">
+<body style="background-color: #ededed54;">
  <jsp:include page="../include/header.jsp"></jsp:include>
  <section class="banner">
   <div class="banner-overlay"></div>

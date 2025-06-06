@@ -9,7 +9,8 @@
                <div class="container">
 			    <div class="row form-group-review main-reviews">
 			        <div class="col-md-6 col-review">
-			           <p class="reviews-data">Submit your reviews on the discussion and your feelings for our blog.</p>
+			           <h3>Leave a Comment</h3>
+			           <p class="reviews-data">Your email address will not be published!</p>
 				        </div>
 				        <div class="col-md-6 col-review">
 				            <div class="row">

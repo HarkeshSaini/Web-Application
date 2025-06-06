@@ -20,13 +20,39 @@
         <li class="nav-item"><a class="nav-link" href="/about-us">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="/contact-us">Contact Us</a></li>
         <li class="nav-item">
-          <a class="nav-link" href="/login">
-            <img src="/resources/sites/image/login-icon-vector.jpg" alt="Login" class="rounded-pill" height="40">
+          <a class="nav-link popup-login">
+            <button class="popup-btn"><img src="/resources/sites/image/login-icon-vector.jpg" alt="Login" class="rounded-pill" height="40"></button>
           </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<div class="popup" id="popup">
+<span class="close"><img src="/resources/sites/image/close-icon.png" alt="close" class="close"></span>
+   <div class="login-data">
+     <ul class=" login-main navbar-nav align-items-center text-center">
+        <li class="nav-item"><a class="nav-link in-data" href="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link in-data" href="/sign-up">Sign Up</a></li>
+     </ul>
+    <h3>Or log in with </h3>
+    <div class="social-icons">
+        <a href="#" class="google">G</a>
+        <a href="#" class="facebook">f</a>
+        <a href="#" class="linkedin">In</a>
+        <a href="#" class="github">Git</a>
+    </div>
+   <p>Welcome! Please log in to access your dashboard and view your profile.</p>
+  </div>
+</div>
+<script>
+document.querySelector(".popup-btn").addEventListener("click", function() {
+    document.getElementById("popup").style.display = "block";
+});
+
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("popup").style.display = "none";
+});
+</script>
 <script src="/resources/sites/js/header.js"></script>
 

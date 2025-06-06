@@ -203,10 +203,7 @@ input[type="radio"] {
 input[type="radio"]:checked ~ .star {
   color: #5da3bc;
 }
-p.reviews-data {
-  margin-top: 25px;
-  margin-left: -15px;
-}
+ 
 h2.review-heading {
   text-align: center;
 }
