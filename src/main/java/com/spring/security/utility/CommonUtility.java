@@ -6,12 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -30,12 +33,24 @@ public class CommonUtility {
             String role =(String) request.getSession().getAttribute("role");
             request.getSession().setAttribute("role", role);
             model.addAttribute("userRole", role);
+            model.addAttribute("user", getUserName(request));
         } else {
             LOGGER.warn("Request or Model is null in userRole method");
         }
     }
 
-    public static String uploadFile(MultipartFile file) {
+    private static String getUserName(HttpServletRequest request) {
+    	String userName;
+    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	if (principal instanceof UserDetails) {
+    	    userName = ((UserDetails) principal).getUsername();
+    	} else {
+    	    userName = principal.toString();
+    	}
+		return userName;
+	}
+
+	public static String uploadFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             LOGGER.warn("Empty or null file received for upload");
             return null;
