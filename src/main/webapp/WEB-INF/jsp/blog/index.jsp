@@ -30,7 +30,7 @@
           <%-- <img src="${data.imgUrl}" class="card-img-top" alt="Service 1"> --%>
           <div class="card-body">
             <h5 class="card-title"><a class="heading" href="/blog/${data.titleUrl}">${data.heading}</a></h5>
-            <p class="card-content">${fn:escapeXml(fn:substring(data.content.replaceAll('<.*?>',''),0,130))}</p>
+            <p class="card-content">${(fn:substring(data.content.replaceAll('<.*?>',''),0,140))}...</p>
           </div>
         </div>
       </div>

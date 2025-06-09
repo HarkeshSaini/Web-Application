@@ -40,16 +40,16 @@
                 <div class="form-group-review row">
                     <div class="col-review">
                         <label for="user-name" class="form-label">Your Name</label>
-                        <input type="text" id="user-name" class="form-input" placeholder="Enter your name">
+                        <input type="text" id="user-name" class="form-input" placeholder="Enter your name" required="required">
                     </div> 
                     <div class="col-review">
                         <label for="user-email" class="form-label">Your Email</label>
-                        <input type="email" id="user-email" class="form-input" placeholder="Enter your email">
+                        <input type="email" id="user-email" class="form-input" placeholder="Enter your email" required="required">
                     </div>
                 </div><br>
                  <div class="form-group-review">
                     <label for="user-comment" class="form-label">Your Comment</label>
-                    <textarea id="user-comment" class="form-textarea" rows="4" placeholder="Write your review here..."></textarea>
+                    <textarea id="user-comment" class="form-textarea" rows="4" placeholder="Write your review here..." required="required"></textarea>
                 </div>
                 <button type="button" class="btn btn-primary review-submit">Submit Review</button>
            		<p class="review-mess"></p>

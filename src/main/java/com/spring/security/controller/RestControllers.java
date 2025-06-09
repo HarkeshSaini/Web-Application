@@ -45,14 +45,16 @@ public class RestControllers {
 	}
 
 	@PostMapping("/addNewReviews")
-	public ResponseEntity<Object> addNewReviews(@RequestParam("userName") String userName, @RequestParam("userEmail") String userEmail, @RequestParam("reviewMessage") String reviewMessage, @RequestParam("rating") String rating, @RequestParam("reviewUrl") String reviewUrl,@RequestParam(value = "file", required = false) MultipartFile file) {
+	public ResponseEntity<?> addNewReviews(@RequestParam String userName, @RequestParam String userEmail, @RequestParam String reviewMessage, @RequestParam String rating, @RequestParam String reviewUrl,@RequestParam(required = false) MultipartFile file) {
+		boolean status = !StringUtils.hasText(userEmail) || !StringUtils.hasText(userName);
+		String messages="Please provide your name and email to submit.";
 		ReviewInfoRequest infoRequest=new ReviewInfoRequest();
 		infoRequest.setUserName(userName);
 		infoRequest.setUserEmail(userEmail);
 		infoRequest.setReviewMessage(reviewMessage);
 		infoRequest.setReviewRating(Integer.valueOf(rating));
 		infoRequest.setReviewUrl(reviewUrl);
-		return handleServiceCall(() -> infoReviews.addNewReviews(infoRequest ,file));
+		return status ? ResponseEntity.ok(messages): handleServiceCall(() -> infoReviews.addNewReviews(infoRequest ,file));
 	}
 
 	@GetMapping("/getAllReviews")

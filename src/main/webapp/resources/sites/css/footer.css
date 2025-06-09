@@ -210,7 +210,7 @@ footer.footer {
   max-width: 33.3333%;
 }
 input#email {
-    height: 54px;
+    height: 51px;
 }
 .cols-2 {
   flex: 0 0 12.6666%;
@@ -251,7 +251,9 @@ input#email {
     max-width: 100%;
     text-align: center;
   }
-
+input#email {
+    height: 45px;
+}
   .cols-button button {
     width: auto;
   }

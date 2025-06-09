@@ -11,7 +11,7 @@ document.querySelector(".review-submit").addEventListener("click", async functio
     const userName = document.getElementById("user-name").value;
     const userEmail = document.getElementById("user-email").value;
     const userComment = document.getElementById("user-comment").value;
-    const url = window.location.pathname
+    const url = window.location.pathname;
     const fileInput = document.getElementById("file").files[0];
     const rating = document.querySelector('input[name="rating"]:checked')?.value;
     
@@ -19,12 +19,8 @@ document.querySelector(".review-submit").addEventListener("click", async functio
     formData.append("userName", userName);
     formData.append("userEmail", userEmail);
     formData.append("reviewMessage", userComment);
-    if (!rating || rating.trim() === "") { 
-        formData.append("rating", "1"); 
-    } else { 
-        formData.append("rating", rating); 
-    }
     formData.append("reviewUrl", url);
+    formData.append("rating", rating && rating.trim() !== "" ? rating : "1");
     if (fileInput) {
         formData.append("file", fileInput);
     }
@@ -33,8 +29,13 @@ document.querySelector(".review-submit").addEventListener("click", async functio
         body: formData
     });
     const result = await response.text();
-    $('.review-mess').text(result); 
+    const reviewMessageElement = document.querySelector('.review-mess');
+    clearTimeout(window.reviewTimeout);
+    reviewMessageElement.textContent = result;
     $('#review-form-data')[0].reset(); 
     $('input[name="rating"]').prop('checked', false);
     $('.star').removeClass('active');
+    window.reviewTimeout = setTimeout(() => {
+        reviewMessageElement.textContent = "";  
+    }, 3000);
 });
