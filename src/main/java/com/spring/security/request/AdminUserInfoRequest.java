@@ -2,12 +2,15 @@ package com.spring.security.request;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 public class AdminUserInfoRequest {
 
-	private String id;
+	private int id;
 	private String name;
 	private String email;
 	private String password;
@@ -21,4 +24,6 @@ public class AdminUserInfoRequest {
 	private String status;
 	private boolean emailVerified;
 	private String imgUrl;
+	
+	
 }

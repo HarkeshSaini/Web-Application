@@ -1,28 +1,34 @@
 package com.spring.security.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
+import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
-@Document(collection = "WebSiteUserDetail")
+@Entity
 public class WebSiteUserDetail implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String fullName;
     private String email;

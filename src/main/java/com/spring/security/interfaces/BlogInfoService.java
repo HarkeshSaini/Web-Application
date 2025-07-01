@@ -13,11 +13,11 @@ public interface BlogInfoService {
 
 	BlogInfoRequest addBlog(BlogInfoRequest blogRequest, MultipartFile file);
 
-	BlogInfoRequest getBlogById(@NotNull String id);
+	BlogInfoRequest getBlogById(@NotNull int id);
 
-	BlogInfoRequest updateBlog(String id, MultipartFile file, BlogInfoRequest infoRequest);
+	BlogInfoRequest updateBlog(int id, MultipartFile file, BlogInfoRequest infoRequest);
 
-	void deleteBlogById(@NotNull String id);
+	void deleteBlogById(@NotNull int id);
 
 	List<BlogInfoRequest> findAllBlogByStatus();
 

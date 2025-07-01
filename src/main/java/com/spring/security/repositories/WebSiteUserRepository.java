@@ -1,12 +1,12 @@
 package com.spring.security.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.spring.security.entity.WebSiteUserDetail;
 
 @Repository
-public interface WebSiteUserRepository extends MongoRepository<WebSiteUserDetail, String> {
+public interface WebSiteUserRepository extends JpaRepository<WebSiteUserDetail, Integer> {
 
 	WebSiteUserDetail findByEmail(String email);
 

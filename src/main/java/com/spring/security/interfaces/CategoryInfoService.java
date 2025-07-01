@@ -15,11 +15,11 @@ public interface CategoryInfoService {
 
 	ResponseEntity<CategoryInfoRequest> addCategory(CategoryInfoRequest defaultRequest, MultipartFile file);
 
-	ResponseEntity<CategoryInfoRequest> getCategoryById(@NotNull String id);
+	ResponseEntity<CategoryInfoRequest> getCategoryById(@NotNull int id);
 
-	ResponseEntity<CategoryInfoRequest> updateCategory(String id, MultipartFile file, CategoryInfoRequest infoRequest);
+	ResponseEntity<CategoryInfoRequest> updateCategory(int id, MultipartFile file, CategoryInfoRequest infoRequest);
 
-	ResponseEntity<Void> deleteCategoryById(@NotNull String id);
+	ResponseEntity<Void> deleteCategoryById(@NotNull int id);
 
 	List<CategoryInfoRequest> findAllCategoryByStatus();
 
@@ -29,7 +29,7 @@ public interface CategoryInfoService {
 
 	List<CategoryReq> getAllInfoCategory();
 
-	ResponseEntity<String> deleteCategory(@NotNull String id);
+	ResponseEntity<String> deleteCategory(@NotNull int id);
 
 	List<CategoryInfoRequest> findCategory(String url, String categoryUrl);
 

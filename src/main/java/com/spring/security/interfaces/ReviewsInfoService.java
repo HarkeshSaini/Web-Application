@@ -20,11 +20,11 @@ public interface ReviewsInfoService {
 
 	ResponseEntity<Object> addNewReviews(ReviewInfoRequest infoRequest, MultipartFile file);
 
-	void deleteReviewInfo(@NotNull String id);
+	void deleteReviewInfo(@NotNull int id);
 
-	ResponseEntity<Boolean> updateReviewsByStatus(String id, String value);
+	ResponseEntity<Boolean> updateReviewsByStatus(int id, String value);
 
-	ResponseEntity<ReviewInfoRequest> findByIdReviews(String id);
+	ResponseEntity<ReviewInfoRequest> findByIdReviews(int id);
 
 	ResponseEntity<List<ReviewInfoRequest>> getReviewsWithPaginate(String strValue, HttpServletRequest request);
 

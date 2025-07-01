@@ -12,20 +12,20 @@ public interface ContactInfoService {
 
 	List<ContactInfoRequest> showAllContactInfo();
 
-	ResponseEntity<Void> deleteById(@NotNull String id);
+	ResponseEntity<Void> deleteById(@NotNull int id);
 
 	ResponseEntity<String> submitContact(ContactInfoRequest request);
 
-	ResponseEntity<ContactInfoRequest> findByIdContactUs(String id);
+	ResponseEntity<ContactInfoRequest> findByIdContactUs(int id);
 
-	ResponseEntity<Boolean> updateStatusOfContactUsByStatus(String id, String value);
+	ResponseEntity<Boolean> updateStatusOfContactUsByStatus(int id, String value);
 
 	ResponseEntity<String> subscribe(@NotNull SubscribeInfoRequest request);
 
-	ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(String id, String value);
+	ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(int id, String value);
 
 	List<SubscribeInfoRequest> showAllSubscribeInfo();
 
-	ResponseEntity<Object> deleteSubscribeInfoById(String id);
+	ResponseEntity<Object> deleteSubscribeInfoById(int id);
 
 }

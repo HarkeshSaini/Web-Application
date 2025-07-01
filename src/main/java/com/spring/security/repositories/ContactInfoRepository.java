@@ -1,11 +1,11 @@
 package com.spring.security.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.spring.security.entity.ContactInfoDetail;
 
 @Repository
-public interface ContactInfoRepository extends MongoRepository<ContactInfoDetail, String> {
+public interface ContactInfoRepository extends JpaRepository<ContactInfoDetail, Integer> {
 
 }

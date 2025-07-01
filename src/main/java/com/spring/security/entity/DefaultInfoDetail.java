@@ -1,16 +1,22 @@
 package com.spring.security.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.Id;
 
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Document(collection = "DefaultInfoDetail")
+
+@Setter
+@Getter
+@Entity
 public class DefaultInfoDetail {
 
 	@Id
-	public String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int id;
 	public String content;
 	public String description;
 	public String keywords;

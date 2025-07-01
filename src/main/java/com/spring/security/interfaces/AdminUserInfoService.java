@@ -12,15 +12,15 @@ public interface AdminUserInfoService {
 	
 	public List<AdminUserInfoRequest> getAllUser();
 
-	public AdminUserInfoRequest getUserById(String id);
+	public AdminUserInfoRequest getUserById(int id);
 
-	public ResponseEntity<String> deleteUserById(String id);
+	public ResponseEntity<String> deleteUserById(int id);
 
 	public AdminUserInfoRequest addUser(AdminUserInfoRequest userRegistrationObject, MultipartFile file);
 
 	public String[] getAdminRole();
 
-	public AdminUserInfoRequest updateUser(@NotNull String id, MultipartFile file, @NotNull AdminUserInfoRequest infoRequest);
+	public AdminUserInfoRequest updateUser(@NotNull int id, MultipartFile file, @NotNull AdminUserInfoRequest infoRequest);
 
 	public ResponseEntity<Object> addAdminUser(AdminUserInfoRequest request);
 }

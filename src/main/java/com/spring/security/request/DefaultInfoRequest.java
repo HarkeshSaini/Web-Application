@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class DefaultInfoRequest {
 
-	public String id;
+	public int id;
 	public String content;
 	public String description;
 	public String keywords;

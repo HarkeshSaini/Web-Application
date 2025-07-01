@@ -69,7 +69,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	}
 
 	@Override
-	public ResponseEntity<CategoryInfoRequest> getCategoryById(String id) {
+	public ResponseEntity<CategoryInfoRequest> getCategoryById(int id) {
 		Optional<CategoryInfoDetail> data = infoRepository.findById(id);
 		if (data.isPresent()) {
 			return ResponseEntity.ok(modelMapper.map(data.get(), CategoryInfoRequest.class));
@@ -79,7 +79,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	}
 
 	@Override
-	public ResponseEntity<CategoryInfoRequest> updateCategory(String id, MultipartFile file,
+	public ResponseEntity<CategoryInfoRequest> updateCategory(int id, MultipartFile file,
 			CategoryInfoRequest request) {
 		try {
 			request.setId(id);
@@ -115,7 +115,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Void> deleteCategoryById(String id) {
+	public ResponseEntity<Void> deleteCategoryById(int id) {
 		Optional<CategoryInfoDetail> category = infoRepository.findById(id);
 		if (category.isPresent()) {
 			infoRepository.deleteById(id);
@@ -163,7 +163,7 @@ public class CategoryServiceImpl implements CategoryInfoService {
 	}
 
 	@Override
-	public ResponseEntity<String> deleteCategory(String id) {
+	public ResponseEntity<String> deleteCategory(int id) {
 		Optional<Category> category = repository.findById(id);
 		if (category.isPresent()) {
 			repository.deleteById(id);

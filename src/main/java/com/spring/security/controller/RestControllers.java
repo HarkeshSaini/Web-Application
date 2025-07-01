@@ -73,12 +73,12 @@ public class RestControllers {
 	}
 
 	@GetMapping("/findByIdReviews/{id}")
-	public ResponseEntity<ReviewInfoRequest> findByIdReviews(@PathVariable String id) {
+	public ResponseEntity<ReviewInfoRequest> findByIdReviews(@PathVariable int id) {
 		return handleServiceCall(() -> infoReviews.findByIdReviews(id));
 	}
 // data 
 	@PostMapping("/updateReviewsByStatus/{id}/{value}")
-	public ResponseEntity<Boolean> updateReviewsByStatus(@PathVariable String id, @PathVariable String value) {
+	public ResponseEntity<Boolean> updateReviewsByStatus(@PathVariable int id, @PathVariable String value) {
 		return handleServiceCall(() -> infoReviews.updateReviewsByStatus(id, value));
 	}
 
@@ -88,7 +88,7 @@ public class RestControllers {
 	}
 
 	@GetMapping("/findByIdContactUs/{id}")
-	public ResponseEntity<ContactInfoRequest> findByIdContactUs(@PathVariable String id) {
+	public ResponseEntity<ContactInfoRequest> findByIdContactUs(@PathVariable int id) {
 		return handleServiceCall(() -> contactInfoService.findByIdContactUs(id));
 	}
 
@@ -98,7 +98,7 @@ public class RestControllers {
 	}
 
 	@PostMapping("/updateStatusOfContactUsByStatus/{id}/{value}")
-	public ResponseEntity<Boolean> updateStatusOfContactUsByStatus(@PathVariable String id, @PathVariable String value) {
+	public ResponseEntity<Boolean> updateStatusOfContactUsByStatus(@PathVariable int id, @PathVariable String value) {
 		return handleServiceCall(() -> contactInfoService.updateStatusOfContactUsByStatus(id, value));
 	}
 
@@ -113,7 +113,7 @@ public class RestControllers {
 	}
 
 	@GetMapping("/deleteCategory/{id}")
-	public String deleteCategory(@NotNull @PathVariable String id, HttpServletRequest request) {
+	public String deleteCategory(@NotNull @PathVariable int id, HttpServletRequest request) {
 		return categoryService.deleteCategory(id).getBody();
 	}
 
@@ -123,7 +123,7 @@ public class RestControllers {
 	}
 
 	@PostMapping("/updateStatusOfSubscribeInfoByStatus/{id}/{value}")
-	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(@PathVariable String id, @PathVariable String value) {
+	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(@PathVariable int id, @PathVariable String value) {
 		return handleServiceCall(() -> contactInfoService.updateStatusOfSubscribeInfoByStatus(id, value));
 	}
 

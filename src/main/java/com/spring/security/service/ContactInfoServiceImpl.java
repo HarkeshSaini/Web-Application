@@ -39,7 +39,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Void> deleteById(String id) {
+	public ResponseEntity<Void> deleteById(int id) {
 		Optional<ContactInfoDetail> contactInfoDetail = contactInfoRepository.findById(id);
 		if (contactInfoDetail.isPresent()) {
 			contactInfoRepository.deleteById(id);
@@ -74,7 +74,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	}
 
 	@Override
-	public ResponseEntity<ContactInfoRequest> findByIdContactUs(String id) {
+	public ResponseEntity<ContactInfoRequest> findByIdContactUs(int id) {
 		Optional<ContactInfoDetail> findById = contactInfoRepository.findById(id);
 		if (findById.isPresent()) {
 			ContactInfoRequest requestData = modelMapper.map(findById.get(), ContactInfoRequest.class);
@@ -85,7 +85,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateStatusOfContactUsByStatus(String id, String value) {
+	public ResponseEntity<Boolean> updateStatusOfContactUsByStatus(int id, String value) {
 		Optional<ContactInfoDetail> findById = contactInfoRepository.findById(id);
 		if (findById.isPresent()) {
 			ContactInfoDetail contactInfoDetail = findById.get();
@@ -117,7 +117,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(String id, String value) {
+	public ResponseEntity<Boolean> updateStatusOfSubscribeInfoByStatus(int id, String value) {
 		Optional<SubscribeInfoDetail> findById = subscribeRepo.findById(id);
 		if (findById.isPresent()) {
 			SubscribeInfoDetail contactInfoDetail = findById.get();
@@ -138,7 +138,7 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Object> deleteSubscribeInfoById(String id) {
+	public ResponseEntity<Object> deleteSubscribeInfoById(int id) {
 		Optional<SubscribeInfoDetail> optionalData = subscribeRepo.findById(id);
 		if (optionalData.isPresent()) {
 			subscribeRepo.deleteById(id);

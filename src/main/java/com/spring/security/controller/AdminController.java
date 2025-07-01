@@ -110,7 +110,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/editUserInfo/{id}")
-	private String editUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String editUserInfo(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			AdminUserInfoRequest userById = this.registerService.getUserById(id);
 			CommonUtility.userRole(request, model);
@@ -124,7 +124,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/editUserInfo/{id}")
-	private String editUserInfo(@PathVariable String id, AdminUserInfoRequest infoRequest, MultipartFile file, Model model,
+	private String editUserInfo(@PathVariable int id, AdminUserInfoRequest infoRequest, MultipartFile file, Model model,
 			HttpServletRequest request) {
 		try {
 			AdminUserInfoRequest userById = this.registerService.updateUser(id, file, infoRequest);
@@ -143,7 +143,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteUserInfo/{id}")
-	private String deleteUserInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteUserInfo(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.registerService.deleteUserById(id);
@@ -169,7 +169,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteContactUsInfo/{id}")
-	private String deleteContactUsInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteContactUsInfo(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.contactInfoService.deleteById(id);
@@ -193,7 +193,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteSubscribeInfo/{id}")
-	private String deleteSubscribeInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteSubscribeInfo(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.contactInfoService.deleteSubscribeInfoById(id);
@@ -243,7 +243,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/editBlogInfo/{id}")
-	private String editBlogInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String editBlogInfo(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			BlogInfoRequest blogById = this.blogService.getBlogById(id);
 			CommonUtility.userRole(request, model);
@@ -257,7 +257,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/editBlogInfo/{id}")
-	private String editBlogInfos(@PathVariable String id, BlogInfoRequest infoRequest, MultipartFile file, Model model,
+	private String editBlogInfos(@PathVariable int id, BlogInfoRequest infoRequest, MultipartFile file, Model model,
 			HttpServletRequest request) {
 		try {
 			BlogInfoRequest blogById = this.blogService.updateBlog(id, file, infoRequest);
@@ -276,7 +276,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteBlogInfo/{id}")
-	private String deleteBlogInfos(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteBlogInfos(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.blogService.deleteBlogById(id);
@@ -331,7 +331,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/editCategoryInfo/{id}")
-	private String editCategoryInfo(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String editCategoryInfo(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.getCategoryById(id);
 			CommonUtility.userRole(request, model);
@@ -347,7 +347,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/editCategoryInfo/{id}")
-	private String editCategoryInfos(@PathVariable String id, CategoryInfoRequest infoRequest, MultipartFile file,
+	private String editCategoryInfos(@PathVariable int id, CategoryInfoRequest infoRequest, MultipartFile file,
 			Model model, HttpServletRequest request) {
 		try {
 			ResponseEntity<CategoryInfoRequest> categoryById = this.categoryService.updateCategory(id, file,
@@ -367,7 +367,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteCategoryInfo/{id}")
-	private String deleteCategoryInfos(@PathVariable String id, Model model, HttpServletRequest request) {
+	private String deleteCategoryInfos(@PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.categoryService.deleteCategoryById(id);
@@ -420,7 +420,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/editDefaultInfo/{id}")
-	public String editDefaultInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	public String editDefaultInfo(@NotNull @PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			ResponseEntity<DefaultInfoRequest> defaultById = this.defaultInfoService.getDefaultById(id);
 			CommonUtility.userRole(request, model);
@@ -434,7 +434,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/editDefaultInfo/{id}")
-	public String editDefaultInfos(@PathVariable String id, DefaultInfoRequest infoRequest, MultipartFile file,
+	public String editDefaultInfos(@PathVariable int id, DefaultInfoRequest infoRequest, MultipartFile file,
 			Model model, HttpServletRequest request) {
 		try {
 			ResponseEntity<DefaultInfoRequest> updatedDefault = this.defaultInfoService.updateDefault(id, file,
@@ -456,7 +456,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/deleteDefaultInfo/{id}")
-	public String deleteDefaultInfos(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	public String deleteDefaultInfos(@NotNull @PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.defaultInfoService.deleteDefaultById(id);
@@ -482,7 +482,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/deleteReviewInfo/{id}")
-	public String deleteReviewInfo(@NotNull @PathVariable String id, Model model, HttpServletRequest request) {
+	public String deleteReviewInfo(@NotNull @PathVariable int id, Model model, HttpServletRequest request) {
 		try {
 			CommonUtility.userRole(request, model);
 			this.reviewsInfoService.deleteReviewInfo(id);

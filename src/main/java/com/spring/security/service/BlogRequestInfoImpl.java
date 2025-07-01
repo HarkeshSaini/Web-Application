@@ -60,7 +60,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 	}
 
 	@Override
-	public BlogInfoRequest getBlogById(@NotNull String id) {
+	public BlogInfoRequest getBlogById(@NotNull int id) {
 		BlogInfoDetail blogData = infoRepository.findById(id).orElse(null);
 		if (blogData == null) {
 			return null;
@@ -69,7 +69,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 	}
 
 	@Override
-	public BlogInfoRequest updateBlog(String id, MultipartFile file, BlogInfoRequest blogRequest) {
+	public BlogInfoRequest updateBlog(int id, MultipartFile file, BlogInfoRequest blogRequest) {
 		BlogInfoDetail mapData = new BlogInfoDetail();
 		try {
 			blogRequest.setId(id);
@@ -90,7 +90,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 	}
 
 	@Override
-	public void deleteBlogById(@NotNull String id) {
+	public void deleteBlogById(@NotNull int id) {
 		try {
 			infoRepository.deleteById(id);
 		} catch (Exception e) {

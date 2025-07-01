@@ -41,13 +41,13 @@ public class AdminUserInfoServicesImpl implements AdminUserInfoService {
 	}
 
 	@Override
-	public AdminUserInfoRequest getUserById(@NotNull String id) {
+	public AdminUserInfoRequest getUserById(@NotNull int id) {
 		AdminUserInfoDetail userInfo = findUserById(id);
 		return modelMapper.map(userInfo, AdminUserInfoRequest.class);
 	}
 
 	@Override
-	public ResponseEntity<String> deleteUserById(@NotNull String id) {
+	public ResponseEntity<String> deleteUserById(@NotNull int id) {
 		AdminUserInfoDetail userInfo = findUserById(id);
 		if (ObjectUtils.isEmpty(userInfo)) {
 			detailRepositorie.deleteById(id);
@@ -78,7 +78,7 @@ public class AdminUserInfoServicesImpl implements AdminUserInfoService {
 	}
 
 	@Override
-	public AdminUserInfoRequest updateUser(String id, MultipartFile file, AdminUserInfoRequest infoRequest) {
+	public AdminUserInfoRequest updateUser(int id, MultipartFile file, AdminUserInfoRequest infoRequest) {
 		AdminUserInfoDetail adminRequest = findUserById(id);
 
 		if (file != null && file.getSize() > 0) {
@@ -115,7 +115,7 @@ public class AdminUserInfoServicesImpl implements AdminUserInfoService {
 		return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(saveInfoDetail, AdminUserInfoRequest.class));
 	}
 
-	private AdminUserInfoDetail findUserById(String id) {
+	private AdminUserInfoDetail findUserById(int id) {
 		return detailRepositorie.findById(id).orElseThrow(() -> {
 			return new RuntimeException("User not found By provided Id: " + id);
 		});

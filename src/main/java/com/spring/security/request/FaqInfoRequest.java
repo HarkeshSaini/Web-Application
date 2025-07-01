@@ -2,12 +2,15 @@ package com.spring.security.request;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 public class FaqInfoRequest {
 	
-	private String id;
+	private int id;
 	private String pageType;
 	private String faQues;
 	private String faqAns;

@@ -2,12 +2,15 @@ package com.spring.security.request;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 public class ReviewInfoRequest {
 
-	private String id;
+	private int id;
 	private String userName;
 	private String userEmail;
 	private String userPhone;

@@ -90,12 +90,12 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	}
 
 	@Override
-	public void deleteReviewInfo(@NotNull String id) {
+	public void deleteReviewInfo(@NotNull int id) {
 		reviewsInfoRepository.deleteById(id);
 	}
 
 	@Override
-	public ResponseEntity<Boolean> updateReviewsByStatus(String id, String value) {
+	public ResponseEntity<Boolean> updateReviewsByStatus(int id, String value) {
 		Optional<ReviewInfoDetail> findById = reviewsInfoRepository.findById(id);
 		if (findById.isPresent()) {
 			ReviewInfoDetail contactInfoDetail = findById.get();
@@ -110,7 +110,7 @@ public class ReviewsInfoServiceImpl implements ReviewsInfoService {
 	}
 
 	@Override
-	public ResponseEntity<ReviewInfoRequest> findByIdReviews(String id) {
+	public ResponseEntity<ReviewInfoRequest> findByIdReviews(int id) {
 		try {
 			Optional<ReviewInfoDetail> findAll = reviewsInfoRepository.findById(id);
 			if (!findAll.isPresent()) {

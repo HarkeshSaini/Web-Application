@@ -14,11 +14,11 @@ public interface DefaultInfoService {
 
 	ResponseEntity<DefaultInfoRequest> addDefault(DefaultInfoRequest defaultRequest, MultipartFile file);
 
-	ResponseEntity<DefaultInfoRequest> getDefaultById(@NotNull String id);
+	ResponseEntity<DefaultInfoRequest> getDefaultById(@NotNull int id);
 
-	ResponseEntity<DefaultInfoRequest> updateDefault(String id, MultipartFile file, DefaultInfoRequest infoRequest);
+	ResponseEntity<DefaultInfoRequest> updateDefault(int id, MultipartFile file, DefaultInfoRequest infoRequest);
 
-	ResponseEntity<Void> deleteDefaultById(@NotNull String id);
+	ResponseEntity<Void> deleteDefaultById(@NotNull int id);
 
 	List<DefaultInfoRequest> findAllDefaultByStatus();
 

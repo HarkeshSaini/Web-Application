@@ -4,13 +4,16 @@ import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContactInfoRequest {
 
-	private String id;
+	private int id;
 	private String name;
 	private String email;
 	private String subject;

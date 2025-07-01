@@ -2,12 +2,14 @@ package com.spring.security.request;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class CategoryInfoRequest {
 
-	private String id;
+	private int id;
 	private String heading;
 	private String pageUrl;
 	private String categoryUrl;

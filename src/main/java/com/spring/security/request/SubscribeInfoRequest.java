@@ -3,12 +3,15 @@ package com.spring.security.request;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 public class SubscribeInfoRequest {
 	
-	private String id;
+	private int id;
 	private Timestamp postTime;
 	private Timestamp updateTime;
 	private String status;

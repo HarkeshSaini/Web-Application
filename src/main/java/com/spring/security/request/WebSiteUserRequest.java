@@ -2,12 +2,15 @@ package com.spring.security.request;
 
 import java.sql.Timestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 public class WebSiteUserRequest {
 
-	private String id;
+	private int id;
 	private String fullName;
 	private String email;
 	private String password;

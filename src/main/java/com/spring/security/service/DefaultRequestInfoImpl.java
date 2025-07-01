@@ -61,7 +61,7 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 	}
 
 	@Override
-	public ResponseEntity<DefaultInfoRequest> getDefaultById(String id) {
+	public ResponseEntity<DefaultInfoRequest> getDefaultById(int id) {
 		Optional<DefaultInfoDetail> findById = infoRepository.findById(id);
 		if (findById.isPresent()) {
 			DefaultInfoRequest requestData = modelMapper.map(findById.get(), DefaultInfoRequest.class);
@@ -72,7 +72,7 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 	}
 
 	@Override
-	public ResponseEntity<DefaultInfoRequest> updateDefault(String id, MultipartFile file,
+	public ResponseEntity<DefaultInfoRequest> updateDefault(int id, MultipartFile file,
 			DefaultInfoRequest defaultRequest) {
 		try {
 			Optional<DefaultInfoDetail> existingData = infoRepository.findById(id);
@@ -102,7 +102,7 @@ public class DefaultRequestInfoImpl implements DefaultInfoService {
 	}
 
 	@Override
-	public ResponseEntity<Void> deleteDefaultById(String id) {
+	public ResponseEntity<Void> deleteDefaultById(int id) {
 		try {
 			Optional<DefaultInfoDetail> defaultInfoDetail = infoRepository.findById(id);
 			if (defaultInfoDetail.isPresent()) {

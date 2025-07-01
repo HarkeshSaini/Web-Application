@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class BlogInfoRequest {
 
-	public String id;
+	public int id;
 	public String title;
 	public String titleUrl;
 	public String content;

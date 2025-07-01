@@ -1,11 +1,13 @@
 package com.spring.security.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class CategoryReq {
 
-	private String id;
+	private int id;
 	private String name;
 	private String url;
 	public String imgUrl;
