@@ -1,8 +1,10 @@
  body {
  	font-family: Arial, sans-serif;
- 	background-color: #e2e5e5;
- 	;
- }
+ 	background-color: #e2e5e56e;
+ 	 
+ }a.nav-link.popup-login {
+    display: none;
+}
 
  .form-control {
  	color: #595c5f !important;
@@ -348,7 +350,7 @@
 }*/
  /* Navbar Background Gradient */
  nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body {
- 	background-image: linear-gradient(to left, rgb(0 0 0) 0%, rgb(54 161 203) 100%);
+ 	     background-color: black;
  }
 
  /*.col-md-6.login-form-side.p-4 {

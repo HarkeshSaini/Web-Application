@@ -19,6 +19,7 @@ public class BlogInfoDetail {
 	public int id;
 	public String title;
 	public String titleUrl;
+	@Column(columnDefinition = "LONGTEXT")
 	public String content;
 	public String description;
 	public String keywords;

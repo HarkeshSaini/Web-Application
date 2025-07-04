@@ -119,7 +119,7 @@ public class BlogRequestInfoImpl implements BlogInfoService {
 
 	@Override
 	public List<BlogInfoRequest> getLatestBlog(int blogValue) {
-		List<BlogInfoDetail> findAll = infoRepository.findTopByStatusOrderByPostTimeDesc("Active", PageRequest.of(0, blogValue));
-		return findAll.stream().map(x -> modelMapper.map(x, BlogInfoRequest.class)).toList();
+		List<BlogInfoRequest> data= findAllBlogByStatus();
+		return data.stream().limit(blogValue).toList();
 	}
 }

@@ -36,7 +36,7 @@ public class RestControllers {
 
 	@GetMapping("/getLatestBlog")
 	public ResponseEntity<List<BlogInfoRequest>> getLatestBlog() {
-		return ResponseEntity.ok(blogService.getLatestBlog(3));
+		return ResponseEntity.ok(blogService.getLatestBlog(6));
 	}
 
 	@PostMapping("/addAdminUser")
@@ -83,9 +83,12 @@ public class RestControllers {
 	}
 
 	@PostMapping("/submitContactInfo")
-	public ResponseEntity<String> submitContact(@RequestBody ContactInfoRequest request) {
-		return handleServiceCall(() -> contactInfoService.submitContact(request));
+	public ResponseEntity<?> submitContact(@RequestBody ContactInfoRequest request) {
+		boolean status = !StringUtils.hasText(request.getEmail()) || !StringUtils.hasText(request.getName());
+		String messages="Please provide your name and email to submit.";
+		return status ? ResponseEntity.ok(messages): handleServiceCall(() -> contactInfoService.submitContact(request));
 	}
+		 
 
 	@GetMapping("/findByIdContactUs/{id}")
 	public ResponseEntity<ContactInfoRequest> findByIdContactUs(@PathVariable int id) {

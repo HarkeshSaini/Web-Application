@@ -4,15 +4,16 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,7 +35,8 @@ public class WebSiteUserDetail implements UserDetails {
     private String email;
     private String password;
     private String status;
-    private String role;  
+    private String role; 
+    @Column(columnDefinition = "LONGTEXT")
     private String destination;
 	private String aboutMe;
     private String phone;

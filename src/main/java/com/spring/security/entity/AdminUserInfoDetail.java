@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +38,7 @@ public class AdminUserInfoDetail implements UserDetails {
 	private long updateDate;
 	private String role;
 	private int age;
+	@Column(columnDefinition = "LONGTEXT")
 	private String comment;
 	private String status;
 	private boolean emailVerified;

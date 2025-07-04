@@ -5,19 +5,26 @@
 
  .card.main-card:hover {
  	transform: translateY(-6px);
- }
+ }h2.why_choose {
+    margin-left: 12px;
+    margin-bottom: -14px;
+}
 
- p.time-date {
- 	margin-bottom: 21px;
- 	font-size: 19px;
- 	color: #243a50;
- }
+p.time-date {
+    margin-bottom: 1px;
+    font-size: 15px;
+    color: #254b70;
+}
 
  a.data-url {
- 	text-decoration: none;
- 	color: black;
- 	font-size: 17px;
- }
+    text-decoration: none;
+    color: #3d7885;
+    font-size: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
 
  /* Base styles for the container */
  .container {
@@ -72,7 +79,7 @@
  }
 
  h2.reviews-title {
- 	margin-top: 3rem;
+ 	margin-top: 2rem;
  }
 
  /* ====================
@@ -206,12 +213,12 @@
  	margin: 0 auto;
  }
 
- .reviews-title {
- 	text-align: center;
- 	margin-bottom: 40px;
- 	font-size: 2em;
- 	color: #333;
- }
+.reviews-title {
+    text-align: start;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333;
+}
 
  .reviews-container {
  	display: grid;
@@ -222,7 +229,7 @@
  .review-card {
  	background-color: #fff;
  	border-radius: 10px;
- 	padding: 20px;
+ 	padding: 12px;
  	box-shadow: 0 0px 14px rgb(0 0 0 / 38%);
  	transition: transform 0.2s;
  }
@@ -235,7 +242,11 @@
  	display: flex;
  	align-items: center;
  	margin-bottom: 15px;
- }
+ }p.card-content {
+    margin-top: 12px;
+    font-size: 15px;
+    color: #000000;
+}
 
  .review-avatar {
  	width: 50px;
@@ -600,9 +611,9 @@
  /*revies*/
 
  .review-stars {
- 	color: gold;
- 	font-size: 18px;
- 	margin: 5px 0;
+ 	color: #1f3946;
+ 	font-size: 23px;
+    margin: 0px -3px;
  }
 
  .review-author.name {
@@ -615,7 +626,7 @@
  	text-overflow: ellipsis;
  	display: -webkit-box;
  	font-size: 16px;
- 	-webkit-line-clamp: 2;
+ 	-webkit-line-clamp: 3;
  	margin-top: -20px;
  	-webkit-box-orient: vertical;
  }

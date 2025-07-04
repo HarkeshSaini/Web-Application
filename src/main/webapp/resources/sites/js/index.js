@@ -31,13 +31,16 @@ $.ajax(settings).done(function (response) {
         response.forEach(function (data) {
             // Format the timestamp using the convertTimestamp function
             const dates = convertTimestamp(data.postTime);
+			const contents=cleanLimitCharactersAndWrap(data.content ,170);
 
             // Construct the blog card with the formatted date
             var reviewCard = `
                 <div class="review-card">
                     <div class="review-content">
-                        <p class="time-date">${dates}</p>
+                        
                         <a class="data-url" href="/blog/${data.titleUrl}">${data.heading}</a>
+						<p>${contents}</p>
+						
                     </div>
                 </div>
             `;
@@ -45,6 +48,14 @@ $.ajax(settings).done(function (response) {
         });
     }
 });
+
+function cleanLimitCharactersAndWrap(text, maxLength) {
+  const plainText = text.replace(/<[^>]*>/g, '').trim();
+  const limitedText = plainText.length > maxLength
+    ? plainText.substring(0, maxLength) + '...'  
+    : plainText;
+  return `<p class="card-content">${limitedText}</p>`;
+}
 
 // Function to convert the timestamp to a formatted date string
 function convertTimestamp(timestamp) {

@@ -11,6 +11,8 @@ import com.spring.security.entity.BlogInfoDetail;
 @Repository
 public interface BlogInfoRepository extends JpaRepository<BlogInfoDetail, Integer> {
 
+	List<BlogInfoDetail> totalPage = null;
+
 	BlogInfoDetail findByTitleUrl(String titleUrl);
 
 	List<BlogInfoDetail> findByStatusAndTitleUrl(String string, String pageUrl);

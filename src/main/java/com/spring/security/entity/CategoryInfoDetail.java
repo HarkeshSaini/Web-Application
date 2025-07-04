@@ -1,7 +1,7 @@
 package com.spring.security.entity;
 
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +23,7 @@ public class CategoryInfoDetail {
 	private String metaTitle;
 	private String metaKeywords;
 	private String metaDescription;
+	@Column(columnDefinition = "LONGTEXT")
 	private String content;
 	private String status;
 	private String imgUrl;
