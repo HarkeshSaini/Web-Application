@@ -340,7 +340,7 @@ a.heading {
 	border-radius: 8px;
 	overflow: hidden;
 	height: auto;
-	box-shadow: 0 4px 12px rgb(0 0 0 / 17%);
+	box-shadow: 0 4px 12px rgb(0 0 0 / 6%);
 	transition: transform 0.3s ease;
 }
 
@@ -363,7 +363,7 @@ a.blog-heading {
 
 /* Blog Text Content */
 .blog-content {
-	padding: 11px 18px;
+	padding: 3px 10px;
 }
 
 .blog-content h3 {

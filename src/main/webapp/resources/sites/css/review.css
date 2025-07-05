@@ -1,10 +1,10 @@
-/* Review Container */
+ 
 .review-container {
-	max-width: : 1320px;
-	/*max-width: 600px;*/
+	max-width:1320px;
+	 
 	padding: 20px;
 	background: white;
-	box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+	    box-shadow: 0 0 10px rgb(0 0 0 / 7%);
 	border-radius: 8px;
 }
 
@@ -228,18 +228,7 @@ h2.review-heading {
 .form-group-review {
 	padding: 0px 15px;
 }
-
-input#user-email {
-	border: 1px solid #323262;
-}
-
-input#user-name {
-	border: 1px solid #323262;
-}
-
-textarea#user-comment {
-	border: 1px solid #323262;
-}
+ 
 
 /*==============*/
 
@@ -268,7 +257,7 @@ textarea#user-comment {
 	padding: 0 gap(m);
 	width: 100%;
 	height: 50px;
-	border: 1px solid #323262;
+	border:1px solid #dddddd;
 	border-radius: 3px;
 	font-family: arial, sans-serif;
 	font-size: 1rem;
