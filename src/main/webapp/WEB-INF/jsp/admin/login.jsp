@@ -12,10 +12,10 @@
   <body>
     <section class="bg-light py-3 py-md-5">
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="margin-left: 0px">
           <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
             <div class="card border border-light-subtle rounded-3 shadow-sm">
-              <div class="card-body p-3 p-md-4 p-xl-5">
+              <div class="card-body p-3 p-md-4">
                <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
                   <div class="error message">
                     <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />

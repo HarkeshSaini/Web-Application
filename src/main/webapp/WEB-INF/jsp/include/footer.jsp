@@ -25,7 +25,7 @@
 </footer>
 
 
-<footer class="footer">
+<footer class="main footer">
   <section class="bg-lights py-4 py-md-5 py-xls-8 border-top border-light">
     <div class="container overflow-hidden">
       <div class="row gy-4 gy-lg-0 justify-content-xl-between">
@@ -63,10 +63,10 @@
           <div class="widget">
             <h4 class="widget-title mb-4">Address</h4>
            <div class="main-add"> 
-             123 Example Street, Suite 456, Faketown, CA 90210<br>
-		     456 Demo Avenue, Floor 3, Testville, NY 10001<br>
-		     789 Placeholder Blvd, Unit 101, Sample City, TX 73301<br>
-		     321 Mockup Road, Apt 202, Imaginetown, FL 33101 
+             Dummy data refers to information real scenarios is created<br>
+             to be used as placeholders or  purpose data analysis other<br>
+			 <!-- mimicking real is without meaningful containing any actual<br> -->
+			 meaningful. It's often used in software benign information.
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/resources/admin/css/styles.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-
+<style> li.nav-item { list-style: none; } </style>
 
 <!-- <div class="crose-icon slide-toggle"> <i class="fa-solid fa-xmark"></i></div>  -->
 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
@@ -29,7 +29,7 @@
       </li>
       <li class="nav-item">
         <a href="/admin/getAllUserWebSite" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> 
-        <span class="d-none d-sm-inline">User Information</span> </a>
+        <span class="d-none d-sm-inline">Web User Details</span> </a>
       </li>
       
       

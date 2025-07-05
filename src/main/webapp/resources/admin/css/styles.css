@@ -8,6 +8,8 @@
 	/*border: 1px solid black;
     border-radius: 50px;*/
 	text-align: center;
+}.modal-header {
+    background-color: #178ca5d1;
 }
 
 .bg-light {

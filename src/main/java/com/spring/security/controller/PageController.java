@@ -31,6 +31,8 @@ public class PageController {
 	@GetMapping("/")
 	public String index(HttpServletRequest request, Model model) {
 		request.getSession().setAttribute("strValue", null);
+		var list = defaultInfoService.findAllDefaultByStatusAndPageUrl("about-us");
+		model.addAttribute("abotutList", list);
 		model.addAttribute("message", "success");
 		return "index";
 	}

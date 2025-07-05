@@ -5,10 +5,7 @@
 
  .card.main-card:hover {
  	transform: translateY(-6px);
- }h2.why_choose {
-    margin-left: 12px;
-    margin-bottom: -14px;
-}
+ } 
 
 p.time-date {
     margin-bottom: 1px;
@@ -79,8 +76,10 @@ p.time-date {
  }
 
  h2.reviews-title {
- 	margin-top: 2rem;
- }
+ 	margin-top: 1rem;
+ }h2.why_choose {
+    margin-bottom: 14px;
+}
 
  /* ====================
    Banner Section
@@ -230,7 +229,7 @@ p.time-date {
  	background-color: #fff;
  	border-radius: 10px;
  	padding: 12px;
- 	box-shadow: 0 0px 14px rgb(0 0 0 / 38%);
+ 	box-shadow: 0 0px 14px rgb(0 0 0 / 3%);
  	transition: transform 0.2s;
  }
 
@@ -481,7 +480,7 @@ p.time-date {
  /* General styles */
  /* Base section styling */
  .why-us {
- 	padding: 60px 20px;
+ 	padding: 14px;
  	background-color: #f9f9f9;
  	font-family: Arial, sans-serif;
  	color: #333;
@@ -541,23 +540,27 @@ p.time-date {
  }
 
  /* Text block */
- .why-us .benefits-list p {
- 	font-size: 1em;
- 	text-align: justify;
- 	line-height: 1.8;
- 	color: #444;
- 	padding: 15px;
- 	/*background-color: #fff;*/
- 	/* border-radius: 8px;*/
- 	/* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);*/
- }
+  
 
  section#why-us {
  	background-color: #fff;
  	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
  	margin-top: 77px;
  }
-
+ a.read_more {
+    text-decoration-line: none;
+    font-family: cursive;
+}
+.benefits-list {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    font-size: 15px;
+    -webkit-line-clamp: 20;
+    text-align: justify;
+   
+    -webkit-box-orient: vertical;
+}
  /* Responsive Breakpoints */
 
  /* Tablets */
@@ -590,7 +593,7 @@ p.time-date {
  /* Phones */
  @media (max-width: 480px) {
  	.why-us {
- 		padding: 40px 15px;
+ 		        padding: 8px 0px;
  	}
 
  	.why-us .section-header h2 {
@@ -603,7 +606,10 @@ p.time-date {
 
  	.why-us .benefits-list p {
  		font-size: 0.95em;
- 		padding: 10px;
+ 		 text-align: justify;
+ 	}
+ 	.benefits-list{
+ 	text-align: left;
  	}
  }
 

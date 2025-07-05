@@ -20,24 +20,19 @@ hr.hori_line {
 }
 
 li.mb-0 {
-	margin-top: 10px;
+	margin-top: 4px;
 }
 
 p.mb-0 {
 	color: white;
 }
 
-li.mb-0 {
-	list-style: auto;
-	color: white;
-}
+ 
 
 .footer {
-	/* background-color: #222222;*/
-	background-image: linear-gradient(to left, rgb(12 85 104) 0%, rgb(15 22 22) 100%);
-	padding: 2rem 1rem;
-	font-family: Arial, sans-serif;
-	color: #212529;
+	 
+	font-family: system-ui;
+	 
 }
 
 li.mb-0 {
@@ -126,7 +121,7 @@ h4.widget-title.mb-4 {
 }
 
 .address {
-	text-align: justify;
+	
 	margin-top: 2rem;
 	font-size: 15px;
 	color: #ffffff;
@@ -186,24 +181,24 @@ a.text-decoration-none {
 
 
 footer.footer.message-subscribe-submit {
-	background-image: linear-gradient(to left, rgb(11 98 118) 0%, rgb(31 36 36) 100%);
+	background-color: rgb(65 68 68);
 	margin-top: 27px;
 }
 
 
 .main-add {
 	color: #fdfdfd;
-	text-align: justify;
+	
 }
 
 
 /*=============form==================*/
 
 footer.footer {
-	background-color: #f4f4f4;
+	background-color: rgb(0 0 0 / 90%);
 	padding: 23px 1px;
 }
-}
+ 
 
 /* Container */
 .subscribe-section .container {

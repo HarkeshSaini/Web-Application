@@ -64,19 +64,16 @@
     </div>
     <section class="why-us" id="why-us">
       <div class="container py-5">
+      <h2 class="why_choose"> Why Choose Us?</h2>
         <div class="row">
           <div class="column section-images">
-            <img src="/resources/sites/image/why-us.avif" alt="Quality Service" class="section-image">
+            <img src="/resources/sites/image/about.webp" alt="Quality Service" class="section-image">
           </div>
           <div class="column">
             <div class="benefits-list">
-              <h2 class="why_choose"> Why Choose Us?</h2>
-              <p>United Airlines has an operating route to multiple international and domestic destinations. So, the flight of the airline to those destinations from an assigned airport and Buffalo Niagara International Airport is among them. This airport is located in Cheektowaga, New York, and is 
-                laced with distinct services to enhance an overall Airlines has an an operating route to multiple international and an operating route multiple international and an operating route to multiple international and domestic destinat domestic destinat operating route to multiple travel 
-                laced wit. Whenever you get an issue related ubheads.Whenever youWhenever you get an issue related ubheads. get an issue related ubheads.Whenever you get an issue related ubheads.
-              <a href="/about-us">  Mare..</a>
-              </p>
+              <p class="aboutUsContent">${abotutList[0].content}</p>
             </div>
+            <a class="read_more" href="/about-us">Learn mare content about us..</a>
           </div>
         </div>
       </div>
