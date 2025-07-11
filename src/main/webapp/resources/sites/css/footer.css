@@ -181,7 +181,7 @@ a.text-decoration-none {
 
 
 footer.footer.message-subscribe-submit {
-	background-color: rgb(40 42 42);
+	background-color: rgb(0 0 0);
 	margin-top: 27px;
 }
 
@@ -195,7 +195,7 @@ footer.footer.message-subscribe-submit {
 /*=============form==================*/
 
 footer.footer {
-	background-color: rgb(0 0 0 / 90%);
+	background-color: rgb(19 26 24);
 	padding: 23px 1px;
 }
  

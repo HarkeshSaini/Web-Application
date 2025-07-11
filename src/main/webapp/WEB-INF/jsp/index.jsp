@@ -14,9 +14,8 @@
     <section class="banner">
       <div class="banner-overlay"></div>
       <div class="banner-content">
-        <h1>Welcome to Our Website</h1>
-        <p>Discover great content, stay connected, and grow with us.</p>
-        <a href="#about" class="btn">Learn More</a>
+         
+         
       </div>
     </section>
     <div class="container py-5">

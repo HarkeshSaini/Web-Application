@@ -1,8 +1,19 @@
-const toggler = document.querySelector('.navbar-toggler');
+/*const toggler = document.querySelector('.navbar-toggler');
 const collapse = document.querySelector('#navbarNav');
 toggler.addEventListener('click', () => {
     collapse.classList.toggle('active');
-});
+});*/
+
+
+const toggleBtns = document.querySelector('.navbar-toggler');
+  const hiddenBoxs = document.querySelector('.navbarNav');
+  toggleBtns.addEventListener('click', function() {
+    if (hiddenBoxs.style.display === 'none' || hiddenBoxs.style.display === '') {
+      hiddenBoxs.style.display = 'block'; // Show box
+    } else {
+      hiddenBoxs.style.display = 'none';  // Hide box
+    }
+  });
   
   
 const toggleButton = document.getElementById('service-toggle');
@@ -39,3 +50,14 @@ document.getElementById('service-toggle').addEventListener('click', function() {
             console.error('Error fetching categories:', error);
         });
 });
+
+
+const toggleBtn = document.querySelector('.search');
+  const hiddenBox = document.querySelector('.search-input-data');
+  toggleBtn.addEventListener('click', function() {
+    if (hiddenBox.style.display === 'none' || hiddenBox.style.display === '') {
+      hiddenBox.style.display = 'block'; // Show box
+    } else {
+      hiddenBox.style.display = 'none';  // Hide box
+    }
+  });
