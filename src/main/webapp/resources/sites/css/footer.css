@@ -108,7 +108,7 @@ h4.widget-title.mb-4 {
 .btn {
 	display: inline-block;
 	padding: 0.5rem 1rem;
-	background-image: linear-gradient(to left, rgb(181 239 255) 0%, rgb(81 134 219) 100%);
+	    background-image: linear-gradient(to left, rgb(177 177 177) 0%, rgb(0 90 65) 100%);
 	color: #fff;
 	border: none;
 	text-align: center;
