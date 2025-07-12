@@ -12,7 +12,9 @@
         <li class="nav-item"><a class="nav-link support" href="/#"> My Account</a></li>
         <li class="nav-item">
           <a class="nav-link popup-login" href="/login">
-            <button class="popup-btn"><img src="/resources/sites/image/login-icon-vector.png" alt="Login" class="rounded-pill" height="40"></button>
+            <button class="popup-btn">
+            	<img src="/resources/sites/image/login-icon-vector.png" alt="Login" class="rounded-pill" height="40">
+            </button>
           </a>
         </li>
       </ul>
@@ -22,24 +24,24 @@
 
 <nav class="navbar navbar-expand-lg bg-darks border-bottom border-body main_head" data-bs-theme="dark">
   <div class="container"> 
-    <a class="navbar-brand" href="/"><h2> ZONE</h2>  <!--  <img src="/resources/sites/image/logo.png" alt="Logo" height="40"> --> </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <a class="navbar-brand device-tab-logo"  href="/"><h2> ZONE</h2></a>
+     <button class="navbar-toggler device-tab-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <img src="/resources/sites/image/botton icon.png" alt="Logo" height="35">
     </button>
-    
-    <ul class="navbar-nav align-items-center navbarNav" id="navbarNav">
-        <li class="nav-item category">
-		  <button class="nav-link main_head services" id="service-toggle">Technology</button>
-		  <div class="dropdown-content" id="dropdown-content"></div>
-		</li>
-        <li class="nav-item"><a class="nav-link main_head" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link main_head" href="/blog">Blog</a></li>
-        <li class="nav-item"><a class="nav-link main_head" href="/about-us">AboutUs</a></li>
-        <li class="nav-item"><a class="nav-link main_head" href="/contact-us">ContactUs</a></li>
-        <li class="nav-item"><a class="nav-link main_head" href="/#services">Services</a></li>
-    </ul>
-  
-    
+      <div class="link-items"> 
+	    <ul class="navbar-nav align-items-center navbarNav device-tab" id="navbarNav">
+	        <li class="nav-item category">
+			  <button class="nav-link main_head services" id="service-toggle">Technology</button>
+			  <div class="dropdown-content" id="dropdown-content"></div>
+			</li>
+	        <li class="nav-item"><a class="nav-link main_head" href="/">Home</a></li>
+	        <li class="nav-item"><a class="nav-link main_head" href="/blog">Blog</a></li>
+	        <li class="nav-item"><a class="nav-link main_head" href="/about-us">AboutUs</a></li>
+	        <li class="nav-item"><a class="nav-link main_head" href="/contact-us">ContactUs</a></li>
+	        <li class="nav-item"><a class="nav-link main_head" href="/#services">Services</a></li>
+	    </ul>
+	  </div>
+   
     
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav align-items-center">

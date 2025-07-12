@@ -166,9 +166,9 @@ p.time-date {
  .card {
  	border: 1px solid #879ea3;
  	background-color: rgb(255, 255, 255);
- 	box-shadow: 3px 10px 0px rgb(13 61 72 / 48%);
- 	border-radius: 23px;
- 	padding: 10px;
+ 	 
+ 	border-radius: 10px;
+ 	 
  	transition: transform 0.2s;
  }
 
@@ -576,6 +576,8 @@ p.time-date {
 
  /* Medium devices (landscape tablets and small laptops) */
  @media (max-width: 768px) {
+ 
+
  	.why-us .row {
  		flex-direction: column;
  		gap: 20px;
@@ -841,3 +843,5 @@ p.time-date {
  	border-radius: 12px;
  	transition: width 0.25s ease-in-out;
  }
+ 
+  
