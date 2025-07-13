@@ -29,6 +29,27 @@
   <section class="bg-lights py-4 py-md-5 py-xls-8 border-top border-light">
     <div class="container overflow-hidden">
       <div class="row gy-4 gy-lg-0 justify-content-xl-between">
+      
+        <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+          <div class="widget">
+            <h4 class="widget-title mb-4">Learn More</h4>
+            <ul class="list-unstyled">
+              <li class="mb-0"><a href="/blog" class="text-decoration-none">Blog Content</a></li>
+              <li class="mb-0"><a href="/about-us" class="text-decoration-none">About Us</a></li>
+              <li class="mb-0"><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 col-lg-4 col-xl-2">
+          <div class="widget">
+            <h4 class="widget-title mb-4">About US</h4>
+            <ul class="list-unstyled">
+              <li class="mb-0"><a href="/privacy-policy" class="text-decoration-none">Privacy policy</a></li>
+              <li class="mb-0"><a href="/faq" class="text-decoration-none">FAQ Questions</a></li>
+              <li class="mb-0"><a href="/terms-and-conditions" class="text-decoration-none">Terms and conditions</a></li>
+            </ul>
+          </div>
+        </div>
         <div class="col-12 col-md-3 col-lg-2 col-xl-2">
           <div class="widget">
             <h4 class="widget-title mb-4">Learn More</h4>
@@ -57,17 +78,6 @@
              <li class="mb-0"> Phone: <a class="text-decoration-none" href="tel:+15057922430">+1-(180)-2123-312</a></li>
              <li class="mb-0"> Email: <a class="text-decoration-none" href="mailto:demo@yourdomain.com">demo@yourdomain.com</a></li>
           	</ul>
-          </div>
-        </div>
-         <div class="col-12 col-md-3 col-lg-3 col-xl-2">
-          <div class="widget">
-            <h4 class="widget-title mb-4">Address</h4>
-           <div class="main-add"> 
-             Dummy data refers to information real scenarios is created<br>
-             to be used as placeholders or  purpose data analysis other<br>
-			 <!-- mimicking real is without meaningful containing any actual<br> -->
-			 meaningful. It's often used in software benign information.
-            </div>
           </div>
         </div>
       </div>
