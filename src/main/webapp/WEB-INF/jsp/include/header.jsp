@@ -6,10 +6,10 @@
     </ul>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav align-items-center">
-        <li class="nav-item"><a class="nav-link support" href="/#"> English</a></li>
-        <li class="nav-item"><a class="nav-link support" href="/#">Contact Us</a></li>
-        <li class="nav-item"><a class="nav-link support" href="/#"> Support</a></li>
-        <li class="nav-item"><a class="nav-link support" href="/#"> My Account</a></li>
+        <li class="nav-item"><a class="nav-link support" href="/"> English</a></li>
+        <li class="nav-item"><a class="nav-link support" href="/contact-us">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link support" href="/support"> Support</a></li>
+        <li class="nav-item"><a class="nav-link support" href="/login"> My Account</a></li>
         <li class="nav-item">
           <a class="nav-link popup-login" href="/login">
             <button class="popup-btn">
@@ -38,7 +38,7 @@
 	        <li class="nav-item"><a class="nav-link main_head" href="/blog">Blog</a></li>
 	        <li class="nav-item"><a class="nav-link main_head" href="/about-us">AboutUs</a></li>
 	        <li class="nav-item"><a class="nav-link main_head" href="/contact-us">ContactUs</a></li>
-	        <li class="nav-item"><a class="nav-link main_head" href="/#services">Services</a></li>
+	        <li class="nav-item"><a class="nav-link main_head" href="/services">Services</a></li>
 	    </ul>
 	  </div>
    

@@ -11,10 +11,10 @@
                <p>Get the latest updates, exclusive deals, and special offers.Join now!</p>
             </div>
           </div>
-          <div class="cols-4 col-email">
+          <div class="cols-4 col-md-12 col-email">
             <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
           </div>
-          <div class="cols-2 col-button">
+          <div class="cols-2 col-md-12 col-button">
             <button type="button" class="btn btn-primary subscribe">Subscribe</button>
            
           </div>

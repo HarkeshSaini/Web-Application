@@ -10,13 +10,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-		    <div class="search">
-		        <form action="" class="search-form">
-		            <input type="search" name="" required="required" placeholder="Search...">
-		        </form>
-		    </div>
-		</li>
         <li class="nav-item"><a class="nav-link active" href="/user/dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link active" href="#">Settings</a></li>
         <li class="nav-item"><a class="nav-link active" href="/user/information">Account Info</a></li>
@@ -26,19 +19,23 @@
   </div>
 </nav>
 <div class="col-md-3 col-sm-12 mb-4 side-bar">
-  <div class="card text-center p-3">
+  <%-- <div class="card text-center p-3">
     <img src="/resources/admin/image/${userDetail.imgUrl}" alt="User" class="profile-img mx-auto mb-3" />
     <h5 class="card-title">${userDetail.fullName}</h5>
     <p class="card-text text-muted">${userDetail.destination}</p>
     <a href="/user/update-profile" class="btn btn-primary w-100">Edit Profile</a>
-  </div>
+  </div> --%>
   <div class="card p-3 mobile">
-    <h5>Other information</h5>
-     <ul class="list-group nav-pills box flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
-      <li class="nav-item c"><a href="/user/dashboard" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard Overview and Summary</span> </a></li>
-      <li class="nav-item c"><a href="/user/information" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Your Account Information Detail</span> </a></li>
-      <li class="nav-item c"><a href="/user/update-profile" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Change Your Account Information</span> </a></li>
-      <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Change Your Account Settings</span> </a></li>
+    <div class="search-logo-data">
+		<div class="search">
+		    <input type="search" id="search" placeholder="Search list item...">
+		</div> 
+	</div>
+     <ul id="list" class="list-group nav-pills box flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
+      <li class="nav-item c"><a href="/user/dashboard" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a></li>
+      <li class="nav-item c"><a href="/user/information" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Account Information</span> </a></li>
+      <li class="nav-item c"><a href="/user/update-profile" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Change User Info</span> </a></li>
+      <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">User Service</span> </a></li>
       <li class="nav-item c"><a href="/user/logout" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Logout</span> </a></li>
     </ul>
   </div>
@@ -46,3 +43,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+document.getElementById("search").addEventListener("keyup", function() {
+    let filter = this.value.toLowerCase();
+    let items = document.querySelectorAll("#list li");
+
+    items.forEach(function(item) {
+        let text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? "block" : "none";
+    });
+});
+
+</script>

@@ -15,6 +15,8 @@ import com.spring.security.interfaces.CategoryInfoService;
 import com.spring.security.request.CategoryInfoRequest;
 import com.spring.security.request.CategoryReq;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class ServiceController {
 
@@ -23,12 +25,7 @@ public class ServiceController {
 	public ServiceController(CategoryInfoService categoryService) {
 		this.categoryService = categoryService;
 	}
-
-     /* Handles the general category page with a single 'url' path variable.
-	 * @param url   the category URL
-     * @param model the model to add attributes
-     * @return the view name for the category index page
-     */
+ 
 
 	@GetMapping("/{url}")
 	public String category(@PathVariable String url, Model model) {
@@ -42,15 +39,7 @@ public class ServiceController {
 		return "category/index";
 	}
 
-	/**
-	 * Handles the specific category page with two path variables: 'url' and 'categoryUrl'.
-	 *
-	 * @param url         the main category URL
-	 * @param categoryUrl the specific category URL
-	 * @param model       the model to add attributes
-	 * @return the view name for the category inner page
-	 */
-
+	 
 	@GetMapping("/{url}/{categoryUrl}")
 	public String categoryPage(@PathVariable String url, @PathVariable String categoryUrl, Model model) {
 		List<CategoryInfoRequest> requestDetail = categoryService.findCategory(url, categoryUrl);
@@ -59,5 +48,15 @@ public class ServiceController {
 		}
 		model.addAttribute("requestDetail", requestDetail);
 		return "category/innerPage";
+	}
+	
+	@GetMapping("/services")
+	public String servicePage(HttpServletRequest request) {
+		return "service/search";
+	}
+	
+	@GetMapping("/support")
+	public String supportPage(HttpServletRequest request) {
+		return "support/index";
 	}
 }

@@ -7,7 +7,7 @@
 
 /* General Body Styling */
 body {
-	background-color: rgb(231, 231, 231) !important;
+	background-color: rgb(202 202 202 / 19%) !important;
 }
 
 .bg-light {
@@ -23,7 +23,17 @@ body {
 }
 
 .info-item {
-	height: 100%;
+    height: 44px;
+    border-bottom: ridge;
+}.user-image {
+    width: 150px;     /* You can adjust the size as needed */
+    height: 150px;
+    object-fit: cover; /* Ensure the image covers the area properly */
+    border-radius: 50%; /* This makes the image perfectly round */
+    border: 3px solid #ccc; /* Optional: adds a nice border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}.main-detail {
+    margin-top: 113px;
 }
 
 /* Navbar */
@@ -34,25 +44,30 @@ body {
 
 /* Sidebar (Desktop) */
 .col-md-3.col-sm-12.mb-4.side-bar {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 	color: #fff;
 	font-family: sans-serif;
 	font-size: 16px;
-	padding: 10px 0;
+	padding: 13px 4px;
 	position: fixed;
-	top: 74px;
-	left: 14px;
-	width: 320px;
+	top: 60px;
+    left: 6px;
+    width: 266px;
 	height: calc(100% - 74px);
-	/* background-color: #333;*/
 	z-index: 999;
+}.nav-pills .nav-link {
+    font-size: 15px;
+    color: #3a3a3a;
+}.card {
+    border: none;
+    border-radius: 0px;
 }
 
 /* Main Content (Desktop) */
 .col-md-8 {
-	margin-left: 361px;
-	width: calc(100% - 361px);
-	padding: 20px;
+        margin-left: 280px;
+    width: calc(100% - 287px);
+    margin-top: -13px;
+    padding: 0px;
 }
 
 /* Profile Image */
@@ -71,16 +86,19 @@ body {
 	margin-bottom: 20px;
 
 }
-
-.card.dashboard-card.border-0.shadow-sm {
-	margin-top: -18px;
-	box-shadow: rgba(51, 20, 20, 0.07) 0px 0.125rem 0rem 8px !important;
+ .bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: rgb(255 255 255) !important;
+}.text-white {
+    --bs-text-opacity: 1;
+    color: rgb(0 0 0) !important;
 }
-
+.card.p-3.mobile {
+    height: 100%;
+}
 .card-header {
-	background-color: #007bff;
-	color: white;
-	background-image: linear-gradient(to left, rgb(129 228 255) 0%, rgb(26 40 62) 100%);
+    font-size: 14px;
+    color: #000000;
 }
 
 .card-body {
@@ -107,13 +125,7 @@ body {
 }
 
 /* User Info */
-.address-info,
-.info-item,
-.info-item.edit {
-	padding: 10px;
-	background-color: #f7fbfff2;
-	border-radius: 0.5rem;
-}
+ 
 
 .info-item.edit {
 	padding: 0.1rem;
@@ -160,9 +172,6 @@ a.btn.btn-primary.w-100 {
 	background-image: linear-gradient(to left, rgb(129 228 255) 0%, rgb(26 40 62) 100%);
 }
 
-label.form-label.text-muted.mb-0 {
-	font-size: medium;
-}
 
 li.nav-item.c {
 	list-style: auto;
@@ -171,7 +180,7 @@ li.nav-item.c {
 
 p.fw-semibold.fs-6.mb-0 {
 	float: inline-end;
-	color: darkcyan;
+	 
 }
 
 /* Utility Spacing */
@@ -201,14 +210,13 @@ p.fw-semibold.fs-6.mb-0 {
 }
 
 .search input[type="search"] {
-	width: 100%;
-	max-width: 300px;
-	padding: 4px 20px;
-	border: 1px solid #ccc;
-	border-radius: 14px;
-	font-size: 15px;
-	transition: all 0.3s ease;
-	outline: none;
+    max-width: 300px;
+    padding: 8px 25px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
 }
 
 .search input[type="search"]:focus {
@@ -226,10 +234,7 @@ p.fw-semibold.fs-6.mb-0 {
 	overflow: auto;
 }
 
-ul.list-group.nav-pills.box.flex-column.mb-sm-auto.mb-0.align-items-center.align-items-sm-start {
-	height: 150px;
-	overflow: auto;
-}
+
 
 /* Responsive for Tablets and Phones */
 @media (max-width: 1010px) {
@@ -342,4 +347,12 @@ ul.list-group.nav-pills.box.flex-column.mb-sm-auto.mb-0.align-items-center.align
 		.card.text-center.p-3 {
 			margin-top: -25px;
 		}
+		p.fw-semibold.fs-6.mb-0 {
+		    float: right;
+		}
 	}
+	
+ ul.list-group.nav-pills.box.flex-column.mb-sm-auto.mb-0.align-items-center.align-items-sm-start {
+    overflow: auto;
+    background-color: #ebebeb33;
+}

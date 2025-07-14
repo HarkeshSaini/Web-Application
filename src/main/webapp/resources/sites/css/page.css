@@ -104,7 +104,7 @@ body {
 .banner {
 	position: relative;
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 98px;
 	background-image: linear-gradient(to left, rgb(0 200 255) 0%, rgb(55 71 97) 100%);
 	height: 31vh;
 	/*background: url('/resources/sites/image/home-banner.avif') no-repeat center center/cover;*/
@@ -399,3 +399,21 @@ a.blog-heading {
 .read-more:hover {
 	color: #005fa3;
 }
+input[type="search"]{
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+} button.btn.btn-primary.search {
+    height: 40px;
+}
+@media (max-width: 991px) {
+    .cols-9, .cols-3, .cols-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+} 
+ 

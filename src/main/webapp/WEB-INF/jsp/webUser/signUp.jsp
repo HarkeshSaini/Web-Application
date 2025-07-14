@@ -75,7 +75,7 @@
                   </div>
 
                   <div class="col-12">
-                    <textarea name="address" class="form-control" rows="3" placeholder="Full address *" required></textarea>
+                    <textarea name="address" class="form-control" rows="3" placeholder="Full address (Optional)" required></textarea>
                   </div>
                 </div>
                 <div class="d-grid my-4">
