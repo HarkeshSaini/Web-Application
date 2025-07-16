@@ -9,10 +9,10 @@
     <title>Update User Information</title>
   </head>
   <body>
-    <div class="container-fluid py-5">
+    <div class="container-fluid">
       <div class="row user-dash">
         <jsp:include page="sideBar.jsp"></jsp:include>
-        <div class="col-md-8">
+       <div class="col-md-8">
 		  <form:form action="/user/update-profile" method="post" enctype="multipart/form-data">
 		    <div class="card dashboard-card border-0 shadow-sm">
 		      <div class="card-header bg-primary text-white">

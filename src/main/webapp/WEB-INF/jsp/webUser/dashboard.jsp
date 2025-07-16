@@ -4,48 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="container-fluid py-5">
+    <div class="container-fluid">
       <div class="row user-dash">
-        <!-- Include Sidebar (you can adjust or remove this as needed) -->
         <jsp:include page="sideBar.jsp"></jsp:include>
         <div class="col-md-8">
           <div class="card dashboard-card border-0 shadow-sm">
             <div class="card-header bg-primary text-white">
-              <p class="mb-0">User Dashboard <p>${message}</p></p>
+               <p class="mb-0">User Account Information <p>${message}</p> 
             </div>
-            <div class="container mt-5">
-			  <!-- User Base Graph, Rating, and Author Total -->
-			  <div class="row g-3">
-			  
-			    <!-- User Base Graph -->
-			    <div class="col-12 col-sm-6 col-md-4 mb-4">
-			      <div class="card dashboard-section">
-			        <div class="card-header">
-			          <h5>User Base Graph</h5>
-			        </div>
-			        <div class="card-body">
-			          <div class="chart-container">
-			            <canvas id="userBaseGraph"></canvas>
-			          </div>
-			           </div>
-			      </div>
-			    </div>
-			
-			    
-			
-			      
-			  </div>
-			</div>
-
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-6">
+                   <div class="chart-container">
+		            <canvas id="userBaseGraph"></canvas>
+		          </div>
+				</div>
+                <div class="col-md-6">
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <script>
+      
+      <script>
       // Wait for the DOM content to be fully loaded before initializing the chart
       document.addEventListener("DOMContentLoaded", function() {
           // Chart.js for User Base Graph

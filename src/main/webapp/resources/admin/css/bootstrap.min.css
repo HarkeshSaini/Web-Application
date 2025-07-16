@@ -1349,7 +1349,7 @@ progress {
 
 	.col-md-3 {
 		flex: 0 0 auto;
-		width: 25%
+		width: 16%;
 	}
 
 	.col-md-4 {
@@ -5053,9 +5053,9 @@ fieldset:disabled .btn {
 }
 
 .card-body {
-	flex: 1 1 auto;
-	padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-	color: var(--bs-card-color)
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: coral;
 }
 
 .card-title {
