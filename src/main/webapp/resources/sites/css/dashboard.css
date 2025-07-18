@@ -9,7 +9,7 @@
  
 
 .bg-light {
-    background-color: rgb(215 203 187) !important;
+    background-color: rgb(242 242 242) !important;
         box-shadow: 0 0px 7px rgb(0 0 0) !important;
 }
 
@@ -20,13 +20,16 @@
 .text-end {
 	margin-bottom: 15px !important;
 }
-
+.info-item.edit {
+    height: 100%;
+}
 .info-item {
-    height: 48px;
-    margin-bottom: 6px;
-    border-radius: 11px;
-    background-color: #f1f9ff;
-    border-bottom: ridge;
+    height: 52px;
+    margin-bottom: 4px;
+    border: 1px solid #d1d1d1;
+    border-radius: 6px;
+    padding: 11px 8px;
+    background-color: #e5e5e5;
 }.user-image {
     width: 150px;
     height: 150px;
@@ -75,7 +78,7 @@
         margin-top: 21px !important;
     padding: 0px;
     margin-bottom: 6px;
-        box-shadow: 0 0px 7px rgb(0 0 0 / 60%);
+        box-shadow: 0 0px 3px rgb(0 0 0 / 60%);
 }
 
 /* Profile Image */
@@ -93,15 +96,15 @@
  
  .bg-primary {
     --bs-bg-opacity: 1;
-    background-color: #d7cbbb !important;
+    background-color: rgb(242 242 242) !important;
 }.text-white {
     --bs-text-opacity: 1;
     color: rgb(0 0 0) !important;
 }
 .card.p-3.mobile {
     height: 104%;
-        box-shadow: 0 0px 7px rgb(0 0 0 / 60%);
-    background-color: #d7cbbb;
+        box-shadow: 0 0px 3px rgb(0 0 0 / 60%);
+    background-color: rgb(242 242 242) !important;
 }
 .card-header {
     font-size: 14px;
@@ -110,8 +113,9 @@
 }
 
 .card-body {
+	background-color: #ececec;
     overflow: auto;
-    background-color: #f1f9ff;
+    
 }
 
 .card.text-center.p-3 {
@@ -178,10 +182,10 @@ li.nav-item.c {
     margin-left: 0px;
     border-radius: 6px;
     width: 100%;
-    background-color: #f1f9ff;
+    background-color: #e5e5e5;
     margin-top: 4px;
     padding: 0px 11px;
-    border: 1px solid #969696;
+    border: 1px solid #a09f9f4a;
 }
 p.fw-semibold.fs-6.mb-0 {
 	float: inline-end;
@@ -239,14 +243,16 @@ p.fw-semibold.fs-6.mb-0 {
 	overflow: auto;
 }
 
-
+.form-control {
+    background-color: #f1f1f1;
+}
 
 /* Responsive for Tablets and Phones */
 @media (max-width: 1010px) {
-	p.fw-semibold.fs-6.mb-0 {
+	 
+p.fw-semibold.fs-6.mb-0 {
 		float: none;
 	}
-
 	.col-6 {
 		width: 100%;
 	}
@@ -255,21 +261,8 @@ p.fw-semibold.fs-6.mb-0 {
 		flex: 0 0 auto;
 		width: 100%;
 	}
-
-}
-
-@media (max-width: 1154px) {
-	p.fw-semibold.fs-6.mb-0 {
-		float: none;
-	}
-
-	.col-6 {
-		width: 100%;
-	}
-
-	.col-12 {
-		flex: 0 0 auto;
-		width: 100%;
+.info-item {
+        padding: 2px !important;
 	}
 }
 
@@ -277,6 +270,16 @@ p.fw-semibold.fs-6.mb-0 {
 
 
 @media (max-width: 768px) {
+	.card-body{
+	background-color: white;
+	}
+	.bg-light {
+	    background-color: rgb(255 255 255) !important;
+	}button.btn.btn-primary.mt-3 {
+    width: 100%;
+    background-color: #505050;
+	}
+	
 	.col-md-3.col-sm-12.mb-4.side-bar {
 		position: relative;
 		top: 0;
@@ -289,23 +292,15 @@ p.fw-semibold.fs-6.mb-0 {
 	.col-md-8 {
 		margin-left: 0;
 		width: 100%;
-		 
-		 
 	}
-
 	.profile-img {
 		width: 100px;
 		height: 100px;
 	}
-
-	.card.dashboard-card.border-0.shadow-sm {
-		margin-top: 12px;
-	}
-
+	 
 	.chart-container {
 		height: 250px;
 	}
-
 	.info-box .info-title,
 	.info-box .info-value {
 		font-size: 1rem;
@@ -356,7 +351,10 @@ p.fw-semibold.fs-6.mb-0 {
 		margin-top: -25px;
 	}
 	p.fw-semibold.fs-6.mb-0 {
-	    float: right;
+	    float: none;
+	}.info-item {
+	    background-color: #d1d1d114;
+        padding: 0px 9px !important;
 	}
 	
 	.row.user-dash {
@@ -375,3 +373,4 @@ img.user-image {
  ul.list-group.nav-pills.box.flex-column.mb-sm-auto.mb-0.align-items-center.align-items-sm-start {
     overflow: auto;
  } 
+  

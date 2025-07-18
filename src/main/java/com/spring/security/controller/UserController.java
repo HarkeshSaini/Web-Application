@@ -86,5 +86,21 @@ public class UserController {
 		}
 		return "webUser/updateProfile";
 	}
+	
+	
+	@GetMapping("/calendar")
+	public String calendar(Principal principal, HttpServletRequest request, Model model) {
+		try {
+			WebSiteUserRequest userRequest = userService.findUserByUserName(principal.getName());
+			model.addAttribute("message", "Hello, and welcome back! Here’s your personal calendar where you can manage your data and settings.");
+			model.addAttribute("userDetail", userRequest);
+		} catch (NotFoundException e) {
+			throw new NotFoundException(e.getMessage());
+		} catch (Exception e) {
+			throw new NotFoundException(e.getMessage());
+		}
+		return "webUser/calendar";
+	}
+
 
 }

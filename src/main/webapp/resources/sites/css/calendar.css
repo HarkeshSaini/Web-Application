@@ -1,0 +1,132 @@
+/* ---------- Base Calendar Styles ---------- */
+.calendar {
+    max-width: 500px;
+    margin: 0px auto;
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #0000004d;
+    box-sizing: border-box;
+}
+
+.card-body {
+    color: black !important;
+}
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 2px;
+}
+
+.weekdays div {
+    font-weight: bold;
+    padding: 8px 0;
+    background: #e1e1e1;
+    border: 1px solid #000;
+    font-size: 14px;
+}
+
+.days div {
+    padding: 15px 0;
+    border: 1px solid rgba(60, 58, 58, 0.6);
+    min-height: 30px;
+    font-size: 14px;
+}
+
+.today {
+    background-color: #a9a9a9;
+    color: #000000;
+    font-weight: bolder;
+    border-radius: 17%;
+}
+
+/* ---------- Buttons Styling ---------- */
+button#prev-month, button#next-month {
+    padding: 5px 20px;
+    background-color: darkgray;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.left-info {
+    width: 100%;
+    border-radius: 11px;
+    padding: 20px;
+    border: 1px solid #a9a9a9;
+    background: #f2f2f2;
+    box-sizing: border-box;
+}
+
+.selecting-day {
+    margin-top: 17px;
+    text-align: justify;
+}
+
+/* ---------- Responsive Media Queries ---------- */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .calendar {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .month {
+        font-size: 16px;
+    }
+
+    .weekdays div,
+    .days div {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+
+    button#prev-month, button#next-month {
+        padding: 4px 15px;
+        font-size: 12px;
+    }
+}
+
+/* Small Devices (Mobile 330px) */
+@media (max-width: 400px) {
+    .calendar {
+        max-width: 95%;
+        padding: 10px;
+    }
+
+    .weekdays, .days {
+        gap: 1px;
+    }
+
+    .weekdays div,
+    .days div {
+        font-size: 11px;
+        padding: 8px 0;
+    }
+
+    button#prev-month, button#next-month {
+        padding: 3px 10px;
+        font-size: 11px;
+    }
+
+    .month {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+}

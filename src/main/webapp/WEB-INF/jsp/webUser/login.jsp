@@ -6,29 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Login</title>
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="/resources/admin/css/auth.page.css"/>
-
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   </head>
-
   <body>
-    <!-- Header Include -->
     <div class="header_auth">
       <jsp:include page="../include/header.jsp"></jsp:include>
     </div>
-
-    <!-- Login Container -->
     <div class="container">
       <div class="card border border-light-subtle rounded-3 shadow-sm login-card mx-auto" style="max-width: 900px;">
         <div class="row g-0">
-
-          <!-- Left Side: Login Form -->
           <div class="col-12 col-md-6 login-form-side">
             <div class="card-body">
               <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
@@ -36,7 +24,6 @@
                   <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
                 </div>
               </c:if>
-
               <c:if test="${empty SPRING_SECURITY_LAST_EXCEPTION.message}">
                 <h2 class="fs-6 fw-normal text-center text-secondarys mb-4">${message}</h2>
               </c:if>
@@ -77,10 +64,8 @@
             </div>
             <p class="text-center">
               Welcome! Please log in to access your dashboard and view your profile.<br>
-             <!--  Don’t have an account? <a href="/sign-up" class="link-primary text-decoration-none">Sign Up</a> -->
             </p>
           </div>
-
         </div>
       </div>
     </div>

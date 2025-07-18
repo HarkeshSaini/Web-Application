@@ -40,7 +40,7 @@
       <li class="nav-item c"><a href="/user/dashboard" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a></li>
       <li class="nav-item c"><a href="/user/information" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Account info</span> </a></li>
       <li class="nav-item c"><a href="/user/update-profile" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Change info</span> </a></li>
-      <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"> Calendar info</span> </a></li>
+      <li class="nav-item c"><a href="/user/calendar" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"> Calendar info</span> </a></li>
       <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"> live Chat</span> </a></li>
       <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"> Email data</span> </a></li>
 	  <li class="nav-item c"><a href="#" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"> Event Process</span> </a></li>
