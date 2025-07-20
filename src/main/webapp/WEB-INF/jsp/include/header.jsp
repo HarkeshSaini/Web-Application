@@ -31,24 +31,50 @@
       <div class="link-items"> 
 	    <ul class="navbar-nav align-items-center navbarNav device-tab" id="navbarNav">
 	        <li class="nav-item category">
-			  <button class="nav-link main_head services" id="service-toggle">Technology</button>
+			  <button class="nav-link main_head" id="service-toggle">Technology</button>
 			  <div class="dropdown-content" id="dropdown-content"></div>
 			</li>
-	        <li class="nav-item"><a class="nav-link main_head" href="/">Home</a></li>
-	        <li class="nav-item"><a class="nav-link main_head" href="/blog">Blog</a></li>
-	        <li class="nav-item"><a class="nav-link main_head" href="/about-us">AboutUs</a></li>
-	        <li class="nav-item"><a class="nav-link main_head" href="/contact-us">ContactUs</a></li>
-	        <li class="nav-item"><a class="nav-link main_head" href="/services">Services</a></li>
+			<li class="nav-item category">
+			  <button class="nav-link main_head" id="service-toggle-links">Links</button>
+			  <div class="dropdown-content-links">
+			  	<ul class="navbar-navs align-items-center">
+			  		<li class="nav-item"><a class="nav-links" href="/">Home</a></li>
+	        		<li class="nav-item"><a class="nav-links" href="/blog">Blog Content</a></li>
+			  	</ul>
+			  </div>
+			</li>
+			<li class="nav-item category">
+			  <button class="nav-link main_head" id="service-toggle-service">Service</button>
+			 <!--  <div class="dropdown-content-service">
+			  	<ul class="navbar-navs align-items-center">
+			  		<li class="nav-item"><a class="nav-links" href="/">Home</a></li>
+	        		<li class="nav-item"><a class="nav-links" href="/blog">Blog</a></li>
+			  	</ul>
+			  </div> -->
+			</li>
+			<li class="nav-item category">
+			  <button class="nav-link main_head" id="service-toggle-about-us">AboutUs</button>
+			  <div class="dropdown-content-about-us">
+			  	<ul class="navbar-navs align-items-center">
+			  		<li class="nav-item"><a class="nav-links" href="/about-us">AboutUs</a></li>
+	       			<li class="nav-item"><a class="nav-links" href="/contact-us">ContactUs</a></li>
+	       			<li class="nav-item"><a href="/privacy-policy" class="nav-links">Privacy Policy</a></li>
+		            <li class="nav-item"><a href="/faq" class="nav-links">FAQ Questions</a></li>
+		            <li class="nav-item"><a href="/terms-and-conditions" class="nav-links">Terms Conditions</a></li>
+			  	</ul>
+			  </div>
+			</li>
+	       
 	    </ul>
 	  </div>
    
     
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav align-items-center">
-        <li class="nav-item"><input type="search" class="form-control search-input-data" placeholder="i'm looking for..." style="display: none;"></li>
+        <li class="nav-items"><input type="search" class="form-control search-input-data" placeholder="i'm looking for..." style="display: none;"></li>
         <li class="nav-item"><a class="nav-link search"><img class="icon-search" src="/resources/sites/image/search-icon.png" alt="Logo" height="35"></a></li>
-        <li class="nav-item"><a class="nav-link" href="/login">Sign in</a></li>
-        <li class="nav-item"><a class="nav-link create_account" href="/sign-up">Create Account</a></li>
+        <li class="nav-item"><a class="nav-link" href="/login">SignIn</a></li>
+        <li class="nav-item"><a class="nav-link create_account" href="/sign-up">Create_Account</a></li>
       </ul>
     </div>
   </div>
