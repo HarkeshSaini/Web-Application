@@ -22,11 +22,11 @@ h4.widget-title.mb-4 {
 p.recent {
 	border-radius: 8px;
 	padding: 9px 10px;
-	background-image: linear-gradient(to left, rgb(59 213 255) 0%, rgb(39 45 54) 100%);
+	background-color: #ff7d40;
 	overflow: hidden;
 	color: #ffffff;
 	height: auto;
-	box-shadow: 0 4px 12px rgb(0 0 0 / 17%);
+	box-shadow: 0 4px 7px rgb(0 0 0 / 17%);
 	transition: transform 0.3s ease;
 }
 

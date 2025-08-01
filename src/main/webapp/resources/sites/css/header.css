@@ -2,7 +2,11 @@
 nav.main_head {
 	margin-top: 38px;
 }
-
+a.navbar-brand.device-tab-logo {
+    text-decoration: none;
+    color: #ff7d40;
+        font-family: auto;
+}
 nav.support {
 	background-color: #293833;
 }
@@ -19,10 +23,10 @@ a.nav-link.support {
 }
 
 a.nav-link.create_account {
-	border: 1px solid black;
-	padding: 8px 25px;
-	border-radius: 16px;
-	background-color: #293833;
+	/* border: 1px solid black; */
+	padding: 10px 16px;
+	border-radius: 6px;
+	background-color: #ff5100bf;
 	color: #ffffff;
 	font-family: Amazon Ember Display, Helvetica Neue, Helvetica, Arial,
 		sans-serif !important;
@@ -36,7 +40,9 @@ img.icon-search {
 ul.navbar-nav.align-items-center {
 	margin-left: 21px;
 }
-
+a.nav-link.create_account:hover {
+    background-color: #e24e08bf;
+}
 a.nav-link.main_head {
 	font-size: 15px;
 }
@@ -62,7 +68,7 @@ nav.navbar.navbar-expand-lg.bg-darks.border-bottom.border-body {
 	border-bottom: 1px solid rgba(0, 0, 0, .15);
 	color: #fff;
 	font-family: sans-serif;
-	font-size: 16px;
+	font-size: 20px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -100,25 +106,27 @@ body {
 /* Navigation menu */
 .navbar-nav {
 	list-style: none;
-	display: flex;
 	align-items: center;
+	display: flex;
 	gap: 1.5rem;
 }
 
 .nav-item .nav-link {
-	color: #0a0a0a;
+	color: #ff5100;
 	text-decoration: none;
 	font-size: 14px;
 	transition: color 0.3s;
 }
-
-.nav-item .nav-link:hover {
+button#service-toggle-links:hover {
+    border: white;
+}
+/* .nav-item .nav-link:hover {
 	color: #ffffff;
 	text-transform: uppercase;
 	border-radius: 6px;
-	padding: 9px 21px;
-	background-color: #293833f5;
-}
+	padding: 10px 16px;
+	background-color: #ff5100bf;
+} */
 
 .nav-item img {
 	height: 22px;
@@ -316,7 +324,7 @@ button.popup-btn {
 	transform: translateY(-50%);
 	width: 0;
 	height: 0;
-	border-top: 6px solid #333;
+	border-top: 6px solid #ff5100;
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
 }
@@ -339,7 +347,7 @@ button.popup-btn {
 	border: none;
 	font-size: 15px;
 	cursor: pointer;
-	color: #333;
+	color: #ff5100;
 }
 
 .dropdown-content-links {
@@ -406,7 +414,7 @@ a.nav-link.service {
 a.nav-links {
 	margin-left: 0px;
 	text-decoration: none;
-	color: black;
+	color: #ff5100;
 	font-size: 15px;
 }
 
@@ -415,7 +423,7 @@ a.nav-links {
 	text-transform: uppercase;
 	border-radius: 6px;
 	padding: 9px 21px;
-	background-color: #293833f5;
+	background-color: #ff5100;
 }
 /* Responsive for mobile */
 @media ( max-width : 768px) {

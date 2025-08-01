@@ -168,7 +168,7 @@ input[type="radio"]:checked+.star {
 	}
 
 	.col-review {
-		width: 100 !important%;
+		width: 100% !important;
 	}
 
 	.form-input {
@@ -214,7 +214,7 @@ input[type="radio"] {
 .star:hover,
 .star:hover~.star,
 input[type="radio"]:checked~.star {
-	color: #5da3bc;
+	color: #ff7d40;
 }
 
 h2.review-heading {
@@ -257,8 +257,8 @@ h2.review-heading {
 	padding: 0 gap(m);
 	width: 100%;
 	height: 50px;
-	border:1px solid #dddddd;
-	border-radius: 3px;
+	    border: 1px solid #ff7d4069;
+    border-radius: 11px;
 	font-family: arial, sans-serif;
 	font-size: 1rem;
 	user-select: none;
@@ -287,7 +287,7 @@ h2.review-heading {
 	line-height: 0;
 	user-select: none;
 	color: white;
-	background-color: #43748b;
+	background-color: #ff7d40;
 	border-radius: 0 3px 3px 0;
 	font-family: arial, sans-serif;
 	font-size: 1rem;

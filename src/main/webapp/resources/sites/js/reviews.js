@@ -2,7 +2,7 @@ document.querySelectorAll('.rating-stars input').forEach(star => {
     star.addEventListener('change', function() {
         let selectedRating = this.value;
         document.querySelectorAll('.star').forEach(label => {
-            label.style.color = label.htmlFor.split('-')[1] <= selectedRating ? '#5da3bc' : 'gray';
+            label.style.color = label.htmlFor.split('-')[1] <= selectedRating ? '#ff7d40' : 'gray';
         });
     });
 });

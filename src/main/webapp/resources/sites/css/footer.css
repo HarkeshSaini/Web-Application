@@ -95,7 +95,7 @@ h4.widget-title.mb-4 {
 }
 
 .footer a:hover {
-	text-decoration: underline;
+	    color: #ff5100bf;
 }
 
 .subscribe {
@@ -108,7 +108,7 @@ h4.widget-title.mb-4 {
 .btn {
 	display: inline-block;
 	padding: 0.5rem 1rem;
-	    background-image: linear-gradient(to left, rgb(177 177 177) 0%, rgb(0 90 65) 100%);
+	    background-color: #ff5100;
 	color: #fff;
 	border: none;
 	text-align: center;
@@ -117,7 +117,7 @@ h4.widget-title.mb-4 {
 }
 
 .btn:hover {
-	background-color: #0056b3;
+	background-color: #c54103;
 }
 
 .address {

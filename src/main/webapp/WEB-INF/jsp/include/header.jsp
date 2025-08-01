@@ -24,7 +24,7 @@
 
 <nav class="navbar navbar-expand-lg bg-darks border-bottom border-body main_head" data-bs-theme="dark">
   <div class="container"> 
-    <a class="navbar-brand device-tab-logo"  href="/"><h2> ZONE</h2></a>
+    <a class="navbar-brand device-tab-logo"  href="/"><h2>Stack@Trail</h2></a>
      <button class="navbar-toggler device-tab-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <img src="/resources/sites/image/botton icon.png" alt="Logo" height="35">
     </button>
