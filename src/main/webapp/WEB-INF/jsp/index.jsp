@@ -18,37 +18,78 @@
          
       </div>
     </section>
-    <div class="container py-5">
-      <h2 class="text-center mb-4">Our Services</h2>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Card 1 -->
-        <div class="col">
-          <div class="card main-card">
-            <div class="card-body">
-              <h5 class="card-title">Web Design</h5>
-              <p class="card-text">Responsive and modern web designs that capture your audience's attention.</p>
-            </div>
+    
+     <section class="section">
+    <h2>Why Choose Us?</h2>
+    <div class="why-choose">
+      <div class="features">
+        <div class="feature-box">
+          <div class="feature-icon">⏱️</div>
+          <div class="feature-text">
+            <h4>Less Time in the Chair</h4>
+            <p>Justo non dolor lectus ac egestas dictum. Leo tempus nec amet fringilla.</p>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="col">
-          <div class="card main-card">
-            <div class="card-body">
-              <h5 class="card-title">Development</h5>
-              <p class="card-text">Custom web and mobile applications built with cutting-edge technologies.</p>
-            </div>
+        <div class="feature-box">
+          <div class="feature-icon">🦷</div>
+          <div class="feature-text">
+            <h4>More Efficient</h4>
+            <p>Leo tempus nec amet fringilla. Eu semper velit tristique semper.</p>
           </div>
         </div>
-        <!-- Card 3 -->
-        <div class="col">
-          <div class="card main-card">
-            <div class="card-body">
-              <h5 class="card-title">SEO Optimization</h5>
-              <p class="card-text">Increase your site's visibility with our effective SEO strategies.</p>
-            </div>
+        <div class="feature-box">
+          <div class="feature-icon">🩸</div>
+          <div class="feature-text">
+            <h4>Longer Lasting</h4>
+            <p>Laoreet mi lacus nisi diam in. Tempus nec amet fringilla.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">😊</div>
+          <div class="feature-text">
+            <h4>More Comfortable Experience</h4>
+            <p>Justo non dolor lectus ac egestas dictum. Eu semper velit.</p>
           </div>
         </div>
       </div>
+      <div class="image-container">
+        <img src="https://via.placeholder.com/500x500.png?text=Dentist+Image" alt="Dentist with Patient">
+      </div>
+    </div>
+  </section>
+  
+  <section class="services-section">
+    <h2>Service We Provide</h2>
+    <p>Your ultimate destination for expert care, training, and wellness to keep your furry friends happy and healthy!</p>
+
+    <div class="service-cards">
+      <div class="card">
+        <img src="https://img.icons8.com/color/96/000000/dog.png" alt="Grooming Icon" />
+        <h3>Grooming</h3>
+        <p>Full grooming for a happy, clean coat: bath, brush, nail trim, and more.</p>
+      </div>
+
+      <div class="card highlight">
+        <img src="https://img.icons8.com/color/96/heart-with-pulse.png" alt="Health Check Icon" />
+        <h3>Health Check</h3>
+        <p>Regular vet check-ups to keep your cat & dog in top shape so they can lead healthy life.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://img.icons8.com/color/96/cat-footprint.png" alt="Pet Sitting Icon" />
+        <h3>Pet Sitting</h3>
+        <p>Safe, cozy care while you're away, with plenty of love and play on a routine basis.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://img.icons8.com/color/96/meal.png" alt="Nutrition Icon" />
+        <h3>Nutrition</h3>
+        <p>Personalized diet plans for a healthy, happy cat or dog to live a very healthy life.</p>
+      </div>
+    </div>
+  </section>
+    
+    <div class="container py-5">
       <section class="reviews-section">
         <h2 class="reviews-title">What Our Customers Say</h2>
         <div class="reviews-container review-show"></div>

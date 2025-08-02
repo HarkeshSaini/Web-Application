@@ -59,4 +59,9 @@ public class ServiceController {
 	public String supportPage(HttpServletRequest request) {
 		return "support/index";
 	}
+	
+	@GetMapping(value = "/ai")
+	private String aiChat() {
+		return "service/aiChat";
+	}
 }

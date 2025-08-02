@@ -45,12 +45,12 @@
 			</li>
 			<li class="nav-item category">
 			  <button class="nav-link main_head" id="service-toggle-service">Service</button>
-			 <!--  <div class="dropdown-content-service">
+			   <div class="dropdown-content-service">
 			  	<ul class="navbar-navs align-items-center">
-			  		<li class="nav-item"><a class="nav-links" href="/">Home</a></li>
-	        		<li class="nav-item"><a class="nav-links" href="/blog">Blog</a></li>
+			  		<li class="nav-item"><a class="nav-links" href="/ai">StackTrail ai</a></li>
+	        		<li class="nav-item"><a class="nav-links" href="/blog">Blog Content</a></li>
 			  	</ul>
-			  </div> -->
+			  </div>
 			</li>
 			<li class="nav-item category">
 			  <button class="nav-link main_head" id="service-toggle-about-us">AboutUs</button>
