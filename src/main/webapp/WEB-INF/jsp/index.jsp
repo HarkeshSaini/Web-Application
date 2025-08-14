@@ -51,9 +51,16 @@
             <p>Justo non dolor lectus ac egestas dictum. Eu semper velit.</p>
           </div>
         </div>
+       <div class="feature-box">
+          <div class="feature-icon">🩸</div>
+          <div class="feature-text">
+            <h4>Longer Lasting</h4>
+            <p>Laoreet mi lacus nisi diam in. Tempus nec amet fringilla.</p>
+          </div>
+        </div>
       </div>
       <div class="image-container">
-        <img src="https://via.placeholder.com/500x500.png?text=Dentist+Image" alt="Dentist with Patient">
+        <img src="/resources/sites/image/about.webp" alt="Quality Service" class="why-choose-image">
       </div>
     </div>
   </section>

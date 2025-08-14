@@ -166,7 +166,7 @@ a.data-url:hover {
  }
 
  .card {
- 	border: 1px solid #879ea3;
+ 	border: 1px solid #ff7d40;
  	background-color: rgb(255, 255, 255);
  	 
  	border-radius: 10px;
@@ -957,7 +957,7 @@ body {
       }
     }
         .services-section {
-         background-color: #f9f8ff;
+         background-color: wheat;
       padding: 2rem 1rem;
       text-align: center;
       padding: 40px 20px;

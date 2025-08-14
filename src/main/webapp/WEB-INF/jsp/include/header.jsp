@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bg-darks border-bottom border-body support" data-bs-theme="dark">
   <div class="container"> 
     <ul class="navbar-brand">
-       <li class="nav-item"><a class="text-decoration-none" href="mailto:demo@yourdomain.com">support@zone.com</a></li>
+       <li class="nav-item"><a class="text-decoration-none" href="mailto:demo@yourdomain.com">support@stacktrail.com</a></li>
     </ul>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav align-items-center">

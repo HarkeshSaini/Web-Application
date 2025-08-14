@@ -94,7 +94,7 @@ button.btn.btn-primary.review-submit {
 	font-size: 40px;
 	margin-left: 8px;
 	cursor: pointer;
-	color: #ccc;
+	 
 }
 
 input[type="radio"] {
@@ -197,7 +197,7 @@ input[type="radio"]:checked+.star {
 
 .star {
 	/*font-size: 30px;*/
-	color: gray;
+	color: #80808063;
 	cursor: pointer;
 }
 
